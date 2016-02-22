@@ -25,7 +25,7 @@ hsl <- function(h=0, s=0.5, l=0.5) {
     # if first argument is a table, use this only
     d <- h[,1:3]
   } else {
-    # else, convert the h,s,l arguments into a table
+    # else, convert the arguments into a table
     # NB: this does argument recycling on its own; we just provide a nicer error message
     tryCatch(d <- data.frame(h, s, l),
       error=function(e) {
