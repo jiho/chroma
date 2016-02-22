@@ -2,12 +2,9 @@
 #'
 #' Create a vector of colors from hue, saturation and lightness.
 #'
-#' @param h hue, numeric vector with values in \code{[0, 360]}. Alternatively, can be a data.frame or a matrix whose first three columns are considered as \code{h}, \code{s}, and \code{l}; in that case, the actual arguments \code{s} and \code{l} are ignored.
-#' @param s saturation, numeric vector with values in \code{[0, 1]}
+#' @template hue
+#' @template saturation
 #' @param l lightness, same conventions as \code{s}
-#'
-#' @details
-#' When the arguments h, s, l are used separately and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 #'
 #' @return A vector of colors specified as hex codes
 #'
