@@ -25,6 +25,7 @@
 #' show_col(hcl(l=ramp))
 #'
 #' @export
+# TODO make compatible with grDevices::hcl
 hcl <- function(h=0, c=0.6, l=0.6) {
   if ( is.matrix(h) | is.data.frame(h) ) {
     # if first argument is a table, use this only
