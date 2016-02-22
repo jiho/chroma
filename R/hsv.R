@@ -15,7 +15,11 @@
 #' hsv(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
 #' hsv(c(330, 340), 1, 0.6)
 #'
-#' show_col(hsv(h=seq(0, 360, length.out=10)))
+#' # color ramps
+#' ramp <- seq(0, 1, length.out=10)
+#' show_col(hsv(h=ramp*360))
+#' show_col(hsv(s=ramp))
+#' show_col(hsv(v=ramp))
 #'
 #' @export
 hsv <- function(h=0, s=0.665, v=0.75) {
@@ -46,10 +50,10 @@ hsv <- function(h=0, s=0.665, v=0.75) {
     stop("s cannot be > 1")
   }
   if (any(d[,3] < 0)) {
-    stop("v cannot be < 0")
+    stop("l cannot be < 0")
   }
   if (any(d[,3] > 1)) {
-    stop("v cannot be > 1")
+    stop("l cannot be > 1")
   }
   
   # convert each row of input
