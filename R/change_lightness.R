@@ -1,0 +1,67 @@
+#' Change color lightness
+#'
+#' Darken or brighten colors
+#'
+#' @param x vector of colors specified as hex strings or named R colors.
+#' @param amount numeric amount of change in lightness. Reasonable amounts are 1 to 10. Negative amounts correspond to the opposite operation (\code{darken("red", -1) = brighten("red", 1)}.)
+#'
+#' @details
+#' Colors are converted into L* a* b* space where the L* component is changed. Most colors are (very slightly) affected by the conversion and the change in lightness is therefore not exactly reversible (brightening a darkened color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright colors.
+#' 
+#' @template color_manip
+#'
+#' @examples
+#' darken("#7BBBFE")
+#' darken(c("coral1", "#850E5D"))
+#' brighten("darkgreen")
+#'
+#' show_col(c("deeppink", darken("deeppink"), brighten("deeppink")),
+#'          c("blue", darken("blue"), brighten("blue")))
+#' show_col(c(brighten("red", 2),
+#'            brighten("red"),
+#'            "red",
+#'            darken("red"),
+#'            darken("red", 2)))
+#'
+#' # darken and brighten are opposite operations
+#' darken("red", -1)
+#' brighten("red", 1)
+#'
+#' # but not necessarily reversible
+#' col <- "#5eff15"
+#' (new_col <- brighten(darken(col)))
+#' show_col(c(col, new_col))
+#' 
+#' @name change_lightness
+#' @export
+darken <- function(x, amount=1) {
+  # convert everything to a common color representation
+  x <- chroma_r(x)
+  
+  # manipulate colors
+  cmds <- paste0("chroma('", x, "').darken(",amount,").hex()")
+  v8_eval(cmds)
+}
+
+#' @name change_lightness
+#' @export
+darker <- darken
+
+#' @name change_lightness
+#' @export
+brighten <- function(x, amount=1) {
+  darken(x, amount=-amount)
+  # NB: this is how brighten is actually implemented in chroma.js
+}
+
+#' @name change_lightness
+#' @export
+brighter <- brighten
+
+#' @name change_lightness
+#' @export
+lighten <- brighten
+
+#' @name change_lightness
+#' @export
+lighter <- brighten
