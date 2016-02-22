@@ -38,6 +38,15 @@ parse_color <- function(x, model) {
 
   }
   
+  # the range of some channels is homogenised in this package (all "percentage" are between 0 and 1)
+  # modify the values here to match their definition in chroma.js (which are not homogeneous)
+  if ( model == "hcl" ) {
+    x[,2:3] <- x[,2:3] * 100
+  } else if ( model == "lch" ) {
+    x[,1:2] <- x[,1:2] * 100
+  } else if ( model == "lab" ) {
+    x <- x * 100
+  }
   
   # parse colors using chroma.js
   cmds <- apply(x, 1, function(xx) {
