@@ -40,7 +40,7 @@ plot(ab$a, ab$b, col=lab(l=1, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 
 }
 \seealso{
-Other color.specifications: \code{\link{hsl}},
-  \code{\link{hsv}}
+Other color.specifications: \code{\link{hcl}},
+  \code{\link{hsl}}, \code{\link{hsv}}
 }
 
