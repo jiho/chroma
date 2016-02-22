@@ -42,6 +42,7 @@ plot(ab$a, ab$b, col=lab(l=1, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 \seealso{
 Other color specifications: \code{\link{cmyk}},
   \code{\link{color_temperature}}, \code{\link{css_color}},
-  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{hsv}}
+  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{hsv}},
+  \code{\link{parse_color}}
 }
 

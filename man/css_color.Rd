@@ -25,6 +25,7 @@ css_color("hsl(200, 50\%, 50\%)")
 \seealso{
 Other color specifications: \code{\link{cmyk}},
   \code{\link{color_temperature}}, \code{\link{hcl}},
-  \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}}
+  \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}},
+  \code{\link{parse_color}}
 }
 

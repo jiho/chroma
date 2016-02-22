@@ -47,11 +47,11 @@ convert_color("red", model="hsl")
 convert_color("red", model="hcl")
 convert_color("red", model="cmyk")
 
-as.rgb("red")
 as.lab("red")
 as.lch("red")
-as.css("red")
 as.rgb(colors()[1:5])
+
+as.css("red")
 
 }
 

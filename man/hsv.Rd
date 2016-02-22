@@ -41,6 +41,7 @@ show_col(hsv(v=ramp))
 \seealso{
 Other color specifications: \code{\link{cmyk}},
   \code{\link{color_temperature}}, \code{\link{css_color}},
-  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{lab}}
+  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{lab}},
+  \code{\link{parse_color}}
 }
 
