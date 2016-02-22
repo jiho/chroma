@@ -17,7 +17,7 @@
 #' hsl(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
 #' hsl(c(330, 340), 1, 0.6)
 #'
-#' show_col(hsl(h=seq(0, 360, by=10), s=0.7))
+#' show_col(hsl(h=seq(0, 360, length.out=10)))
 #'
 #' @export
 hsl <- function(h=0, s=0.5, l=0.5) {
