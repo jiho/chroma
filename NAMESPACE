@@ -2,6 +2,7 @@
 
 export(cmyk)
 export(color_temperature)
+export(css_color)
 export(hcl)
 export(hsl)
 export(hsv)

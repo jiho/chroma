@@ -25,8 +25,8 @@ plot(x=temp, y=rep(1, 20), col=color_temperature(temp), pch=15, cex=3)
 
 }
 \seealso{
-Other color specifications: \code{\link{cmyk}},
-  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{hsv}},
-  \code{\link{lab}}
+Other color.specifications: \code{\link{cmyk}},
+  \code{\link{css_color}}, \code{\link{hcl}},
+  \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}}
 }
 
