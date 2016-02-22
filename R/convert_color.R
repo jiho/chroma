@@ -42,6 +42,15 @@ convert_color <- function(x, model) {
     colnames(res) <- strsplit(model, "", fixed=TRUE)[[1]]
   }
   
+  # adjust the range of some channels to match their definition (which are not homogeneous in chroma.js)
+  if ( model == "hcl" ) {
+    res[,2:3] <- res[,2:3] / 100
+  } else if ( model == "lch" ) {
+    res[,1:2] <- res[,1:2] / 100
+  } else if ( model == "lab" ) {
+    res <- res / 100
+  }
+  
   return(res)
 }
 
