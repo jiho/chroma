@@ -1,6 +1,6 @@
 #' HSV Color Specification
 #'
-#' Create a vector of colors from hue, saturation and value.
+#' Create a vector of colors from hue, saturation, and value.
 #'
 #' @template hue
 #' @template saturation
@@ -54,7 +54,7 @@ hsv <- function(h=0, s=0.665, v=0.75) {
   
   # convert each row of input
   apply(d, 1, function(x) {
-    chroma.hsv(h=x[1], s=x[2], v=x[3])
+    chroma.hsv(x[1], x[2], x[3])
   })
 }
 

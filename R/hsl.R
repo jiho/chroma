@@ -1,6 +1,6 @@
 #' HSL Color Specification
 #'
-#' Create a vector of colors from hue, saturation and lightness.
+#' Create a vector of colors from hue, saturation, and lightness.
 #'
 #' @template hue
 #' @template saturation
@@ -54,7 +54,7 @@ hsl <- function(h=0, s=0.5, l=0.5) {
   
   # convert each row of input
   apply(d, 1, function(x) {
-    chroma.hsl(h=x[1], s=x[2], l=x[3])
+    chroma.hsl(x[1], x[2], x[3])
   })
 }
 
