@@ -8,7 +8,7 @@
 #'
 #' @return A vector of colors specified as hex codes
 #'
-#' @family color_specification
+#' @family color specifications
 #'
 #' @examples
 #' hsl()
