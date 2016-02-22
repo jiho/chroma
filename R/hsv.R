@@ -22,7 +22,7 @@
 #' show_col(hsv(v=ramp))
 #'
 #' @export
-hsv <- function(h=0, s=0.665, v=0.75) {
+hsv <- function(h=0, s=0.6, v=0.7) {
   if ( is.matrix(h) | is.data.frame(h) ) {
     # if first argument is a table, use this only
     d <- h[,1:3]

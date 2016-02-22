@@ -4,7 +4,7 @@
 \alias{hsv}
 \title{HSV Color Specification}
 \usage{
-hsv(h = 0, s = 0.665, v = 0.75)
+hsv(h = 0, s = 0.6, v = 0.7)
 }
 \arguments{
 \item{h}{hue, numeric vector with values in \code{[0, 360]}.}
