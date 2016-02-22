@@ -42,7 +42,7 @@ show_col(hcl(l=ramp))
 
 }
 \seealso{
-Other color.specifications: \code{\link{cmyk}},
+Other color specifications: \code{\link{cmyk}},
   \code{\link{color_temperature}}, \code{\link{css_color}},
   \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}}
 }

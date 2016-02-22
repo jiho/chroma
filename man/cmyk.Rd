@@ -32,7 +32,7 @@ show_col(cmyk(k=seq(0, 1, length.out=10)))
 
 }
 \seealso{
-Other color.specifications: \code{\link{color_temperature}},
+Other color specifications: \code{\link{color_temperature}},
   \code{\link{css_color}}, \code{\link{hcl}},
   \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}}
 }
