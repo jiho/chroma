@@ -15,19 +15,19 @@
 #' darken(c("coral1", "#850E5D"))
 #' brighten("darkgreen")
 #'
-#' show_col(c("deeppink", darken("deeppink"), brighten("deeppink")),
-#'          c("blue", darken("blue"), brighten("blue")))
-#' show_col(c(brighten("red", 2),
-#'            brighten("red"),
-#'            "red",
-#'            darken("red"),
-#'            darken("red", 2)))
+#' show_col(c("hotpink", darken("hotpink"), brighten("hotpink")),
+#'          c("lightskyblue", darken("lightskyblue"), brighten("lightskyblue")))
+#' show_col(c(brighten("salmon3", 2),
+#'            brighten("salmon3"),
+#'            "salmon3",
+#'            darken("salmon3"),
+#'            darken("salmon3", 2)))
 #'
 #' # darken and brighten are opposite operations
 #' darken("red", -1)
 #' brighten("red", 1)
 #'
-#' # but not necessarily reversible
+#' # but not necessarily exactly reversible
 #' col <- "#5eff15"
 #' (new_col <- brighten(darken(col)))
 #' show_col(c(col, new_col))
