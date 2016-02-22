@@ -2,7 +2,7 @@
 #'
 #' Converts colors specified as CSS strings into R colors. This includes all colors in the X11 specification of the W3C \code{<http://www.w3.org/TR/css3-color/#svg-color>} as well as \code{rgb()} and \code{hsl()} constructs (but, in this case, it is probably easier to use the functions \code{\link[grDevices]{rgb}}) and \code{\link{hsl}} directly).
 #'
-#' @param color string representing a color in CSS.
+#' @param x string representing a color in CSS.
 #'
 #' @family color specifications
 #'

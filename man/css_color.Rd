@@ -7,7 +7,7 @@
 css_color(x)
 }
 \arguments{
-\item{color}{string representing a color in CSS.}
+\item{x}{string representing a color in CSS.}
 }
 \value{
 A vector of colors specified as hex codes
