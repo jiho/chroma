@@ -1,6 +1,6 @@
 #' Parse colors specified in a given model
 #'
-#' @param x a matrix or data.frame whose column specify color channels.
+#' @param x a matrix or data.frame whose columns specify the color channels.
 #' @template model
 #'
 #' @family color specifications

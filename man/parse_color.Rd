@@ -7,7 +7,7 @@
 parse_color(x, model)
 }
 \arguments{
-\item{x}{a matrix or data.frame whose column specify color channels.}
+\item{x}{a matrix or data.frame whose columns specify the color channels.}
 
 \item{model}{string defining the color model; valid models are \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}}
 }
