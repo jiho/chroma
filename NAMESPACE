@@ -2,6 +2,7 @@
 
 export(hsl)
 export(hsv)
+export(lab)
 export(show_col)
 export(v8_chroma_context)
 importFrom(V8,v8)
