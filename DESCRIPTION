@@ -9,5 +9,6 @@ License: GPL-3
 LazyData: TRUE
 Imports:
     V8,
-    grid
+    grid,
+    grDevices
 RoxygenNote: 5.0.1
