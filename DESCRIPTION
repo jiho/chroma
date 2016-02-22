@@ -10,5 +10,6 @@ LazyData: TRUE
 Imports:
     V8,
     grid,
-    grDevices
+    grDevices,
+    scales
 RoxygenNote: 5.0.1
