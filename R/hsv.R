@@ -4,7 +4,7 @@
 #'
 #' @template hue
 #' @template saturation
-#' @param v value, same conventions as \code{s}
+#' @param v value, same conventions as \code{s}; 0 is black, 1 is full brightness
 #'
 #' @template color_spec
 #'

@@ -4,7 +4,7 @@
 #'
 #' @template hue
 #' @template saturation
-#' @param l lightness, same conventions as \code{s}
+#' @template lightness
 #'
 #' @template color_spec
 #'

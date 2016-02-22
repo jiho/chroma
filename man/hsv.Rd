@@ -7,19 +7,20 @@
 hsv(h = 0, s = 0.665, v = 0.75)
 }
 \arguments{
-\item{h}{hue, numeric vector with values in \code{[0, 360]}. Alternatively, can be a data.frame or a matrix whose first three columns are considered as arguments; in that case, the rest of the function arguments are ignored.}
+\item{h}{hue, numeric vector with values in \code{[0, 360]}.}
 
-\item{s}{saturation, numeric vector with values in \code{[0, 1]}}
+\item{s}{saturation, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.}
 
-\item{v}{value, same conventions as \code{s}}
+\item{v}{value, same conventions as \code{s}; 0 is black, 1 is full brightness}
 }
 \value{
 A vector of colors specified as hex codes
 }
 \description{
-Create a vector of colors from hue, saturation and value.
+Create a vector of colors from hue, saturation, and value.
 }
 \details{
+The first argument can also be a data.frame or a matrix. In that case, its first three columns are considered as the three color components and the rest of the function arguments are ignored.
 When the arguments are used separately and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 }
 \examples{
@@ -33,6 +34,7 @@ show_col(hsv(h=seq(0, 360, length.out=10)))
 
 }
 \seealso{
-Other color.specifications: \code{\link{hsl}}
+Other color.specifications: \code{\link{hsl}},
+  \code{\link{lab}}
 }
 
