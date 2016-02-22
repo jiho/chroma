@@ -8,10 +8,10 @@
 #'
 #' @examples
 #' cmyk()
-#' cmyk(0.47, 0.55, 0.3)
-#' cmyk(data.frame(c(0.4, 0.6), c(-1, 1), c(-1, 1)))
-#' cmyk(matrix(c(0.4, 0.6, -1, 1, -1, 1), ncol=3))
-#' cmyk(0.5, c(-1, 1), c(-1, 1))
+#' cmyk(0, 0, 0, 0.1)
+#' cmyk(data.frame(c(1, 0.5), c(1, 1), c(1, 1), c(0.5, 0.5)))
+#' cmyk(matrix(c(1, 0.5, 1, 1, 1, 1, 0.5, 0.5), ncol=4))
+#' cmyk(0.5, 1, 1, c(0.25, 0.5, 0.75))
 #'
 #' # color ramp
 #' show_col(cmyk(k=seq(0, 1, length.out=10)))
