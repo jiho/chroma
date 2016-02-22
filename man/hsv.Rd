@@ -39,7 +39,7 @@ show_col(hsv(v=ramp))
 
 }
 \seealso{
-Other color.specifications: \code{\link{hcl}},
-  \code{\link{hsl}}, \code{\link{lab}}
+Other color.specifications: \code{\link{cmyk}},
+  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{lab}}
 }
 
