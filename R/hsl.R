@@ -6,9 +6,7 @@
 #' @template saturation
 #' @param l lightness, same conventions as \code{s}
 #'
-#' @return A vector of colors specified as hex codes
-#'
-#' @family color specifications
+#' @template color_spec
 #'
 #' @examples
 #' hsl()
