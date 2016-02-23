@@ -19,13 +19,15 @@ Create a vector of colors from cyan, magenta, yellow, and black
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
+
+CMYK is the color model used by printers, which use cyan, magenta, yellow and black ink. The CMYK space cannot reproduce all colors seen on screens, bright and flashy colors in particular.
 }
 \examples{
 cmyk()
 cmyk(0, 0, 0, 0.1)
 cmyk(data.frame(c(1, 0.5), c(1, 1), c(1, 1), c(0.5, 0.5)))
 cmyk(matrix(c(1, 0.5, 1, 1, 1, 1, 0.5, 0.5), ncol=4))
-cmyk(0.5, 1, 1, c(0.25, 0.5, 0.75))
+cmyk(c=0.5, m=1, y=1, k=c(0.25, 0.5, 0.75))
 
 # color ramp
 show_col(cmyk(k=seq(0, 1, length.out=10)))
