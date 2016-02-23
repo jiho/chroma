@@ -7,9 +7,9 @@
 parse_color(x, model)
 }
 \arguments{
-\item{x}{a matrix or data.frame whose columns specify the color channels.}
+\item{x}{a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css} and \code{hex} color models}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}}
+\item{model}{string defining the color model; valid models are \code{rgb}, \code{gl}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}.}
 }
 \value{
 A vector of colors specified as hex codes
@@ -26,8 +26,8 @@ parse_color(data.frame(r=c(255, 0, 0),
 }
 \seealso{
 Other color specifications: \code{\link{cmyk}},
-  \code{\link{color_temperature}}, \code{\link{css_color}},
-  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{hsv}},
-  \code{\link{lab}}, \code{\link{rgb}}
+  \code{\link{color_temperature}}, \code{\link{css}},
+  \code{\link{hcl}}, \code{\link{hex}}, \code{\link{hsl}},
+  \code{\link{hsv}}, \code{\link{lab}}, \code{\link{rgb}}
 }
 

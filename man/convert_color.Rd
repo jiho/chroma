@@ -33,7 +33,7 @@ as.css(x)
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}}
+\item{model}{string defining the color model; valid models are \code{rgb}, \code{gl}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}.}
 }
 \value{
 A matrix containing the color components, except for the \code{css} model for which the result is a vector of css color definition strings.

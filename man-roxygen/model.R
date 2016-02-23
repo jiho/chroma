@@ -1,1 +1,1 @@
-#' @param model string defining the color model; valid models are \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}
+#' @param model string defining the color model; valid models are \code{rgb}, \code{gl}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}.

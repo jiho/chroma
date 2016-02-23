@@ -1,6 +1,6 @@
 #' Parse colors specified in a given model
 #'
-#' @param x a matrix or data.frame whose columns specify the color channels.
+#' @param x a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css} and \code{hex} color models
 #' @template model
 #'
 #' @family color specifications
@@ -16,15 +16,21 @@
 #' @export
 parse_color <- function(x, model) {
   # recognise color model
-  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css"))
+  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex"))
   # TODO add temperature
   # TODO add hsi?
 
   # check arguments
-  if (model == "css") {
+  if (model %in% c("css", "hex")) {
     
-    x <- as.character(x)
-    # TODO more intense check here
+    if ( !is.vector(x) ) {
+      stop("x should be a vector")
+    }
+    
+    if ( !is.character(x) ) {
+      warning("x converted to character for color parsing")
+      x <- as.character(x)
+    }
     
   } else {
     
@@ -95,10 +101,10 @@ parse_color <- function(x, model) {
   }
   
   # parse colors using chroma.js
-  if (model == "css") {
-    cmds <- apply(x, 1, function(xx) {
+  if (model %in% c("css", "hex")) {
+    cmds <- sapply(x, function(xx) {
       paste0("chroma.", model, "('", xx, "').hex()")
-    })
+    }, USE.NAMES=FALSE)
   } else {
     cmds <- apply(x, 1, function(xx) {
       paste0("chroma.", model, "([", paste0(xx, collapse=","), "]).hex()")
