@@ -22,7 +22,7 @@ lch(l = 0.6, c = 0.6, h = 0)
 A vector of colors specified as hex codes
 }
 \description{
-Create a vector of colors from hue, chromacity, and lightness. This is a drop-in replacement for the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}.
+Create a vector of colors from hue, chromacity, and lightness. The arguments are compatible with the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}, but the conventions and output are slightly different.
 }
 \details{
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.

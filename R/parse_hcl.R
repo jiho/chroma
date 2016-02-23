@@ -1,6 +1,6 @@
 #' HCL Color Specification
 #'
-#' Create a vector of colors from hue, chromacity, and lightness. This is a drop-in replacement for the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}.
+#' Create a vector of colors from hue, chromacity, and lightness. The arguments are compatible with the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}, but the conventions and output are slightly different.
 #'
 #' @template hue
 #' @param c chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.
