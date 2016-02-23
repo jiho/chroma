@@ -8,6 +8,7 @@
 #' @param maxColorValue number giving the maximum of the color values range; typically 1 or 255.
 #'
 #' @template color_spec
+#' @template color_spec_from_matrix
 #'
 #' @details
 #' \code{gl} is a variant which forces \code{maxColorValue} to be 1. It is provided for full compatibility with chroma.js.

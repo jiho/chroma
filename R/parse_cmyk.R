@@ -5,6 +5,7 @@
 #' @param c,m,y,k color components, numeric vectors with values in \code{[0, 1]}.
 #'
 #' @template color_spec
+#' @template color_spec_from_matrix
 #'
 #' @details
 #' CMYK is the color model used by printers, which use cyan, magenta, yellow and black ink. The CMYK space cannot reproduce all colors seen on screens, bright and flashy colors in particular.

@@ -7,6 +7,7 @@
 #' @template lightness
 #'
 #' @template color_spec
+#' @template color_spec_from_matrix
 #'
 #' @examples
 #' hsl()

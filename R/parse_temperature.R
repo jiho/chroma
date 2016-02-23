@@ -4,9 +4,7 @@
 #'
 #' @param temperature light temperature in Kelvin, a numeric vector with values in \code{[1000, 40000]}. 1000 is candle light, 2000 is sunset light, 3200 is a tungsten light bulb, 4000 is a white fluorescent light tube, 5200 is average midday sunlight, 7000 is overcast daylight, 10000 is the color of a clear blue sky.
 #'
-#' @family color specifications
-#'
-#' @return A vector of colors specified as hex codes
+#' @template color_spec
 #'
 #' @examples
 #' color_temperature()

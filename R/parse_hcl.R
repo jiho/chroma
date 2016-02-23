@@ -7,6 +7,7 @@
 #' @template lightness
 #'
 #' @template color_spec
+#' @template color_spec_from_matrix
 #'
 # TODO: add advice such as the following in all functions
 # In HCL space, the perceived color (hue) is completely separated from the perceived lightness of the color. All colors on a pure hue scale (same \code{c} and \code{l}) have the same apparent brightness.
