@@ -21,6 +21,8 @@ Create a vector of colors from lightness and a and b color-opponents.
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
+
+The CIE L*a*b* color space is intended to represent all colors visible by the human eye. It separates a lightness component (\code{l}), which matches the human perception of lightness well, from two color "opponents" (\code{a} and \code{b}). To create color palettes however, the HCL color model (function \code{\link{hcl}}) is likely to be more practical and is also intended to match human perception of colors.
 }
 \examples{
 lab()
@@ -29,10 +31,10 @@ lab(data.frame(c(0.4, 0.6), c(-1, 1), c(-1, 1)))
 lab(matrix(c(0.4, 0.6, -1, 1, -1, 1), ncol=3))
 lab(0.5, c(-1, 1), c(-1, 1))
 
-# nice color scales
+# nice lightness scales
 show_col(lab(l=seq(0, 1, length.out=10)))
 
-# represent slices of the color space
+# represent slices of the color space, projected in R's sRGB representation
 ab <- expand.grid(a=seq(-1, 1, length.out=10), b=seq(-1, 1, length.out=10))
 plot(ab$a, ab$b, col=lab(l=0.5, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 plot(ab$a, ab$b, col=lab(l=0.2, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
@@ -43,8 +45,9 @@ plot(ab$a, ab$b, col=lab(l=1, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
 
 Other color specifications: \code{\link{cmyk}},
-  \code{\link{color_temperature}}, \code{\link{css_color}},
-  \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{hsv}},
-  \code{\link{parse_color}}, \code{\link{rgb}}
+  \code{\link{color_temperature}}, \code{\link{css}},
+  \code{\link{hcl}}, \code{\link{hex}}, \code{\link{hsl}},
+  \code{\link{hsv}}, \code{\link{parse_color}},
+  \code{\link{rgb}}
 }
 

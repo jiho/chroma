@@ -9,6 +9,11 @@
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
+#' @export
+#'
+#' @details
+#' The HSV color model tentatively separates color (hue), color intensity (saturation), and color lightness (value), which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion reamins in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{v} some hues are perceived as brighter (yellow and green for example) and therefore draw attention to themselves. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
+#'
 #' @examples
 #' hsv()
 #' hsv(330, 1, 0.6)
@@ -18,12 +23,10 @@
 #'
 #' # color ramps
 #' ramp <- seq(0, 1, length.out=10)
-#' show_col(hsv(h=ramp*360))
-#' show_col(hsv(s=ramp))
-#' show_col(hsv(v=ramp))
+#' show_col(hsv(h=ramp*360), hsv(s=ramp), hsv(v=ramp))
 #'
-#' @export
-# TODO make compatible with grDevices::hcl
+#' # recreate the rainbow() scale
+#' show_col(hsv(h=seq(0, 324, length.out=10), s=1, v=1), rainbow(10))
 hsv <- function(h=0, s=0.6, v=0.7) {
   # handle color channels
   x <- tabularise_arguments(h, s, v)

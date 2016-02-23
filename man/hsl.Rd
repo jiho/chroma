@@ -23,6 +23,8 @@ Create a vector of colors from hue, saturation, and lightness.
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
+
+The HSL color model tentatively separates color (hue), color intensity (saturation), and color lightness, which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion reamins in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{l} some hues are perceived as brighter (yellow and green for example) and therefore draw attention to themselves. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
 }
 \examples{
 hsl()
@@ -33,17 +35,15 @@ hsl(c(330, 340), 1, 0.6)
 
 # color ramps
 ramp <- seq(0, 1, length.out=10)
-show_col(hsl(h=ramp*360))
-show_col(hsl(s=ramp))
-show_col(hsl(l=ramp))
-
+show_col(hsl(h=ramp*360), hsl(s=ramp), hsl(l=ramp))
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
 
 Other color specifications: \code{\link{cmyk}},
-  \code{\link{color_temperature}}, \code{\link{css_color}},
-  \code{\link{hcl}}, \code{\link{hsv}}, \code{\link{lab}},
-  \code{\link{parse_color}}, \code{\link{rgb}}
+  \code{\link{color_temperature}}, \code{\link{css}},
+  \code{\link{hcl}}, \code{\link{hex}}, \code{\link{hsv}},
+  \code{\link{lab}}, \code{\link{parse_color}},
+  \code{\link{rgb}}
 }
 

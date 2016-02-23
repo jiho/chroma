@@ -1,29 +1,33 @@
 #' HCL Color Specification
 #'
-#' Create a vector of colors from hue, chroma, and lightness.
+#' Create a vector of colors from hue, chromacity, and lightness.
 #'
 #' @template hue
-#' @param c chroma, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.
+#' @param c chromacity, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.
 #' @template lightness
 #'
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
-# TODO: add advice such as the following in all functions
-# In HCL space, the perceived color (hue) is completely separated from the perceived lightness of the color. All colors on a pure hue scale (same \code{c} and \code{l}) have the same apparent brightness.
+#' @details
+#' In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to black and white. This makes the HCL space particularly suitable to create good color palettes:
+#' \itemize{
+#'   \item For qualitative palettes (discrete variables): varying h at constant c and l avoids drawing attention to certain hues as it would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
+#'   \item For sequential palettes (continuous variables): varying l (or possibly c) for a constant h gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
+#' }
 #'
 #' @examples
 #' hcl()
-#' hsl(330, 1, 0.6)
-#' hsl(data.frame(c(330, 340), c(1,1), c(0.6, 0.4)))
-#' hsl(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
-#' hsl(c(330, 340), 1, 0.6)
+#' hcl(330, 1, 0.6)
+#' hcl(data.frame(c(330, 340), c(1,1), c(0.6, 0.4)))
+#' hcl(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
+#' hcl(c(330, 340), 1, 0.6)
 #'
-#' # color ramps
+#' # compare color palettes
 #' ramp <- seq(0, 1, length.out=10)
-#' show_col(hcl(h=ramp*360))
+#' show_col(hcl(h=ramp*360), hsv(h=ramp*360, s=0.9), hsl(h=ramp*360, s=0.9))
 #' show_col(hcl(c=ramp))
-#' show_col(hcl(l=ramp))
+#' show_col(hcl(l=ramp), rainbow(10), heat.colors(10))
 #'
 #' @export
 # TODO make compatible with grDevices::hcl
