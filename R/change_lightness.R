@@ -35,8 +35,8 @@
 #' @name change_lightness
 #' @export
 darken <- function(x, amount=1) {
-  # convert everything to a common color representation
-  x <- chroma_r(x)
+  # force input R colors into hex notation
+  x <- in_hex(x)
   
   # manipulate colors
   cmds <- paste0("chroma('", x, "').darken(",amount,").hex()")

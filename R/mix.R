@@ -23,9 +23,9 @@
 #' show_mix("red", "blue", ratio=c(0.25, 0.5, 0.75))
 #' show_mix("red", "blue", model=c("rgb", "hcl", "lab", "cmyk"))
 mix <- function(x, y, ratio=0.5, model="rgb") {
-  # convert everything to a common color representation
-  x <- chroma_r(x)
-  y <- chroma_r(y)
+  # force input R colors into hex notation
+  x <- in_hex(x)
+  y <- in_hex(y)
   
   # check arguments values
   is_in(ratio, 0, 1, "ratio")

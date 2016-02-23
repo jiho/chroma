@@ -42,8 +42,8 @@
 #'
 #' @export
 luminance <- function(x) {
-  # convert everything to a common color representation
-  x <- chroma_r(x)
+  # force input R colors into hex notation
+  x <- in_hex(x)
 
   # extract luminance
   cmds <- paste0("chroma('", x, "').luminance()")
@@ -58,8 +58,8 @@ luminance <- function(x) {
 #' @name luminance
 #' @export
 `luminance<-` <- function(x, value) {
-  # convert everything to a common color representation
-  x <- chroma_r(x)
+  # force input R colors into hex notation
+  x <- in_hex(x)
 
   # set luminance
   cmds <- paste0("chroma('", x, "').luminance(", value ,").hex()")

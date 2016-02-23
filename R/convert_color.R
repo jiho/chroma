@@ -33,8 +33,8 @@
 convert_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   
-  # convert everything to a common color representation
-  x <- chroma_r(x)
+  # force input R colors into hex notation
+  x <- in_hex(x)
   
   # convert colors
   cmds <- paste0("chroma('", x, "').",model,"()")
