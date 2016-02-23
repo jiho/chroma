@@ -17,7 +17,7 @@ Convert R colors, including named ones as defined in the function \code{\link[gr
 }
 \examples{
 in_hex("pink")
-in_hex(c("pink", "darkblue"))
+in_hex(c("pink", "#348A31", "darkblue"))
 
 show_col(in_hex(colors()))
  
