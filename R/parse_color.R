@@ -119,38 +119,3 @@ parse_color <- function(x, model) {
   
   return(res)
 }
-
-# Reformat arguments for color parsing functions
-# - allow matrix/data.frame as first argument
-# - perform value recycling for vector arguments
-tabularise_arguments <- function(...) {
-  # get the list of arguments
-  args <- list(...)
-  
-  if ( is.matrix(args[[1]]) | is.data.frame(args[[1]]) ) {
-    # if first argument is a "table", use this only
-    x <- args[[1]]
-
-  } else {
-    # else, convert the arguments into a "table"
-    # NB: this does argument recycling by itself
-    #     we just provide a nicer error message
-    tryCatch(x <- data.frame(args),
-      error=function(e) {
-        stop("Arguments have incompatible lengths: ", paste0(sapply(args, length), collapse=", "), call.=FALSE)
-      }
-    )
-  }
-  
-  return(x)
-}
-
-# Utility function to check color channels ranges for color parsing functions
-is_in <- function(x, min, max, name="x") {
-  pbs <- which(x < min | x > max)
-  n <- length(pbs)
-  if (n > 0) {
-    stop(name, " should be in [", min, ",", max, "]. ", n, " values are not, at positions: ", ifelse(n <= 5, paste0(pbs, collapse=", "), paste0(paste0(pbs[1:5], collapse=", "), ", ...")), call.=FALSE)
-  }
-  return(invisible(pbs))
-}
