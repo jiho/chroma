@@ -57,6 +57,9 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
   return(colors)
 }
 
-# @export
-gl <- rgb
+#' @name rgb
+#' @export
+gl <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL) {
+  rgb(red=red, green=green, blue=blue, alpha=alpha, names=names, maxColorValue=1)
+}
 
