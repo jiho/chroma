@@ -48,6 +48,7 @@ show_col(c(col, new_col))
 
 }
 \seealso{
-Other color manipulations: \code{\link{change_lightness}}
+Other color manipulations: \code{\link{change_lightness}},
+  \code{\link{mix}}
 }
 
