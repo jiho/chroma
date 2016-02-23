@@ -16,8 +16,7 @@
 #' @export
 parse_color <- function(x, model) {
   # recognise color model
-  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
-  # TODO add hsi?
+  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
 
   # check arguments
   if (model %in% c("css", "hex", "temperature")) {
@@ -72,6 +71,11 @@ parse_color <- function(x, model) {
     is_in(x[,1], 0, 360, "h")
     is_in(x[,2], 0, 1, "s")
     is_in(x[,3], 0, 1, "l")
+
+  } else if ( model == "hsi" ) {
+    is_in(x[,1], 0, 360, "h")
+    is_in(x[,2], 0, 1, "s")
+    is_in(x[,3], 0, 2, "i")
     
   } else if ( model == "hcl" ) {
     is_in(x[,1], 0, 360, "h")

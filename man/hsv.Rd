@@ -47,7 +47,7 @@ See \code{\link{parse_color}} for the general function to parse colors in variou
 
 Other color specifications: \code{\link{cmyk}},
   \code{\link{css}}, \code{\link{hcl}}, \code{\link{hex}},
-  \code{\link{hsl}}, \code{\link{lab}},
+  \code{\link{hsi}}, \code{\link{hsl}}, \code{\link{lab}},
   \code{\link{parse_color}}, \code{\link{rgb}},
   \code{\link{temperature}}
 }

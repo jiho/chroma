@@ -31,7 +31,7 @@
 #'
 #' as.rgb(colors()[1:5])
 convert_color <- function(x, model) {
-  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
+  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   
   # force input R colors into hex notation
   x <- in_hex(x)
@@ -89,6 +89,10 @@ as.hsv <- function(x) { convert_color(x, model="hsv") }
 #' @name convert_color
 #' @export
 as.hsl <- function(x) { convert_color(x, model="hsl") }
+
+#' @name convert_color
+#' @export
+as.hsi <- function(x) { convert_color(x, model="hsi") }
 
 #' @name convert_color
 #' @export

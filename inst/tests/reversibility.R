@@ -22,6 +22,10 @@ test_that("hsl is reversible", {
   expect_that(hsl(as.hsl(x)), equals(as.hex(x)))
 })
 
+# test_that("hsi is reversible", {
+#   expect_that(hsi(as.hsi(x)), equals(as.hex(x)))
+# })
+
 test_that("hcl is reversible", {
   expect_that(hcl(as.hcl(x)), equals(as.hex(x)))
 })

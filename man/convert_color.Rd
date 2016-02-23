@@ -6,6 +6,7 @@
 \alias{as.gl}
 \alias{as.hcl}
 \alias{as.hex}
+\alias{as.hsi}
 \alias{as.hsl}
 \alias{as.hsv}
 \alias{as.lab}
@@ -28,6 +29,8 @@ as.hsv(x)
 
 as.hsl(x)
 
+as.hsi(x)
+
 as.hcl(x)
 
 as.lch(x)
@@ -45,7 +48,7 @@ as.temperature(x)
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{gl}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}.}
+\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{gl}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}.}
 }
 \value{
 A matrix containing the color components in most cases, except for the models:
