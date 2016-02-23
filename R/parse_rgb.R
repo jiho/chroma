@@ -11,7 +11,7 @@
 #' @template color_spec_from_matrix
 #'
 #' @details
-#' \code{gl} is a variant which forces \code{maxColorValue} to be 1. It is provided for full compatibility with chroma.js.
+#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba} for compatibility with chroma.js.
 #'
 #' RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L* a* b* make it easier to create color palettes that are appropriate for human perception.
 #'
@@ -35,17 +35,16 @@
 #'   rgb(b=ramp)
 #' )
 rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1) {
-  # TODO consider using rgba as the drop-in replacement and warn about it when using rgb
 
   # handle color channels
   x <- tabularise_arguments(red, green, blue)
 
   # scale color channels
-  x <- x / maxColorValue
+  x <- round(x / maxColorValue * 255)
+  # NB: rgb is integer in [0,255 in chroma.js
   
   # parse colors using chroma.js
-  colors <- parse_color(x, "gl")
-  # NB: gl is rgb scaled to [0,1]
+  colors <- parse_color(x, "rgb")
   
   # add transparency if needed
   if ( !is.null(alpha) ) {
@@ -66,7 +65,19 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
 
 #' @name rgb
 #' @export
-gl <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL) {
-  rgb(red=red, green=green, blue=blue, alpha=alpha, names=names, maxColorValue=1)
+rgba <- function(red=0, green=0, blue=0, alpha=1) {
+  # handle color channels
+  x <- tabularise_arguments(red, green, blue, alpha)
+
+  # parse colors using chroma.js
+  colors <- parse_color(x, "gl")
+  
+  # add alpha channel
+  colors <- alpha(colors, x[,4])
+
+  return(colors)
 }
 
+#' @name rgb
+#' @export
+gl <- rgba

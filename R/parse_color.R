@@ -16,7 +16,7 @@
 #' @export
 parse_color <- function(x, model) {
   # recognise color model
-  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
+  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   # TODO add hsi?
 
   # check arguments
@@ -39,7 +39,7 @@ parse_color <- function(x, model) {
       stop("x should be a matrix or data.frame")
     }
 
-    required_columns <- switch(model, cmyk = 4, 3)
+    required_columns <- switch(model, cmyk=4, rgba=4, gl=4, 3)
     if (ncol(x) < required_columns) {
       stop("x should have at least ", required_columns, " columns")
     }
@@ -53,14 +53,15 @@ parse_color <- function(x, model) {
   # check that the values in each channel are in the appropriate range
   # enforce all "percentages" to be in [0,1]; this is not as homogeneous in chroma.js and some values need to be modified before being passed to javascript
   if (model == "rgb") {
-    is_in(x[,1], 0, 255, "r")
-    is_in(x[,2], 0, 255, "g")
-    is_in(x[,3], 0, 255, "b")
+    is_in(x[,1], 0, 255, "red")
+    is_in(x[,2], 0, 255, "green")
+    is_in(x[,3], 0, 255, "blue")
     
-  } else if (model == "gl") {
-    is_in(x[,1], 0, 1, "r")
-    is_in(x[,2], 0, 1, "g")
-    is_in(x[,3], 0, 1, "b")
+  } else if (model %in% c("rgba", "gl")) {
+    is_in(x[,1], 0, 1, "red")
+    is_in(x[,2], 0, 1, "green")
+    is_in(x[,3], 0, 1, "blue")
+    is_in(x[,3], 0, 1, "alpha")
     
   } else if ( model == "hsv" ) {
     is_in(x[,1], 0, 360, "h")

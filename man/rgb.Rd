@@ -3,12 +3,15 @@
 \name{rgb}
 \alias{gl}
 \alias{rgb}
+\alias{rgba}
 \title{RGB Color Specification}
 \usage{
 rgb(red = 0, green = 0, blue = 0, alpha = NULL, names = NULL,
   maxColorValue = 1)
 
-gl(red = 0, green = 0, blue = 0, alpha = NULL, names = NULL)
+rgba(red = 0, green = 0, blue = 0, alpha = 1)
+
+gl(red = 0, green = 0, blue = 0, alpha = 1)
 }
 \arguments{
 \item{red, green, blue}{color channels, numeric vectors with values in \code{[0, maxColorValue]}.}
@@ -30,7 +33,7 @@ The first argument can also be a data.frame or a matrix. In that case, its colum
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 
-\code{gl} is a variant which forces \code{maxColorValue} to be 1. It is provided for full compatibility with chroma.js.
+\code{rgba} is a variant which forces \code{maxColorValue} to be 1. \code{gl} is a synomym of \code{rgba} for compatibility with chroma.js.
 
 RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L* a* b* make it easier to create color palettes that are appropriate for human perception.
 }
