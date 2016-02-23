@@ -2,7 +2,7 @@
 #'
 #' Convert a vector of R colors to a given color model
 #'
-#' @template colors
+#' @template rcolors
 #' @template model
 #'
 #' @return A matrix containing the color components in most cases, except for the models:
