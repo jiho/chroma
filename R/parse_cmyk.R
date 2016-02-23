@@ -22,7 +22,6 @@
 #'
 #' @export
 cmyk <- function(c=0, m=0.6, y=0.6, k=0.4) {
-
   # handle color channels
   x <- tabularise_arguments(c, m, y, k)
 
