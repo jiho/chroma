@@ -75,22 +75,22 @@ parse_color <- function(x, model) {
     
   } else if ( model == "hcl" ) {
     is_in(x[,1], 0, 360, "h")
-    is_in(x[,2], 0, 1, "c")
+    is_in(x[,2], 0, 1.5, "c")
     is_in(x[,3], 0, 1, "l")
     # chroma.js actually uses percentages
     x[,2:3] <- x[,2:3] * 100
     
   } else if ( model == "lch" ) {
     is_in(x[,1], 0, 1, "l")
-    is_in(x[,2], 0, 1, "c")
+    is_in(x[,2], 0, 1.5, "c")
     is_in(x[,3], 0, 360, "h")
     # chroma.js actually uses percentages
     x[,1:2] <- x[,1:2] * 100
     
   } else if ( model == "lab" ) {
     is_in(x[,1], 0, 1, "l")
-    is_in(x[,2], -1, 1, "a")
-    is_in(x[,3], -1, 1, "b")
+    is_in(x[,2], -1.1, 1.1, "a")
+    is_in(x[,3], -1.1, 1.1, "b")
     # chroma.js actually uses percentages
     x <- x * 100
     

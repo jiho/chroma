@@ -3,7 +3,7 @@
 #' Create a vector of colors from hue, chromacity, and lightness.
 #'
 #' @template hue
-#' @param c chromacity, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.
+#' @param c chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.
 #' @template lightness
 #'
 #' @template color_spec
@@ -43,6 +43,12 @@ hcl <- function(h=0, c=0.6, l=0.6) {
 
 #' @name hcl
 #' @export
-lch <- function(l=0.5, c=0.5, h=0) {
-  hcl(h, c, l)
+lch <- function(l=0.6, c=0.6, h=0) {
+  # handle color channels
+  x <- tabularise_arguments(l, c, h)
+
+  # parse colors using chroma.js
+  colors <- parse_color(x, "lch")
+    
+  return(colors)
 }
