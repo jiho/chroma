@@ -32,7 +32,7 @@ show_mix <- function(x, y, ...) {show_col(c(x, y, mix(x, y, ...)))}
 show_mix("#FEF213", "#146EFD")
 show_mix("#FEF213", "#FA000C")
 show_mix("red", "blue", ratio=c(0.25, 0.5, 0.75))
-show_mix("red", "blue", model=c("rgb", "hcl", "lab", "cmyk"))
+show_mix("red", "blue", model=c("rgb", "hsv", "hsl", "hcl", "lab"))
 }
 \seealso{
 Other color manipulations: \code{\link{change_lightness}},

@@ -21,7 +21,7 @@
 #' show_mix("#FEF213", "#146EFD")
 #' show_mix("#FEF213", "#FA000C")
 #' show_mix("red", "blue", ratio=c(0.25, 0.5, 0.75))
-#' show_mix("red", "blue", model=c("rgb", "hcl", "lab", "cmyk"))
+#' show_mix("red", "blue", model=c("rgb", "hsv", "hsl", "hcl", "lab"))
 mix <- function(x, y, ratio=0.5, model="rgb") {
   # force input R colors into hex notation
   x <- in_hex(x)
