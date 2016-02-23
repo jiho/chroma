@@ -45,7 +45,7 @@ parse_color <- function(x, model) {
     }
     if (ncol(x) > required_columns) {
       warning("only the first ", required_columns, " columns of x will be used")
-      x <- x[1:required_columns]
+      x <- x[,1:required_columns,drop=F]
     }
 
   }
