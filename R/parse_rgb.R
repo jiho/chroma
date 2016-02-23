@@ -1,6 +1,6 @@
 #' RGB Color Specification
 #'
-#' Create a vector of colors from red, green, and blue.
+#' Create a vector of colors from red, green, and blue. This is a drop-in replacement for the \code{\link[grDevices]{rgb}} function, included with R in package \code{grDevices}.
 #'
 #' @param red,green,blue color channels, numeric vectors with values in \code{[0, maxColorValue]}.
 #' @param alpha transparency, numeric vector with values in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.
@@ -41,7 +41,7 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
 
   # scale color channels
   x <- round(x / maxColorValue * 255)
-  # NB: rgb is integer in [0,255 in chroma.js
+  # NB: rgb is integer in [0,255] in chroma.js
   
   # parse colors using chroma.js
   colors <- parse_color(x, "rgb")

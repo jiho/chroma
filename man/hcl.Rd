@@ -5,7 +5,7 @@
 \alias{lch}
 \title{HCL Color Specification}
 \usage{
-hcl(h = 0, c = 0.6, l = 0.6)
+hcl(h = 0, c = 0.6, l = 0.6, alpha = NULL, ...)
 
 lch(l = 0.6, c = 0.6, h = 0)
 }
@@ -15,12 +15,14 @@ lch(l = 0.6, c = 0.6, h = 0)
 \item{c}{chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
 \item{l}{lightness, numeric vector with values in \code{[0, 1]}; 0 is black, 1 is white.}
+
+\item{alpha}{transparency, numeric vector with values in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 }
 \value{
 A vector of colors specified as hex codes
 }
 \description{
-Create a vector of colors from hue, chromacity, and lightness.
+Create a vector of colors from hue, chromacity, and lightness. This is a drop-in replacement for the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}.
 }
 \details{
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.

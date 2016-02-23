@@ -4,7 +4,7 @@
 \alias{hsv}
 \title{HSV Color Specification}
 \usage{
-hsv(h = 0, s = 0.6, v = 0.7)
+hsv(h = 0, s = 0.6, v = 0.7, alpha = NULL)
 }
 \arguments{
 \item{h}{hue, numeric vector with values in \code{[0, 360]}.}
@@ -12,12 +12,14 @@ hsv(h = 0, s = 0.6, v = 0.7)
 \item{s}{saturation, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.}
 
 \item{v}{value, same conventions as \code{s}; 0 is black, 1 is full brightness}
+
+\item{alpha}{transparency, numeric vector with values in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 }
 \value{
 A vector of colors specified as hex codes
 }
 \description{
-Create a vector of colors from hue, saturation, and value.
+Create a vector of colors from hue, saturation, and value. This is a drop-in replacement for the \code{\link[grDevices]{hsv}} function, included with R in package \code{grDevices}.
 }
 \details{
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.

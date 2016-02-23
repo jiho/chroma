@@ -26,7 +26,7 @@ gl(red = 0, green = 0, blue = 0, alpha = 1)
 A vector of colors specified as hex codes
 }
 \description{
-Create a vector of colors from red, green, and blue.
+Create a vector of colors from red, green, and blue. This is a drop-in replacement for the \code{\link[grDevices]{rgb}} function, included with R in package \code{grDevices}.
 }
 \details{
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.

@@ -1,10 +1,11 @@
 #' HCL Color Specification
 #'
-#' Create a vector of colors from hue, chromacity, and lightness.
+#' Create a vector of colors from hue, chromacity, and lightness. This is a drop-in replacement for the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}.
 #'
 #' @template hue
 #' @param c chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.
 #' @template lightness
+#' @template alpha
 #'
 #' @template color_spec
 #' @template color_spec_from_matrix
@@ -30,13 +31,21 @@
 #' show_col(hcl(l=ramp), rainbow(10), heat.colors(10))
 #'
 #' @export
-# TODO make compatible with grDevices::hcl
-hcl <- function(h=0, c=0.6, l=0.6) {
+hcl <- function(h=0, c=0.6, l=0.6, alpha=NULL, ...) {
   # handle color channels
   x <- tabularise_arguments(h, c, l)
 
   # parse colors using chroma.js
   colors <- parse_color(x, "hcl")
+
+  # add transparency if needed
+  if ( !is.null(alpha) ) {
+    if ( !(length(alpha) == 1 | length(alpha) == length(colors)) ) {
+      stop("alpha needs to be either a single number or a vector of the same length as the number of colors (", length(colors), " here).")
+    }
+    alpha <- alpha / maxColorValue
+    colors <- alpha(colors, alpha)
+  }
     
   return(colors)
 }

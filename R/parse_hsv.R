@@ -1,10 +1,11 @@
 #' HSV Color Specification
 #'
-#' Create a vector of colors from hue, saturation, and value.
+#' Create a vector of colors from hue, saturation, and value. This is a drop-in replacement for the \code{\link[grDevices]{hsv}} function, included with R in package \code{grDevices}.
 #'
 #' @template hue
 #' @template saturation
 #' @param v value, same conventions as \code{s}; 0 is black, 1 is full brightness
+#' @template alpha
 #'
 #' @template color_spec
 #' @template color_spec_from_matrix
@@ -27,12 +28,20 @@
 #'
 #' # recreate the rainbow() scale
 #' show_col(hsv(h=seq(0, 324, length.out=10), s=1, v=1), rainbow(10))
-hsv <- function(h=0, s=0.6, v=0.7) {
+hsv <- function(h=0, s=0.6, v=0.7, alpha=NULL) {
   # handle color channels
   x <- tabularise_arguments(h, s, v)
 
   # parse colors using chroma.js
   colors <- parse_color(x, "hsv")
+  
+  # add transparency if needed
+  if ( !is.null(alpha) ) {
+    if ( !(length(alpha) == 1 | length(alpha) == length(colors)) ) {
+      stop("alpha needs to be either a single number or a vector of the same length as the number of colors (", length(colors), " here).")
+    }
+    colors <- alpha(colors, alpha)
+  }
   
   return(colors)
 }
