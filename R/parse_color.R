@@ -16,20 +16,21 @@
 #' @export
 parse_color <- function(x, model) {
   # recognise color model
-  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex"))
-  # TODO add temperature
+  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   # TODO add hsi?
 
   # check arguments
-  if (model %in% c("css", "hex")) {
+  if (model %in% c("css", "hex", "temperature")) {
     
     if ( !is.vector(x) ) {
       stop("x should be a vector")
     }
     
-    if ( !is.character(x) ) {
-      warning("x converted to character for color parsing")
-      x <- as.character(x)
+    if (model %in% c("css", "hex")) {
+      if ( !is.character(x) ) {
+        warning("x converted to character for color parsing")
+        x <- as.character(x)
+      }
     }
     
   } else {
@@ -97,11 +98,14 @@ parse_color <- function(x, model) {
     is_in(x[,2], 0, 1, "m")
     is_in(x[,3], 0, 1, "y")
     is_in(x[,4], 0, 1, "k")
+
+  } else if ( model == "temperature" ) {
+    is_in(x, 1000, 40000, "temperature")
     
   }
   
   # parse colors using chroma.js
-  if (model %in% c("css", "hex")) {
+  if (model %in% c("css", "hex", "temperature")) {
     cmds <- sapply(x, function(xx) {
       paste0("chroma.", model, "('", xx, "').hex()")
     }, USE.NAMES=FALSE)

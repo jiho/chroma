@@ -44,9 +44,9 @@ show_col(hsv(h=seq(0, 324, length.out=10), s=1, v=1), rainbow(10))
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
 
 Other color specifications: \code{\link{cmyk}},
-  \code{\link{color_temperature}}, \code{\link{css}},
-  \code{\link{hcl}}, \code{\link{hex}}, \code{\link{hsl}},
-  \code{\link{lab}}, \code{\link{parse_color}},
-  \code{\link{rgb}}
+  \code{\link{css}}, \code{\link{hcl}}, \code{\link{hex}},
+  \code{\link{hsl}}, \code{\link{lab}},
+  \code{\link{parse_color}}, \code{\link{rgb}},
+  \code{\link{temperature}}
 }
 

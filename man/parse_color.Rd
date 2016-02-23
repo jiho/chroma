@@ -26,8 +26,8 @@ parse_color(data.frame(r=c(255, 0, 0),
 }
 \seealso{
 Other color specifications: \code{\link{cmyk}},
-  \code{\link{color_temperature}}, \code{\link{css}},
-  \code{\link{hcl}}, \code{\link{hex}}, \code{\link{hsl}},
-  \code{\link{hsv}}, \code{\link{lab}}, \code{\link{rgb}}
+  \code{\link{css}}, \code{\link{hcl}}, \code{\link{hex}},
+  \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}},
+  \code{\link{rgb}}, \code{\link{temperature}}
 }
 
