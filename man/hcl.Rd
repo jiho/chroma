@@ -7,12 +7,12 @@
 \usage{
 hcl(h = 0, c = 0.6, l = 0.6)
 
-lch(l = 0.5, c = 0.5, h = 0)
+lch(l = 0.6, c = 0.6, h = 0)
 }
 \arguments{
 \item{h}{hue, numeric vector with values in \code{[0, 360]}.}
 
-\item{c}{chromacity, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.}
+\item{c}{chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
 \item{l}{lightness, numeric vector with values in \code{[0, 1]}; 0 is black, 1 is white.}
 }

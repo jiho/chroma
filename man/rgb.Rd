@@ -16,7 +16,7 @@ gl(red = 0, green = 0, blue = 0, alpha = 1)
 \arguments{
 \item{red, green, blue}{color channels, numeric vectors with values in \code{[0, maxColorValue]}.}
 
-\item{alpha}{transparency, numeric vector with values in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{link{alpha}} for another way to change the transparency after the fact.}
+\item{alpha}{transparency, numeric vector with values in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 
 \item{names}{character vector. The names for the resulting vector.}
 
@@ -33,7 +33,7 @@ The first argument can also be a data.frame or a matrix. In that case, its colum
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 
-\code{rgba} is a variant which forces \code{maxColorValue} to be 1. \code{gl} is a synomym of \code{rgba} for compatibility with chroma.js.
+\code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba} for compatibility with chroma.js.
 
 RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L* a* b* make it easier to create color palettes that are appropriate for human perception.
 }

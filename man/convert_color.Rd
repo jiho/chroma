@@ -3,6 +3,7 @@
 \name{convert_color}
 \alias{as.cmyk}
 \alias{as.css}
+\alias{as.gl}
 \alias{as.hcl}
 \alias{as.hex}
 \alias{as.hsl}
@@ -10,6 +11,7 @@
 \alias{as.lab}
 \alias{as.lch}
 \alias{as.rgb}
+\alias{as.rgba}
 \alias{as.temperature}
 \alias{convert_color}
 \title{Convert colors to a given color model}
@@ -17,6 +19,10 @@
 convert_color(x, model)
 
 as.rgb(x)
+
+as.rgba(x)
+
+as.gl(x)
 
 as.hsv(x)
 
@@ -39,7 +45,7 @@ as.temperature(x)
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{gl}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}.}
+\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{gl}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}.}
 }
 \value{
 A matrix containing the color components in most cases, except for the models:
