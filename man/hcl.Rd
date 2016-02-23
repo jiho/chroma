@@ -23,9 +23,9 @@ A vector of colors specified as hex codes
 Create a vector of colors from hue, chroma, and lightness.
 }
 \details{
-The first argument can also be a data.frame or a matrix. In that case, its first three columns are considered as the three color components and the rest of the function arguments are ignored.
+The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.
 
-When the arguments are used separately and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
+When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 }
 \examples{
 hcl()
@@ -42,9 +42,11 @@ show_col(hcl(l=ramp))
 
 }
 \seealso{
+See \code{\link{parse_color}} for the general function to parse colors in various specifications, which this function calls internally.
+
 Other color specifications: \code{\link{cmyk}},
   \code{\link{color_temperature}}, \code{\link{css_color}},
   \code{\link{hsl}}, \code{\link{hsv}}, \code{\link{lab}},
-  \code{\link{parse_color}}
+  \code{\link{parse_color}}, \code{\link{rgb}}
 }
 
