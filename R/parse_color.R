@@ -134,7 +134,7 @@ tabularise_arguments <- function(...) {
   return(x)
 }
 
-# Utility function to check color channels ranges for color parsing function
+# Utility function to check color channels ranges for color parsing functions
 is_in <- function(x, min, max, name="x") {
   pbs <- which(x < min | x > max)
   n <- length(pbs)

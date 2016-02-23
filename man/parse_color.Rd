@@ -28,6 +28,6 @@ parse_color(data.frame(r=c(255, 0, 0),
 Other color specifications: \code{\link{cmyk}},
   \code{\link{color_temperature}}, \code{\link{css_color}},
   \code{\link{hcl}}, \code{\link{hsl}}, \code{\link{hsv}},
-  \code{\link{lab}}
+  \code{\link{lab}}, \code{\link{rgb}}
 }
 
