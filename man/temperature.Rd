@@ -19,7 +19,7 @@ Converts color temperature in Kelvin to a color vector.
 temperature()
 temperature(c(2000, 5200, 7000))
 
-# display range
+# display range of temperatures
 x <- seq(1000, 20000, length.out=20)
 plot(x=x, y=rep(1, 20), col=temperature(x), pch=15, cex=3)
 }

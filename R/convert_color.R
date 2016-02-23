@@ -5,23 +5,33 @@
 #' @template colors
 #' @template model
 #'
-#' @return A matrix containing the color components, except for the \code{css} model for which the result is a vector of css color definition strings.
+#' @return A matrix containing the color components in most cases, except for the models:
+#' \describe{
+#'  \item{\code{css}}{a vector of css color definition strings}
+#'  \item{\code{hex}}{a vector of hexadecimal strings defining colors}
+#'  \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin}
+#' }
+#'
+#' @export
 #'
 #' @examples
 #' convert_color("red", model="rgb")
+#' convert_color("red", model="gl")
 #' convert_color("red", model="hsl")
 #' convert_color("red", model="hcl")
 #' convert_color("red", model="cmyk")
 #'
+#' as.hsv("red")
 #' as.lab("red")
 #' as.lch("red")
-#' as.rgb(colors()[1:5])
 #'
 #' as.css("red")
+#' as.hex("red")
+#' as.temperature("red")
 #'
-#' @export
+#' as.rgb(colors()[1:5])
 convert_color <- function(x, model) {
-  model <- match.arg(model, c("rgb", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css"))
+  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   
   # convert everything to a common color representation
   x <- chroma_r(x)
@@ -30,8 +40,8 @@ convert_color <- function(x, model) {
   cmds <- paste0("chroma('", x, "').",model,"()")
   res <- v8_eval(cmds)
   
-  # parse into a matrix of numbers
-  if (model != "css") {
+  # parse into a matrix of numbers, when appropriate
+  if (! model %in% c("css", "hex", "temperature")) {
     # split the result string
     res <- strsplit(res, ",", fixed=TRUE)
     # convert to numbers
@@ -39,7 +49,13 @@ convert_color <- function(x, model) {
     # stack in a matrix
     res <- do.call(rbind, res)
     # associate column names
+    if (model == "gl") { model <- "rgba" } # GL is just RGBA
     colnames(res) <- strsplit(model, "", fixed=TRUE)[[1]]
+  }
+  
+  # convert temperatures to numbers
+  if (model == "temperature") {
+    res <- as.numeric(res)
   }
   
   # adjust the range of some channels to match their definition (which are not homogeneous in chroma.js)
@@ -57,6 +73,14 @@ convert_color <- function(x, model) {
 #' @name convert_color
 #' @export
 as.rgb <- function(x) { convert_color(x, model="rgb") }
+
+#' @name convert_color
+#' @export
+as.rgba <- function(x) { convert_color(x, model="gl") }
+
+#' @name convert_color
+#' @export
+as.gl <- function(x) { convert_color(x, model="gl") }
 
 #' @name convert_color
 #' @export
@@ -85,3 +109,11 @@ as.cmyk <- function(x) { convert_color(x, model="cmyk") }
 #' @name convert_color
 #' @export
 as.css <- function(x) { convert_color(x, model="css") }
+
+#' @name convert_color
+#' @export
+as.hex <- function(x) { convert_color(x, model="hex") }
+
+#' @name convert_color
+#' @export
+as.temperature <- function(x) { convert_color(x, model="temperature") }
