@@ -9,7 +9,7 @@ mix(x, y, ratio = 0.5, model = "rgb")
 \arguments{
 \item{x, y}{colors specified as hex strings or named R colors.}
 
-\item{ratio}{ratio between x and y}
+\item{ratio}{amount of y mixed in x; \code{ratio} = 0 means pure \code{x}, \code{ratio} = 1 means pure \code{y}.}
 
 \item{model}{color model to compute the mix in; valid models are \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lab}.}
 }
