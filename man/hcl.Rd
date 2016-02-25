@@ -46,8 +46,15 @@ hcl(c(330, 340), 1, 0.6)
 ramp <- seq(0, 1, length.out=10)
 show_col(hcl(h=ramp*360), hsv(h=ramp*360, s=0.9), hsl(h=ramp*360, s=0.9))
 show_col(hcl(c=ramp))
-show_col(hcl(l=ramp), rainbow(10), heat.colors(10))
+show_col(hcl(l=ramp))
 
+# nice color palettes
+show_col(
+  hcl(h=80+ramp*240, c=0.2+ramp*0.4, l=0.9-ramp*0.6),
+  hcl(h=240-ramp*120, c=0.5, l=ramp*0.9),
+  hcl(h=0+ramp*80, c=0.6-ramp*0.4, l=0.1+ramp*0.8),
+  hcl(h=210+ramp*150, c=0.3, l=0.1+ramp*0.5)
+)
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
