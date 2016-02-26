@@ -2,8 +2,8 @@
 #'
 #' Convert a vector of R colors to a given color model
 #'
-#' @template rcolors
-#' @template model
+#' @template param_x_rcolors
+#' @template param_model
 #'
 #' @return A matrix containing the color components in most cases, except for the models:
 #' \describe{

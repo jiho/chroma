@@ -40,7 +40,7 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
   x <- tabularise_arguments(red, green, blue)
 
   # scale color channels
-  x <- round(x / maxColorValue * 255)
+  x[,1:3] <- round(x[,1:3] / maxColorValue * 255)
   # NB: rgb is integer in [0,255] in chroma.js
   
   # parse colors using chroma.js

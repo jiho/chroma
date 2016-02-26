@@ -2,7 +2,7 @@
 #'
 #' Create a vector of colors from lightness and a and b color-opponents.
 #'
-#' @template lightness
+#' @template param_lightness
 #' @param a,b color components, numeric vectors with values in \code{[-1, 1]}. (a=-1, b=-1) is blue, (a=-1, b=1) is green, (a=1, b=1) is red, (a=1, b=-1) is purple.
 #'
 #' @template color_spec

@@ -5,7 +5,7 @@
 #'
 #' \code{luminance<-} sets the brightness by interpolating with black or white until the appropriate relative luminance is found.
 #' 
-#' @template rcolors
+#' @template param_x_rcolors
 #' @param value the luminance value, as a number in [0,1]
 #'
 #' @return

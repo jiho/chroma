@@ -2,7 +2,7 @@
 #'
 #' Darken or brighten colors
 #'
-#' @template rcolors
+#' @template param_x_rcolors
 #' @param amount numeric amount of change in lightness. Reasonable amounts are 1 to 10. Negative amounts correspond to the opposite operation (\code{darken("red", -1) = brighten("red", 1)}.)
 #'
 #' @details

@@ -2,7 +2,7 @@
 #'
 #' Saturate or desaturate colors
 #'
-#' @template rcolors
+#' @template param_x_rcolors
 #' @param amount numeric amount of change in saturation. Reasonable amounts are 1 to 10. Negative amounts correspond to the opposite operation (\code{saturate("red", -1) = desaturate("red", 1)}.)
 #'
 #' @details

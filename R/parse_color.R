@@ -1,7 +1,7 @@
 #' Parse colors specified in a given model
 #'
 #' @param x a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css} and \code{hex} color models
-#' @template model
+#' @template param_model
 #'
 #' @family color specifications
 #'

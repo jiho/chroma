@@ -1,7 +1,7 @@
 #' Get or set color channel
 #'
-#' @template rcolors
-#' @template model
+#' @template param_x_rcolors
+#' @template param_model
 #' @param channel string defining the channel within the color model.
 #' @param value the channel value to set; a number, the convention of which depend on the channel.
 #'

@@ -2,8 +2,8 @@
 #'
 #' Create a vector of colors from hue, saturation, and intensity.
 #'
-#' @template hue
-#' @template saturation
+#' @template param_hue
+#' @template param_saturation
 #' @param i intensity, numeric vector with values in \code{[0, 2]}; 0 is black, 2 is white.
 #'
 #' @template color_spec

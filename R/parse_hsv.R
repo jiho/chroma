@@ -2,10 +2,10 @@
 #'
 #' Create a vector of colors from hue, saturation, and value. This is a drop-in replacement for the \code{\link[grDevices]{hsv}} function, included with R in package \code{grDevices}.
 #'
-#' @template hue
-#' @template saturation
+#' @template param_hue
+#' @template param_saturation
 #' @param v value, same conventions as \code{s}; 0 is black, 1 is full brightness
-#' @template alpha
+#' @template param_alpha
 #'
 #' @template color_spec
 #' @template color_spec_from_matrix

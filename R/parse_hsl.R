@@ -2,9 +2,9 @@
 #'
 #' Create a vector of colors from hue, saturation, and lightness.
 #'
-#' @template hue
-#' @template saturation
-#' @template lightness
+#' @template param_hue
+#' @template param_saturation
+#' @template param_lightness
 #'
 #' @template color_spec
 #' @template color_spec_from_matrix

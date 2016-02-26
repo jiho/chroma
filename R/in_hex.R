@@ -2,7 +2,7 @@
 #' 
 #' Convert R colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation
 #' 
-#' @template rcolors
+#' @template param_x_rcolors
 #'
 #' @return A vector of colors specified as hex codes only
 #'
