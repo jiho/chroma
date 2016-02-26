@@ -11,7 +11,7 @@
 #' in_hex(c("pink", "#348A31", "darkblue"))
 #' 
 #' show_col(in_hex(colors()))
-#'  
+#'
 #' @export
 in_hex <- function(x) {
   grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255)

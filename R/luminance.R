@@ -12,8 +12,9 @@
 #' For \code{luminance}, a vector of luminance values, each in [0,1].
 #' 
 #' For \code{luminance<-}, the updated object(s).
-#' 
-#' @seealso \code{\link{channel}} to extract a given channel, in particular the lightness channel in HSL, HCL, or Lab color spaces.
+#'
+#' @seealso \code{\link{channel}} to extract or set a given channel, in particular the lightness channel in HSL, HCL, or Lab color spaces.
+#' @family color manipulation functions
 #' 
 #' @examples
 #' luminance("black")

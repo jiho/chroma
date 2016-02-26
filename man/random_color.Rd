@@ -6,6 +6,9 @@
 \usage{
 random_color(n = 1)
 }
+\arguments{
+\item{n}{number of colors to generate}
+}
 \value{
 A vector of colors specified as hex codes
 }
@@ -17,5 +20,6 @@ random_color()
 random_color(n=10)
 show_col(random_color(n=10), random_color(n=10), random_color(n=10))
 # art!
+
 }
 

@@ -4,14 +4,12 @@
 #'
 #' @param x hexadecimal string specifying a color.
 #'
-#' @template color_spec
-#'
 #' @details
 #' Hexadecimal strings (hex for short) are how colors are usually represented in R. This function just brings a little more versatility in how those can be specified. Note, however, that R can use the 8 letter model to represent color with a transparency (alpha) component and that this function does not support it (and just removes the transparency).
 #'
 #' @template return_hex_colors
 #'
-#' @export
+#' @template color_spec
 #'
 #' @examples
 #' hex("#ff3399")
@@ -22,6 +20,8 @@
 #' (half_transparent <- alpha("#ff3399", 0.5))
 #' hex(half_transparent)
 #' # the transparency portion (last two positions: '80') is removed
+#'
+#' @export
 hex <- function(x) {
   parse_color(x, "hex")
 }

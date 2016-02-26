@@ -45,5 +45,9 @@ show_col(x_orig, x)
 }
 \seealso{
 \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in Lab or HCL).
+
+Other color manipulation functions: \code{\link{change_lightness}},
+  \code{\link{change_saturation}}, \code{\link{luminance}},
+  \code{\link{mix}}
 }
 

@@ -4,17 +4,17 @@
 #'
 #' @param x string representing a color in CSS.
 #'
-#' @template color_spec
-#'
 #' @template return_hex_colors
 #'
-#' @export
+#' @template color_spec
 #'
 #' @examples
 #' css("teal")
 #' css(c("teal", "blanchedalmond"))
 #' css("rgb(255, 100, 100)")
 #' css("hsl(200, 50%, 50%)")
+#'
+#' @export
 css <- function(x) {
   parse_color(x, "css")
 }

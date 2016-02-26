@@ -7,7 +7,7 @@
 show_col(...)
 }
 \arguments{
-\item{...}{vectors of colors (specified as hex codes) to display. Each vector is displayed on a separate line}
+\item{...}{vectors of colors (specified as hex codes) to display. Each vector is displayed on a separate line.}
 }
 \description{
 Display one or several (collections of) colors next to each other

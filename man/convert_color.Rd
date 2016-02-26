@@ -53,13 +53,13 @@ as.temperature(x)
 \value{
 A matrix containing the color components in most cases, except for the models:
 \describe{
- \item{\code{css}}{a vector of css color definition strings}
- \item{\code{hex}}{a vector of hexadecimal strings defining colors}
- \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin}
+ \item{\code{css}}{a vector of css color definition strings,}
+ \item{\code{hex}}{a vector of hexadecimal strings defining colors,}
+ \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin.}
 }
 }
 \description{
-Convert a vector of R colors to a given color model
+Convert a vector of R colors to a given color model.
 }
 \examples{
 convert_color("red", model="rgb")
@@ -77,5 +77,9 @@ as.hex("red")
 as.temperature("red")
 
 as.rgb(colors()[1:5])
+
+}
+\seealso{
+See \code{\link{parse_color}} for a general function to parse colors in various specifications.
 }
 

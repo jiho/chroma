@@ -27,6 +27,7 @@ hex("F39")
 (half_transparent <- alpha("#ff3399", 0.5))
 hex(half_transparent)
 # the transparency portion (last two positions: '80') is removed
+
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.

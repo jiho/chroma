@@ -22,6 +22,7 @@ temperature(c(2000, 5200, 7000))
 # display range of temperatures
 x <- seq(1000, 20000, length.out=20)
 plot(x=x, y=rep(1, 20), col=temperature(x), pch=15, cex=3)
+
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.

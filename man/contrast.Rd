@@ -21,5 +21,6 @@ contrast("pink", "blue")
 
 # can be vectorised
 contrast("pink", rainbow(10))
+
 }
 

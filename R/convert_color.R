@@ -1,18 +1,18 @@
 #' Convert colors to a given color model
 #'
-#' Convert a vector of R colors to a given color model
+#' Convert a vector of R colors to a given color model.
 #'
 #' @template param_x_rcolors
 #' @template param_model
 #'
 #' @return A matrix containing the color components in most cases, except for the models:
 #' \describe{
-#'  \item{\code{css}}{a vector of css color definition strings}
-#'  \item{\code{hex}}{a vector of hexadecimal strings defining colors}
-#'  \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin}
+#'  \item{\code{css}}{a vector of css color definition strings,}
+#'  \item{\code{hex}}{a vector of hexadecimal strings defining colors,}
+#'  \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin.}
 #' }
 #'
-#' @export
+#' @seealso See \code{\link{parse_color}} for a general function to parse colors in various specifications.
 #'
 #' @examples
 #' convert_color("red", model="rgb")
@@ -30,6 +30,8 @@
 #' as.temperature("red")
 #'
 #' as.rgb(colors()[1:5])
+#'
+#' @export
 convert_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   

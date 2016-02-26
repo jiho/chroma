@@ -60,7 +60,8 @@ show_col(c(col, new_col))
 
 }
 \seealso{
-Other color manipulations: \code{\link{change_saturation}},
+Other color manipulation functions: \code{\link{change_saturation}},
+  \code{\link{channel}}, \code{\link{luminance}},
   \code{\link{mix}}
 }
 

@@ -8,7 +8,9 @@
 #' @details
 #' Colors are converted into L* a* b* space where the L* component is changed. Most colors are (very slightly) affected by the conversion and the change in lightness is therefore not exactly reversible (brightening a darkened color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright colors.
 #' 
-#' @template color_manip
+#' @template return_hex_colors
+#'
+#' @family color manipulation functions
 #'
 #' @examples
 #' darken("#7BBBFE")
@@ -31,7 +33,7 @@
 #' col <- "#5eff15"
 #' (new_col <- brighten(darken(col)))
 #' show_col(c(col, new_col))
-#' 
+#'
 #' @name change_lightness
 #' @export
 darken <- function(x, amount=1) {

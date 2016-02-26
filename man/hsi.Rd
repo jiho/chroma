@@ -36,6 +36,7 @@ hsi(c(330, 340), 1, 0.6)
 # color ramps
 ramp <- seq(0, 1, length.out=10)
 show_col(hsi(h=ramp*360), hsi(s=ramp), hsi(i=ramp*2))
+
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.

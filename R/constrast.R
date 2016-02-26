@@ -4,14 +4,14 @@
 #' 
 #' @return A number giving the contrast between x and y (or a vector thereof).
 #' 
-#' @export
-#' 
 #' @examples
 #' contrast("pink", "hotpink")
 #' contrast("pink", "blue")
 #'
 #' # can be vectorised
 #' contrast("pink", rainbow(10))
+#'
+#' @export
 contrast <- function(x, y) {
   # force input R colors into hex notation
   x <- in_hex(x)

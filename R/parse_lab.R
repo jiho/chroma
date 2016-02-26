@@ -5,14 +5,14 @@
 #' @template param_lightness
 #' @param a,b color components, numeric vectors with values in \code{[-1, 1]}. (a=-1, b=-1) is blue, (a=-1, b=1) is green, (a=1, b=1) is red, (a=1, b=-1) is purple.
 #'
-#' @template color_spec
 #' @template color_spec_from_matrix
-#'
-#' @template return_hex_colors
-#'
 #' @details
 #' The CIE L*a*b* color space is intended to represent all colors visible by the human eye. It separates a lightness component (\code{l}), which matches the human perception of lightness well, from two color "opponents" (\code{a} and \code{b}). To create color palettes however, the HCL color model (function \code{\link{hcl}}) is likely to be more practical and is also intended to match human perception of colors.
+#'
+#' @template return_hex_colors
 #' 
+#' @template color_spec
+#'
 #' @examples
 #' lab()
 #' lab(0.47, 0.55, 0.3)

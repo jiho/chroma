@@ -7,17 +7,15 @@
 #' @param names character vector. The names for the resulting vector.
 #' @param maxColorValue number giving the maximum of the color values range; typically 1 or 255.
 #'
-#' @template color_spec
 #' @template color_spec_from_matrix
-#'
-#' @template return_hex_colors
-#'
 #' @details
 #' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba} for compatibility with chroma.js.
 #'
 #' RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L* a* b* make it easier to create color palettes that are appropriate for human perception.
 #'
-#' @export
+#' @template return_hex_colors
+#'
+#' @template color_spec
 #'
 #' @examples
 #' rgb()
@@ -36,6 +34,8 @@
 #'   rgb(g=ramp),
 #'   rgb(b=ramp)
 #' )
+#'
+#' @export
 rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1) {
 
   # handle color channels

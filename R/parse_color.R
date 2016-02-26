@@ -3,9 +3,9 @@
 #' @param x a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css} and \code{hex} color models
 #' @template param_model
 #'
-#' @family color specifications
-#'
 #' @template return_hex_colors
+#'
+#' @family color specifications
 #'
 #' @examples
 #' parse_color(data.frame(h=c(0, 120, 240), s=0.5, v=0.7), "hsv")

@@ -7,11 +7,7 @@
 #' @template param_lightness
 #' @template param_alpha
 #'
-#' @template color_spec
 #' @template color_spec_from_matrix
-#'
-#' @template return_hex_colors
-#'
 #' @details
 #' In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to black and white. This makes the HCL space particularly suitable to create good color palettes:
 #' \itemize{
@@ -19,7 +15,9 @@
 #'   \item For sequential palettes (continuous variables): varying l (or possibly c) for a constant h gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 #' }
 #'
-#' @export
+#' @template return_hex_colors
+#'
+#' @template color_spec
 #'
 #' @examples
 #' hcl()
@@ -41,6 +39,8 @@
 #'   hcl(h=0+ramp*80, c=0.6-ramp*0.4, l=0.1+ramp*0.8),
 #'   hcl(h=210+ramp*150, c=0.3, l=0.1+ramp*0.5)
 #' )
+#'
+#' @export
 hcl <- function(h=0, c=0.6, l=0.6, alpha=NULL, ...) {
   # handle color channels
   x <- tabularise_arguments(h, c, l)

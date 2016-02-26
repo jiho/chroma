@@ -9,9 +9,10 @@
 #' For \code{channel}, a vector of channel values, the convention of which depend on the channel.
 #' 
 #' For \code{channel<-}, the updated object(s).
-#' 
+#'
 #' @seealso \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in Lab or HCL).
-
+#' @family color manipulation functions
+#'
 #' @examples
 #' channel("pink", "rgb", "r")
 #' channel(colors()[1:5], "hcl", "l")

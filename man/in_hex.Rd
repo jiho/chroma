@@ -20,6 +20,6 @@ in_hex("pink")
 in_hex(c("pink", "#348A31", "darkblue"))
 
 show_col(in_hex(colors()))
- 
+
 }
 

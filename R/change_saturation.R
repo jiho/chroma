@@ -8,7 +8,9 @@
 #' @details
 #' Colors are converted into HCL space where the C (chroma) component is changed. Most colors are (very slightly) affected by the conversion and the change in saturation is therefore not exactly reversible (saturating a desaturated color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright and saturated colors.
 #' 
-#' @template color_manip
+#' @template return_hex_colors
+#'
+#' @family color manipulation functions
 #'
 #' @examples
 #' saturate("#7BBBFE")

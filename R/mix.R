@@ -7,9 +7,9 @@
 #' @details
 #' All arguments can be vectors, as long as they are of compatible length (shorter arguments will be repeated to the length of longer arguments)
 #'
-#' @export
+#' @template return_hex_colors
 #'
-#' @template color_manip
+#' @family color manipulation functions
 #'
 #' @examples
 #' mix("red", "blue")
@@ -22,6 +22,8 @@
 #' show_mix("#FEF213", "#FA000C")
 #' show_mix("red", "blue", ratio=c(0.25, 0.5, 0.75))
 #' show_mix("red", "blue", model=c("rgb", "hsv", "hsl", "hcl", "lab"))
+#'
+#' @export
 mix <- function(x, y, ratio=0.5, model="rgb") {
   # force input R colors into hex notation
   x <- in_hex(x)

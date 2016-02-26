@@ -2,7 +2,7 @@
 #'
 #' Display one or several (collections of) colors next to each other
 #'
-#' @param ... vectors of colors (specified as hex codes) to display. Each vector is displayed on a separate line
+#' @param ... vectors of colors (specified as hex codes) to display. Each vector is displayed on a separate line.
 #'
 #' @examples
 #' # display one color
@@ -22,7 +22,6 @@
 #' # ewwww :-(
 #'
 #' @export
-#'
 #' @importFrom grid grid.newpage grid.layout viewport pushViewport grid.rect gpar unit
 show_col <- function(...) {
   # get vectors of colors to plot

@@ -33,9 +33,11 @@ show_mix("#FEF213", "#146EFD")
 show_mix("#FEF213", "#FA000C")
 show_mix("red", "blue", ratio=c(0.25, 0.5, 0.75))
 show_mix("red", "blue", model=c("rgb", "hsv", "hsl", "hcl", "lab"))
+
 }
 \seealso{
-Other color manipulations: \code{\link{change_lightness}},
-  \code{\link{change_saturation}}
+Other color manipulation functions: \code{\link{change_lightness}},
+  \code{\link{change_saturation}}, \code{\link{channel}},
+  \code{\link{luminance}}
 }
 

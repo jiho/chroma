@@ -41,6 +41,7 @@ show_col(hsv(h=ramp*360), hsv(s=ramp), hsv(v=ramp))
 
 # recreate the rainbow() scale
 show_col(hsv(h=seq(0, 324, length.out=10), s=1, v=1), rainbow(10))
+
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
