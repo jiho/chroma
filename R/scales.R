@@ -62,8 +62,20 @@ make_scale <- function(colors=c("white", "black"), model="lab", interp="linear",
   
   # define domain
   if ( ! is.null(values) ) {
-    # TODO check numeric
-    # TODO check what happens when not ordered
+    # check content
+    if (!is.numeric(values)) {
+      stop("Argument 'values' should be a numeric vector.")
+    }
+    if (any(!is.finite(values))) {
+      warning("Argument 'values' should not contain missing or non-numeric values. They were removed.")
+      values <- values[is.finite(values)]
+    }
+    if ( ! ( identical(sort(values), values) | identical(sort(values), rev(values)) ) )  {
+      stop("Numbers in 'values' should be monotonously increasing or decreasing.")
+    }
+    if ( length(values) != length(colors) )  {
+      stop("Not the same number of 'colors' (",length(colors),") and 'values' (", length(values), ").")
+    }
     domain <- values
   } else {
     if ( reverse ) {
