@@ -11,6 +11,8 @@
 #'
 #' @template return_scales
 #'
+#' @family color scales and palettes
+#'
 #' @examples
 #' # define a color scale
 #' coldhot_scale <- make_scale(c("cornflowerblue", "brown3"))
