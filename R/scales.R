@@ -90,18 +90,17 @@ make_scale <- function(colors=c("white", "black"), model="lab", interp="linear",
   return(f)
 }
 
+#' @param ... passed to \code{\link{make_scale}}. Note that \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them in \code{...} is an error.
 #' @name make_scale
 #' @export
-make_palette <- function(colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL) {
+make_palette <- function(...) {
   f <- function(n) {
-    make_scale(colors=colors, model=model, interp=interp, reverse=FALSE, values=NULL)(seq(0,1,length.out=n))
+    make_scale(domain=c(0,1), values=NULL, ...)(seq(0, 1, length.out=n))
   }
   return(f)
 }
 
 #' @param n number of colors to extract from the color palette.
-#' @param ... passed to \code{\link{make_scale}}.
-#'
 #' @name make_scale
 #' @export
 make_colors <- function(n, ...) {
