@@ -44,7 +44,7 @@
 #' show_col(
 #'    make_scale(cols)(x),
 #'    make_scale(cols, domain=range(x))(x),
-#'    make_scale(cols, domain=range(x), rev=TRUE)(x),
+#'    make_scale(cols, domain=range(x), reverse=TRUE)(x),
 #'    make_scale(cols, values=c(0,1,10))(x)
 #' )
 #'
