@@ -9,6 +9,8 @@
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
+#' @template return_hex_colors
+#'
 #' @details
 #' The HSL color model tentatively separates color (hue), color intensity (saturation), and color lightness, which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion reamins in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{l} some hues are perceived as brighter (yellow and green for example) and therefore draw attention to themselves. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
 #'

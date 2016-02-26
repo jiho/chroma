@@ -10,6 +10,8 @@
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
+#' @template return_hex_colors
+#'
 #' @details
 #' In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to black and white. This makes the HCL space particularly suitable to create good color palettes:
 #' \itemize{

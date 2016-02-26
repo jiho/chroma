@@ -10,6 +10,8 @@
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
+#' @template return_hex_colors
+#'
 #' @details
 #' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba} for compatibility with chroma.js.
 #'

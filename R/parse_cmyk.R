@@ -7,6 +7,8 @@
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
+#' @template return_hex_colors
+#'
 #' @details
 #' CMYK is the color model used by printers, which use cyan, magenta, yellow and black ink. The CMYK space cannot reproduce all colors seen on screens, bright and flashy colors in particular.
 #'

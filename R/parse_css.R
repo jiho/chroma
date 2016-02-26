@@ -6,6 +6,8 @@
 #'
 #' @template color_spec
 #'
+#' @template return_hex_colors
+#'
 #' @export
 #'
 #' @examples

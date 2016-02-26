@@ -10,7 +10,7 @@ in_hex(x)
 \item{x}{vector of colors specified as hex strings or named R colors.}
 }
 \value{
-A vector of colors specified as hex codes only
+A vector of colors specified as hex codes
 }
 \description{
 Convert R colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation

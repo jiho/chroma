@@ -4,7 +4,7 @@
 #' 
 #' @template param_x_rcolors
 #'
-#' @return A vector of colors specified as hex codes only
+#' @template return_hex_colors
 #'
 #' @examples
 #' in_hex("pink")

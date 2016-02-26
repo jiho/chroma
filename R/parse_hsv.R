@@ -10,6 +10,8 @@
 #' @template color_spec
 #' @template color_spec_from_matrix
 #'
+#' @template return_hex_colors
+#'
 #' @export
 #'
 #' @details

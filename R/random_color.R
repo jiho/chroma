@@ -1,6 +1,6 @@
 #' Generate random color(s)
 #'
-#' @return A vector of colors specified as hex codes
+#' @template return_hex_colors
 #'
 #' @export
 #'

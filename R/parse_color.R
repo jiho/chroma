@@ -5,7 +5,7 @@
 #'
 #' @family color specifications
 #'
-#' @return A vector of colors specified as hex codes
+#' @template return_hex_colors
 #'
 #' @examples
 #' parse_color(data.frame(h=c(0, 120, 240), s=0.5, v=0.7), "hsv")

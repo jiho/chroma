@@ -7,6 +7,8 @@
 #' @template color_spec
 #' @export
 #'
+#' @template return_hex_colors
+#'
 #' @examples
 #' temperature()
 #' temperature(c(2000, 5200, 7000))
