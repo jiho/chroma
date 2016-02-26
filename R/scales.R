@@ -132,7 +132,7 @@ make_scale <- function(colors=c("white", "black"), model="lab", interp="linear",
   return(f)
 }
 
-#' @param ... passed to \code{\link{make_scale}}. Note that \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them in \code{...} is an error.
+#' @param ... passed to \code{\link{make_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them through \code{...} is an error.
 #' @name make_scale
 #' @export
 make_palette <- function(...) {

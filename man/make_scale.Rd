@@ -32,7 +32,7 @@ make_map(x, ...)
 
 \item{values}{if colours should not be evenly positioned along the gradient this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
 
-\item{...}{passed to \code{\link{make_scale}}. Note that \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them in \code{...} is an error.}
+\item{...}{passed to \code{\link{make_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 
