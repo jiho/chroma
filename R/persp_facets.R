@@ -12,7 +12,7 @@
 #'
 #' @export
 persp_facets <- function(z) {
-  if (is.matrix(z) | !is.numeric(z)) {
+  if (!is.matrix(z) | !is.numeric(z)) {
     stop("z needs to be a numeric matrix")
   }
   ncz <- ncol(z)
