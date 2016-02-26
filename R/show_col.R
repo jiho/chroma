@@ -26,7 +26,13 @@
 show_col <- function(...) {
   # get vectors of colors to plot
   args <- list(...)
-  # and count them
+  
+  # deal with the special case of ... being a single list of colors
+  if ( length(args) == 1 & is.list(args[[1]]) ) {
+    args <- args[[1]]
+  }
+
+  # count the number of color collections
   nn <- length(args)
 
   # prepare a new page with as many lines as color vectors
