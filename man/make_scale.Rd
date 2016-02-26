@@ -3,19 +3,21 @@
 \name{make_scale}
 \alias{make.colors}
 \alias{make_colors}
+\alias{make_map}
 \alias{make_palette}
 \alias{make_scale}
-\title{Create color scales and palettes}
+\title{Color scales and palettes}
 \usage{
 make_scale(colors = c("white", "black"), model = "lab", interp = "linear",
   domain = c(0, 1), reverse = FALSE, values = NULL)
 
-make_palette(colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL)
+make_palette(...)
 
 make_colors(n, ...)
 
 make.colors(n, ...)
+
+make_map(x, ...)
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -28,21 +30,30 @@ make.colors(n, ...)
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
-\item{values}{if colours should not be evenly positioned along the gradient this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and order of the color scale.}
+\item{values}{if colours should not be evenly positioned along the gradient this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
+
+\item{...}{passed to \code{\link{make_scale}}. Note that \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them in \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 
-\item{...}{passed to \code{\link{make_scale}}.}
+\item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 }
 \value{
-The \code{*_scale} version returns a function that takes \code{x}, a numeric vector, as argument, maps the values to colors along the interpolated gradient and returns those colors as hex codes.
+\code{*_scale} and \code{*_palette} return a function.
 
-The \code{*_palette} version returns a function that takes \code{n}, an integer number, as argument, picks \code{n} colors evenly along the scale and returns them as hex codes.
-
-The \code{*_colors} and \code{*.colors} versions are just shortcuts for \code{*_palette()(n)} and directly return \code{n} colors evenly spaced along the scale, as hex codes. It is meant to be equivalent to builtin functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+\code{*_colors}, \code{*.colors}, and \code{*_map} return a vector of hex colors.
 }
 \description{
-Create a color scale (map between numerical values and colors), a color palette (collection of colors) or get a few colors from a palette.
+Create a color scale, create a color palette, get a few colors from a palette, or map values to colors along a scale.
+}
+\details{
+The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
+
+The \code{*_palette} version also creates a \strong{function}, but it takes an integer, \code{n}, as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
+
+The \code{*_colors} and \code{*.colors} versions are just shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to builtin functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+The \code{*_map} version is also a shortcut, which automatically creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
 }
 \examples{
 # define a color scale

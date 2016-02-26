@@ -1,6 +1,13 @@
+#' @details
+#' The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
+#'
+#' The \code{*_palette} version also creates a \strong{function}, but it takes an integer, \code{n}, as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
+#'
+#' The \code{*_colors} and \code{*.colors} versions are just shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to builtin functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+#'
+#' The \code{*_map} version is also a shortcut, which automatically creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
+
 #' @return
-#' The \code{*_scale} version returns a function that takes \code{x}, a numeric vector, as argument, maps the values to colors along the interpolated gradient and returns those colors as hex codes.
+#' \code{*_scale} and \code{*_palette} return a function.
 #'
-#' The \code{*_palette} version returns a function that takes \code{n}, an integer number, as argument, picks \code{n} colors evenly along the scale and returns them as hex codes.
-#'
-#' The \code{*_colors} and \code{*.colors} versions are just shortcuts for \code{*_palette()(n)} and directly return \code{n} colors evenly spaced along the scale, as hex codes. It is meant to be equivalent to builtin functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+#' \code{*_colors}, \code{*.colors}, and \code{*_map} return a vector of hex colors.

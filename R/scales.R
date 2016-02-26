@@ -1,13 +1,13 @@
-#' Create color scales and palettes
+#' Color scales and palettes
 #'
-#' Create a color scale (map between numerical values and colors), a color palette (collection of colors) or get a few colors from a palette.
+#' Create a color scale, create a color palette, get a few colors from a palette, or map values to colors along a scale.
 #'
 #' @param colors vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.
 #' @param model color space in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}. Beware that all but \code{lab} and \code{rgb} can give surprising results.
 #' @param interp type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
 #' @param domain the values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
-#' @param values if colours should not be evenly positioned along the gradient this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and order of the color scale.
+#' @param values if colours should not be evenly positioned along the gradient this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
 #'
 #' @template return_scales
 #'
@@ -121,3 +121,18 @@ make_colors <- function(n, ...) {
 #' @name make_scale
 #' @export
 make.colors <- make_colors
+
+#' @param x a vector whose values will be coerced to numbers and mapped to colors.
+#' @name make_scale
+#' @export
+make_map <- function(x, ...) {
+  # force characters into factors to be able to convert them to numeric
+  if (is.character(x)) {
+    x <- factor(x)
+  }
+  # convert to numbers
+  x <- as.numeric(x)
+  # define the domain of the scale
+  colors <- make_scale(domain=range(x, na.rm=T), ...)(x)
+  return(colors)
+}
