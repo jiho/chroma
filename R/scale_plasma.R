@@ -63,7 +63,7 @@ plasma_palette <- function(...) {
 #' @name plasma_scale
 #' @export
 plasma_colors <- function(n, ...) {
-  plasma_colors(n=n, colors=chroma::plasma, model="lab", interp="linear",...)
+  make_colors(n=n, colors=chroma::plasma, model="lab", interp="linear",...)
 }
 #' @name plasma_scale
 #' @export

@@ -60,7 +60,7 @@ viridis_palette <- function(...) {
 #' @name viridis_scale
 #' @export
 viridis_colors <- function(n, ...) {
-  viridis_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
+  make_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
 }
 #' @name viridis_scale
 #' @export

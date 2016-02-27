@@ -63,7 +63,7 @@ inferno_palette <- function(...) {
 #' @name inferno_scale
 #' @export
 inferno_colors <- function(n, ...) {
-  inferno_colors(n=n, colors=chroma::inferno, model="lab", interp="linear",...)
+  make_colors(n=n, colors=chroma::inferno, model="lab", interp="linear",...)
 }
 #' @name inferno_scale
 #' @export
