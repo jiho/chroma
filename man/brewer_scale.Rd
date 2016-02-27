@@ -93,7 +93,8 @@ legend(1, 8, legend=levels(Species), pch=19, col=brewer_colors(n=nlevels(Species
 
 }
 \seealso{
-Other color scales and palettes: \code{\link{make_scale}},
-  \code{\link{viridis_scale}}
+Other color scales and palettes: \code{\link{inferno_scale}},
+  \code{\link{magma_scale}}, \code{\link{make_scale}},
+  \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
 }
 

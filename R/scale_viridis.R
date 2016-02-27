@@ -4,7 +4,7 @@
 #'
 #' @format A vector of length 256 containing hex values.
 #' @source \url{https://bids.github.io/colormap/} for the concept and \url{https://github.com/BIDS/colormap/blob/master/colormaps.py} for the data.
-#' @family viridis-like palettes
+#' @family mpl palettes
 "viridis"
 
 
