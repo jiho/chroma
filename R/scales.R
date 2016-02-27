@@ -51,7 +51,7 @@
 #' )
 #'
 #' # Maunga Whau volcano colors picked from a picture
-#' # (Likely incorrect perceptually but look "realistic")
+#' # (likely incorrect perceptually but looks "realistic")
 #' maunga <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
@@ -61,7 +61,7 @@
 #' persp(x, y, volcano, theta=60, phi=25,
 #'       col=make_map(volcano[-1,-1], colors=maunga))
 #' # NB: This is cheating, colouring each facet according to the value of
-#' #     its lower right point. The correct way is:
+#' #     its lower right point. The correct way is \code{link{persp_facets}}
 #' persp(x, y, volcano, theta=60, phi=25,
 #'       col=make_map(persp_facets(volcano), colors=maunga))
 #'
