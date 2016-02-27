@@ -54,30 +54,7 @@
 #' brewer_palette(name="Blues")(15)
 #' brewer_palette(name="Pastel1")(15)
 #'
-#' x <- 10*(1:nrow(volcano))
-#' y <- 10*(1:ncol(volcano))
-#'
-#' image(x, y, volcano, col=make_colors(100, colors=maunga))
-#' 
-#' persp(x, y, volcano, theta=60, phi=25,
-#'       col=make_map(volcano[-1,-1], colors=maunga))
-#' # NB: This is cheating, colouring each facet according to the value of
-#' #     its lower right point. The correct way is:
-#' persp(x, y, volcano, theta=60, phi=25,
-#'       col=make_map(persp_facets(volcano), colors=maunga))
-#'
-#' \dontrun{
-#' library("rgl")
-#' persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=make_map(volcano, colors=maunga))
-#'
-#' }
-#' # color points according to a discrete variable
-#' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=21, cex=2, bg=make_map(Species))
-#' legend(1, 8, legend=levels(Species), pch=21, pt.bg=make_colors(n=nlevels(Species)))
-#' # NB: works, but a continuous scale is not really appropriate here.
-#'
+#' # Maunga Whau volcano elevation map
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
 #' image(x, y, volcano, col=brewer_palette("YlOrBr", reverse=T)(100))
