@@ -121,6 +121,7 @@ legend(1, 8, legend=levels(Species), pch=21, pt.bg=make_colors(n=nlevels(Species
 
 }
 \seealso{
-Other color scales and palettes: \code{\link{brewer_scale}}
+Other color scales and palettes: \code{\link{brewer_scale}},
+  \code{\link{viridis_scale}}
 }
 
