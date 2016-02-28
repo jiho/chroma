@@ -5,12 +5,12 @@
 \alias{lch}
 \title{HCL Color Specification}
 \usage{
-hcl(h = 0, c = 0.6, l = 0.6, alpha = NULL, ...)
+hcl(h = 0, c = 0.65, l = 0.65, alpha = NULL, ...)
 
-lch(l = 0.6, c = 0.6, h = 0)
+lch(l = 0.65, c = 0.65, h = 0)
 }
 \arguments{
-\item{h}{hue, numeric vector with values in \code{[0, 360]}.}
+\item{h}{hue, numeric vector with values usually in \code{[0, 360]}. Hues are angles around the color wheel and angles outside of the range will be rotated back to within \code{[0, 360]} (380 = 20, -15 = 345, etc.).}
 
 \item{c}{chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 

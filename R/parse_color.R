@@ -63,21 +63,25 @@ parse_color <- function(x, model) {
     is_in(x[,3], 0, 1, "alpha")
     
   } else if ( model == "hsv" ) {
+    x[,1] <- x[,1] %% 360
     is_in(x[,1], 0, 360, "h")
     is_in(x[,2], 0, 1, "s")
     is_in(x[,3], 0, 1, "v")
     
   } else if ( model == "hsl" ) {
+    x[,1] <- x[,1] %% 360
     is_in(x[,1], 0, 360, "h")
     is_in(x[,2], 0, 1, "s")
     is_in(x[,3], 0, 1, "l")
 
   } else if ( model == "hsi" ) {
+    x[,1] <- x[,1] %% 360
     is_in(x[,1], 0, 360, "h")
     is_in(x[,2], 0, 1, "s")
     is_in(x[,3], 0, 2, "i")
     
   } else if ( model == "hcl" ) {
+    x[,1] <- x[,1] %% 360
     is_in(x[,1], 0, 360, "h")
     is_in(x[,2], 0, 1.5, "c")
     is_in(x[,3], 0, 1, "l")
@@ -87,6 +91,7 @@ parse_color <- function(x, model) {
   } else if ( model == "lch" ) {
     is_in(x[,1], 0, 1, "l")
     is_in(x[,2], 0, 1.5, "c")
+    x[,3] <- x[,3] %% 360
     is_in(x[,3], 0, 360, "h")
     # chroma.js actually uses percentages
     x[,1:2] <- x[,1:2] * 100
