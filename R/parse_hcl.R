@@ -36,7 +36,7 @@
 #' )
 #'
 #' @export
-hcl <- function(h=0, c=0.6, l=0.6, alpha=NULL, ...) {
+hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, ...) {
   # handle color channels
   x <- tabularise_arguments(h, c, l)
 
@@ -57,7 +57,7 @@ hcl <- function(h=0, c=0.6, l=0.6, alpha=NULL, ...) {
 
 #' @name hcl
 #' @export
-lch <- function(l=0.6, c=0.6, h=0) {
+lch <- function(l=0.65, c=0.65, h=0) {
   # handle color channels
   x <- tabularise_arguments(l, c, h)
 
