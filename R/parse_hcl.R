@@ -3,17 +3,12 @@
 #' Create a vector of colors from hue, chromacity, and lightness. The arguments are compatible with the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}, but the conventions and output are slightly different.
 #'
 #' @template param_hue
-#' @param c chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.
+#' @template param_chromacity
 #' @template param_lightness
 #' @template param_alpha
 #'
 #' @template color_spec_from_matrix
-#' @details
-#' In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to black and white. This makes the HCL space particularly suitable to create good color palettes:
-#' \itemize{
-#'   \item For qualitative palettes (discrete variables): varying h at constant c and l avoids drawing attention to certain hues as it would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
-#'   \item For sequential palettes (continuous variables): varying l (or possibly c) for a constant h gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
-#' }
+#' @template details_hcl
 #'
 #' @template return_hex_colors
 #'
