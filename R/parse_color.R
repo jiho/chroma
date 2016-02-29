@@ -38,7 +38,7 @@ parse_color <- function(x, model) {
       stop("x should be a matrix or data.frame")
     }
 
-    required_columns <- switch(model, cmyk=4, rgba=4, gl=4, 3)
+    required_columns <- switch(model, cmyk=4, rgba=4, 3)
     if (ncol(x) < required_columns) {
       stop("x should have at least ", required_columns, " columns")
     }
@@ -61,6 +61,7 @@ parse_color <- function(x, model) {
     is_in(x[,2], 0, 1, "green")
     is_in(x[,3], 0, 1, "blue")
     is_in(x[,3], 0, 1, "alpha")
+    model <- "gl"
     
   } else if ( model == "hsv" ) {
     x[,1] <- hue(x[,1], model=model)

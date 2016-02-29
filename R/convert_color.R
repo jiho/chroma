@@ -16,7 +16,6 @@
 #'
 #' @examples
 #' convert_color("red", model="rgb")
-#' convert_color("red", model="gl")
 #' convert_color("red", model="hsl")
 #' convert_color("red", model="hcl")
 #' convert_color("red", model="cmyk")
@@ -35,7 +34,9 @@
 #'
 #' @export
 convert_color <- function(x, model) {
-  model <- match.arg(model, c("rgb", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
+  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
+  # we want rgba in [0,1] = gl
+  if (model == "rgba") { model <- "gl" }
   
   # force input R colors into hex notation
   x <- in_hex(x)
@@ -53,7 +54,7 @@ convert_color <- function(x, model) {
     # stack in a matrix
     res <- do.call(rbind, res)
     # associate column names
-    if (model == "gl") { model <- "rgba" } # GL is just RGBA
+    if (model == "gl") { model <- "rgba" } # we need rgba as column headers
     colnames(res) <- strsplit(model, "", fixed=TRUE)[[1]]
   }
   
@@ -80,11 +81,7 @@ as.rgb <- function(x) { convert_color(x, model="rgb") }
 
 #' @name convert_color
 #' @export
-as.rgba <- function(x) { convert_color(x, model="gl") }
-
-#' @name convert_color
-#' @export
-as.gl <- function(x) { convert_color(x, model="gl") }
+as.rgba <- function(x) { convert_color(x, model="rgba") }
 
 #' @name convert_color
 #' @export

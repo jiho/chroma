@@ -9,7 +9,7 @@
 #'
 #' @template color_spec_from_matrix
 #' @details
-#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba}, for compatibility with chroma.js.
+#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame).
 #'
 #' RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L*a*b* make it easier to create color palettes that are appropriate for human perception.
 #'
@@ -21,6 +21,9 @@
 #' rgb()
 #' rgb(1, 0, 0)
 #' rgb(255, 0, 0, maxColorValue=255)
+#' rgb(data.frame(c(0.2, 0.5), c(0.5,0.5), c(0.6, 0.4)))
+#' rgb(matrix(c(0.2, 0.5, 0.5, 0.5, 0.6, 0.4), ncol=3))
+#' rgb(c(0.2, 0.5), 0, 0)
 #'
 #' red <- rgb(1, 0, 0)
 #' transparent_red <- rgb(1, 0, 0, alpha=0.7)
@@ -76,7 +79,3 @@ rgba <- function(red=0, green=0, blue=0, alpha=1) {
 
   return(colors)
 }
-
-#' @name rgb
-#' @export
-gl <- rgba
