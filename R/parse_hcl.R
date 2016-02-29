@@ -51,7 +51,6 @@ hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, ...) {
     if ( !(length(alpha) == 1 | length(alpha) == length(colors)) ) {
       stop("alpha needs to be either a single number or a vector of the same length as the number of colors (", length(colors), " here).")
     }
-    alpha <- alpha / maxColorValue
     colors <- alpha(colors, alpha)
   }
     
