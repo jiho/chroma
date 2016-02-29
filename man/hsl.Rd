@@ -11,7 +11,7 @@ hsl(h = 0, s = 0.5, l = 0.5)
 
 \item{s}{saturation, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.}
 
-\item{l}{lightness, numeric vector with values in \code{[0, 1]}; 0 is black, 1 is white.}
+\item{l}{lightness, numeric vector with values in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
 }
 \value{
 A vector of colors specified as hex codes
