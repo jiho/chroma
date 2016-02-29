@@ -15,7 +15,7 @@
 #'
 #' The \code{plasma} color palette, by Nathaniel J. Smith and Stefan van der Walt (CC0 license).
 #'
-#' @inheritParams make_scale 
+#' @inheritParams color_scale 
 #'
 #' @template return_scales
 #'
@@ -52,26 +52,26 @@
 #'
 #' @export
 plasma_scale <- function(domain=c(0,1), reverse=FALSE) {
-  make_scale(colors=chroma::plasma, model="lab", interp="linear", domain=domain, reverse=reverse)
+  color_scale(colors=chroma::plasma, model="lab", interp="linear", domain=domain, reverse=reverse)
 }
 
 #' @param ... passed to \code{\link{plasma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{plasma_scale} and passing it through \code{...} is an error.
 #' @name plasma_scale
 #' @export
 plasma_map <- function(x, ...) {
-  make_map(x, colors=chroma::plasma, model="lab", interp="linear", ...)
+  color_map(x, colors=chroma::plasma, model="lab", interp="linear", ...)
 }
 
 #' @name plasma_scale
 #' @export
 plasma_palette <- function(...) {
-  make_palette(colors=chroma::plasma, model="lab", interp="linear", ...)
+  color_palette(colors=chroma::plasma, model="lab", interp="linear", ...)
 }
 
 #' @name plasma_scale
 #' @export
 plasma_colors <- function(n, ...) {
-  make_colors(n=n, colors=chroma::plasma, model="lab", interp="linear",...)
+  interp_colors(n=n, colors=chroma::plasma, model="lab", interp="linear",...)
 }
 #' @name plasma_scale
 #' @export

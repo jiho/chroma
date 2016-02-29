@@ -1,6 +1,6 @@
-#' Color scales and palettes
+#' Interpolated color scales and palettes
 #'
-#' Create a color scale, create a color palette, get a few colors from a palette, or map values to colors along a scale.
+#' Interpolate between colors to create a color scale, map values to colors along a scale, create a color palette, or get a few colors from a palette.
 #'
 #' @param colors vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.
 #' @param model color space in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}. Beware that all but \code{lab} and \code{rgb} can give surprising results.
@@ -15,38 +15,38 @@
 #'
 #' @examples
 #' # Define a color scale
-#' coldhot_scale <- make_scale(c("cornflowerblue", "brown3"))
+#' coldhot_scale <- color_scale(c("cornflowerblue", "brown3"))
 #' # Apply it to some data
 #' coldhot_scale(c(0, 0.2, 0.6, 1))
 #' # For values outside the range, the extreme color of scale is returned
 #' coldhot_scale(1.3)
 #' 
 #' # Define a palette
-#' coldhot_pal <- make_palette(c("cornflowerblue", "brown3"))
+#' coldhot_pal <- color_palette(c("cornflowerblue", "brown3"))
 #' # and get 10 colors from it
 #' coldhot_pal(10)
 #' show_col(coldhot_pal(10))
 #' # Use the shortcut to define a palette and extract n colors from it
-#' show_col(make.colors(n=50, colors=c("cornflowerblue", "brown3")))
+#' show_col(interp.colors(n=50, colors=c("cornflowerblue", "brown3")))
 #' 
 #' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
 #' show_col(
-#'    make_palette(cols, model="lab")(10),
-#'    make_palette(cols, model="lab", interp="bez")(10),
-#'    make_palette(cols, model="rgb")(10),
-#'    make_palette(cols, model="hsv")(10),
-#'    make_palette(cols, model="hcl")(10)
+#'    color_palette(cols, model="lab")(10),
+#'    color_palette(cols, model="lab", interp="bez")(10),
+#'    color_palette(cols, model="rgb")(10),
+#'    color_palette(cols, model="hsv")(10),
+#'    color_palette(cols, model="hcl")(10)
 #' )
 #' 
 #' # Change mapping region/direction
 #' x <- 0:10
 #' cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
 #' show_col(
-#'    make_scale(cols)(x),
-#'    make_scale(cols, domain=range(x))(x),
-#'    make_scale(cols, domain=range(x), reverse=TRUE)(x),
-#'    make_scale(cols, values=c(0,1,10))(x)
+#'    color_scale(cols)(x),
+#'    color_scale(cols, domain=range(x))(x),
+#'    color_scale(cols, domain=range(x), reverse=TRUE)(x),
+#'    color_scale(cols, values=c(0,1,10))(x)
 #' )
 #'
 #' # Maunga Whau volcano colors picked from a picture
@@ -54,35 +54,34 @@
 #' maunga <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
-#' image(x, y, volcano, col=make_colors(100, colors=maunga))
+#' image(x, y, volcano, col=interp_colors(100, colors=maunga))
 #' # = the dark ring-like level is indeed misleading
 #'
 #' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=make_map(volcano[-1,-1], colors=maunga))
+#'       col=color_map(volcano[-1,-1], colors=maunga))
 #' # NB: This is cheating, colouring each facet according to the value of
 #' #     its lower right point. The correct way is \code{link{persp_facets}}
 #' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=make_map(persp_facets(volcano), colors=maunga))
+#'       col=color_map(persp_facets(volcano), colors=maunga))
 #'
 #' \dontrun{library("rgl")
 #' persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=make_map(volcano, colors=maunga))
+#'         col=color_map(volcano, colors=maunga))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # Color points according to a discrete variable
 #' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=21, cex=2, bg=make_map(Species))
-#' legend(1, 8, legend=levels(Species), pch=21, pt.bg=make_colors(n=nlevels(Species)))
+#' plot(Petal.Length, Sepal.Length, pch=21, cex=2, bg=color_map(Species))
+#' legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Species)))
 #' # NB: works, but a continuous scale is not really appropriate here.
 #'
 #' @export
-make_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
+color_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
   # force input R colors into hex notation
   colors <- in_hex(colors)
   
   # check arguments
   model <- match.arg(model, c("lab", "hcl", "lch", "hsl", "hsv", "rgb"))
-  # TODO tolower(model) everywhere
   interp <- match.arg(interp, c("bezier", "linear"))
   if (interp == "bezier" & model != "lab") {
     warning("Bezier interpolation can only be done in L*a*b* space; switching to model=\"lab\".")
@@ -130,11 +129,11 @@ make_scale <- function(colors=c("white", "black"), model="lab", interp="linear",
   return(f)
 }
 
-#' @param ... passed to \code{\link{make_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them through \code{...} is an error.
+#' @param ... passed to \code{\link{color_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{color_scale} and passing them through \code{...} is an error.
 #' @param x a vector whose values will be coerced to numbers and mapped to colors.
-#' @name make_scale
+#' @name color_scale
 #' @export
-make_map <- function(x, ...) {
+color_map <- function(x, ...) {
   # force characters into factors to be able to convert them to numeric
   if (is.character(x)) {
     x <- factor(x)
@@ -142,26 +141,26 @@ make_map <- function(x, ...) {
   # convert to numbers
   x <- as.numeric(x)
   # define the domain of the scale
-  colors <- make_scale(domain=range(x, na.rm=T), ...)(x)
+  colors <- color_scale(domain=range(x, na.rm=T), ...)(x)
   return(colors)
 }
 
-#' @name make_scale
+#' @name color_scale
 #' @export
-make_palette <- function(...) {
+color_palette <- function(...) {
   f <- function(n) {
-    make_scale(domain=c(0,1), values=NULL, ...)(seq(0, 1, length.out=n))
+    color_scale(domain=c(0,1), values=NULL, ...)(seq(0, 1, length.out=n))
   }
   return(f)
 }
 
 #' @param n number of colors to extract from the color palette.
-#' @name make_scale
+#' @name color_scale
 #' @export
-make_colors <- function(n, ...) {
-  make_palette(...)(n)
+interp_colors <- function(n, ...) {
+  color_palette(...)(n)
 }
-#' @name make_scale
+#' @name color_scale
 #' @export
-make.colors <- make_colors
+interp.colors <- interp_colors
 

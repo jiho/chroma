@@ -12,7 +12,7 @@
 #'
 #' The \code{viridis} color palette, by Nathaniel J. Smith, Stefan van der Walt, and Eric Firing (CC0 license).
 #'
-#' @inheritParams make_scale 
+#' @inheritParams color_scale 
 #'
 #' @template return_scales
 #'
@@ -49,26 +49,26 @@
 #'
 #' @export
 viridis_scale <- function(domain=c(0,1), reverse=FALSE) {
-  make_scale(colors=chroma::viridis, model="lab", interp="linear", domain=domain, reverse=reverse)
+  color_scale(colors=chroma::viridis, model="lab", interp="linear", domain=domain, reverse=reverse)
 }
 
 #' @param ... passed to \code{\link{viridis_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{viridis_scale} and passing it through \code{...} is an error.
 #' @name viridis_scale
 #' @export
 viridis_map <- function(x, ...) {
-  make_map(x, colors=chroma::viridis, model="lab", interp="linear", ...)
+  color_map(x, colors=chroma::viridis, model="lab", interp="linear", ...)
 }
 
 #' @name viridis_scale
 #' @export
 viridis_palette <- function(...) {
-  make_palette(colors=chroma::viridis, model="lab", interp="linear", ...)
+  color_palette(colors=chroma::viridis, model="lab", interp="linear", ...)
 }
 
 #' @name viridis_scale
 #' @export
 viridis_colors <- function(n, ...) {
-  make_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
+  interp_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
 }
 #' @name viridis_scale
 #' @export

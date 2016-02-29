@@ -21,6 +21,6 @@ persp_facets(z)
 
 }
 \seealso{
-\code{\link{make_scale}} for an example of usage.
+\code{\link{color_scale}} for an example of usage.
 }
 

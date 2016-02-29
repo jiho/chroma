@@ -98,8 +98,8 @@ legend(1, 8, legend=levels(Species), pch=19,
 
 }
 \seealso{
-Other color scales and palettes: \code{\link{inferno_scale}},
-  \code{\link{magma_scale}}, \code{\link{make_scale}},
+Other color scales and palettes: \code{\link{color_scale}},
+  \code{\link{inferno_scale}}, \code{\link{magma_scale}},
   \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
 }
 

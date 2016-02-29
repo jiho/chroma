@@ -78,7 +78,7 @@ legend(1, 8, legend=levels(Species), pch=19,
 }
 \seealso{
 Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{magma_scale}}, \code{\link{make_scale}},
+  \code{\link{color_scale}}, \code{\link{magma_scale}},
   \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
 }
 
