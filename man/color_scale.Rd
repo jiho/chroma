@@ -120,7 +120,9 @@ legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Speci
 }
 \seealso{
 Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{inferno_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
+  \code{\link{chroma_scale}}, \code{\link{hue_scale}},
+  \code{\link{inferno_scale}}, \code{\link{light_scale}},
+  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
+  \code{\link{viridis_scale}}
 }
 

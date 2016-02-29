@@ -13,6 +13,7 @@
 #' @template return_scales
 #'
 #' @template seealso_hcl_scales
+#' @family color scales and palettes
 #'
 #' @examples
 #' # Define a dark-to-light blue scale

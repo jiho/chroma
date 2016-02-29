@@ -13,6 +13,7 @@
 #'
 #' @seealso \code{\link{luminance}} for a the computation of perceived luminance and the creation of perception-based luminance palettes.
 #' @template seealso_hcl_scales
+#' @family color scales and palettes
 #'
 #' @examples
 #' # Define a dark-to-light blue scale
