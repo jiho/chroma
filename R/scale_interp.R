@@ -76,6 +76,8 @@
 #' # NB: works, but a continuous scale is not really appropriate here.
 #'
 #' @export
+#' @importFrom scales rescale
+#' @importFrom grDevices rgb
 color_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
   # force input R colors into hex notation
   colors <- in_hex(colors)
@@ -112,20 +114,34 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
   }
 
   # prepare chroma.js command
-  domain <- paste0("[",paste0(domain, collapse=","),"]")  
-  colors <- paste0("['", paste0(colors, collapse="','"), "']")
+  domaint <- paste0("[",paste0(domain, collapse=","),"]")  
+  colorst <- paste0("['", paste0(colors, collapse="','"), "']")
   if ( interp == "linear" ) {
     interp <- "scale"
   }
   
   # define the scale function which calls chroma.js internally
   eval(f <- function(x) {
-    cmds <- paste0("chroma.",interp,"(",colors,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domain,").mode('", model, "')(", x, ").hex()")
-    chroma:::v8_eval(cmds)
+    # for small data, call chroma.js directly
+    if (length(x) < 100) {
+      cmds <- paste0("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
+      colors <- chroma:::v8_eval(cmds)
+    }
+    # for large data, cheat: use chroma.js to get a few colors and interpolate the new ones with colorRamp which is faster
+    else {
+      # get 100 colors
+      xx <- seq(domain[1], domain[2], length.out=100)
+      cmds <- paste0("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
+      colors <- chroma:::v8_eval(cmds)
+      # interpolate between them
+      # NB: colorRamp works between 0 and 1 only
+      colors <- colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(x, from=domain))
+      # convert them to hex
+      colors <- grDevices::rgb(colors, maxColorValue=255)
+    }
+    return(colors)
   })
   # TODO return NA outside of range
-  # TODO "cheat" to be faster: get 50 or 100 colors from chroma.js and use colorRamp on those to compute the actual colors.
-  # n=100000; system.time(grDevices::rgb(colorRamp(cols)((0:n)/n), max=255))
 
   return(f)
 }
