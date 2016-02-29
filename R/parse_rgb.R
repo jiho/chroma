@@ -50,9 +50,6 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
   
   # add transparency if needed
   if ( !is.null(alpha) ) {
-    if ( !(length(alpha) == 1 | length(alpha) == length(colors)) ) {
-      stop("alpha needs to be either a single number or a vector of the same length as the number of colors (", length(colors), " here).")
-    }
     alpha <- alpha / maxColorValue
     colors <- alpha(colors, alpha)
   }
