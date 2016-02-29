@@ -58,9 +58,9 @@ show_col(
 
 }
 \seealso{
-See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
-
 HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{lightness_scale}}.
+
+\code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
 
 Other color specifications: \code{\link{cmyk}},
   \code{\link{css}}, \code{\link{hex}}, \code{\link{hsi}},

@@ -34,7 +34,7 @@ show_col(cmyk(k=seq(0, 1, length.out=10)))
 
 }
 \seealso{
-See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
+\code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
 
 Other color specifications: \code{\link{css}},
   \code{\link{hcl}}, \code{\link{hex}}, \code{\link{hsi}},
