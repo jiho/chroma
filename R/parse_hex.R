@@ -1,6 +1,6 @@
 #' HEX Color Specification
 #'
-#' Converts colors specified as hexadecimal strings into R colors. This includes the usual format for R colors but also the shorter three letter format. In addition the \code{#} sign can be omitted.
+#' Converts colors specified as hexadecimal strings into R colors. This includes the usual format for R colors but also the shorter three letters format. In addition the \code{#} sign can be omitted.
 #'
 #' @param x hexadecimal string specifying a color.
 #'

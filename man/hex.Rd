@@ -13,7 +13,7 @@ hex(x)
 A vector of colors specified as hex codes
 }
 \description{
-Converts colors specified as hexadecimal strings into R colors. This includes the usual format for R colors but also the shorter three letter format. In addition the \code{#} sign can be omitted.
+Converts colors specified as hexadecimal strings into R colors. This includes the usual format for R colors but also the shorter three letters format. In addition the \code{#} sign can be omitted.
 }
 \details{
 Hexadecimal strings (hex for short) are how colors are usually represented in R. This function just brings a little more versatility in how those can be specified. Note, however, that R can use the 8 letter model to represent color with a transparency (alpha) component and that this function does not support it (and just removes the transparency).

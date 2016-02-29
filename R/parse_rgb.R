@@ -5,11 +5,11 @@
 #' @param red,green,blue color channels, numbers in \code{[0, maxColorValue]}.
 #' @param alpha transparency, number in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.
 #' @param names character vector. The names for the resulting vector.
-#' @param maxColorValue number giving the maximum of the color values range; typically 1 or 255.
+#' @param maxColorValue number giving the maximum of the color values range, typically 1 or 255.
 #'
 #' @template color_spec_from_matrix
 #' @details
-#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba} for compatibility with chroma.js.
+#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame). \code{gl} is a synonym of \code{rgba}, for compatibility with chroma.js.
 #'
 #' RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L* a* b* make it easier to create color palettes that are appropriate for human perception.
 #'
