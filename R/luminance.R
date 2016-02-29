@@ -13,7 +13,7 @@
 #' 
 #' For \code{luminance<-}, the updated object(s).
 #'
-#' @seealso \code{\link{channel}} to extract or set a given channel, in particular the lightness channel in HSL, HCL, or Lab color spaces.
+#' @seealso \code{\link{channel}} to extract or set a given channel, in particular the lightness channel in HSL, HCL, or L*a*b* color spaces.
 #' @family color manipulation functions
 #' 
 #' @examples

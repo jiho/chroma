@@ -10,7 +10,7 @@
 #' 
 #' For \code{channel<-}, the updated object(s).
 #'
-#' @seealso \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in Lab or HCL).
+#' @seealso \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in L*a*b* or HCL).
 #' @family color manipulation functions
 #'
 #' @examples

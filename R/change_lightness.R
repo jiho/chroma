@@ -6,7 +6,7 @@
 #' @param amount numeric amount of change in lightness. Reasonable amounts are 1 to 10. Negative amounts correspond to the opposite operation (\code{darken("red", -1) = brighten("red", 1)}.)
 #'
 #' @details
-#' Colors are converted into L* a* b* space where the L* component is changed. Most colors are (very slightly) affected by the conversion and the change in lightness is therefore not exactly reversible (brightening a darkened color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright colors.
+#' Colors are converted into L*a*b* space where the L* component is changed. Most colors are (very slightly) affected by the conversion and the change in lightness is therefore not exactly reversible (brightening a darkened color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright colors.
 #' 
 #' @template return_hex_colors
 #'

@@ -34,7 +34,7 @@ A vector of colors specified as hex codes
 Darken or brighten colors
 }
 \details{
-Colors are converted into L* a* b* space where the L* component is changed. Most colors are (very slightly) affected by the conversion and the change in lightness is therefore not exactly reversible (brightening a darkened color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright colors.
+Colors are converted into L*a*b* space where the L* component is changed. Most colors are (very slightly) affected by the conversion and the change in lightness is therefore not exactly reversible (brightening a darkened color will not get you back to the original one); although, perceptually, the changes should be extremely subtle and only affect very bright colors.
 }
 \examples{
 darken("#7BBBFE")
