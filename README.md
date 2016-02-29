@@ -1,7 +1,7 @@
 chroma
 ======
 
-`chroma` is a package for parsing and formating colors in various specifications, manipulating colors, and creating nice color scales and palettes.
+`chroma` is a [R](https://www.r-project.org) package for parsing and formating colors in various specifications, manipulating colors, and creating nice color scales and palettes. Much of the functionality is based on the excellent [chroma.js](https://github.com/gka/chroma.js/) javascript library by [Gregor Aish](http://driven-by-data.net).
 
 Installation
 ------------
