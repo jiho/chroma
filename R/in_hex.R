@@ -15,5 +15,5 @@
 #' @export
 #' @importFrom grDevices rgb
 in_hex <- function(x) {
-  grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255)
+  tolower(grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255))
 }
