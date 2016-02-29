@@ -10,13 +10,13 @@ hcl(h = 0, c = 0.65, l = 0.65, alpha = NULL, ...)
 lch(l = 0.65, c = 0.65, h = 0)
 }
 \arguments{
-\item{h}{hue, either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code\link{hue}).}
+\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code\link{hue}).}
 
-\item{c}{chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
+\item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
-\item{l}{lightness, numeric vector with values in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
+\item{l}{lightness, number in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
 
-\item{alpha}{transparency, numeric vector with values in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
+\item{alpha}{transparency, number in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 }
 \value{
 A vector of colors specified as hex codes

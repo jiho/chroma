@@ -2,8 +2,8 @@
 #'
 #' Create a vector of colors from red, green, and blue. This is a drop-in replacement for the \code{\link[grDevices]{rgb}} function, included with R in package \code{grDevices}.
 #'
-#' @param red,green,blue color channels, numeric vectors with values in \code{[0, maxColorValue]}.
-#' @param alpha transparency, numeric vector with values in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.
+#' @param red,green,blue color channels, numbers in \code{[0, maxColorValue]}.
+#' @param alpha transparency, number in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.
 #' @param names character vector. The names for the resulting vector.
 #' @param maxColorValue number giving the maximum of the color values range; typically 1 or 255.
 #'

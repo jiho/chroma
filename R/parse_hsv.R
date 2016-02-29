@@ -4,7 +4,7 @@
 #'
 #' @template param_hue
 #' @template param_saturation
-#' @param v value, same conventions as \code{s}; 0 is black, 1 is full brightness
+#' @param v value, number in \code{[0, 1]}; 0 is black, 1 is full brightness
 #' @template param_alpha
 #'
 #' @template color_spec_from_matrix

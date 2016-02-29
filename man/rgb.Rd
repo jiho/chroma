@@ -14,9 +14,9 @@ rgba(red = 0, green = 0, blue = 0, alpha = 1)
 gl(red = 0, green = 0, blue = 0, alpha = 1)
 }
 \arguments{
-\item{red, green, blue}{color channels, numeric vectors with values in \code{[0, maxColorValue]}.}
+\item{red, green, blue}{color channels, numbers in \code{[0, maxColorValue]}.}
 
-\item{alpha}{transparency, numeric vector with values in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
+\item{alpha}{transparency, number in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 
 \item{names}{character vector. The names for the resulting vector.}
 

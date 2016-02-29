@@ -7,11 +7,11 @@
 hsi(h = 0, s = 0.5, i = 0.5)
 }
 \arguments{
-\item{h}{hue, either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code\link{hue}).}
+\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code\link{hue}).}
 
-\item{s}{saturation, numeric vector with values in \code{[0, 1]}; 0 is grey, 1 is full color.}
+\item{s}{saturation, number \code{[0, 1]}; 0 is grey, 1 is full color.}
 
-\item{i}{intensity, numeric vector with values in \code{[0, 2]}; 0 is black, 2 is white.}
+\item{i}{intensity, number in \code{[0, 2]}; 0 is black, 2 is white.}
 }
 \value{
 A vector of colors specified as hex codes
