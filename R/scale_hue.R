@@ -2,7 +2,8 @@
 #'
 #' Hue-based color scale and palette in HCL space.
 #'
-#' @param h range of hues to use, usually in \code{[0, 360]}. Hues are angles around the color wheel and angles outside of the range will be rotated back inside \code{[0, 360]} (380 = 20, -15 = 345, etc.).
+# @param h range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).
+#' @template param_hue
 #' @template param_chromacity
 #' @template param_lightness
 #' @inheritParams make_scale 

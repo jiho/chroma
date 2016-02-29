@@ -20,7 +20,7 @@ hue_colors(n, ...)
 hue.colors(n, ...)
 }
 \arguments{
-\item{h}{range of hues to use, usually in \code{[0, 360]}. Hues are angles around the color wheel and angles outside of the range will be rotated back inside \code{[0, 360]} (380 = 20, -15 = 345, etc.).}
+\item{h}{hue, either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code\link{hue}).}
 
 \item{c}{chromacity, numeric vector with values in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
@@ -85,7 +85,7 @@ legend(1, 8, legend=levels(Species), pch=19, col=hue_colors(n=nlevels(Species)))
 x <- 10*(1:nrow(volcano))
 y <- 10*(1:ncol(volcano))
 image(x, y, volcano, col=hue_colors(100))
-# Typical rainbow scales bullseye effect, yuk!
+# = typical rainbow scales bullseye effect, yuk!
 
 # Hue based scales may work, but with a limited range of hues
 image(x, y, volcano, col=hue_colors(100, h=c(240,350), c=0.5))
@@ -96,5 +96,7 @@ persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 }
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
+
+Other HCL-based palettes: \code{\link{lightness_scale}}
 }
 
