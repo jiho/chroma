@@ -32,7 +32,7 @@ hue.colors(n, ...)
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{make_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them through \code{...} is an error.}
+\item{...}{passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 }

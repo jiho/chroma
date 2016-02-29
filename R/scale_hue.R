@@ -69,6 +69,7 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
   return(f)
 }
 
+#' @param ... passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.
 #' @name hue_scale
 #' @export
 hue_map <- function(x, ...) {
