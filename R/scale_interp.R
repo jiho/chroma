@@ -85,6 +85,7 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
   interp <- match.arg(interp, c("bezier", "linear"))
   if (interp == "bezier" & model != "lab") {
     warning("Bezier interpolation can only be done in L*a*b* space; switching to model=\"lab\".")
+    model <- "lab"
   }
   
   # define domain
