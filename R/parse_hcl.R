@@ -6,13 +6,14 @@
 #' @template param_chromacity
 #' @template param_lightness
 #' @template param_alpha
+#' @param ... ignored, for compatibility with the built-in \code{\link[grDevices]{hcl}} function.
 #'
 #' @template color_spec_from_matrix
 #' @template details_hcl
 #'
 #' @template return_hex_colors
 #'
-#' @seealso HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{lightness_scale}}.
+#' @seealso HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{light_scale}}.
 #' @template color_spec
 #'
 #' @examples
@@ -38,6 +39,7 @@
 #'
 #' @export
 hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, ...) {
+  # TODO c and l are in 0:100 in grDevices. make it compatible
   # handle color channels
   x <- tabularise_arguments(h, c, l)
 

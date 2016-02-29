@@ -20,6 +20,8 @@ chroma_colors(n, ...)
 chroma.colors(n, ...)
 }
 \arguments{
+\item{chroma}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
+
 \item{l}{lightness, number in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
 
 \item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -33,8 +35,6 @@ chroma.colors(n, ...)
 \item{...}{passed to \code{\link{chroma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{chroma_scale} and passing it through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
-
-\item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 }
 \value{
 \code{*_scale} and \code{*_palette} return a function.

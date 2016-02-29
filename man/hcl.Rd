@@ -17,6 +17,8 @@ lch(l = 0.65, c = 0.65, h = 0)
 \item{l}{lightness, number in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
 
 \item{alpha}{transparency, number in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
+
+\item{...}{ignored, for compatibility with the built-in \code{\link[grDevices]{hcl}} function.}
 }
 \value{
 A vector of colors specified as hex codes
@@ -58,7 +60,7 @@ show_col(
 
 }
 \seealso{
-HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{lightness_scale}}.
+HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{light_scale}}.
 
 \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
 

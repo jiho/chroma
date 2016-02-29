@@ -2,7 +2,8 @@
 #'
 #' Lightness-based color scale and palette in HCL space.
 #'
-#' @template param_chromacity
+# #' @template param_chromacity
+#' @param chroma chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.
 #' @template param_lightness
 #' @template param_hue
 #' @inheritParams color_scale 

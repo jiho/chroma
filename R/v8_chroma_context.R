@@ -40,5 +40,5 @@ v8_chroma_context <- function() {
 v8_eval <- function(command, context=v8_chroma_context()) {
   sapply(command, function(x, ct) {
     ct$eval(x)
-  }, ct=context, USE.NAMES=F)
+  }, ct=context, USE.NAMES=FALSE)
 }

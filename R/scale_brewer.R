@@ -59,7 +59,7 @@
 #' # such as the elevation of the Maunga Whau volcano
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
-#' image(x, y, volcano, col=brewer_palette("YlOrBr", reverse=T)(100))
+#' image(x, y, volcano, col=brewer_palette("YlOrBr", reverse=TRUE)(100))
 #' contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
 #'
 #' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),

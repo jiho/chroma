@@ -125,14 +125,14 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
     # for small data, call chroma.js directly
     if (length(x) < 100) {
       cmds <- paste0("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
-      colors <- chroma:::v8_eval(cmds)
+      colors <- v8_eval(cmds)
     }
     # for large data, cheat: use chroma.js to get a few colors and interpolate the new ones with colorRamp which is faster
     else {
       # get 100 colors
       xx <- seq(domain[1], domain[2], length.out=100)
       cmds <- paste0("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
-      colors <- chroma:::v8_eval(cmds)
+      colors <- v8_eval(cmds)
       # interpolate between them
       # NB: colorRamp works between 0 and 1 only
       colors <- colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(x, from=domain))
@@ -158,7 +158,7 @@ color_map <- function(x, ...) {
   # convert to numbers
   x <- as.numeric(x)
   # define the domain of the scale
-  colors <- color_scale(domain=range(x, na.rm=T), ...)(x)
+  colors <- color_scale(domain=range(x, na.rm=TRUE), ...)(x)
   return(colors)
 }
 

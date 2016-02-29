@@ -13,6 +13,7 @@
 #' show_col(in_hex(colors()))
 #'
 #' @export
+#' @importFrom grDevices rgb
 in_hex <- function(x) {
   grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255)
 }
