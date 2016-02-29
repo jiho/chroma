@@ -1,2 +1,2 @@
-#' @seealso The \code{\link{hcl}} function on which this is based.
+#' @seealso The \code{\link{hcl}} function, on which this one is based.
 #' @family HCL-based palettes
