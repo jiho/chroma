@@ -125,6 +125,7 @@ brewer.colors <- brewer_colors
 #' @name brewer_scale
 #' @export
 brewer_map <- function(x, ...) {
+  # TODO better document this bit which is quite specific to colorbrewer having both discrete and continuous palettes
   if (is.factor(x) | is.character(x)) {
     x <- factor(x)
     colors <- brewer_colors(n=nlevels(x), ...)[as.numeric(x)]
@@ -132,6 +133,7 @@ brewer_map <- function(x, ...) {
   } else if (is.numeric(x)) {
     colors <- brewer_scale(domain=range(x, na.rm=T), ...)(x)
   } else {
+    # TODO fill error message
     stop()
   }
   return(colors)
