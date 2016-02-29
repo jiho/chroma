@@ -10,7 +10,7 @@ hcl(h = 0, c = 0.65, l = 0.65, alpha = NULL, ...)
 lch(l = 0.65, c = 0.65, h = 0)
 }
 \arguments{
-\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code\link{hue}).}
+\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
 \item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
@@ -29,10 +29,10 @@ The first argument can also be a data.frame or a matrix. In that case, its colum
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 
-In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to black and white. This makes the HCL space particularly suitable to create good color palettes:
+In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to greyscale. This makes the HCL space particularly suitable to create good color palettes:
 \itemize{
-  \item For qualitative palettes (discrete variables): varying h at constant c and l avoids drawing attention to certain hues as it would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
-  \item For sequential palettes (continuous variables): varying l (or possibly c) for a constant h gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
+  \item For qualitative palettes (discrete variables): varying \code{h} at constant \code{c} and \code{l} avoids drawing attention to certain hues, as would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
+  \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
 }
 \examples{
@@ -59,6 +59,8 @@ show_col(
 }
 \seealso{
 See \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
+
+HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{lightness_scale}}.
 
 Other color specifications: \code{\link{cmyk}},
   \code{\link{css}}, \code{\link{hex}}, \code{\link{hsi}},

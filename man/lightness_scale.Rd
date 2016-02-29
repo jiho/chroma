@@ -24,7 +24,7 @@ lightness.colors(n, ...)
 
 \item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
-\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code\link{hue}).}
+\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
 \item{domain}{the values between which the scale is computed.}
 
@@ -45,10 +45,10 @@ lightness.colors(n, ...)
 Lightness-based color scale and palette in HCL space.
 }
 \details{
-In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to black and white. This makes the HCL space particularly suitable to create good color palettes:
+In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to greyscale. This makes the HCL space particularly suitable to create good color palettes:
 \itemize{
-  \item For qualitative palettes (discrete variables): varying h at constant c and l avoids drawing attention to certain hues as it would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
-  \item For sequential palettes (continuous variables): varying l (or possibly c) for a constant h gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
+  \item For qualitative palettes (discrete variables): varying \code{h} at constant \code{c} and \code{l} avoids drawing attention to certain hues, as would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
+  \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
 
 The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
