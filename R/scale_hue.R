@@ -40,7 +40,7 @@
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
 #' image(x, y, volcano, col=hue_colors(100))
-#' # Typical rainbow scales bullseye effect, yuk!
+#' # = typical rainbow scales bullseye effect, yuk!
 #'
 #' # Hue based scales may work, but with a limited range of hues
 #' image(x, y, volcano, col=hue_colors(100, h=c(240,350), c=0.5))
