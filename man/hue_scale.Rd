@@ -101,6 +101,7 @@ The \code{\link{hcl}} function, on which this one is based.
 
 Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{chroma_scale}}, \code{\link{color_scale}},
+  \code{\link{cubehelix_scale}},
   \code{\link{inferno_scale}}, \code{\link{light_scale}},
   \code{\link{magma_scale}}, \code{\link{plasma_scale}},
   \code{\link{viridis_scale}}
