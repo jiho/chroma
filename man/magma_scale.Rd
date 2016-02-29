@@ -10,29 +10,29 @@
 \usage{
 magma_scale(domain = c(0, 1), reverse = FALSE)
 
+magma_map(x, ...)
+
 magma_palette(...)
 
 magma_colors(n, ...)
 
 magma.colors(n, ...)
-
-magma_map(x, ...)
 }
 \arguments{
 \item{domain}{the values between which the scale is computed.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
+\item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
+
 \item{...}{passed to \code{\link{magma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{magma_scale} and passing it through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
-
-\item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 }
 \value{
 \code{*_scale} and \code{*_palette} return a function.
 
-\code{*_colors}, \code{*.colors}, and \code{*_map} return a vector of hex colors.
+\code{*_map}, \code{*_colors}, and \code{*.colors} return a vector of hex colors.
 }
 \description{
 The \code{magma} color palette, by Nathaniel J. Smith and Stefan van der Walt (CC0 license).
@@ -40,11 +40,11 @@ The \code{magma} color palette, by Nathaniel J. Smith and Stefan van der Walt (C
 \details{
 The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
 
-The \code{*_palette} version also creates a \strong{function}, but it takes an integer, \code{n}, as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
+The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
 
-The \code{*_colors} and \code{*.colors} versions are just shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to builtin functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+The \code{*_palette} version also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
 
-The \code{*_map} version is also a shortcut, which automatically creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
+The \code{*_colors} and \code{*.colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # get a few colors along the palette

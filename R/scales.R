@@ -133,6 +133,21 @@ make_scale <- function(colors=c("white", "black"), model="lab", interp="linear",
 }
 
 #' @param ... passed to \code{\link{make_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{make_scale} and passing them through \code{...} is an error.
+#' @param x a vector whose values will be coerced to numbers and mapped to colors.
+#' @name make_scale
+#' @export
+make_map <- function(x, ...) {
+  # force characters into factors to be able to convert them to numeric
+  if (is.character(x)) {
+    x <- factor(x)
+  }
+  # convert to numbers
+  x <- as.numeric(x)
+  # define the domain of the scale
+  colors <- make_scale(domain=range(x, na.rm=T), ...)(x)
+  return(colors)
+}
+
 #' @name make_scale
 #' @export
 make_palette <- function(...) {
@@ -152,17 +167,3 @@ make_colors <- function(n, ...) {
 #' @export
 make.colors <- make_colors
 
-#' @param x a vector whose values will be coerced to numbers and mapped to colors.
-#' @name make_scale
-#' @export
-make_map <- function(x, ...) {
-  # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) {
-    x <- factor(x)
-  }
-  # convert to numbers
-  x <- as.numeric(x)
-  # define the domain of the scale
-  colors <- make_scale(domain=range(x, na.rm=T), ...)(x)
-  return(colors)
-}

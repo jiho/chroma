@@ -56,6 +56,12 @@ inferno_scale <- function(domain=c(0,1), reverse=FALSE) {
 #' @param ... passed to \code{\link{inferno_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{inferno_scale} and passing it through \code{...} is an error.
 #' @name inferno_scale
 #' @export
+inferno_map <- function(x, ...) {
+  make_map(x, colors=chroma::inferno, model="lab", interp="linear", ...)
+}
+
+#' @name inferno_scale
+#' @export
 inferno_palette <- function(...) {
   make_palette(colors=chroma::inferno, model="lab", interp="linear", ...)
 }
@@ -69,8 +75,3 @@ inferno_colors <- function(n, ...) {
 #' @export
 inferno.colors <- inferno_colors
 
-#' @name inferno_scale
-#' @export
-inferno_map <- function(x, ...) {
-  make_map(x, colors=chroma::inferno, model="lab", interp="linear", ...)
-}
