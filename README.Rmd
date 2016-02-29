@@ -204,6 +204,8 @@ show_col(hue_colors(10))
 or continuous variables
 
 ```{r chroma_light}
+show_col(chroma_colors(10, h=140))
+show_col(light_colors(10, h=140))
 ```
 
 

@@ -387,11 +387,13 @@ show_col(hue_colors(10))
 or continuous variables
 
 ``` r
+show_col(chroma_colors(10, h=140))
 ```
 
 ![](README_files/figure-markdown_github/chroma_light-1.png)
 
 ``` r
+show_col(light_colors(10, h=140))
 ```
 
 ![](README_files/figure-markdown_github/chroma_light-2.png)
