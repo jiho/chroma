@@ -76,6 +76,7 @@ show_col(c(col, brighten(col), darken(col)))
 show_col(c(col, desaturate(col), saturate(col)))
 ```
 
+
 Make a color semi-transparent
 
 ```{r alpha}
@@ -83,11 +84,13 @@ col <- "#7BBBFE"
 show_col(c(col, alpha(col), alpha(col, 0.2)))
 ```
 
+
 Mix two colors
 
 ```{r mix}
 show_col(c("#7BBBFE", "#FDFF68", mix("#7BBBFE", "#FDFF68")))
 ```
+
 
 Compute the contrast between two colors
 
@@ -95,6 +98,7 @@ Compute the contrast between two colors
 contrast("darkblue", "darkgreen")
 contrast("yellow", "darkgreen")
 ```
+
 
 Extract or set a color channel
 
@@ -111,6 +115,7 @@ channel(col2, model="hcl", "l") <- 1
 show_col(c(col, col1, col2))
 ```
 
+
 Compute or set the perceived luminance of a color
 
 ```{r luminance}
@@ -122,6 +127,7 @@ luminance(col1) <- 0.6
 luminance(col2) <- 0.2
 show_col(c(col, col1, col2))
 ```
+
 
 ## Color scales and palettes
 
@@ -147,7 +153,6 @@ interp_colors(n)
 ```
 
 
-
 Palettes can be built by interpolating between colors
 
 ```{r scale_interp}
@@ -157,11 +162,13 @@ show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84")))
 show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="bezier"))
 ```
 
+
 Preset palettes are available, from colorbrewer
 
 ```{r colorbrewer, fig.height=0.3*35, fig.width=2.1}
 show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
 ```
+
 
 Or viridis
 
@@ -174,6 +181,7 @@ show_col(
 )
 ```
 
+
 Or cubehelix
 
 ```{r cubehelix, fig.height=0.3*4}
@@ -185,18 +193,19 @@ show_col(
 )
 ```
 
+
 New, perceptually appropriate, palettes can be built in HCL space, for either discrete
 
 ```{r hue}
 show_col(hue_colors(10))
 ```
 
+
 or continuous variables
 
 ```{r chroma_light}
-show_col(chroma_colors(10))
-show_col(light_colors(10))
 ```
+
 
 ---
 
