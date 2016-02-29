@@ -47,31 +47,33 @@ The \code{*_palette} version also creates a \strong{function}, but this one take
 The \code{*_colors} and \code{*.colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
-# get a few colors along the palette
+# Get a few colors along the palette
 show_col(
   viridis_palette()(20),
   viridis_colors(50),
   viridis_colors(20, reverse=TRUE)
 )
 
-# Maunga Whau volcano elevation map
+# Plot the Maunga Whau volcano elevation map
 x <- 10*(1:nrow(volcano))
 y <- 10*(1:ncol(volcano))
 image(x, y, volcano, col=viridis_colors(100))
-persp(x, y, volcano, theta=60, phi=25, border=NA,
+contour(x, y, volcano, col=alpha("black", 0.2), add=TRUE)
+
+persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
       col=viridis_map(persp_facets(volcano)))
-\dontrun{
-library("rgl")
+
+\dontrun{library("rgl")
 persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
         col=viridis_map(volcano))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
-
 }
-# with a limited number of levels, viridis can also serve as a discrete
+# With a limited number of levels, viridis can also serve as a discrete
 # color scale
 attach(iris)
 plot(Petal.Length, Sepal.Length, pch=19, col=viridis_map(Species))
-legend(1, 8, legend=levels(Species), pch=19, col=viridis_colors(n=nlevels(Species)))
+legend(1, 8, legend=levels(Species), pch=19,
+       col=viridis_colors(n=nlevels(Species)))
 
 }
 \seealso{

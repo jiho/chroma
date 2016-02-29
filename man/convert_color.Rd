@@ -59,7 +59,7 @@ A matrix containing the color components in most cases, except for the models:
 }
 }
 \description{
-Convert a vector of R colors to a given color model.
+Convert a vector of colors to a given color model.
 }
 \examples{
 convert_color("red", model="rgb")
@@ -76,7 +76,9 @@ as.css("red")
 as.hex("red")
 as.temperature("red")
 
+# Can be vectorised
 as.rgb(colors()[1:5])
+as.rgb(c("#B55FFC", "blue", "purple", "#6A9F16"))
 
 }
 \seealso{

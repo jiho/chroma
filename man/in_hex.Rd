@@ -13,7 +13,7 @@ in_hex(x)
 A vector of colors specified as hex codes
 }
 \description{
-Convert R colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation
+Convert colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation
 }
 \examples{
 in_hex("pink")

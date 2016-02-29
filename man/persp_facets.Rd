@@ -20,4 +20,7 @@ z <- matrix(1:12, nrow=4)
 persp_facets(z)
 
 }
+\seealso{
+\code{\link{make_scale}} for an example of usage.
+}
 

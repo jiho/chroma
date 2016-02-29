@@ -8,7 +8,7 @@
 #' random_color()
 #' random_color(n=10)
 #' show_col(random_color(n=10), random_color(n=10), random_color(n=10))
-#' # art!
+#' # Art!
 #'
 #' @export
 random_color <- function(n=1) {

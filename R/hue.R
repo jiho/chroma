@@ -14,8 +14,8 @@
 #' hue(c("red", "green", "blue"))
 #' hue(c(10, "#B55FFC", "pink", 365))
 #'
-#' # It should be possible to reconstruct colors similar to the original one
-#  # based on the extracted hue by providing the other components
+#' # It should be possible to reconstruct colors similar to the original ones
+#  # based on the extracted hue, by providing the other components
 #' cols <- c("firebrick", "gold", "limegreen", "dodgerblue", "navy", "mediumpurple")
 #' show_col(cols,
 #'          hsv(h=hue(cols, model="hsv"), s=0.9, v=1),

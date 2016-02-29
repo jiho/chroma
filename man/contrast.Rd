@@ -19,7 +19,7 @@ Compute the contrast between two colors
 contrast("pink", "hotpink")
 contrast("pink", "blue")
 
-# can be vectorised
+# The computation can be vectorised
 contrast("pink", rainbow(10))
 
 }

@@ -30,15 +30,14 @@ Get or set color channel
 channel("pink", "rgb", "r")
 channel(colors()[1:5], "hcl", "l")
 
-# colors along a HSV rainbow have very different lightness
+# Colors along a HSV rainbow have very different lightness
 channel(rainbow(6), "hcl", "l")
-# but lightness should be constant along a HCL "rainbow", by definition
-# here subtle changes are caused by the round-trip conversion to R colors
+# But, by definition, lightness should be constant along a HCL "rainbow"
 channel(hcl(h=seq(0, 360, length.out=6), l=0.5), "hcl", "l")
+# NB: subtle changes are caused by the round-trip conversion to R colors.
 
-# force a given lightness
+# Force a given lightness
 x_orig <- x <- rainbow(6)
-show_col(x)
 channel(x, "hcl", "l") <- 0.3
 show_col(x_orig, x)
 

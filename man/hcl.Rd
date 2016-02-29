@@ -42,13 +42,13 @@ hcl(data.frame(c(330, 340), c(1,1), c(0.6, 0.4)))
 hcl(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
 hcl(c(330, 340), 1, 0.6)
 
-# compare color palettes
+# Compare color palettes
 ramp <- seq(0, 1, length.out=10)
 show_col(hcl(h=ramp*360), hsv(h=ramp*360, s=0.9), hsl(h=ramp*360, s=0.9))
 show_col(hcl(c=ramp))
 show_col(hcl(l=ramp))
 
-# nice color palettes
+# Nice color palettes
 show_col(
   hcl(h=80+ramp*240, c=0.2+ramp*0.4, l=0.9-ramp*0.6),
   hcl(h=240-ramp*120, c=0.5, l=ramp*0.9),

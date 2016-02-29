@@ -34,42 +34,47 @@
 #' @family color scales and palettes
 #'
 #' @examples
-#' # define a scale function
+#' # Define a scale function
 #' ygb <- brewer_scale(name="YlGnBu")
 #' ygb(c(0, 0.2, 0.6, 1))
 #' 
-#' # define a palette function
+#' # Define a palette function
 #' bgy_pal <- brewer_palette(name="YlGnBu", reverse=TRUE)
 #' bgy_pal(10)
 #' show_col(bgy_pal(100))
 #' 
-#' # show 7 colors from each palette
+#' # Show 7 colors from each palette
 #' show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
 #'
-#' # warn about potentially inappropriate use of many colors
+#' # Warn about the potentially inappropriate use of many colors
 #' brewer.colors(n=15, name="Blues")
 #' brewer.colors(n=15, name="Pastel1")
 #' brewer_palette(name="Pastel1")(15)
-#' # avoid some warnings by explicitly requiring a continuous palette
+#' # Some warnings can be avoided by explicitly requiring a palette
+#' # which, by definition, is taken from a *continuous* scale
 #' brewer_palette(name="Blues")(15)
 #' brewer_palette(name="Pastel1")(15)
 #'
-#' # Maunga Whau volcano elevation map
+#' # Sequential ColorBrewer palettes are good for continuous variables
+#' # such as the elevation of the Maunga Whau volcano
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
 #' image(x, y, volcano, col=brewer_palette("YlOrBr", reverse=T)(100))
-#' persp(x, y, volcano, theta=60, phi=25,
+#' contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
+#'
+#' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 #'       col=brewer_map(persp_facets(volcano), "YlOrBr", reverse=TRUE))
-#' \dontrun{
-#' library("rgl")
+#'
+#' \dontrun{library("rgl")
 #' persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
 #'         col=brewer_map(volcano, "YlOrBr", reverse=TRUE))
 #'
 #' }
-#' # color points according to a discrete variable
+#' # Qualitative palettes are appropriate for discrete variables
 #' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=19, cex=2, col=brewer_map(Species, "Set2"))
-#' legend(1, 8, legend=levels(Species), pch=19, col=brewer_colors(n=nlevels(Species), name="Set2"))
+#' plot(Petal.Length, Sepal.Length, pch=19, col=brewer_map(Species, "Set2"))
+#' legend(1, 8, legend=levels(Species), pch=19,
+#'        col=brewer_colors(n=nlevels(Species), name="Set2"))
 #'
 #' @export
 brewer_scale <- function(name="Blues", model="lab", interp="linear", domain=c(0,1), reverse=FALSE) {
@@ -93,11 +98,9 @@ brewer_map <- function(x, ...) {
     x <- factor(x)
     colors <- brewer_colors(n=nlevels(x), ...)[as.numeric(x)]
     # TODO center diverging palettes
-  } else if (is.numeric(x)) {
-    colors <- brewer_scale(domain=range(x, na.rm=T), ...)(x)
   } else {
-    # TODO fill error message
-    stop()
+    x <- as.numeric(x)
+    colors <- brewer_scale(domain=range(x, na.rm=T), ...)(x)
   }
   return(colors)
 }

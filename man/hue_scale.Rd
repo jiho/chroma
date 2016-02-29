@@ -89,6 +89,8 @@ image(x, y, volcano, col=hue_colors(100))
 
 # Hue based scales may work, but with a limited range of hues
 image(x, y, volcano, col=hue_colors(100, h=c(240,350), c=0.5))
+contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
+
 persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
       col=hue_map(persp_facets(volcano), h=c(240,350), c=0.5))
 # Still, lightness (or chromacity)-based scales are likely to be better...
@@ -97,6 +99,6 @@ persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
 
-Other HCL-based palettes: \code{\link{lightness_scale}}
+Other HCL-based scales: \code{\link{lightness_scale}}
 }
 

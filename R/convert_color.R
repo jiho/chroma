@@ -1,6 +1,6 @@
 #' Convert colors to a given color model
 #'
-#' Convert a vector of R colors to a given color model.
+#' Convert a vector of colors to a given color model.
 #'
 #' @template param_x_rcolors
 #' @template param_model
@@ -29,7 +29,9 @@
 #' as.hex("red")
 #' as.temperature("red")
 #'
+#' # Can be vectorised
 #' as.rgb(colors()[1:5])
+#' as.rgb(c("#B55FFC", "blue", "purple", "#6A9F16"))
 #'
 #' @export
 convert_color <- function(x, model) {

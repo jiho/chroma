@@ -25,11 +25,11 @@
 #'            darken("salmon3"),
 #'            darken("salmon3", 2)))
 #'
-#' # darken and brighten are opposite operations
+#' # darken() and brighten() are opposite operations
 #' darken("red", -1)
 #' brighten("red", 1)
 #'
-#' # but not necessarily exactly reversible
+#' # But they are not necessarily exactly reversible
 #' col <- "#5eff15"
 #' (new_col <- brighten(darken(col)))
 #' show_col(c(col, new_col))

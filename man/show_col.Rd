@@ -16,11 +16,11 @@ Display one or several (collections of) colors next to each other
 # display one color
 show_col("#ff3399")
 
-# display, and compare, color collections
+# Display, and compare, color collections
 show_col(c("#ff3399", "#9c0c55"))
 show_col(c("#ff3399", "#9c0c55"), c("#2976fe", "#0c2c8a"))
 
-# useful to compare color palettes
+# Useful to compare color palettes
 show_col(grey.colors(20))
 show_col(grey.colors(20), rainbow(20), heat.colors(15),
          terrain.colors(6), topo.colors(10), cm.colors(20))

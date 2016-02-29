@@ -1,6 +1,6 @@
 #' Parse colors specified in a given model
 #'
-#' @param x a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css} and \code{hex} color models
+#' @param x a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css} and \code{hex} color models.
 #' @template param_model
 #'
 #' @template return_hex_colors

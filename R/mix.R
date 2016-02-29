@@ -14,7 +14,7 @@
 #' @examples
 #' mix("red", "blue")
 #' mix("red", "blue", 0.25)
-#' # arguments can be vectors
+#' # Arguments can be vectors and all mixes are returned
 #' mix("red", "blue", c(0.25, 0.5, 0.75))
 #'
 #' show_mix <- function(x, y, ...) {show_col(c(x, y, mix(x, y, ...)))}

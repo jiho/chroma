@@ -25,11 +25,11 @@
 #'            saturate("salmon3"),
 #'            saturate("salmon3", 2)))
 #'
-#' # saturate and desaturate are opposite operations
+#' # saturate() and desaturate() are opposite operations
 #' saturate("red", -1)
 #' desaturate("red", 1)
 #'
-#' # but not necessarily exactly reversible
+#' # But they not necessarily exactly reversible
 #' col <- "#5eff15"
 #' (new_col <- desaturate(saturate(col)))
 #' show_col(c(col, new_col))

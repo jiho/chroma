@@ -19,7 +19,7 @@
 #' 
 #' (half_transparent <- alpha("#ff3399", 0.5))
 #' hex(half_transparent)
-#' # the transparency portion (last two positions: '80') is removed
+#' # The transparency portion (last two positions: '80') is removed
 #'
 #' @export
 hex <- function(x) {

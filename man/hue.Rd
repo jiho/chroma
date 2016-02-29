@@ -24,7 +24,7 @@ hue(c("#F55D5B", "#16b2b4", "#6A9F16"))
 hue(c("red", "green", "blue"))
 hue(c(10, "#B55FFC", "pink", 365))
 
-# It should be possible to reconstruct colors similar to the original one
+# It should be possible to reconstruct colors similar to the original ones
 cols <- c("firebrick", "gold", "limegreen", "dodgerblue", "navy", "mediumpurple")
 show_col(cols,
          hsv(h=hue(cols, model="hsv"), s=0.9, v=1),

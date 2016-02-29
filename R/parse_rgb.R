@@ -26,9 +26,9 @@
 #' transparent_red <- rgb(1, 0, 0, alpha=0.7)
 #' show_col(c(red, transparent_red))
 #'     
+#' # Color ramps
 #' ramp <- seq(0, 1, length.out=10)
 #' rgb(red=ramp, green=0, blue=0, names=paste("red", 1:10, sep="."))
-#'
 #' show_col(
 #'   rgb(r=ramp),
 #'   rgb(g=ramp),

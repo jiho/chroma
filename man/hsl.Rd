@@ -33,7 +33,7 @@ hsl(data.frame(c(330, 340), c(1,1), c(0.6, 0.4)))
 hsl(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
 hsl(c(330, 340), 1, 0.6)
 
-# color ramps
+# Color ramps
 ramp <- seq(0, 1, length.out=10)
 show_col(hsl(h=ramp*360), hsl(s=ramp), hsl(l=ramp))
 

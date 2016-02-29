@@ -11,13 +11,14 @@
 #'
 #' @template return_scales
 #'
+#' @seealso \code{\link{luminance}} for a the computation of perceived luminance and the creation of perception-based luminance palettes.
 #' @template seealso_hcl_scales
 #'
 #' @examples
 #' # Define a dark-to-light blue scale
-#' blues_scale <- lightness_scale(h=220)
+#' blues <- lightness_scale(h=220)
 #' # and apply it to some data
-#' blues_scale(x=c(0, 0.2, 0.6, 1))
+#' blues(x=c(0, 0.2, 0.6, 1))
 #' 
 #' # Define a palette function
 #' # (which works like the actual rainbow() function)
@@ -35,8 +36,8 @@
 #' pinks <- lightness_colors(n=50, h="deeppink")
 #' show_col(blues, greens, yellows, pinks)
 #'
-#' # Perceived lightness increases similarly no matter the hue
-#' # which makes the different palettes comparable)
+#' # Perceived lightness increases similarly among hues,
+#' # which makes the different palettes comparable
 #' # (this would not be the case with a HSL or HSV gradient)
 #' plot(  luminance(blues),   col=blues[40])
 #' points(luminance(greens),  col=greens[40])
@@ -48,23 +49,21 @@
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
 #' image(x, y, volcano, col=lightness_colors(100, h=140))
-#' contour(x, y, volcano, col=alpha("white", 0.5), add=T)
-# TODO add contour everywhere
+#' contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
 #'
 #' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 #'       col=lightness_map(persp_facets(volcano), h=140))
-#' \dontrun{
-#' library("rgl")
+#'
+#' \dontrun{library("rgl")
 #' persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
 #'         col=lightness_map(volcano, h=140))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
-# TODO add spin3d everywhere
-#'
-#' # With a limited number of levels, they can also work for a discrete variable
+#' # With a limited number of levels, they can also work for discrete variables
 #' attach(iris)
 #' plot(Petal.Length, Sepal.Length, pch=19, col=lightness_map(Species))
-#' legend(1, 8, legend=levels(Species), pch=19, col=lightness_colors(n=nlevels(Species)))
+#' legend(1, 8, legend=levels(Species), pch=19,
+#'        col=lightness_colors(n=nlevels(Species)))
 #' # but a hue-based scale is probably more appropriate (see ?hue_map)
 #'
 #' @importFrom scales rescale

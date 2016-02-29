@@ -19,7 +19,7 @@ Generate random color(s)
 random_color()
 random_color(n=10)
 show_col(random_color(n=10), random_color(n=10), random_color(n=10))
-# art!
+# Art!
 
 }
 

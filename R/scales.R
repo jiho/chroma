@@ -14,23 +14,22 @@
 #' @family color scales and palettes
 #'
 #' @examples
-#' # define a color scale
+#' # Define a color scale
 #' coldhot_scale <- make_scale(c("cornflowerblue", "brown3"))
-#' # apply it to some data
+#' # Apply it to some data
 #' coldhot_scale(c(0, 0.2, 0.6, 1))
-#' # for values outside the range, the extreme color of scale is returned
+#' # For values outside the range, the extreme color of scale is returned
 #' coldhot_scale(1.3)
 #' 
-#' # define a palette
+#' # Define a palette
 #' coldhot_pal <- make_palette(c("cornflowerblue", "brown3"))
-#' # get 10 colors from it
+#' # and get 10 colors from it
 #' coldhot_pal(10)
 #' show_col(coldhot_pal(10))
-#' 
-#' # shortcut to define a palette and extract n colors from it
+#' # Use the shortcut to define a palette and extract n colors from it
 #' show_col(make.colors(n=50, colors=c("cornflowerblue", "brown3")))
 #' 
-#' # test interpolation spaces and types
+#' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
 #' show_col(
 #'    make_palette(cols, model="lab")(10),
@@ -40,7 +39,7 @@
 #'    make_palette(cols, model="hcl")(10)
 #' )
 #' 
-#' # change mapping
+#' # Change mapping region/direction
 #' x <- 0:10
 #' cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
 #' show_col(
@@ -51,27 +50,26 @@
 #' )
 #'
 #' # Maunga Whau volcano colors picked from a picture
-#' # (likely incorrect perceptually but looks "realistic")
+#' # (likely incorrect perceptually but attempts a "realistic" look)
 #' maunga <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
 #' x <- 10*(1:nrow(volcano))
 #' y <- 10*(1:ncol(volcano))
-#'
 #' image(x, y, volcano, col=make_colors(100, colors=maunga))
-#' 
-#' persp(x, y, volcano, theta=60, phi=25,
+#' # = the dark ring-like level is indeed misleading
+#'
+#' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 #'       col=make_map(volcano[-1,-1], colors=maunga))
 #' # NB: This is cheating, colouring each facet according to the value of
 #' #     its lower right point. The correct way is \code{link{persp_facets}}
-#' persp(x, y, volcano, theta=60, phi=25,
+#' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 #'       col=make_map(persp_facets(volcano), colors=maunga))
 #'
-#' \dontrun{
-#' library("rgl")
+#' \dontrun{library("rgl")
 #' persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
 #'         col=make_map(volcano, colors=maunga))
-#'
+#' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
-#' # color points according to a discrete variable
+#' # Color points according to a discrete variable
 #' attach(iris)
 #' plot(Petal.Length, Sepal.Length, pch=21, cex=2, bg=make_map(Species))
 #' legend(1, 8, legend=levels(Species), pch=21, pt.bg=make_colors(n=nlevels(Species)))

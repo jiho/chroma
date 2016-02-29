@@ -29,7 +29,7 @@ cmyk(data.frame(c(1, 0.5), c(1, 1), c(1, 1), c(0.5, 0.5)))
 cmyk(matrix(c(1, 0.5, 1, 1, 1, 1, 0.5, 0.5), ncol=4))
 cmyk(c=0.5, m=1, y=1, k=c(0.25, 0.5, 0.75))
 
-# color ramp
+# Color ramp
 show_col(cmyk(k=seq(0, 1, length.out=10)))
 
 }
