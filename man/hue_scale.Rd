@@ -99,6 +99,6 @@ persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
 
-Other HCL-based scales: \code{\link{lightness_scale}}
+Other HCL-based scales: \code{\link{light_scale}}
 }
 
