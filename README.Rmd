@@ -1,25 +1,203 @@
 ---
 output: 
-  html_document: 
-    fig_height: 3
-    fig_width: 4
-    highlight: null
-    keep_md: yes
-    self_contained: no
-    theme: null
+  md_document:
+    fig_height: 0.3
+    fig_width: 3
+    variant: markdown_github
 ---
+
+```{r options, echo=FALSE}
+knitr::opts_chunk$set(comment="#", tidy=FALSE)
+```
 # chroma
 
+`chroma` is a package for parsing and formating colors in various specifications, manipulating colors, and creating nice color scales and palettes.
 
-```{r eval=F}
+## Installation
+
+`chroma` is not on CRAN yet. To get it from this page, install the package `devtools` and
+
+```{r install, eval=F}
+devtools::install_github("jiho/chroma")
 library("chroma")
 ```
-```{r echo=F}
+```{r load, echo=F}
 devtools::load_all(".", quiet=TRUE)
 ```
 
-```{r fig.height=0.5}
-show_col(hue_colors(10))
+## Color parsing
+
+Parse colors in various specifications
+
+```{r parse}
+rgb(r=0.5, g=0.5, b=0.5)
+hsv(h=120, s=0.5, v=0.5)
+hsl(h=120, s=0.5, l=0.5)
+hsi(h=120, s=0.5, i=0.5)
+hcl(h=120, c=0.5, l=0.5)
+lab(l=0.5, a=-0.5, b=0.2)
+hex("#393939")
+hex("F39")
+css("rgb(100,100,100)")
+temperature(5600)
+```
+
+Parse directly from a matrix
+
+```{r parse_matrix, comment="#"}
+x <- matrix(c(0.2, 0.5, 0.5, 0.5, 0.6, 0.4), ncol=3)
+print(x)
+rgb(x)
+```
+
+## Color formating
+
+Convert back in various formats
+
+```{r convert}
+as.rgb("coral1")
+as.hsv("coral1")
+as.hsl("coral1")
+as.hsi("coral1")
+as.hcl("coral1")
+as.lab("coral1")
+as.hex("coral1")
+as.css("coral1")
+as.temperature("coral1")
+```
+
+## Color manipulation
+
+Slightly modify a base color
+
+```{r modify_color}
+col <- "#7BBBFE"
+show_col(c(col, brighten(col), darken(col)))
+show_col(c(col, desaturate(col), saturate(col)))
+```
+
+Make a color semi-transparent
+
+```{r alpha}
+col <- "#7BBBFE"
+show_col(c(col, alpha(col), alpha(col, 0.2)))
+```
+
+Mix two colors
+
+```{r mix}
+show_col(c("#7BBBFE", "#FDFF68", mix("#7BBBFE", "#FDFF68")))
+```
+
+Compute the contrast between two colors
+
+```{r contrast}
+contrast("darkblue", "darkgreen")
+contrast("yellow", "darkgreen")
+```
+
+Extract or set a color channel
+
+```{r channel}
+col <- "#7BBBFE"
+channel(col, model="hcl", "h")
+channel(col, model="hsv", "s")
+channel(col, model="hsi", "i")
+channel(col, model="rgb", "r")
+
+col1 <- col2 <- col
+channel(col1, model="hcl", "h") <- 120
+channel(col2, model="hcl", "l") <- 1
+show_col(c(col, col1, col2))
+```
+
+Compute or set the perceived luminance of a color
+
+```{r luminance}
+luminance(c("red", "yellow", "darkblue"))
+
+col1 <- col2 <- col <- "#7BBBFE"
+luminance(col)
+luminance(col1) <- 0.6
+luminance(col2) <- 0.2
+show_col(c(col, col1, col2))
+```
+
+## Color scales and palettes
+
+All scales and palettes are organised the same way:
+
+- functions ending in `*_scale` return a *function* that takes a numeric vector `x` as argument and returns the corresponding colors in the scale.
+- functions ending in `*_map` are shortcuts that build the scale, map the values, and return the colors.
+- functions ending in `*_palette` return a *function* that takes an integer `n` as argument and returns `n` equally spaced colors along the scale.
+- functions ending in `*_colors` (or `*.colors`) are shortcut that create the palette and return the `n` colors.
+
+```{r scales}
+x <- 0:10/10
+s <- color_scale()
+s(x)
+# or
+color_map(x)
+
+n <- 11
+p <- color_palette()
+p(n)
+# or
+interp_colors(n)
 ```
 
 
+
+Palettes can be built by interpolating between colors
+
+```{r scale_interp}
+show_col(interp_colors(10))
+show_col(interp_colors(10, colors=c("#2D2B63", "#F7FF84")))
+show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84")))
+show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="bezier"))
+```
+
+Preset palettes are available, from colorbrewer
+
+```{r colorbrewer, fig.height=0.3*35, fig.width=2.1}
+show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
+```
+
+Or viridis
+
+```{r viridis, fig.height=0.3*4}
+show_col(
+  viridis_colors(10),
+  magma_colors(10),
+  plasma_colors(10),
+  inferno_colors(10)
+)
+```
+
+Or cubehelix
+
+```{r cubehelix, fig.height=0.3*4}
+show_col(
+  cubehelix_colors(10),
+  cubehelix_colors(10, h=300, rot=-0.75),
+  cubehelix_colors(10, h=120, rot=0.5),
+  cubehelix_colors(10, h=300, rot=0.5)
+)
+```
+
+New, perceptually appropriate, palettes can be built in HCL space, for either discrete
+
+```{r hue}
+show_col(hue_colors(10))
+```
+
+or continuous variables
+
+```{r chroma_light}
+show_col(chroma_colors(10))
+show_col(light_colors(10))
+```
+
+---
+
+Happy coloring!
