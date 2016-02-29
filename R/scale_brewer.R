@@ -33,6 +33,9 @@
 #'
 #' @family color scales and palettes
 #'
+#' @references \url{http://colorbrewer2.org}
+#' @seealso \code{\link{brewer}} for the colors in the palettes and \code{\link{brewer_info}} for a list of palettes and their characteristics.
+#'
 #' @examples
 #' # Define a scale function
 #' ygb <- brewer_scale(name="YlGnBu")

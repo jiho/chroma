@@ -97,7 +97,12 @@ legend(1, 8, legend=levels(Species), pch=19,
        col=brewer_colors(n=nlevels(Species), name="Set2"))
 
 }
+\references{
+\url{http://colorbrewer2.org}
+}
 \seealso{
+\code{\link{brewer}} for the colors in the palettes and \code{\link{brewer_info}} for a list of palettes and their characteristics.
+
 Other color scales and palettes: \code{\link{color_scale}},
   \code{\link{inferno_scale}}, \code{\link{magma_scale}},
   \code{\link{plasma_scale}}, \code{\link{viridis_scale}}

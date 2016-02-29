@@ -21,6 +21,8 @@
 #'
 #' @family color scales and palettes
 #'
+#' @seealso \code{\link{inferno}} for the colors in the palette.
+#'
 #' @examples
 #' # Get a few colors along the palette
 #' show_col(
