@@ -99,6 +99,21 @@ contrast("darkblue", "darkgreen")
 contrast("yellow", "darkgreen")
 ```
 
+Compute the perceptual distance between two colors (following the CIE Delta E 2000 formula)
+
+```{r delta_e}
+delta_e("darkblue", "darkgreen")
+delta_e("lightgreen", "darkgreen")
+```
+
+which allows to find the closest perceived color in a array of possibilities
+
+```{r min_dist, fig.height=0.3*3}
+target <- "limegreen"
+choices <- rainbow(10)
+closest_color <- choices[which.min(delta_e(target, choices))]
+show_col(target, choices, closest_color)
+```
 
 Extract or set a color channel
 
