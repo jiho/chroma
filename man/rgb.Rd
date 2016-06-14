@@ -38,6 +38,9 @@ RGB is how colors are displayed on a computer screen. However, this is not how c
 rgb()
 rgb(1, 0, 0)
 rgb(255, 0, 0, maxColorValue=255)
+rgb(data.frame(c(0.2, 0.5), c(0.5,0.5), c(0.6, 0.4)))
+rgb(matrix(c(0.2, 0.5, 0.5, 0.5, 0.6, 0.4), ncol=3))
+rgb(c(0.2, 0.5), 0, 0)
 
 red <- rgb(1, 0, 0)
 transparent_red <- rgb(1, 0, 0, alpha=0.7)
