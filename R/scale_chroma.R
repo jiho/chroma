@@ -66,7 +66,7 @@ chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE
   
   # check arguments
   if (length(chroma) != 2) {
-    stop("c needs to be a vector of length 2, defining the minimum and maximum lightness to use.")
+    stop("chroma needs to be a vector of length 2, defining the minimum and maximum chroma to use.")
   }
   # define the function
   f <- function(x) {
