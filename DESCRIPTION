@@ -13,3 +13,4 @@ Imports:
     grDevices,
     scales
 RoxygenNote: 5.0.1
+Suggests: testthat
