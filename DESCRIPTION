@@ -7,6 +7,8 @@ Authors@R: c(person("Jean-Olivier", "Irisson", email="irisson@normalesup.org", r
 Description: This package is mostly an R wrapper for the excellent chroma.js library by Gregor Aisch. It allows to parse colors specified in many forms (RGB, HSL, HSV, HCL, etc.), manipulate those colors (saturate, darken, etc.) and create color palettes in a color space adequate for human perception by default (HCL). In addition it provides access to a few pre-built color palettes which are also correct perceptually (cubehelix, ColorBrewer, viridis, etc.)
 License: GPL-3
 LazyData: TRUE
+Encoding: UTF-8
+Depends: R (>= 2.10)
 Imports:
     V8,
     grid,
