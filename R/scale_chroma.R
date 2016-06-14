@@ -26,7 +26,7 @@
 #' reds_pal <- chroma_palette(h=30)
 #' # and get 10 colors from it
 #' reds_pal(n=10)
-#' show_col(blues_pal(n=10))
+#' show_col(reds_pal(n=10))
 #' # or use the shortcut
 #' show_col(chroma_colors(n=50, h=30))
 #'
