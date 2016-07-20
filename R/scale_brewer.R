@@ -135,7 +135,7 @@ brewer_colors <- function(n, name="Blues", ...) {
   }
   # otherwise interpolate colors (and warn about it)
   else {
-    warning("n = ",20," is larger than number of colors defined for palette \"", name, "\" (n = ", maxn, ").\n  New colors have been interpolated but the result is not guaranteed to be perceptually correct.")
+    warning("n = ", n, " is larger than number of colors defined for palette \"", name, "\" (n = ", maxn, ").\n  New colors have been interpolated but the result is not guaranteed to be perceptually correct.")
     colors <- brewer_palette(name=name, ...)(n)
   }
 
