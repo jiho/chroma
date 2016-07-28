@@ -60,28 +60,28 @@ The \code{*_palette} version also creates a \strong{function}, but this one take
 The \code{*_colors} and \code{*.colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
-# Define a dark-to-light blue scale
+# Define a scale towards a more intense red
 reds <- chroma_scale(h=30)
 # and apply it to some data
 reds(x=c(0, 0.2, 0.6, 1))
+show_col(reds(x=c(0, 0.2, 0.6, 1)))
 
 # Define a palette function
-# (which works like the actual rainbow() function)
 reds_pal <- chroma_palette(h=30)
 # and get 10 colors from it
 reds_pal(n=10)
 show_col(reds_pal(n=10))
-# or use the shortcut
+# or use the shortcut and get 50 colors
 show_col(chroma_colors(n=50, h=30))
 
-# Determine hue from a color
+# Determine hue from a color and then define a chroma scale
 blues <- chroma_colors(n=50, h="dodgerblue")
 greens <- chroma_colors(n=50, h="green")
 yellows <- chroma_colors(n=50, h="gold")
 pinks <- chroma_colors(n=50, h="deeppink")
 show_col(blues, greens, yellows, pinks)
 
-# Lightness scales are good for continuous variables
+# Chroma scales can be used for continuous variables
 # such as the elevation of the Maunga Whau volcano
 image(maunga, col=chroma_colors(100, h="red"))
 contour(maunga, col=alpha("white", 0.5), add=TRUE)
@@ -93,6 +93,7 @@ persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
         col=chroma_map(volcano, h="red"))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 }
+# but a lightness-based scale would be probably be better (see ?light_scale)
 # With a limited number of levels, they may also work for discrete variables
 attach(iris)
 plot(Petal.Length, Sepal.Length, pch=19, col=chroma_map(Species))
