@@ -170,13 +170,13 @@ col <- "#7BBBFE"
 show_col(c(col, brighten(col), darken(col)))
 ```
 
-![](README_files/figure-markdown_github/modify_color-1.png)<!-- -->
+![](README_files/figure-markdown_github/modify_color-1.png)
 
 ``` r
 show_col(c(col, desaturate(col), saturate(col)))
 ```
 
-![](README_files/figure-markdown_github/modify_color-2.png)<!-- -->
+![](README_files/figure-markdown_github/modify_color-2.png)
 
 Make a color semi-transparent
 
@@ -185,7 +185,7 @@ col <- "#7BBBFE"
 show_col(c(col, alpha(col), alpha(col, 0.2)))
 ```
 
-![](README_files/figure-markdown_github/alpha-1.png)<!-- -->
+![](README_files/figure-markdown_github/alpha-1.png)
 
 Mix two colors
 
@@ -193,7 +193,7 @@ Mix two colors
 show_col(c("#7BBBFE", "#FDFF68", mix("#7BBBFE", "#FDFF68")))
 ```
 
-![](README_files/figure-markdown_github/mix-1.png)<!-- -->
+![](README_files/figure-markdown_github/mix-1.png)
 
 Compute the contrast between two colors
 
@@ -232,7 +232,7 @@ closest_color <- choices[which.min(delta_e(target, choices))]
 show_col(target, choices, closest_color)
 ```
 
-![](README_files/figure-markdown_github/min_dist-1.png)<!-- -->
+![](README_files/figure-markdown_github/min_dist-1.png)
 
 Extract or set a color channel
 
@@ -272,7 +272,7 @@ channel(col2, model="hcl", "l") <- 1
 show_col(c(col, col1, col2))
 ```
 
-![](README_files/figure-markdown_github/channel-1.png)<!-- -->
+![](README_files/figure-markdown_github/channel-1.png)
 
 Compute or set the perceived luminance of a color
 
@@ -295,7 +295,7 @@ luminance(col2) <- 0.2
 show_col(c(col, col1, col2))
 ```
 
-![](README_files/figure-markdown_github/luminance-1.png)<!-- -->
+![](README_files/figure-markdown_github/luminance-1.png)
 
 Color scales and palettes
 -------------------------
@@ -347,25 +347,25 @@ Palettes can be built by interpolating between colors
 show_col(interp_colors(10))
 ```
 
-![](README_files/figure-markdown_github/scale_interp-1.png)<!-- -->
+![](README_files/figure-markdown_github/scale_interp-1.png)
 
 ``` r
 show_col(interp_colors(10, colors=c("#2D2B63", "#F7FF84")))
 ```
 
-![](README_files/figure-markdown_github/scale_interp-2.png)<!-- -->
+![](README_files/figure-markdown_github/scale_interp-2.png)
 
 ``` r
 show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84")))
 ```
 
-![](README_files/figure-markdown_github/scale_interp-3.png)<!-- -->
+![](README_files/figure-markdown_github/scale_interp-3.png)
 
 ``` r
 show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="bezier"))
 ```
 
-![](README_files/figure-markdown_github/scale_interp-4.png)<!-- -->
+![](README_files/figure-markdown_github/scale_interp-4.png)
 
 Preset palettes are available, from colorbrewer
 
@@ -373,7 +373,7 @@ Preset palettes are available, from colorbrewer
 show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
 ```
 
-![](README_files/figure-markdown_github/colorbrewer-1.png)<!-- -->
+![](README_files/figure-markdown_github/colorbrewer-1.png)
 
 Or viridis
 
@@ -386,7 +386,7 @@ show_col(
 )
 ```
 
-![](README_files/figure-markdown_github/viridis-1.png)<!-- -->
+![](README_files/figure-markdown_github/viridis-1.png)
 
 Or cubehelix
 
@@ -399,7 +399,7 @@ show_col(
 )
 ```
 
-![](README_files/figure-markdown_github/cubehelix-1.png)<!-- -->
+![](README_files/figure-markdown_github/cubehelix-1.png)
 
 New, perceptually appropriate, palettes can be built in HCL space, for either discrete
 
@@ -407,7 +407,7 @@ New, perceptually appropriate, palettes can be built in HCL space, for either di
 show_col(hue_colors(10))
 ```
 
-![](README_files/figure-markdown_github/hue-1.png)<!-- -->
+![](README_files/figure-markdown_github/hue-1.png)
 
 or continuous variables
 
@@ -415,13 +415,13 @@ or continuous variables
 show_col(chroma_colors(10, h=140))
 ```
 
-![](README_files/figure-markdown_github/chroma_light-1.png)<!-- -->
+![](README_files/figure-markdown_github/chroma_light-1.png)
 
 ``` r
 show_col(light_colors(10, h=140))
 ```
 
-![](README_files/figure-markdown_github/chroma_light-2.png)<!-- -->
+![](README_files/figure-markdown_github/chroma_light-2.png)
 
 ------------------------------------------------------------------------
 
