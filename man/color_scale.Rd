@@ -94,20 +94,18 @@ show_col(
 # Maunga Whau volcano colors picked from a picture
 # (likely incorrect perceptually but attempts a "realistic" look)
 maunga <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
-x <- 10*(1:nrow(volcano))
-y <- 10*(1:ncol(volcano))
-image(x, y, volcano, col=interp_colors(100, colors=maunga))
+image(maunga, col=interp_colors(100, colors=maunga))
 # = the dark ring-like level is indeed misleading
 
-persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
       col=color_map(volcano[-1,-1], colors=maunga))
 # NB: This is cheating, colouring each facet according to the value of
 #     its lower right point. The correct way is \\code{link{persp_facets}}
-persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
       col=color_map(persp_facets(volcano), colors=maunga))
 
 \dontrun{library("rgl")
-persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
         col=color_map(volcano, colors=maunga))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 }
