@@ -75,7 +75,7 @@
 #'
 #' @export
 #' @importFrom scales rescale
-#' @importFrom grDevices rgb
+#' @importFrom grDevices rgb colorRamp
 color_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
   # force input R colors into hex notation
   colors <- in_hex(colors)
@@ -133,7 +133,7 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
       colors <- v8_eval(cmds)
       # interpolate between them
       # NB: colorRamp works between 0 and 1 only
-      colors <- colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(x, from=domain))
+      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(x, from=domain))
       # convert them to hex
       colors <- grDevices::rgb(colors, maxColorValue=255)
     }
