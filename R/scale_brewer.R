@@ -84,9 +84,9 @@ brewer_scale <- function(name="Blues", model="lab", interp="linear", domain=c(0,
 
   # check arguments
   if (chroma::brewer_info[name,"type"] == "qualitative") {
-    warning("Interpolating a continuous scale from a qualitative color palette is likely wrong.")
+    warning("  Interpolating a continuous scale from a qualitative color palette is likely wrong.", call.=FALSE)
   }
-    
+
   color_scale(colors, model=model, interp=interp, domain=domain, reverse=reverse)
 }
 
@@ -133,7 +133,7 @@ brewer_colors <- function(n, name="Blues", ...) {
   }
   # otherwise interpolate colors (and warn about it)
   else {
-    warning("n = ", n, " is larger than number of colors defined for palette \"", name, "\" (n = ", maxn, ").\n  New colors have been interpolated but the result is not guaranteed to be perceptually correct.")
+    # warning("  n = ", n, " is larger than number of colors defined for palette \"", name, "\" (n = ", maxn, ").\n  New colors have been interpolated but the result is not guaranteed to be perceptually correct.", call.=FALSE)
     colors <- brewer_palette(name=name, ...)(n)
   }
 
