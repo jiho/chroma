@@ -305,7 +305,7 @@ All scales and palettes are organised the same way:
 -   functions ending in `*_scale` return a *function* that takes a numeric vector `x` as argument and returns the corresponding colors in the scale.
 -   functions ending in `*_map` are shortcuts that build the scale, map the values, and return the colors.
 -   functions ending in `*_palette` return a *function* that takes an integer `n` as argument and returns `n` equally spaced colors along the scale.
--   functions ending in `*_colors` (or `*.colors`) are shortcut that create the palette and return the `n` colors.
+-   functions ending in `*_colors` are shortcut that create the palette and return the `n` colors.
 
 ``` r
 x <- 0:10/10
@@ -370,7 +370,7 @@ show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="be
 Preset palettes are available, from colorbrewer
 
 ``` r
-show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
+show_col(lapply(brewer_info$name, function(x) {brewer_colors(n=7, name=x)}))
 ```
 
 ![](README_files/figure-markdown_github/colorbrewer-1.png)

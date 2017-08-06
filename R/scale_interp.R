@@ -27,7 +27,7 @@
 #' coldhot_pal(10)
 #' show_col(coldhot_pal(10))
 #' # Use the shortcut to define a palette and extract n colors from it
-#' show_col(interp.colors(n=50, colors=c("cornflowerblue", "brown3")))
+#' show_col(interp_colors(n=50, colors=c("cornflowerblue", "brown3")))
 #'
 #' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
@@ -178,5 +178,5 @@ interp_colors <- function(n, ...) {
 }
 #' @rdname interp_scale
 #' @export
-interp.colors <- interp_colors
+interp_colors <- interp_colors
 

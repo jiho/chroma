@@ -47,11 +47,11 @@
 #' show_col(bgy_pal(100))
 #'
 #' # Show 7 colors from each palette
-#' show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
+#' show_col(lapply(brewer_info$name, function(x) {brewer_colors(n=7, name=x)}))
 #'
 #' # Warn about the potentially inappropriate use of many colors
-#' brewer.colors(n=15, name="Blues")
-#' brewer.colors(n=15, name="Pastel1")
+#' brewer_colors(n=15, name="Blues")
+#' brewer_colors(n=15, name="Pastel1")
 #' brewer_palette(name="Pastel1")(15)
 #' # Some warnings can be avoided by explicitly requiring a palette
 #' # which, by definition, is taken from a *continuous* scale
@@ -139,7 +139,3 @@ brewer_colors <- function(n, name="Blues", ...) {
 
   return(colors)
 }
-#' @rdname brewer_scale
-#' @export
-brewer.colors <- brewer_colors
-

@@ -98,6 +98,3 @@ hue_palette <- function(n, ...) {
 hue_colors <- function(n, ...) {
   hue_palette(...)(n)
 }
-#' @rdname hue_scale
-#' @export
-hue.colors <- hue_colors

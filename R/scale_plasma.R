@@ -73,7 +73,3 @@ plasma_palette <- function(...) {
 plasma_colors <- function(n, ...) {
   interp_colors(n=n, colors=chroma::plasma, model="lab", interp="linear",...)
 }
-#' @rdname plasma_scale
-#' @export
-plasma.colors <- plasma_colors
-

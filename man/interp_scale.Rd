@@ -5,7 +5,7 @@
 \alias{interp_map}
 \alias{interp_palette}
 \alias{interp_colors}
-\alias{interp.colors}
+\alias{interp_colors}
 \title{Interpolated color scales and palettes}
 \usage{
 interp_scale(colors = c("white", "black"), model = "lab",
@@ -17,7 +17,7 @@ interp_palette(...)
 
 interp_colors(n, ...)
 
-interp.colors(n, ...)
+interp_colors(n, ...)
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -41,19 +41,21 @@ interp.colors(n, ...)
 \value{
 \code{*_scale} and \code{*_palette} return a function.
 
-\code{*_map}, \code{*_colors}, and \code{*.colors} return a vector of hex colors.
+\code{*_map} and \code{*_colors} return a vector of hex colors.
 }
 \description{
 Interpolate between colors to create a color scale, map values to colors along a scale, create a color palette, or get a few colors from a palette.
 }
 \details{
-The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
+As a user, the most useful functions are \code{*_map} and \code{*_colors}.
 
-The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
+The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient, and returns those colors as hex codes.
+
+The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
 
 The \code{*_palette} version also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
 
-The \code{*_colors} and \code{*.colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+The \code{*_colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Define a color scale
@@ -69,7 +71,7 @@ coldhot_pal <- interp_palette(c("cornflowerblue", "brown3"))
 coldhot_pal(10)
 show_col(coldhot_pal(10))
 # Use the shortcut to define a palette and extract n colors from it
-show_col(interp.colors(n=50, colors=c("cornflowerblue", "brown3")))
+show_col(interp_colors(n=50, colors=c("cornflowerblue", "brown3")))
 
 # Test interpolation spaces and types
 cols <- c("yellow", "blue", "red")

@@ -5,7 +5,6 @@
 \alias{hue_map}
 \alias{hue_palette}
 \alias{hue_colors}
-\alias{hue.colors}
 \title{Hue scale and palette}
 \usage{
 hue_scale(h = c(0, 360) + 40, c = 0.65, l = 0.65, domain = c(0, 1),
@@ -16,8 +15,6 @@ hue_map(x, ...)
 hue_palette(n, ...)
 
 hue_colors(n, ...)
-
-hue.colors(n, ...)
 }
 \arguments{
 \item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -39,7 +36,7 @@ hue.colors(n, ...)
 \value{
 \code{*_scale} and \code{*_palette} return a function.
 
-\code{*_map}, \code{*_colors}, and \code{*.colors} return a vector of hex colors.
+\code{*_map} and \code{*_colors} return a vector of hex colors.
 }
 \description{
 Hue-based color scale and palette in HCL space.
@@ -51,13 +48,15 @@ In HCL space, the perceived color (hue) is completely separated from the perceiv
   \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
 
-The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
+As a user, the most useful functions are \code{*_map} and \code{*_colors}.
 
-The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
+The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient, and returns those colors as hex codes.
+
+The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
 
 The \code{*_palette} version also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
 
-The \code{*_colors} and \code{*.colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+The \code{*_colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Define a perceptually-correct "rainbow"-like scale function

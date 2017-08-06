@@ -5,7 +5,6 @@
 \alias{brewer_map}
 \alias{brewer_palette}
 \alias{brewer_colors}
-\alias{brewer.colors}
 \title{ColorBrewer scales and palettes}
 \usage{
 brewer_scale(name = "Blues", model = "lab", interp = "linear",
@@ -16,8 +15,6 @@ brewer_map(x, ...)
 brewer_palette(name = "Blues", ...)
 
 brewer_colors(n, name = "Blues", ...)
-
-brewer.colors(n, name = "Blues", ...)
 }
 \arguments{
 \item{name}{name of a ColorBrewer palette. See \code{\link{brewer_info}} for a list of palettes and their characteristics.}
@@ -39,19 +36,21 @@ brewer.colors(n, name = "Blues", ...)
 \value{
 \code{*_scale} and \code{*_palette} return a function.
 
-\code{*_map}, \code{*_colors}, and \code{*.colors} return a vector of hex colors.
+\code{*_map} and \code{*_colors} return a vector of hex colors.
 }
 \description{
 ColorBrewer scales and palettes
 }
 \details{
-The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient and returns those colors as hex codes.
+As a user, the most useful functions are \code{*_map} and \code{*_colors}.
 
-The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
+The \code{*_scale} version creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps the values to colors along an interpolated gradient, and returns those colors as hex codes.
+
+The \code{*_map} version is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
 
 The \code{*_palette} version also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale and returns them as hex codes.
 
-The \code{*_colors} and \code{*.colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+The \code{*_colors} versions are shortcuts for \code{*_palette()(n)} and directly return \code{n} evenly spaced colors. They are equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Define a scale function
@@ -64,11 +63,11 @@ bgy_pal(10)
 show_col(bgy_pal(100))
 
 # Show 7 colors from each palette
-show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
+show_col(lapply(brewer_info$name, function(x) {brewer_colors(n=7, name=x)}))
 
 # Warn about the potentially inappropriate use of many colors
-brewer.colors(n=15, name="Blues")
-brewer.colors(n=15, name="Pastel1")
+brewer_colors(n=15, name="Blues")
+brewer_colors(n=15, name="Pastel1")
 brewer_palette(name="Pastel1")(15)
 # Some warnings can be avoided by explicitly requiring a palette
 # which, by definition, is taken from a *continuous* scale

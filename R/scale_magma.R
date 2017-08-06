@@ -73,7 +73,3 @@ magma_palette <- function(...) {
 magma_colors <- function(n, ...) {
   interp_colors(n=n, colors=chroma::magma, model="lab", interp="linear",...)
 }
-#' @rdname magma_scale
-#' @export
-magma.colors <- magma_colors
-

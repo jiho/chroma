@@ -135,6 +135,3 @@ cubehelix_palette <- function(n, ...) {
 cubehelix_colors <- function(n, ...) {
   cubehelix_palette(...)(n)
 }
-#' @rdname cubehelix_scale
-#' @export
-cubehelix.colors <- cubehelix_colors

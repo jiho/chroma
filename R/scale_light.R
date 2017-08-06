@@ -113,6 +113,3 @@ light_palette <- function(...) {
 light_colors <- function(n, ...) {
   light_palette(...)(n)
 }
-#' @rdname light_scale
-#' @export
-light.colors <- light_colors

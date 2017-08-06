@@ -70,7 +70,3 @@ viridis_palette <- function(...) {
 viridis_colors <- function(n, ...) {
   interp_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
 }
-#' @rdname viridis_scale
-#' @export
-viridis.colors <- viridis_colors
-

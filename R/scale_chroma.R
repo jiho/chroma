@@ -105,6 +105,3 @@ chroma_palette <- function(...) {
 chroma_colors <- function(n, ...) {
   chroma_palette(...)(n)
 }
-#' @rdname chroma_scale
-#' @export
-chroma.colors <- chroma_colors
