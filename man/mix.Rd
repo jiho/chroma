@@ -36,7 +36,7 @@ show_mix("red", "blue", model=c("rgb", "hsv", "hsl", "hcl", "lab"))
 
 }
 \seealso{
-Other color manipulation functions: \code{\link{change_lightness}},
-  \code{\link{change_saturation}}, \code{\link{channel}},
-  \code{\link{luminance}}
+Other color manipulation functions: \code{\link{channel}},
+  \code{\link{darken}}, \code{\link{luminance}},
+  \code{\link{saturate}}
 }

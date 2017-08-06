@@ -57,7 +57,7 @@ show_col(col)
 \seealso{
 \code{\link{channel}} to extract or set a given channel, in particular the lightness channel in HSL, HCL, or L*a*b* color spaces.
 
-Other color manipulation functions: \code{\link{change_lightness}},
-  \code{\link{change_saturation}}, \code{\link{channel}},
-  \code{\link{mix}}
+Other color manipulation functions: \code{\link{channel}},
+  \code{\link{darken}}, \code{\link{mix}},
+  \code{\link{saturate}}
 }

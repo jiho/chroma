@@ -34,7 +34,6 @@
 #' (new_col <- desaturate(saturate(col)))
 #' show_col(c(col, new_col))
 #' 
-#' @name change_saturation
 #' @export
 saturate <- function(x, amount=1) {
   # force input R colors into hex notation
@@ -45,7 +44,7 @@ saturate <- function(x, amount=1) {
   v8_eval(cmds)
 }
 
-#' @name change_saturation
+#' @rdname saturate
 #' @export
 desaturate <- function(x, amount=1) {
   saturate(x, amount=-amount)

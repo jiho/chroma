@@ -34,7 +34,6 @@
 #' (new_col <- brighten(darken(col)))
 #' show_col(c(col, new_col))
 #'
-#' @name change_lightness
 #' @export
 darken <- function(x, amount=1) {
   # force input R colors into hex notation
@@ -45,25 +44,25 @@ darken <- function(x, amount=1) {
   v8_eval(cmds)
 }
 
-#' @name change_lightness
+#' @rdname darken
 #' @export
 darker <- darken
 
-#' @name change_lightness
+#' @rdname darken
 #' @export
 brighten <- function(x, amount=1) {
   darken(x, amount=-amount)
   # NB: this is how brighten is actually implemented in chroma.js
 }
 
-#' @name change_lightness
+#' @rdname darken
 #' @export
 brighter <- brighten
 
-#' @name change_lightness
+#' @rdname darken
 #' @export
 lighten <- brighten
 
-#' @name change_lightness
+#' @rdname darken
 #' @export
 lighter <- brighten
