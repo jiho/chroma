@@ -41,7 +41,7 @@ saturate <- function(x, amount=1) {
   x <- in_hex(x)
   
   # manipulate colors
-  cmds <- paste0("chroma('", x, "').saturate(",amount,").hex()")
+  cmds <- stringr::str_c("chroma('", x, "').saturate(",amount,").hex()")
   v8_eval(cmds)
 }
 

@@ -27,3 +27,21 @@ test_that("conversion functions handle NAs", {
   expect_equivalent(as.lab(NA), matrix(ncol=3))
   expect_equivalent(as.rgb(NA), matrix(ncol=3))
 })
+
+
+test_that("channel functions handle NAs", {
+  expect_equal(alpha(NA), as.character(NA))
+  expect_equal(saturate(NA), as.character(NA))
+  expect_equal(brighten(NA), as.character(NA))
+  expect_equal(hue(NA), as.numeric(NA))
+
+  expect_equal(luminance(NA), as.numeric(NA))
+  x <- "red"
+  luminance(x) <- NA
+  expect_equal(x, as.character(NA))
+
+  expect_equivalent(channel(NA, "hsv", "h"), NA)
+  x <- "red"
+  channel(x, "rgb", "r") <- NA
+  expect_equal(x, as.character(NA))
+})

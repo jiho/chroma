@@ -47,7 +47,7 @@ luminance <- function(x) {
   x <- in_hex(x)
 
   # extract luminance
-  cmds <- paste0("chroma('", x, "').luminance()")
+  cmds <- stringr::str_c("chroma('", x, "').luminance()")
   res <- v8_eval(cmds)
   
   # convert to numbers
@@ -63,6 +63,6 @@ luminance <- function(x) {
   x <- in_hex(x)
 
   # set luminance
-  cmds <- paste0("chroma('", x, "').luminance(", value ,").hex()")
+  cmds <- stringr::str_c("chroma('", x, "').luminance(", value ,").hex()")
   res <- v8_eval(cmds)
 }

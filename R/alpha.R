@@ -35,5 +35,5 @@ alpha <- function(x, alpha=0.5) {
   # force input R colors into hex notation
   x <- in_hex(x)
   # add alpha channel bit at the end
-  paste0(x, format(as.hexmode(round(alpha*255)), width=2, upper.case=FALSE))
+  stringr::str_c(x, format(as.hexmode(round(alpha*255)), width=2, upper.case=FALSE))
 }
