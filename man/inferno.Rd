@@ -19,4 +19,3 @@ Other mpl palettes: \code{\link{magma}},
   \code{\link{plasma}}, \code{\link{viridis}}
 }
 \keyword{datasets}
-

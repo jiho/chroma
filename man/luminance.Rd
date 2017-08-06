@@ -2,6 +2,7 @@
 % Please edit documentation in R/luminance.R
 \name{luminance}
 \alias{luminance}
+\alias{luminance}
 \alias{luminance<-}
 \title{Get or set the relative brightness of colors}
 \usage{
@@ -60,4 +61,3 @@ Other color manipulation functions: \code{\link{change_lightness}},
   \code{\link{change_saturation}}, \code{\link{channel}},
   \code{\link{mix}}
 }
-

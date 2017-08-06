@@ -2,6 +2,7 @@
 % Please edit documentation in R/parse_rgb.R
 \name{rgb}
 \alias{rgb}
+\alias{rgb}
 \alias{rgba}
 \title{RGB Color Specification}
 \usage{
@@ -45,7 +46,7 @@ rgb(c(0.2, 0.5), 0, 0)
 red <- rgb(1, 0, 0)
 transparent_red <- rgb(1, 0, 0, alpha=0.7)
 show_col(c(red, transparent_red))
-    
+
 # Color ramps
 ramp <- seq(0, 1, length.out=10)
 rgb(red=ramp, green=0, blue=0, names=paste("red", 1:10, sep="."))
@@ -65,4 +66,3 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{lab}}, \code{\link{parse_color}},
   \code{\link{temperature}}
 }
-

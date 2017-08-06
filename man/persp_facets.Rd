@@ -23,4 +23,3 @@ persp_facets(z)
 \seealso{
 \code{\link{color_scale}} for an example of usage.
 }
-

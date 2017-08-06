@@ -36,4 +36,3 @@ show_col(cols,
 \seealso{
 \code{\link{channel}} used to extract the hue channel.
 }
-

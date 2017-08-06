@@ -23,4 +23,3 @@ Description of the colorbrewer2.org color palettes
 \code{\link{brewer}} for a complete table of colorbrewer2 colors.
 }
 \keyword{datasets}
-

@@ -47,4 +47,3 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{parse_color}}, \code{\link{rgb}},
   \code{\link{temperature}}
 }
-

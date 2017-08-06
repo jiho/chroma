@@ -2,6 +2,7 @@
 % Please edit documentation in R/parse_hcl.R
 \name{hcl}
 \alias{hcl}
+\alias{hcl}
 \alias{lch}
 \title{HCL Color Specification}
 \usage{
@@ -70,4 +71,3 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{parse_color}}, \code{\link{rgb}},
   \code{\link{temperature}}
 }
-

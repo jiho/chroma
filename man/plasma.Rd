@@ -19,4 +19,3 @@ Other mpl palettes: \code{\link{inferno}},
   \code{\link{magma}}, \code{\link{viridis}}
 }
 \keyword{datasets}
-

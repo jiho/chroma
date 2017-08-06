@@ -31,4 +31,3 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{lab}}, \code{\link{rgb}},
   \code{\link{temperature}}
 }
-

@@ -22,4 +22,3 @@ show_col(random_color(n=10), random_color(n=10), random_color(n=10))
 # Art!
 
 }
-

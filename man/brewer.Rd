@@ -24,4 +24,3 @@ Colors from colorbrewer2.org
 \code{\link{brewer_info}} for a summary of the properties of colorbrewer palettes.
 }
 \keyword{datasets}
-

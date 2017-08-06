@@ -30,4 +30,3 @@ show_col(rev(rainbow(20, start=0, end=0.65)), jet.colors(20))
 # ewwww :-(
 
 }
-

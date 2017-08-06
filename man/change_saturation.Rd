@@ -2,8 +2,9 @@
 % Please edit documentation in R/change_saturation.R
 \name{change_saturation}
 \alias{change_saturation}
-\alias{desaturate}
 \alias{saturate}
+\alias{change_saturation}
+\alias{desaturate}
 \title{Change color saturation}
 \usage{
 saturate(x, amount = 1)
@@ -52,4 +53,3 @@ Other color manipulation functions: \code{\link{change_lightness}},
   \code{\link{channel}}, \code{\link{luminance}},
   \code{\link{mix}}
 }
-

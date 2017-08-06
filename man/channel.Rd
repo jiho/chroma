@@ -2,6 +2,7 @@
 % Please edit documentation in R/channel.R
 \name{channel}
 \alias{channel}
+\alias{channel}
 \alias{channel<-}
 \title{Get or set color channel}
 \usage{
@@ -49,4 +50,3 @@ Other color manipulation functions: \code{\link{change_lightness}},
   \code{\link{change_saturation}}, \code{\link{luminance}},
   \code{\link{mix}}
 }
-

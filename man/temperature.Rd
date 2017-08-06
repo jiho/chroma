@@ -33,4 +33,3 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{lab}}, \code{\link{parse_color}},
   \code{\link{rgb}}
 }
-

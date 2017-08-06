@@ -35,4 +35,3 @@ mix("red", "blue")
 alpha(mix("red", "blue"))
 
 }
-

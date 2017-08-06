@@ -23,4 +23,3 @@ contrast("pink", "blue")
 contrast("pink", rainbow(10))
 
 }
-

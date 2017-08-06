@@ -42,4 +42,3 @@ Other color specifications: \code{\link{css}},
   \code{\link{parse_color}}, \code{\link{rgb}},
   \code{\link{temperature}}
 }
-

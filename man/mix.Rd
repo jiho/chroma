@@ -40,4 +40,3 @@ Other color manipulation functions: \code{\link{change_lightness}},
   \code{\link{change_saturation}}, \code{\link{channel}},
   \code{\link{luminance}}
 }
-
