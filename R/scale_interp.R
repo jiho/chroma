@@ -78,8 +78,9 @@
 #' @importFrom grDevices rgb colorRamp
 color_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
   # force input R colors into hex notation
-  colors <- in_hex(colors)
-  
+  colors <- in_hex(na.omit(colors))
+  # NB: remove NAs which don't mean anything for interpolation
+
   # check arguments
   model <- match.arg(model, c("lab", "hcl", "lch", "hsl", "hsv", "rgb"))
   interp <- match.arg(interp, c("bezier", "linear"))
@@ -112,8 +113,8 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
   }
 
   # prepare chroma.js command
-  domaint <- paste0("[",paste0(domain, collapse=","),"]")  
-  colorst <- paste0("['", paste0(colors, collapse="','"), "']")
+  domaint <- stringr::str_c("[",stringr::str_c(domain, collapse=","),"]")
+  colorst <- stringr::str_c("['", stringr::str_c(colors, collapse="','"), "']")
   if ( interp == "linear" ) {
     interp <- "scale"
   }
@@ -122,20 +123,23 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
   eval(f <- function(x) {
     # for small data, call chroma.js directly
     if (length(x) < 100) {
-      cmds <- paste0("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
+      cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
       colors <- v8_eval(cmds)
     }
     # for large data, cheat: use chroma.js to get a few colors and interpolate the new ones with colorRamp which is faster
     else {
       # get 100 colors
       xx <- seq(domain[1], domain[2], length.out=100)
-      cmds <- paste0("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
+      cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
       colors <- v8_eval(cmds)
       # interpolate between them
       # NB: colorRamp works between 0 and 1 only
-      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(x, from=domain))
+      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(stats::na.omit(x), from=domain))
       # convert them to hex
       colors <- grDevices::rgb(colors, maxColorValue=255)
+      # re-insert NAs
+      # NB: grDevices::rgb() is faster than chroma::rgb() but does not handle NAs
+      colors <- na_insert(colors, from=x)
     }
     return(colors)
   })

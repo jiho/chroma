@@ -54,3 +54,16 @@ test_that("binary functions handle NAs", {
   expect_equal(mix(NA, NA), as.character(NA))
   expect_equal(mix("red", NA), as.character(NA))
 })
+
+test_that("scale functions handle NAs", {
+  # in mapped values
+  expect_equal(color_scale()(NA), as.character(NA))
+  expect_equal(brewer_scale()(NA), as.character(NA))
+  expect_equal(viridis_scale()(NA), as.character(NA))
+  expect_equal(cubehelix_scale()(NA), as.character(NA))
+  expect_equal(hue_scale()(NA), as.character(NA))
+  expect_equal(chroma_scale()(NA), as.character(NA))
+  expect_equal(light_scale()(NA), as.character(NA))
+  # as input
+  expect_equal(color_scale(colors=c("white", "black"))(0), "#ffffff")
+})

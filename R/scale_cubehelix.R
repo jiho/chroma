@@ -99,12 +99,12 @@ cubehelix_scale <- function(h=300, rotations=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1
   if ( reverse ) {
     domain <- rev(domain)
   }
-  domaint <- paste0("[",paste0(domain, collapse=","),"]")  
-  lt <- paste0("[",paste0(l,collapse=","),"]")
-  
+  domaint <- stringr::str_c("[",stringr::str_c(domain, collapse=","),"]")
+  lt <- stringr::str_c("[",stringr::str_c(l,collapse=","),"]")
+
   # define function
   eval(f <- function(x) {
-    cmds <- paste0("chroma.cubehelix().start(", h, ").rotations(", rotations, ").hue(", c, ").lightness(", lt, ").gamma(", gamma, ").scale().domain(", domaint, ").mode('rgb')(", x, ").hex()")
+    cmds <- stringr::str_c("chroma.cubehelix().start(", h, ").rotations(", rotations, ").hue(", c, ").lightness(", lt, ").gamma(", gamma, ").scale().domain(", domaint, ").mode('rgb')(", x, ").hex()")
     v8_eval(cmds)
   })
 }
