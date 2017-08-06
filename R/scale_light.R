@@ -5,7 +5,7 @@
 #' @template param_lightness
 #' @template param_chromacity
 #' @template param_hue
-#' @inheritParams color_scale
+#' @inheritParams interp_scale
 #'
 #' @template details_hcl
 #'

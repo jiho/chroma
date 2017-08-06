@@ -6,7 +6,7 @@
 #' 
 #' @return A matrix of dimensions \code{[nrow(z)-1, ncol(z)-1]} with the values at the center of each facet
 #' 
-#' @seealso \code{\link{color_scale}} for an example of usage.
+#' @seealso \code{\link{interp_scale}} for an example of usage.
 #'
 #' @examples
 #' z <- matrix(1:12, nrow=4)

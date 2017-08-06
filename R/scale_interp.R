@@ -15,14 +15,14 @@
 #'
 #' @examples
 #' # Define a color scale
-#' coldhot_scale <- color_scale(c("cornflowerblue", "brown3"))
+#' coldhot_scale <- interp_scale(c("cornflowerblue", "brown3"))
 #' # Apply it to some data
 #' coldhot_scale(c(0, 0.2, 0.6, 1))
 #' # For values outside the range, the extreme color of scale is returned
 #' coldhot_scale(1.3)
 #'
 #' # Define a palette
-#' coldhot_pal <- color_palette(c("cornflowerblue", "brown3"))
+#' coldhot_pal <- interp_palette(c("cornflowerblue", "brown3"))
 #' # and get 10 colors from it
 #' coldhot_pal(10)
 #' show_col(coldhot_pal(10))
@@ -32,21 +32,21 @@
 #' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
 #' show_col(
-#'    color_palette(cols, model="lab")(10),
-#'    color_palette(cols, model="lab", interp="bez")(10),
-#'    color_palette(cols, model="rgb")(10),
-#'    color_palette(cols, model="hsv")(10),
-#'    color_palette(cols, model="hcl")(10)
+#'    interp_palette(cols, model="lab")(10),
+#'    interp_palette(cols, model="lab", interp="bez")(10),
+#'    interp_palette(cols, model="rgb")(10),
+#'    interp_palette(cols, model="hsv")(10),
+#'    interp_palette(cols, model="hcl")(10)
 #' )
 #'
 #' # Change mapping region/direction
 #' x <- 0:10
 #' cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
 #' show_col(
-#'    color_scale(cols)(x),
-#'    color_scale(cols, domain=range(x))(x),
-#'    color_scale(cols, domain=range(x), reverse=TRUE)(x),
-#'    color_scale(cols, values=c(0,1,10))(x)
+#'    interp_scale(cols)(x),
+#'    interp_scale(cols, domain=range(x))(x),
+#'    interp_scale(cols, domain=range(x), reverse=TRUE)(x),
+#'    interp_scale(cols, values=c(0,1,10))(x)
 #' )
 #'
 #' # Maunga Whau volcano colors picked from a picture
@@ -57,23 +57,23 @@
 #' # = the dark ring-like level is indeed misleading
 #'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=color_map(persp_facets(maunga$z), colors=topo_colors))
+#'       col=interp_map(persp_facets(maunga$z), colors=topo_colors))
 #'
 #' \dontrun{library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=color_map(maunga$z, colors=topo_colors))
+#'         col=interp_map(maunga$z, colors=topo_colors))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # Color points according to a discrete variable
 #' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=21, bg=color_map(Species))
+#' plot(Petal.Length, Sepal.Length, pch=21, bg=interp_map(Species))
 #' legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Species)))
 #' # NB: works, but a continuous scale is not really appropriate here.
 #'
 #' @export
 #' @importFrom scales rescale
 #' @importFrom grDevices rgb colorRamp
-color_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
+interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
   # NB: remove NAs which don't mean anything for interpolation
@@ -145,11 +145,11 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
   return(f)
 }
 
-#' @param ... passed to \code{\link{color_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{color_scale} and passing them through \code{...} is an error.
+#' @param ... passed to \code{\link{interp_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{interp_scale} and passing them through \code{...} is an error.
 #' @param x a vector whose values will be coerced to numbers and mapped to colors.
-#' @name color_scale
+#' @rdname interp_scale
 #' @export
-color_map <- function(x, ...) {
+interp_map <- function(x, ...) {
   # force characters into factors to be able to convert them to numeric
   if (is.character(x)) {
     x <- factor(x)
@@ -157,26 +157,26 @@ color_map <- function(x, ...) {
   # convert to numbers
   x <- as.numeric(x)
   # define the domain of the scale
-  colors <- color_scale(domain=range(x, na.rm=TRUE), ...)(x)
+  colors <- interp_scale(domain=range(x, na.rm=TRUE), ...)(x)
   return(colors)
 }
 
-#' @name color_scale
+#' @rdname interp_scale
 #' @export
-color_palette <- function(...) {
+interp_palette <- function(...) {
   f <- function(n) {
-    color_scale(domain=c(0,1), values=NULL, ...)(seq(0, 1, length.out=n))
+    interp_scale(domain=c(0,1), values=NULL, ...)(seq(0, 1, length.out=n))
   }
   return(f)
 }
 
 #' @param n number of colors to extract from the color palette.
-#' @name color_scale
+#' @rdname interp_scale
 #' @export
 interp_colors <- function(n, ...) {
-  color_palette(...)(n)
+  interp_palette(...)(n)
 }
-#' @name color_scale
+#' @rdname interp_scale
 #' @export
 interp.colors <- interp_colors
 

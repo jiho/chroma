@@ -7,7 +7,7 @@
 #' @template param_chromacity
 #' @template param_lightness
 #' @param gamma gamma contrast factor, in \code{[0,+Inf]} (sane values are in \code{[0.5,3]}). \code{gamma} < 1 emphasises the low end of the scale by whitening the high colors. \code{gamma} > 1 emphasises the high end of the scale by darkening the low colors. Use with caution and restraint.
-#' @inheritParams color_scale
+#' @inheritParams interp_scale
 #'
 #' @template return_scales
 #'

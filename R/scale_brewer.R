@@ -27,7 +27,7 @@
 #' ColorBrewer scales and palettes
 #'
 #' @param name name of a ColorBrewer palette. See \code{\link{brewer_info}} for a list of palettes and their characteristics.
-#' @inheritParams color_scale
+#' @inheritParams interp_scale
 #'
 #' @template return_scales
 #'
@@ -87,7 +87,7 @@ brewer_scale <- function(name="Blues", model="lab", interp="linear", domain=c(0,
     warning("  Interpolating a continuous scale from a qualitative color palette is likely wrong.", call.=FALSE)
   }
 
-  color_scale(colors, model=model, interp=interp, domain=domain, reverse=reverse)
+  interp_scale(colors, model=model, interp=interp, domain=domain, reverse=reverse)
 }
 
 #' @param ... passed to \code{\link{brewer_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{brewer_scale} and passing it through \code{...} is an error.
@@ -129,7 +129,7 @@ brewer_colors <- function(n, name="Blues", ...) {
     # get the colors
     colors <- chroma::brewer$color[chroma::brewer$name == name & chroma::brewer$n == n]
     # put them through a scale to be able to use other arguments (such as a reverse, etc.)
-    colors <- color_palette(colors, ...)(n)
+    colors <- interp_palette(colors, ...)(n)
   }
   # otherwise interpolate colors (and warn about it)
   else {

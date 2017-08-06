@@ -15,7 +15,7 @@
 #'
 #' The \code{inferno} color palette, by Nathaniel J. Smith and Stefan van der Walt (CC0 license).
 #'
-#' @inheritParams color_scale
+#' @inheritParams interp_scale
 #'
 #' @template return_scales
 #'
@@ -52,20 +52,20 @@
 #'
 #' @export
 inferno_scale <- function(domain=c(0,1), reverse=FALSE) {
-  color_scale(colors=chroma::inferno, model="lab", interp="linear", domain=domain, reverse=reverse)
+  interp_scale(colors=chroma::inferno, model="lab", interp="linear", domain=domain, reverse=reverse)
 }
 
 #' @param ... passed to \code{\link{inferno_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{inferno_scale} and passing it through \code{...} is an error.
 #' @name inferno_scale
 #' @export
 inferno_map <- function(x, ...) {
-  color_map(x, colors=chroma::inferno, model="lab", interp="linear", ...)
+  interp_map(x, colors=chroma::inferno, model="lab", interp="linear", ...)
 }
 
 #' @name inferno_scale
 #' @export
 inferno_palette <- function(...) {
-  color_palette(colors=chroma::inferno, model="lab", interp="linear", ...)
+  interp_palette(colors=chroma::inferno, model="lab", interp="linear", ...)
 }
 
 #' @name inferno_scale

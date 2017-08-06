@@ -123,8 +123,9 @@ Other HCL-based scales: \code{\link{chroma_scale}},
   \code{\link{hue_scale}}
 
 Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}}, \code{\link{color_scale}},
+  \code{\link{chroma_scale}},
   \code{\link{cubehelix_scale}}, \code{\link{hue_scale}},
-  \code{\link{inferno_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
+  \code{\link{inferno_scale}}, \code{\link{interp_scale}},
+  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
+  \code{\link{viridis_scale}}
 }
