@@ -30,8 +30,8 @@
 #'
 #' @export
 channel <- function(x, model, channel) {
-  if (model == "css") {
-    stop("Cannot extract a channel from a css color")
+  if (model %in% c("css", "hex", "temperature")) {
+    stop(paste0("Cannot extract a channel from a ", model, " color"))
   }
   
   # convert to the the given model
@@ -45,8 +45,8 @@ channel <- function(x, model, channel) {
 #' @name channel
 #' @export
 `channel<-` <- function(x, model, channel, value) {
-  if (model == "css") {
-    stop("Cannot set a channel in a css color")
+  if (model %in% c("css", "hex", "temperature")) {
+    stop(paste0("Cannot extract a channel in a ", model, " color"))
   }
   
   # convert to the the given model
