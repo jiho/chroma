@@ -25,7 +25,8 @@
 #'
 #' @export
 hue <- function(h, model="hsv") {
-  if (is.numeric(h)) {
+  if (is.numeric(h) | is.logical(h)) {
+    # NB: all NA vectors are logical and handled here
     out <- h %% 360
   } else {
     # deal with partially "numeric" vectors

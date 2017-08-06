@@ -118,11 +118,11 @@ parse_color <- function(x, model) {
   # parse colors using chroma.js
   if (model %in% c("css", "hex", "temperature")) {
     cmds <- sapply(x, function(xx) {
-      paste0("chroma.", model, "('", xx, "').hex()")
+      stringr::str_c("chroma.", model, "('", xx, "').hex()")
     }, USE.NAMES=FALSE)
   } else {
     cmds <- apply(x, 1, function(xx) {
-      paste0("chroma.", model, "([", paste0(xx, collapse=","), "]).hex()")
+      stringr::str_c("chroma.", model, "([", stringr::str_c(xx, collapse=","), "]).hex()")
     })
   }
   res <- v8_eval(cmds)

@@ -38,7 +38,11 @@ v8_chroma_context <- function() {
 # @examples
 # v8_eval(c("chroma('pink').darken().hex()", "chroma.scale(['red','blue']).colors(5)", "chroma.mix('blue', 'red').hex()"))
 v8_eval <- function(command, context=v8_chroma_context()) {
-  sapply(command, function(x, ct) {
-    ct$eval(x)
-  }, ct=context, USE.NAMES=FALSE)
+  # remove missing values
+  command_no_na <- na.exclude(command)
+  # run v8 commands (and ensure the result is a vector)
+  results <- unlist(lapply(command_no_na, context$eval))
+  # re-insert NAs
+  out <- replace(command, !is.na(command), results)
+  return(out)
 }
