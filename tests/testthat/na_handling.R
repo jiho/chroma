@@ -12,3 +12,7 @@ test_that("parsing functions handle NAs", {
   expect_equal(rgb(NA),  as.character(NA))
   expect_equal(temperature(NA), as.character(NA))
 })
+
+test_that("conversion functions handle NAs", {
+  expect_equal(in_hex(NA), as.character(NA))
+})
