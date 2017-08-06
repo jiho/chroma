@@ -7,7 +7,7 @@
 #'
 #' @return
 #' For \code{channel}, a vector of channel values, the convention of which depend on the channel.
-#' 
+#'
 #' For \code{channel<-}, the updated object(s).
 #'
 #' @seealso \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in L*a*b* or HCL).
@@ -33,13 +33,13 @@ channel <- function(x, model, channel) {
   if (model %in% c("css", "hex", "temperature")) {
     stop(paste0("Cannot extract a channel from a ", model, " color"))
   }
-  
+
   # convert to the the given model
   x <- convert_color(x, model)
-  
+
   # extract the channel
   channel <- match.arg(channel, colnames(x))
-  x[,channel] 
+  x[,channel]
 }
 
 #' @name channel
@@ -48,16 +48,16 @@ channel <- function(x, model, channel) {
   if (model %in% c("css", "hex", "temperature")) {
     stop(paste0("Cannot extract a channel in a ", model, " color"))
   }
-  
+
   # convert to the the given model
   x <- convert_color(x, model)
-  
+
   # set the channel
   channel <- match.arg(channel, colnames(x))
   x[,channel] <- value
-  
+
   # reconvert to R colors
   x <- parse_color(x, model)
-  
+
   return(x)
 }
