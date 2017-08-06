@@ -12,7 +12,7 @@
 #'
 #' The \code{viridis} color palette, by Nathaniel J. Smith, Stefan van der Walt, and Eric Firing (CC0 license).
 #'
-#' @inheritParams color_scale 
+#' @inheritParams color_scale
 #'
 #' @template return_scales
 #'
@@ -27,17 +27,17 @@
 #'   viridis_colors(50),
 #'   viridis_colors(20, reverse=TRUE)
 #' )
-#' 
+#'
 #' # Plot the Maunga Whau volcano elevation map
 #' image(maunga, col=viridis_colors(100))
 #' contour(maunga, col=alpha("black", 0.2), add=TRUE)
 #'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=viridis_map(persp_facets(volcano)))
+#'       col=viridis_map(persp_facets(maunga$z)))
 #'
 #' \dontrun{library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=viridis_map(volcano))
+#'         col=viridis_map(maunga$z))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # With a limited number of levels, viridis can also serve as a discrete

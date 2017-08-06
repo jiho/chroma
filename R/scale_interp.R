@@ -20,7 +20,7 @@
 #' coldhot_scale(c(0, 0.2, 0.6, 1))
 #' # For values outside the range, the extreme color of scale is returned
 #' coldhot_scale(1.3)
-#' 
+#'
 #' # Define a palette
 #' coldhot_pal <- color_palette(c("cornflowerblue", "brown3"))
 #' # and get 10 colors from it
@@ -28,7 +28,7 @@
 #' show_col(coldhot_pal(10))
 #' # Use the shortcut to define a palette and extract n colors from it
 #' show_col(interp.colors(n=50, colors=c("cornflowerblue", "brown3")))
-#' 
+#'
 #' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
 #' show_col(
@@ -38,7 +38,7 @@
 #'    color_palette(cols, model="hsv")(10),
 #'    color_palette(cols, model="hcl")(10)
 #' )
-#' 
+#'
 #' # Change mapping region/direction
 #' x <- 0:10
 #' cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
@@ -51,25 +51,22 @@
 #'
 #' # Maunga Whau volcano colors picked from a picture
 #' # (likely incorrect perceptually but attempts a "realistic" look)
-#' maunga <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
-#' image(maunga, col=interp_colors(100, colors=maunga))
+#' topo_colors <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
+#' show_col(topo_colors)
+#' image(maunga, col=interp_colors(100, colors=topo_colors))
 #' # = the dark ring-like level is indeed misleading
 #'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=color_map(volcano[-1,-1], colors=maunga))
-#' # NB: This is cheating, colouring each facet according to the value of
-#' #     its lower right point. The correct way is \code{link{persp_facets}}
-#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=color_map(persp_facets(volcano), colors=maunga))
+#'       col=color_map(persp_facets(maunga$z), colors=topo_colors))
 #'
 #' \dontrun{library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=color_map(volcano, colors=maunga))
+#'         col=color_map(maunga$z, colors=topo_colors))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # Color points according to a discrete variable
 #' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=21, cex=2, bg=color_map(Species))
+#' plot(Petal.Length, Sepal.Length, pch=21, bg=color_map(Species))
 #' legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Species)))
 #' # NB: works, but a continuous scale is not really appropriate here.
 #'
@@ -88,7 +85,7 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
     warning("Bezier interpolation can only be done in L*a*b* space; switching to model=\"lab\".")
     model <- "lab"
   }
-  
+
   # define domain
   if ( ! is.null(values) ) {
     # check content
@@ -118,7 +115,7 @@ color_scale <- function(colors=c("white", "black"), model="lab", interp="linear"
   if ( interp == "linear" ) {
     interp <- "scale"
   }
-  
+
   # define the scale function which calls chroma.js internally
   eval(f <- function(x) {
     # for small data, call chroma.js directly

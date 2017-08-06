@@ -81,17 +81,15 @@ brewer_palette(name="Pastel1")(15)
 
 # Sequential ColorBrewer palettes are good for continuous variables
 # such as the elevation of the Maunga Whau volcano
-x <- 10*(1:nrow(volcano))
-y <- 10*(1:ncol(volcano))
-image(x, y, volcano, col=brewer_palette("YlOrBr", reverse=TRUE)(100))
-contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
+image(maunga, col=brewer_colors(100, name="YlOrBr", reverse=TRUE))
+contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
-persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
-      col=brewer_map(persp_facets(volcano), "YlOrBr", reverse=TRUE))
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+      col=brewer_map(persp_facets(maunga$z), "YlOrBr", reverse=TRUE))
 
 \dontrun{library("rgl")
-persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-        col=brewer_map(volcano, "YlOrBr", reverse=TRUE))
+persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+        col=brewer_map(maunga$z, "YlOrBr", reverse=TRUE))
 
 }
 # Qualitative palettes are appropriate for discrete variables

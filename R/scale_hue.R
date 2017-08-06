@@ -6,7 +6,7 @@
 #' @template param_hue
 #' @template param_chromacity
 #' @template param_lightness
-#' @inheritParams color_scale 
+#' @inheritParams color_scale
 #'
 #' @template details_hcl
 #'
@@ -20,7 +20,7 @@
 #' rainbow_scale <- hue_scale()
 #' # and apply it to some data
 #' rainbow_scale(x=c(0, 0.2, 0.6, 1))
-#' 
+#'
 #' # Define a palette function
 #' # (which works like the actual rainbow() function)
 #' rainbow_pal <- hue_palette()
@@ -30,7 +30,7 @@
 #' # or use the shortcut
 #' hue_colors(n=50)
 #' show_col(hue_colors(n=50))
-#' 
+#'
 #' # Palettes of varying hue but constant chromacity and lightness
 #' # are appropriate to distinguish among levels of a discrete variable
 #' attach(iris)
@@ -38,17 +38,15 @@
 #' legend(1, 8, legend=levels(Species), pch=19, col=hue_colors(n=nlevels(Species)))
 #'
 #' # Try on the elevation map of the Maunga Whau volcano
-#' x <- 10*(1:nrow(volcano))
-#' y <- 10*(1:ncol(volcano))
-#' image(x, y, volcano, col=hue_colors(100))
+#' image(maunga, col=hue_colors(100))
 #' # = typical rainbow scales bullseye effect, yuk!
 #'
 #' # Hue based scales may work, but with a limited range of hues
-#' image(x, y, volcano, col=hue_colors(100, h=c(240,350), c=0.5))
-#' contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
+#' image(maunga, col=hue_colors(100, h=c(240,350), c=0.5))
+#' contour(maunga, col=alpha("white", 0.5), add=TRUE)
 #'
-#' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=hue_map(persp_facets(volcano), h=c(240,350), c=0.5))
+#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+#'       col=hue_map(persp_facets(maunga$z), h=c(240,350), c=0.5))
 #' # Still, lightness (or chromacity)-based scales are likely to be better...
 #'
 #' @importFrom scales rescale
@@ -58,7 +56,7 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
   if (length(h) != 2) {
     stop("h needs to be a vector of length 2, defining the minimum and maximum hues to use.")
   }
-  
+
   # define the function
   f <- function(x) {
     n <- length(unique(x))

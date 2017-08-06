@@ -27,7 +27,7 @@
 #' ColorBrewer scales and palettes
 #'
 #' @param name name of a ColorBrewer palette. See \code{\link{brewer_info}} for a list of palettes and their characteristics.
-#' @inheritParams color_scale 
+#' @inheritParams color_scale
 #'
 #' @template return_scales
 #'
@@ -40,12 +40,12 @@
 #' # Define a scale function
 #' ygb <- brewer_scale(name="YlGnBu")
 #' ygb(c(0, 0.2, 0.6, 1))
-#' 
+#'
 #' # Define a palette function
 #' bgy_pal <- brewer_palette(name="YlGnBu", reverse=TRUE)
 #' bgy_pal(10)
 #' show_col(bgy_pal(100))
-#' 
+#'
 #' # Show 7 colors from each palette
 #' show_col(lapply(brewer_info$name, function(x) {brewer.colors(n=7, name=x)}))
 #'
@@ -60,17 +60,15 @@
 #'
 #' # Sequential ColorBrewer palettes are good for continuous variables
 #' # such as the elevation of the Maunga Whau volcano
-#' x <- 10*(1:nrow(volcano))
-#' y <- 10*(1:ncol(volcano))
-#' image(x, y, volcano, col=brewer_palette("YlOrBr", reverse=TRUE)(100))
-#' contour(x, y, volcano, col=alpha("white", 0.5), add=TRUE)
+#' image(maunga, col=brewer_colors(100, name="YlOrBr", reverse=TRUE))
+#' contour(maunga, col=alpha("white", 0.5), add=TRUE)
 #'
-#' persp(x, y, volcano, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=brewer_map(persp_facets(volcano), "YlOrBr", reverse=TRUE))
+#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+#'       col=brewer_map(persp_facets(maunga$z), "YlOrBr", reverse=TRUE))
 #'
 #' \dontrun{library("rgl")
-#' persp3d(x, y, volcano, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=brewer_map(volcano, "YlOrBr", reverse=TRUE))
+#' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+#'         col=brewer_map(maunga$z, "YlOrBr", reverse=TRUE))
 #'
 #' }
 #' # Qualitative palettes are appropriate for discrete variables

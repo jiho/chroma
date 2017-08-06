@@ -6,7 +6,7 @@
 #' @param chroma chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.
 #' @template param_lightness
 #' @template param_hue
-#' @inheritParams color_scale 
+#' @inheritParams color_scale
 #'
 #' @template details_hcl
 #'
@@ -21,7 +21,7 @@
 #' # and apply it to some data
 #' reds(x=c(0, 0.2, 0.6, 1))
 #' show_col(reds(x=c(0, 0.2, 0.6, 1)))
-#' 
+#'
 #' # Define a palette function
 #' reds_pal <- chroma_palette(h=30)
 #' # and get 10 colors from it
@@ -36,17 +36,16 @@
 #' yellows <- chroma_colors(n=50, h="gold")
 #' pinks <- chroma_colors(n=50, h="deeppink")
 #' show_col(blues, greens, yellows, pinks)
-#' 
+#'
 #' # Chroma scales can be used for continuous variables
 #' # such as the elevation of the Maunga Whau volcano
 #' image(maunga, col=chroma_colors(100, h="red"))
 #' contour(maunga, col=alpha("white", 0.5), add=TRUE)
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=chroma_map(persp_facets(volcano), h="red"))
-#'
+#'       col=chroma_map(persp_facets(maunga$z), h="red"))
 #' \dontrun{library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=chroma_map(volcano, h="red"))
+#'         col=chroma_map(maunga$z, h="red"))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # but a lightness-based scale would be probably be better (see ?light_scale)
@@ -61,7 +60,7 @@
 #' @export
 chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE) {
   # NB: argument is named `chroma` to avoid conflict with `c` (error: promise already under evaluation). But the `c` abbreviation works.
-  
+
   # check arguments
   if (length(chroma) != 2) {
     stop("chroma needs to be a vector of length 2, defining the minimum and maximum chroma to use.")

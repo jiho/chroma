@@ -7,7 +7,7 @@
 #' @template param_chromacity
 #' @template param_lightness
 #' @param gamma gamma contrast factor, in \code{[0,+Inf]} (sane values are in \code{[0.5,3]}). \code{gamma} < 1 emphasises the low end of the scale by whitening the high colors. \code{gamma} > 1 emphasises the high end of the scale by darkening the low colors. Use with caution and restraint.
-#' @inheritParams color_scale 
+#' @inheritParams color_scale
 #'
 #' @template return_scales
 #'
@@ -20,14 +20,14 @@
 #'   cubehelix_colors(20),
 #'   cubehelix_colors(20, reverse=T)
 #' )
-#' 
+#'
 #' # Rotating less gives more sensible scales
 #' show_col(
 #'   cubehelix_colors(20, h=300, rot=-0.75),
 #'   cubehelix_colors(20, h=120, rot=0.5),
 #'   cubehelix_colors(20, h=300, rot=0.5)
 #' )
-#' 
+#'
 #' # Examine the effect of arguments
 #' show_col(
 #'   cubehelix_colors(20, h=300, rot=0.5),
@@ -39,17 +39,17 @@
 #'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1, gamma=0.5),
 #'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1, gamma=1.5)
 #' )
-#' 
+#'
 #' # Plot the Maunga Whau volcano elevation map, a continuous variable
 #' image(maunga, col=cubehelix_colors(100, rot=-0.75))
 #' contour(maunga, col=alpha("black", 0.2), add=TRUE)
 #'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=cubehelix_map(persp_facets(volcano), rot=-0.75))
+#'       col=cubehelix_map(persp_facets(maunga$z), rot=-0.75))
 #'
 #' \dontrun{library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=cubehelix_map(volcano, rot=-0.75))
+#'         col=cubehelix_map(maunga$z, rot=-0.75))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # For discrete variables, using saturated colors along a scale of
@@ -83,18 +83,18 @@ cubehelix_scale <- function(h=300, rotations=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1
   is_in(c, 0, 1.5)
   is_in(l, 0, 1)
   is_in(gamma, 0, 2)
-  
+
   # if lightness bounds are identical, make them slightly different
   if (l[1] == l[2]) {
     l[1] <- max(0, l[1]-10^-6)
     l[2] <- min(1, l[2]+10^-6)
   }
-  
+
   # parse hue (in case it is provided as a color)
   h <- hue(h)
   # scale chromacity up to make the colors bright enough (but keep c in [0,1.5], as the documentation says)
   c <- c * 2
-  
+
   # prepare chroma.js command
   if ( reverse ) {
     domain <- rev(domain)

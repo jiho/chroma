@@ -63,11 +63,11 @@ image(maunga, col=magma_colors(100))
 contour(maunga, col=alpha("black", 0.2), add=TRUE)
 
 persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-      col=magma_map(persp_facets(volcano)))
+      col=magma_map(persp_facets(maunga$z)))
 
 \dontrun{library("rgl")
 persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-        col=magma_map(volcano))
+        col=magma_map(maunga$z))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 }
 # With a limited number of levels, magma can also serve as a discrete

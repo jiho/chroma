@@ -15,7 +15,7 @@
 #'
 #' The \code{plasma} color palette, by Nathaniel J. Smith and Stefan van der Walt (CC0 license).
 #'
-#' @inheritParams color_scale 
+#' @inheritParams color_scale
 #'
 #' @template return_scales
 #'
@@ -30,17 +30,17 @@
 #'   plasma_colors(50),
 #'   plasma_colors(20, reverse=TRUE)
 #' )
-#' 
+#'
 #' # Plot the Maunga Whau volcano elevation map
 #' image(maunga, col=plasma_colors(100))
 #' contour(maunga, col=alpha("black", 0.2), add=TRUE)
 #'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-#'       col=plasma_map(persp_facets(volcano)))
+#'       col=plasma_map(persp_facets(maunga$z)))
 #'
 #' \dontrun{library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-#'         col=plasma_map(volcano))
+#'         col=plasma_map(maunga$z))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }
 #' # With a limited number of levels, plasma can also serve as a discrete
