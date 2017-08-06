@@ -18,8 +18,8 @@ parse_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
 
   # check arguments
-  if (model %in% c("css", "hex", "temperature")) {
-    
+  vector_color_models <- c("css", "hex", "temperature")
+  if (model %in% vector_color_models) {
     if ( !is.vector(x) ) {
       stop("x should be a vector")
     }
@@ -115,7 +115,7 @@ parse_color <- function(x, model) {
   }
   
   # parse colors using chroma.js
-  if (model %in% c("css", "hex", "temperature")) {
+  if (model %in% vector_color_models) {
     cmds <- sapply(x, function(xx) {
       stringr::str_c("chroma.", model, "('", xx, "').hex()")
     }, USE.NAMES=FALSE)
