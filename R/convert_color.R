@@ -37,14 +37,14 @@ convert_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   # we want rgba in [0,1] = gl
   if (model == "rgba") { model <- "gl" }
-  
+
   # force input R colors into hex notation
   x <- in_hex(x)
-  
+
   # convert colors
   cmds <- stringr::str_c("chroma('", x, "').",model,"()")
   res <- v8_eval(cmds)
-  
+
   # parse into a matrix of numbers, when appropriate
   if (! model %in% c("css", "hex", "temperature")) {
     if (model == "gl") { model <- "rgba" } # we need rgba as column headers
@@ -66,12 +66,12 @@ convert_color <- function(x, model) {
     # associate column names
     colnames(res) <- strsplit(model, "", fixed=TRUE)[[1]]
   }
-  
+
   # convert temperatures to numbers
   if (model == "temperature") {
     res <- as.numeric(res)
   }
-  
+
   # adjust the range of some channels to match their definition (which are not homogeneous in chroma.js)
   if ( model == "hcl" ) {
     res[,2:3] <- res[,2:3] / 100
@@ -80,7 +80,7 @@ convert_color <- function(x, model) {
   } else if ( model == "lab" ) {
     res <- res / 100
   }
-  
+
   return(res)
 }
 
