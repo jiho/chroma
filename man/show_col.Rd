@@ -7,23 +7,24 @@
 show_col(...)
 }
 \arguments{
-\item{...}{vectors of colors (specified as hex codes) to display. Each vector is displayed on a separate line.}
+\item{...}{vectors of colors (specified as hex codes) to display. Each vector is displayed on a separate line. Can also be a list of such vectors, in which case each element of the list is displayed on a separate line.}
 }
 \description{
 Display one or several (collections of) colors next to each other
 }
 \examples{
-# display one color
+# Display one color
 show_col("#ff3399")
 
-# Display, and compare, color collections
+# Display and compare color collections
 show_col(c("#ff3399", "#9c0c55"))
 show_col(c("#ff3399", "#9c0c55"), c("#2976fe", "#0c2c8a"))
 
-# Useful to compare color palettes
+# Compare color palettes
 show_col(grey.colors(20))
 show_col(grey.colors(20), rainbow(20), heat.colors(15),
          terrain.colors(6), topo.colors(10), cm.colors(20))
+# MATLAB's jet colors vs. R's rainbow
 jet.colors <- colorRampPalette(c("#00007F", "blue", "#007FFF",
   "cyan", "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
 show_col(rev(rainbow(20, start=0, end=0.65)), jet.colors(20))
