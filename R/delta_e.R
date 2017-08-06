@@ -36,10 +36,13 @@ delta_e <- function(x, y) {
   X <- data.frame(x, y)
   
   # apply formula to all
-  deltae <- apply(X, 1, function(x) {
+  deltae <- apply(stats::na.omit(X), 1, function(x) {
     delta_e_lab(x[1:3],x[4:6])
   })
-  
+  # reinsert missing values
+  # NB: rowSums is NA as soon as one element is NA
+  deltae <- na_insert(deltae, from=rowSums(X))
+
   return(deltae)
 }
 

@@ -38,6 +38,6 @@ mix <- function(x, y, ratio=0.5, model="rgb") {
   # NB: foo is not used, we put them in a table just to check that their lengths are compatible
   
   # mix colors
-  cmds <- paste0("chroma.mix('", x, "','", y, "', ", ratio, ", '", model, "').hex()")
+  cmds <- stringr::str_c("chroma.mix('", x, "','", y, "', ", ratio, ", '", model, "').hex()")
   v8_eval(cmds)
 }

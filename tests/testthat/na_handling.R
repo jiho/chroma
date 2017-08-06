@@ -45,3 +45,12 @@ test_that("channel functions handle NAs", {
   channel(x, "rgb", "r") <- NA
   expect_equal(x, as.character(NA))
 })
+
+test_that("binary functions handle NAs", {
+  expect_equal(contrast(NA, NA), as.numeric(NA))
+  expect_equal(contrast("red", NA), as.numeric(NA))
+  expect_equal(delta_e(NA, NA), as.numeric(NA))
+  expect_equal(delta_e("red", NA), as.numeric(NA))
+  expect_equal(mix(NA, NA), as.character(NA))
+  expect_equal(mix("red", NA), as.character(NA))
+})

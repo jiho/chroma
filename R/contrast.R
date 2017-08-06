@@ -22,6 +22,6 @@ contrast <- function(x, y) {
   # NB: foo is not used, we put arguments in a table just to check that their lengths are compatible
   
   # mix colors
-  cmds <- paste0("chroma.contrast('", x, "','", y, "')")
+  cmds <- stringr::str_c("chroma.contrast('", x, "','", y, "')")
   as.numeric(v8_eval(cmds))
 }
