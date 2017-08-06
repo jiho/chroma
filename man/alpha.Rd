@@ -18,7 +18,9 @@ Modify colour transparency, vectorised in both \code{x} and \code{alpha} (when b
 All other operations in chroma do not support alpha channels (because the underlying library, chroma.js, does not output 8 digits hex color specification, which describe r, g, b, and a channels). Therefore, any manipulation of transparency must be done last.
 }
 \examples{
+as.hex("red")
 alpha("red")
+
 show_col(c("red", alpha("red")))
 
 # Vectorised in both x and alpha, as long as the lengths are compatible
@@ -33,5 +35,4 @@ mix(alpha("red"), alpha("blue"))
 mix("red", "blue")
 # = both are the same, and fully opaque. Use alpha last
 alpha(mix("red", "blue"))
-
 }
