@@ -42,6 +42,7 @@ delta_e <- function(x, y) {
   # reinsert missing values
   # NB: rowSums is NA as soon as one element is NA
   deltae <- na_insert(deltae, from=rowSums(X))
+  names(deltae) <- NULL
 
   return(deltae)
 }
