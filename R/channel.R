@@ -42,7 +42,7 @@ channel <- function(x, model, channel) {
   x[,channel]
 }
 
-#' @name channel
+#' @rdname channel
 #' @export
 `channel<-` <- function(x, model, channel, value) {
   if (model %in% c("css", "hex", "temperature")) {

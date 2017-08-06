@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_light.R
 \name{light_scale}
 \alias{light_scale}
-\alias{light_scale}
 \alias{light_map}
-\alias{light_scale}
 \alias{light_palette}
-\alias{light_scale}
 \alias{light_colors}
-\alias{light_scale}
 \alias{light.colors}
 \title{Lightness scale and palette}
 \usage{

@@ -78,7 +78,7 @@ chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE
 }
 
 #' @param ... passed to \code{\link{chroma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{chroma_scale} and passing it through \code{...} is an error.
-#' @name chroma_scale
+#' @rdname chroma_scale
 #' @export
 chroma_map <- function(x, ...) {
   # force characters into factors to be able to convert them to numeric
@@ -91,7 +91,7 @@ chroma_map <- function(x, ...) {
   chroma_scale(domain=range(x, na.rm=T), ...)(x)
 }
 
-#' @name chroma_scale
+#' @rdname chroma_scale
 #' @export
 chroma_palette <- function(...) {
   f <- function(n) {
@@ -100,11 +100,11 @@ chroma_palette <- function(...) {
   return(f)
 }
 
-#' @name chroma_scale
+#' @rdname chroma_scale
 #' @export
 chroma_colors <- function(n, ...) {
   chroma_palette(...)(n)
 }
-#' @name chroma_scale
+#' @rdname chroma_scale
 #' @export
 chroma.colors <- chroma_colors

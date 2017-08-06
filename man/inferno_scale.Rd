@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_inferno.R
 \name{inferno_scale}
 \alias{inferno_scale}
-\alias{inferno_scale}
 \alias{inferno_map}
-\alias{inferno_scale}
 \alias{inferno_palette}
-\alias{inferno_scale}
 \alias{inferno_colors}
-\alias{inferno_scale}
 \alias{inferno.colors}
 \title{Magma color scale and palette}
 \usage{

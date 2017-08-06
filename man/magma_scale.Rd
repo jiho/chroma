@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_magma.R
 \name{magma_scale}
 \alias{magma_scale}
-\alias{magma_scale}
 \alias{magma_map}
-\alias{magma_scale}
 \alias{magma_palette}
-\alias{magma_scale}
 \alias{magma_colors}
-\alias{magma_scale}
 \alias{magma.colors}
 \title{Magma color scale and palette}
 \usage{

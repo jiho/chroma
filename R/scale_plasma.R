@@ -56,24 +56,24 @@ plasma_scale <- function(domain=c(0,1), reverse=FALSE) {
 }
 
 #' @param ... passed to \code{\link{plasma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{plasma_scale} and passing it through \code{...} is an error.
-#' @name plasma_scale
+#' @rdname plasma_scale
 #' @export
 plasma_map <- function(x, ...) {
   interp_map(x, colors=chroma::plasma, model="lab", interp="linear", ...)
 }
 
-#' @name plasma_scale
+#' @rdname plasma_scale
 #' @export
 plasma_palette <- function(...) {
   interp_palette(colors=chroma::plasma, model="lab", interp="linear", ...)
 }
 
-#' @name plasma_scale
+#' @rdname plasma_scale
 #' @export
 plasma_colors <- function(n, ...) {
   interp_colors(n=n, colors=chroma::plasma, model="lab", interp="linear",...)
 }
-#' @name plasma_scale
+#' @rdname plasma_scale
 #' @export
 plasma.colors <- plasma_colors
 

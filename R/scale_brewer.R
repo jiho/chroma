@@ -91,7 +91,7 @@ brewer_scale <- function(name="Blues", model="lab", interp="linear", domain=c(0,
 }
 
 #' @param ... passed to \code{\link{brewer_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{brewer_scale} and passing it through \code{...} is an error.
-#' @name brewer_scale
+#' @rdname brewer_scale
 #' @export
 brewer_map <- function(x, ...) {
   # TODO better document this bit which is quite specific to colorbrewer having both discrete and continuous palettes
@@ -106,7 +106,7 @@ brewer_map <- function(x, ...) {
   return(colors)
 }
 
-#' @name brewer_scale
+#' @rdname brewer_scale
 #' @export
 brewer_palette <- function(name="Blues", ...) {
   f <- function(n) {
@@ -115,7 +115,7 @@ brewer_palette <- function(name="Blues", ...) {
   return(f)
 }
 
-#' @name brewer_scale
+#' @rdname brewer_scale
 #' @export
 brewer_colors <- function(n, name="Blues", ...) {
   # check arguments and allow abbreviation
@@ -139,7 +139,7 @@ brewer_colors <- function(n, name="Blues", ...) {
 
   return(colors)
 }
-#' @name brewer_scale
+#' @rdname brewer_scale
 #' @export
 brewer.colors <- brewer_colors
 

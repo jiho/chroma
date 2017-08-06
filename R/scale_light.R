@@ -86,7 +86,7 @@ light_scale <- function(l=c(0,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE) {
 }
 
 #' @param ... passed to \code{\link{light_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{light_scale} and passing it through \code{...} is an error.
-#' @name light_scale
+#' @rdname light_scale
 #' @export
 light_map <- function(x, ...) {
   # force characters into factors to be able to convert them to numeric
@@ -99,7 +99,7 @@ light_map <- function(x, ...) {
   light_scale(domain=range(x, na.rm=T), ...)(x)
 }
 
-#' @name light_scale
+#' @rdname light_scale
 #' @export
 light_palette <- function(...) {
   f <- function(n) {
@@ -108,11 +108,11 @@ light_palette <- function(...) {
   return(f)
 }
 
-#' @name light_scale
+#' @rdname light_scale
 #' @export
 light_colors <- function(n, ...) {
   light_palette(...)(n)
 }
-#' @name light_scale
+#' @rdname light_scale
 #' @export
 light.colors <- light_colors

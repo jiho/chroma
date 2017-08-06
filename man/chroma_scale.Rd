@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_chroma.R
 \name{chroma_scale}
 \alias{chroma_scale}
-\alias{chroma_scale}
 \alias{chroma_map}
-\alias{chroma_scale}
 \alias{chroma_palette}
-\alias{chroma_scale}
 \alias{chroma_colors}
-\alias{chroma_scale}
 \alias{chroma.colors}
 \title{Lightness scale and palette}
 \usage{

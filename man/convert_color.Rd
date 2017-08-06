@@ -2,29 +2,17 @@
 % Please edit documentation in R/convert_color.R
 \name{convert_color}
 \alias{convert_color}
-\alias{convert_color}
 \alias{as.rgb}
-\alias{convert_color}
 \alias{as.rgba}
-\alias{convert_color}
 \alias{as.hsv}
-\alias{convert_color}
 \alias{as.hsl}
-\alias{convert_color}
 \alias{as.hsi}
-\alias{convert_color}
 \alias{as.hcl}
-\alias{convert_color}
 \alias{as.lch}
-\alias{convert_color}
 \alias{as.lab}
-\alias{convert_color}
 \alias{as.cmyk}
-\alias{convert_color}
 \alias{as.css}
-\alias{convert_color}
 \alias{as.hex}
-\alias{convert_color}
 \alias{as.temperature}
 \title{Convert colors to a given color model}
 \usage{

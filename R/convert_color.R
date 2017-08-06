@@ -84,50 +84,50 @@ convert_color <- function(x, model) {
   return(res)
 }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.rgb <- function(x) { convert_color(x, model="rgb") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.rgba <- function(x) { convert_color(x, model="rgba") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.hsv <- function(x) { convert_color(x, model="hsv") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.hsl <- function(x) { convert_color(x, model="hsl") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.hsi <- function(x) { convert_color(x, model="hsi") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.hcl <- function(x) { convert_color(x, model="hcl") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.lch <- function(x) { convert_color(x, model="lch") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.lab <- function(x) { convert_color(x, model="lab") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.cmyk <- function(x) { convert_color(x, model="cmyk") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.css <- function(x) { convert_color(x, model="css") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.hex <- function(x) { convert_color(x, model="hex") }
 
-#' @name convert_color
+#' @rdname convert_color
 #' @export
 as.temperature <- function(x) { convert_color(x, model="temperature") }

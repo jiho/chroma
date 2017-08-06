@@ -2,7 +2,6 @@
 % Please edit documentation in R/parse_rgb.R
 \name{rgb}
 \alias{rgb}
-\alias{rgb}
 \alias{rgba}
 \title{RGB Color Specification}
 \usage{

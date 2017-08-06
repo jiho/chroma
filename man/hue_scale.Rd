@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_hue.R
 \name{hue_scale}
 \alias{hue_scale}
-\alias{hue_scale}
 \alias{hue_map}
-\alias{hue_scale}
 \alias{hue_palette}
-\alias{hue_scale}
 \alias{hue_colors}
-\alias{hue_scale}
 \alias{hue.colors}
 \title{Hue scale and palette}
 \usage{

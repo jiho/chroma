@@ -108,7 +108,7 @@ cubehelix_scale <- function(h=300, rotations=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1
 }
 
 #' @param ... passed to \code{\link{cubehelix_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{cubehelix_scale} and passing it through \code{...} is an error.
-#' @name cubehelix_scale
+#' @rdname cubehelix_scale
 #' @export
 cubehelix_map <- function(x, ...) {
   # force characters into factors to be able to convert them to numeric
@@ -121,7 +121,7 @@ cubehelix_map <- function(x, ...) {
   cubehelix_scale(domain=range(x, na.rm=T), ...)(x)
 }
 
-#' @name cubehelix_scale
+#' @rdname cubehelix_scale
 #' @export
 cubehelix_palette <- function(n, ...) {
   f <- function(n) {
@@ -130,11 +130,11 @@ cubehelix_palette <- function(n, ...) {
   return(f)
 }
 
-#' @name cubehelix_scale
+#' @rdname cubehelix_scale
 #' @export
 cubehelix_colors <- function(n, ...) {
   cubehelix_palette(...)(n)
 }
-#' @name cubehelix_scale
+#' @rdname cubehelix_scale
 #' @export
 cubehelix.colors <- cubehelix_colors

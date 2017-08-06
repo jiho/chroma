@@ -58,7 +58,7 @@ hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, ...) {
   return(colors)
 }
 
-#' @name hcl
+#' @rdname hcl
 #' @export
 lch <- function(l=0.65, c=0.65, h=0) {
   # handle color channels

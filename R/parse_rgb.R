@@ -65,7 +65,7 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
   return(colors)
 }
 
-#' @name rgb
+#' @rdname rgb
 #' @export
 rgba <- function(red=0, green=0, blue=0, alpha=1) {
   # handle color channels

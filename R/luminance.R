@@ -56,7 +56,7 @@ luminance <- function(x) {
   return(res)
 }
 
-#' @name luminance
+#' @rdname luminance
 #' @export
 `luminance<-` <- function(x, value) {
   # force input R colors into hex notation

@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_brewer.R
 \name{brewer_scale}
 \alias{brewer_scale}
-\alias{brewer_scale}
 \alias{brewer_map}
-\alias{brewer_scale}
 \alias{brewer_palette}
-\alias{brewer_scale}
 \alias{brewer_colors}
-\alias{brewer_scale}
 \alias{brewer.colors}
 \title{ColorBrewer scales and palettes}
 \usage{

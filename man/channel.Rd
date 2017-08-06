@@ -2,7 +2,6 @@
 % Please edit documentation in R/channel.R
 \name{channel}
 \alias{channel}
-\alias{channel}
 \alias{channel<-}
 \title{Get or set color channel}
 \usage{

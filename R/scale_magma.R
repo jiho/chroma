@@ -56,24 +56,24 @@ magma_scale <- function(domain=c(0,1), reverse=FALSE) {
 }
 
 #' @param ... passed to \code{\link{magma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{magma_scale} and passing it through \code{...} is an error.
-#' @name magma_scale
+#' @rdname magma_scale
 #' @export
 magma_map <- function(x, ...) {
   interp_map(x, colors=chroma::magma, model="lab", interp="linear", ...)
 }
 
-#' @name magma_scale
+#' @rdname magma_scale
 #' @export
 magma_palette <- function(...) {
   interp_palette(colors=chroma::magma, model="lab", interp="linear", ...)
 }
 
-#' @name magma_scale
+#' @rdname magma_scale
 #' @export
 magma_colors <- function(n, ...) {
   interp_colors(n=n, colors=chroma::magma, model="lab", interp="linear",...)
 }
-#' @name magma_scale
+#' @rdname magma_scale
 #' @export
 magma.colors <- magma_colors
 

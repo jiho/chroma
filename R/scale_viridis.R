@@ -53,24 +53,24 @@ viridis_scale <- function(domain=c(0,1), reverse=FALSE) {
 }
 
 #' @param ... passed to \code{\link{viridis_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{viridis_scale} and passing it through \code{...} is an error.
-#' @name viridis_scale
+#' @rdname viridis_scale
 #' @export
 viridis_map <- function(x, ...) {
   interp_map(x, colors=chroma::viridis, model="lab", interp="linear", ...)
 }
 
-#' @name viridis_scale
+#' @rdname viridis_scale
 #' @export
 viridis_palette <- function(...) {
   interp_palette(colors=chroma::viridis, model="lab", interp="linear", ...)
 }
 
-#' @name viridis_scale
+#' @rdname viridis_scale
 #' @export
 viridis_colors <- function(n, ...) {
   interp_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
 }
-#' @name viridis_scale
+#' @rdname viridis_scale
 #' @export
 viridis.colors <- viridis_colors
 

@@ -2,7 +2,6 @@
 % Please edit documentation in R/luminance.R
 \name{luminance}
 \alias{luminance}
-\alias{luminance}
 \alias{luminance<-}
 \title{Get or set the relative brightness of colors}
 \usage{

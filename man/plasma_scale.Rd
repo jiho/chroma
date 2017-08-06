@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_plasma.R
 \name{plasma_scale}
 \alias{plasma_scale}
-\alias{plasma_scale}
 \alias{plasma_map}
-\alias{plasma_scale}
 \alias{plasma_palette}
-\alias{plasma_scale}
 \alias{plasma_colors}
-\alias{plasma_scale}
 \alias{plasma.colors}
 \title{Magma color scale and palette}
 \usage{

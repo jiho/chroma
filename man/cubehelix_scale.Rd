@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_cubehelix.R
 \name{cubehelix_scale}
 \alias{cubehelix_scale}
-\alias{cubehelix_scale}
 \alias{cubehelix_map}
-\alias{cubehelix_scale}
 \alias{cubehelix_palette}
-\alias{cubehelix_scale}
 \alias{cubehelix_colors}
-\alias{cubehelix_scale}
 \alias{cubehelix.colors}
 \title{CubeHelix color scale and palette}
 \usage{

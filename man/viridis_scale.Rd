@@ -2,13 +2,9 @@
 % Please edit documentation in R/scale_viridis.R
 \name{viridis_scale}
 \alias{viridis_scale}
-\alias{viridis_scale}
 \alias{viridis_map}
-\alias{viridis_scale}
 \alias{viridis_palette}
-\alias{viridis_scale}
 \alias{viridis_colors}
-\alias{viridis_scale}
 \alias{viridis.colors}
 \title{Viridis color scale and palette}
 \usage{
