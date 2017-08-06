@@ -112,7 +112,7 @@ play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 }
 # Color points according to a discrete variable
 attach(iris)
-plot(Petal.Length, Sepal.Length, pch=21, cex=2, bg=color_map(Species))
+plot(Petal.Length, Sepal.Length, pch=21, bg=color_map(Species))
 legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Species)))
 # NB: works, but a continuous scale is not really appropriate here.
 
