@@ -2,7 +2,7 @@
 % Please edit documentation in R/contrast.R
 \name{contrast}
 \alias{contrast}
-\title{Compute the contrast between two colors}
+\title{Quantify contrast betwen colors}
 \usage{
 contrast(x, y)
 }
@@ -10,16 +10,19 @@ contrast(x, y)
 \item{x, y}{colors specified as hex strings or named R colors.}
 }
 \value{
-A number giving the contrast between x and y (or a vector thereof).
+A number giving the contrast ratio between x and y (or a vector thereof). A value of 1 means no contrast at all. A minimum contrast of 4.5 is recommended to ensure that text is still readable against a background color.
 }
 \description{
-Compute the contrast between two colors
+Compute the WCAG contrast ratio between two colors.
 }
 \examples{
 contrast("pink", "hotpink")
 contrast("pink", "blue")
 
-# The computation can be vectorised
+# The computation can be vectorised (if the arguments are compatible)
 contrast("pink", rainbow(10))
-
+contrast(c("red","pink"), c("red","blue"))
+}
+\references{
+\url{https://www.w3.org/TR/WCAG20-TECHS/G18.html}
 }
