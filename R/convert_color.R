@@ -42,19 +42,28 @@ convert_color <- function(x, model) {
   x <- in_hex(x)
   
   # convert colors
-  cmds <- paste0("chroma('", x, "').",model,"()")
+  cmds <- stringr::str_c("chroma('", x, "').",model,"()")
   res <- v8_eval(cmds)
   
   # parse into a matrix of numbers, when appropriate
   if (! model %in% c("css", "hex", "temperature")) {
-    # split the result string
-    res <- strsplit(res, ",", fixed=TRUE)
-    # convert to numbers
-    res <- lapply(res, as.numeric)
-    # stack in a matrix
-    res <- do.call(rbind, res)
-    # associate column names
     if (model == "gl") { model <- "rgba" } # we need rgba as column headers
+
+    # if all colors are NA, force the result to be a matrix of the correct dimension
+    if (all(is.na(res))) {
+      res <- matrix(nrow=length(x), ncol=stringr::str_length(model))
+    }
+    # otherwise, parse the results normally
+    else {
+      # split the result string
+      res <- strsplit(res, ",", fixed=TRUE)
+      # convert to numbers
+      res <- lapply(res, as.numeric)
+      # stack in a matrix
+      res <- do.call(rbind, res)
+    }
+
+    # associate column names
     colnames(res) <- strsplit(model, "", fixed=TRUE)[[1]]
   }
   

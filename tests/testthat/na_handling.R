@@ -15,4 +15,15 @@ test_that("parsing functions handle NAs", {
 
 test_that("conversion functions handle NAs", {
   expect_equal(in_hex(NA), as.character(NA))
+  expect_equal(as.css(NA), as.character(NA))
+  expect_equal(as.temperature(NA), as.character(NA))
+  expect_equal(as.hex(NA), as.character(NA))
+  expect_equivalent(as.cmyk(NA), matrix(ncol=4))
+  expect_equivalent(as.rgba(NA), matrix(ncol=4))
+  expect_equivalent(as.hcl(NA), matrix(ncol=3))
+  expect_equivalent(as.hsi(NA), matrix(ncol=3))
+  expect_equivalent(as.hsl(NA), matrix(ncol=3))
+  expect_equivalent(as.hsv(NA), matrix(ncol=3))
+  expect_equivalent(as.lab(NA), matrix(ncol=3))
+  expect_equivalent(as.rgb(NA), matrix(ncol=3))
 })
