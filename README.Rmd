@@ -155,13 +155,13 @@ All scales and palettes are organised the same way:
 
 ```{r scales}
 x <- 0:10/10
-s <- color_scale()
+s <- interp_scale()
 s(x)
 # or
-color_map(x)
+interp_map(x)
 
 n <- 11
-p <- color_palette()
+p <- interp_palette()
 p(n)
 # or
 interp_colors(n)

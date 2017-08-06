@@ -309,7 +309,7 @@ All scales and palettes are organised the same way:
 
 ``` r
 x <- 0:10/10
-s <- color_scale()
+s <- interp_scale()
 s(x)
 ```
 
@@ -318,7 +318,7 @@ s(x)
 
 ``` r
 # or
-color_map(x)
+interp_map(x)
 ```
 
     #  [1] "#ffffff" "#e2e2e2" "#c6c6c6" "#ababab" "#919191" "#777777" "#5e5e5e"
@@ -326,7 +326,7 @@ color_map(x)
 
 ``` r
 n <- 11
-p <- color_palette()
+p <- interp_palette()
 p(n)
 ```
 
