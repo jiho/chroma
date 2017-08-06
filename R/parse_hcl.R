@@ -54,7 +54,7 @@ hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, ...) {
   if ( !is.null(alpha) ) {
     colors <- alpha(colors, alpha)
   }
-    
+
   return(colors)
 }
 
@@ -66,6 +66,6 @@ lch <- function(l=0.65, c=0.65, h=0) {
 
   # parse colors using chroma.js
   colors <- parse_color(x, "lch")
-    
+
   return(colors)
 }

@@ -1,7 +1,7 @@
 #' Force HEX representation
-#' 
+#'
 #' Convert colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation
-#' 
+#'
 #' @template param_x_rcolors
 #'
 #' @template return_hex_colors

@@ -28,7 +28,7 @@
 #' red <- rgb(1, 0, 0)
 #' transparent_red <- rgb(1, 0, 0, alpha=0.7)
 #' show_col(c(red, transparent_red))
-#'     
+#'
 #' # Color ramps
 #' ramp <- seq(0, 1, length.out=10)
 #' rgb(red=ramp, green=0, blue=0, names=paste("red", 1:10, sep="."))
@@ -47,21 +47,21 @@ rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1)
   # scale color channels
   x[,1:3] <- round(x[,1:3] / maxColorValue * 255)
   # NB: rgb is integer in [0,255] in chroma.js
-  
+
   # parse colors using chroma.js
   colors <- parse_color(x, "rgb")
-  
+
   # add transparency if needed
   if ( !is.null(alpha) ) {
     alpha <- alpha / maxColorValue
     colors <- alpha(colors, alpha)
   }
-  
+
   # add names if needed
   if ( !is.null(names) ) {
     names(colors) <- names
   }
-  
+
   return(colors)
 }
 
@@ -73,7 +73,7 @@ rgba <- function(red=0, green=0, blue=0, alpha=1) {
 
   # parse colors using chroma.js
   colors <- parse_color(x, "gl")
-  
+
   # add alpha channel
   colors <- alpha(colors, x[,4])
 

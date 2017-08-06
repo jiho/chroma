@@ -33,7 +33,7 @@ hue <- function(h, model="hsv") {
     suppressWarnings(numh <- as.numeric(h))
     is_num <- which(!is.na(numh))
     is_not_num <- which(is.na(numh))
-    
+
     # extract the character-based specifications
     charh <- channel(h[is_not_num], model=model, "h")
     
