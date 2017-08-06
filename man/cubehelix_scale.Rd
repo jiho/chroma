@@ -102,19 +102,17 @@ play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 # For discrete variables, using saturated colors along a scale of
 # constant lightness gives a good hue-only scale
 attach(iris)
-# Define the color scale
-ch_discrete <- cubehelix_scale(
-  h=0, rot=0.75, # Start from red-ish and do not make a full circle
-                 # to avoid falling back on red
-  c=1,           # Use saturated colors
-  l=c(0.7, 0.7), # Do not vary lightness
-  domain=c(1,nlevels(Species)) # This will map to a factor with 3 levels
-)
-
 plot(Petal.Length, Sepal.Length, pch=19,
-     col=ch_discrete(as.numeric(Species))) # Convert factor to numeric
+  col=cubehelix_map(
+    Species,
+    h=0, rot=0.75, # Start from red-ish and do not rotate
+                   # full circle to avoid falling back on red
+    c=1,           # Use saturated colors
+    l=c(0.7, 0.7) # Do not vary lightness
+  )
+)
 legend(1, 8, legend=levels(Species), pch=19,
-       col=ch_discrete(1:3))
+       col=cubehelix_map(1:3, h=0, rot=0.75, c=1, l=c(0.7, 0.7)))
 # But see ?hue_scale for a simpler solution
 
 }
