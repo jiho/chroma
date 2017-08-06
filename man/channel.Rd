@@ -16,12 +16,12 @@ channel(x, model, channel) <- value
 
 \item{channel}{string defining the channel within the color model.}
 
-\item{value}{the channel value to set; a number, the convention of which depend on the channel.}
+\item{value}{the channel value to set; a number, the convention of which depends on the channel.}
 }
 \value{
 For \code{channel}, a vector of channel values, the convention of which depend on the channel.
 
-For \code{channel<-}, the updated object(s).
+For \code{channel <-}, the updated object(s).
 }
 \description{
 Get or set color channel
@@ -30,7 +30,8 @@ Get or set color channel
 channel("pink", "rgb", "r")
 channel(colors()[1:5], "hcl", "l")
 
-# Colors along a HSV rainbow have very different lightness
+# Colors along a HSV rainbow have very different lightness,
+# which makes them inapropriate for continuous color scales
 channel(rainbow(6), "hcl", "l")
 # But, by definition, lightness should be constant along a HCL "rainbow"
 channel(hcl(h=seq(0, 360, length.out=6), l=0.5), "hcl", "l")
@@ -41,6 +42,17 @@ x_orig <- x <- rainbow(6)
 channel(x, "hcl", "l") <- 0.3
 show_col(x_orig, x)
 
+# Make all colors equally saturated
+x_orig <- x <- c("aliceblue", "aquamarine4", "coral", "blanchedalmond")
+channel(x, "hsv", "s") <- 0.5
+show_col(x_orig, x)
+
+# Keep the lightness and saturation but change the hue
+# (also called "colorizing")
+
+x_orig <- x <- c("aliceblue", "aquamarine4", "coral", "blanchedalmond")
+channel(x, "hsv", "h") <- 240  # make all blue
+show_col(x_orig, x)
 }
 \seealso{
 \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in L*a*b* or HCL).
