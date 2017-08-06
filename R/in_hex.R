@@ -12,7 +12,6 @@
 #' in_hex(c("pink", NA))
 #' show_col(in_hex(colors()))
 #'
-#' @export
 #' @importFrom grDevices rgb
 in_hex <- function(x) {
   out <- tolower(grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255))
