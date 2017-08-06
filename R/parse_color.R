@@ -38,7 +38,7 @@ parse_color <- function(x, model) {
       stop("x should be a matrix or data.frame")
     }
 
-    required_columns <- switch(model, cmyk=4, rgba=4, 3)
+    required_columns <- switch(model, cmyk=4, rgba=4, gl=4, 3)
     if (ncol(x) < required_columns) {
       stop("x should have at least ", required_columns, " columns")
     }
