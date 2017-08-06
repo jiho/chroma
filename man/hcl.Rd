@@ -47,7 +47,11 @@ hcl(c(330, 340), 1, 0.6)
 
 # Compare color palettes
 ramp <- seq(0, 1, length.out=10)
-show_col(hcl(h=ramp*360), hsv(h=ramp*360, s=0.9), hsl(h=ramp*360, s=0.9))
+show_col(
+  hcl(h=ramp*360),
+  hsv(h=ramp*360, s=0.9),
+  hsl(h=ramp*360, s=0.9)
+)
 show_col(hcl(c=ramp))
 show_col(hcl(l=ramp))
 
