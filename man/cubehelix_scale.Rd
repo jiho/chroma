@@ -17,7 +17,7 @@ cubehelix_palette(n, ...)
 cubehelix_colors(n, ...)
 }
 \arguments{
-\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
+\item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
 \item{rotations}{number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360º, -1.5 = -540º)}
 

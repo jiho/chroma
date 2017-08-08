@@ -21,7 +21,7 @@ light_colors(n, ...)
 
 \item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
-\item{h}{hue, either an angle around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
+\item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
 \item{domain}{the values between which the scale is computed.}
 
