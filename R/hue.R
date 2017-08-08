@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' # h can be numbers, hex colors, named colors, or a mix of the above
+#' # various input formats for x
 #' hue(c("#F55D5B", "#16b2b4", "#6A9F16"))
 #' hue(c("red", "green", "blue"))
 #' hue(c(0, 10, 365))
@@ -28,22 +28,26 @@
 #'   hcl(h=hue(cols, model="hcl"), c=1, l=0.8)
 #' )
 #' # = works, but is a bit less reliable with hcl().
+hue <- function(x, model="hsv") {
+  if (is.numeric(x) | all(is.na(x))) {
+    # NB: vectors full of NAs can appear as not numeric athough they should not be processed at all
+    out <- x %% 360
   } else {
     # check inputs
     model <- match.arg(model, c("hsv", "hsl", "hsi", "hcl", "lch"))
 
     # deal with partially "numeric" vectors
-    suppressWarnings(numh <- as.numeric(h))
-    is_num <- which(!is.na(numh))
-    is_not_num <- which(is.na(numh))
+    suppressWarnings(numx <- as.numeric(x))
+    is_num <- which(!is.na(numx))
+    is_not_num <- which(is.na(numx))
 
     # extract the character-based specifications
-    charh <- channel(h[is_not_num], model=model, "h")
-    
+    charx <- channel(x[is_not_num], model=model, "h")
+
     # join the two
     out <- c()
-    out[is_num] <- hue(numh[is_num])  # NB: apply the %% 360 here too
-    out[is_not_num] <- charh
+    out[is_num] <- hue(numx[is_num])  # NB: apply the %% 360 here too
+    out[is_not_num] <- charx
   }
   return(out)
 }

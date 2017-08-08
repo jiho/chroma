@@ -4,7 +4,7 @@
 \alias{hue}
 \title{Get the hue of colors}
 \usage{
-hue(h, model = "hsv")
+hue(x, model = "hsv")
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
@@ -18,7 +18,7 @@ A vector of hue angles, in [0,360].
 Get the hue (angle around the color wheel, in [0,360]) of a vector of colors.
 }
 \examples{
-# h can be numbers, hex colors, named colors, or a mix of the above
+# various input formats for x
 hue(c("#F55D5B", "#16b2b4", "#6A9F16"))
 hue(c("red", "green", "blue"))
 hue(c(0, 10, 365))
