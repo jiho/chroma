@@ -29,6 +29,9 @@
 #' )
 #' # = works, but is a bit less reliable with hcl().
   } else {
+    # check inputs
+    model <- match.arg(model, c("hsv", "hsl", "hsi", "hcl", "lch"))
+
     # deal with partially "numeric" vectors
     suppressWarnings(numh <- as.numeric(h))
     is_num <- which(!is.na(numh))
