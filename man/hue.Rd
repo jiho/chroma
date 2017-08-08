@@ -7,32 +7,34 @@
 hue(h, model = "hsv")
 }
 \arguments{
-\item{h}{hue, either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted.}
+\item{x}{vector of colors specified as hex strings or named R colors.}
 
 \item{model}{string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.}
 }
 \value{
-A vector of hue angles, in \code{[0, 360]}.
+A vector of hue angles, in [0,360].
 }
 \description{
-Get the hue of colors
+Get the hue (angle around the color wheel, in [0,360]) of a vector of colors.
 }
 \examples{
 # h can be numbers, hex colors, named colors, or a mix of the above
-hue(c(0, 10, 200))
 hue(c("#F55D5B", "#16b2b4", "#6A9F16"))
 hue(c("red", "green", "blue"))
+hue(c(0, 10, 365))
 hue(c(10, "#B55FFC", "pink", 365))
 
 # It should be possible to reconstruct colors similar to the original ones
-cols <- c("firebrick", "gold", "limegreen", "dodgerblue", "navy", "mediumpurple")
+# based on the extracted hue, by providing the other components
+cols <- c("firebrick", "gold", "limegreen", "dodgerblue",
+          "navy", "mediumpurple")
 show_col(cols,
-         hsv(h=hue(cols, model="hsv"), s=0.9, v=1),
-         hsl(h=hue(cols, model="hsl"), s=1, l=0.6),
-         hcl(h=hue(cols, model="hcl"), c=1, l=0.8))
-# = works, but is a bit less reliably with hcl().
-
+  hsv(h=hue(cols, model="hsv"), s=0.9, v=1),
+  hsl(h=hue(cols, model="hsl"), s=1, l=0.6),
+  hcl(h=hue(cols, model="hcl"), c=1, l=0.8)
+)
+# = works, but is a bit less reliable with hcl().
 }
 \seealso{
-\code{\link{channel}} used to extract the hue channel.
+\code{\link{channel}} used internally, to extract the hue channel.
 }
