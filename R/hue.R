@@ -1,11 +1,12 @@
 #' Get the hue of colors
 #'
-#' Get the hue (angle around the color wheel, in [0,360]) of a vector of colors.
+#' Get the hues (angles around the color wheel, in [0,360º]) of a vector of colors.
 #'
 #' @template param_x_rcolors
 #' @param model string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.
+#' @param modulo logical, whether to restrict the hues in [0,360].
 #'
-#' @return A vector of hue angles, in [0,360].
+#' @return A vector of hue angles, in [0,360] if modulo is \code{TRUE}.
 #'
 #' @seealso \code{\link{channel}} used internally, to extract the hue channel.
 #'
@@ -29,9 +30,14 @@
 #' )
 #' # = works, but is a bit less reliable with hcl().
 hue <- function(x, model="hsv") {
+hue <- function(x, model="hsv", modulo=TRUE) {
   if (is.numeric(x) | all(is.na(x))) {
     # NB: vectors full of NAs can appear as not numeric athough they should not be processed at all
-    out <- x %% 360
+    if (modulo) {
+      out <- x %% 360
+    } else {
+      out <- x
+    }
   } else {
     # check inputs
     model <- match.arg(model, c("hsv", "hsl", "hsi", "hcl", "lch"))

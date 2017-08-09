@@ -4,18 +4,20 @@
 \alias{hue}
 \title{Get the hue of colors}
 \usage{
-hue(x, model = "hsv")
+hue(x, model = "hsv", modulo = TRUE)
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
 \item{model}{string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.}
+
+\item{modulo}{logical, whether to restrict the hues in [0,360].}
 }
 \value{
-A vector of hue angles, in [0,360].
+A vector of hue angles, in [0,360] if modulo is \code{TRUE}.
 }
 \description{
-Get the hue (angle around the color wheel, in [0,360]) of a vector of colors.
+Get the hues (angles around the color wheel, in [0,360º]) of a vector of colors.
 }
 \examples{
 # various input formats for x
