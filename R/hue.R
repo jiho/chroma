@@ -51,7 +51,8 @@ hue <- function(x, model="hsv", modulo=TRUE) {
 
     # join the two
     out <- c()
-    out[is_num] <- hue(numx[is_num])  # NB: apply the %% 360 here too
+    out[is_num] <- hue(numx[is_num], model=model, modulo=modulo)
+    #              NB: apply the %% 360 here too if needed
     out[is_not_num] <- charx
   }
   return(out)
