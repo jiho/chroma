@@ -26,7 +26,7 @@ hue(c("red", "green", "blue"))
 hue(c(0, 10, 365))
 hue(c(10, "#B55FFC", "pink", 365))
 
-# It should be possible to reconstruct colors similar to the original ones
+# It is possible to reconstruct colors similar to the original ones
 # based on the extracted hue, by providing the other components
 cols <- c("firebrick", "gold", "limegreen", "dodgerblue",
           "navy", "mediumpurple")
@@ -35,7 +35,7 @@ show_col(cols,
   hsl(h=hue(cols, model="hsl"), s=1, l=0.6),
   hcl(h=hue(cols, model="hcl"), c=1, l=0.8)
 )
-# = works, but is a bit less reliable with hcl().
+# = works, but is a bit less predictable with hcl().
 }
 \seealso{
 \code{\link{channel}} used internally, to extract the hue channel.
