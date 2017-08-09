@@ -54,16 +54,29 @@
 hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALSE) {
   # check arguments
   if (length(h) != 2) {
-    stop("h needs to be a vector of length 2, defining the minimum and maximum hues to use.")
+    stop("h must be a vector of length 2, defining the range of hues to use.")
+  }
+
+  # allow to specify hues as colors rather than angles
+  h <- hue(h, modulo=FALSE)
+
+  # verify the range of hues
+  hue_range <- diff(h)
+  if (abs(hue_range) > 360) {
+    h2 <- h[1] + 360*sign(hue_range)
+    warning(paste0("The range of hues chosen is wider than 360º (",h[1]," -> ",h[2]," = ", hue_range,"º).\n  Several values would be mapped to the same hue, which is probably not desirable.\n  The range was clipped to ",h[1]," -> ",h2," = 360º."))
+    h[2] <- h2
+  }
+
+  # change the direction along the color wheel
+  if (reverse) {
+    h <- rev(h)
   }
 
   # define the function
   f <- function(x) {
-    n <- length(unique(x))
-    # define colors that span a n-1 steps along the given range, to avoid cycling over the color wheel
-    colors <- hcl(h=scales::rescale(x, from=domain, to=seq(h[1], h[2], length.out=n+1)[c(1,n)]), c=c, l=l)
-    if (reverse) {
-      colors <- rev(colors)
+    # map colors
+    colors <- hcl(h=scales::rescale(x, from=domain, to=h), c=c, l=l)
     }
     return(colors)
   }
