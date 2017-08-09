@@ -44,15 +44,19 @@ hcl(data.frame(c(330, 340), c(1,1), c(0.6, 0.4)))
 hcl(matrix(c(330, 340, 1, 1, 0.6, 0.4), ncol=3))
 hcl(c(330, 340), 1, 0.6)
 
-# Compare color palettes
+# Compare "rainbow"-like scales in various color spaces
 ramp <- seq(0, 1, length.out=10)
 show_col(
   hcl(h=ramp*360),
   hsv(h=ramp*360, s=0.9),
   hsl(h=ramp*360, s=0.9)
 )
-show_col(hcl(c=ramp))
-show_col(hcl(l=ramp))
+# Hue, chromacity, and lightness scales
+show_col(
+  hcl(h=ramp*360),
+  hcl(c=ramp),
+  hcl(l=ramp)
+)
 
 # Nice color palettes
 show_col(
@@ -61,7 +65,6 @@ show_col(
   hcl(h=0+ramp*80, c=0.6-ramp*0.4, l=0.1+ramp*0.8),
   hcl(h=210+ramp*150, c=0.3, l=0.1+ramp*0.5)
 )
-
 }
 \seealso{
 HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{light_scale}}.
