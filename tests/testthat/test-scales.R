@@ -35,7 +35,7 @@ test_that("values overrides domain", {
 
 test_that("values overrides reverse", {
   cols <- c("#000000", "#ffffff")
-  bw <- interp_scale(cols, domain=c(0,1), values=c(3,4))
+  bw <- interp_scale(cols, reverse=TRUE, values=c(3,4))
 
   expect_that(bw(3), equals(cols[1]))
   expect_that(bw(4), equals(cols[2]))
