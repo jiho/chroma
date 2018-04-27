@@ -6,10 +6,11 @@
 \alias{interp_palette}
 \alias{interp_colors}
 \alias{interp_colors}
-\title{Interpolated color scales and palettes}
+\title{Interpolated color scale and palette}
 \usage{
 interp_scale(colors = c("white", "black"), model = "lab",
-  interp = "linear", domain = c(0, 1), reverse = FALSE, values = NULL)
+  interp = "linear", domain = c(0, 1), reverse = FALSE, values = NULL,
+  exact.until = 100)
 
 interp_map(x, ...)
 
@@ -30,7 +31,9 @@ interp_colors(n, ...)
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
-\item{values}{if colours should not be evenly positioned along the gradient this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
+\item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
+
+\item{exact.until}{integer, when more than `exact.until` colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument `values` is used and some transitions in color are sharp.}
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
@@ -76,11 +79,11 @@ show_col(interp_colors(n=50, colors=c("cornflowerblue", "brown3")))
 # Test interpolation spaces and types
 cols <- c("yellow", "blue", "red")
 show_col(
-   interp_palette(cols, model="lab")(10),
-   interp_palette(cols, model="lab", interp="bez")(10),
-   interp_palette(cols, model="rgb")(10),
-   interp_palette(cols, model="hsv")(10),
-   interp_palette(cols, model="hcl")(10)
+   interp_colors(10, cols, model="lab"),
+   interp_colors(10, cols, model="lab", interp="bez"),
+   interp_colors(10, cols, model="rgb"),
+   interp_colors(10, cols, model="hsv"),
+   interp_colors(10, cols, model="hcl")
 )
 
 # Change mapping region/direction
@@ -118,8 +121,8 @@ legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Speci
 \seealso{
 Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{hue_scale}},
-  \code{\link{inferno_scale}}, \code{\link{light_scale}},
-  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
-  \code{\link{viridis_scale}}
+  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
+  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
+  \code{\link{light_scale}}, \code{\link{magma_scale}},
+  \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
 }
