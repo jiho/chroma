@@ -8,6 +8,7 @@
 #' @param domain the values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
 #' @param values if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
+#' @param exact.until integer, when more than `exact.until` colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument `values` is used and some transitions in color are sharp.
 #'
 #' @template return_scales
 #'
@@ -32,11 +33,11 @@
 #' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
 #' show_col(
-#'    interp_palette(cols, model="lab")(10),
-#'    interp_palette(cols, model="lab", interp="bez")(10),
-#'    interp_palette(cols, model="rgb")(10),
-#'    interp_palette(cols, model="hsv")(10),
-#'    interp_palette(cols, model="hcl")(10)
+#'    interp_colors(10, cols, model="lab"),
+#'    interp_colors(10, cols, model="lab", interp="bez"),
+#'    interp_colors(10, cols, model="rgb"),
+#'    interp_colors(10, cols, model="hsv"),
+#'    interp_colors(10, cols, model="hcl")
 #' )
 #'
 #' # Change mapping region/direction
@@ -73,7 +74,7 @@
 #' @export
 #' @importFrom scales rescale
 #' @importFrom grDevices rgb colorRamp
-interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL) {
+interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, na.value="grey50", exact.until=100) {
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
   # NB: remove NAs which don't mean anything for interpolation
@@ -119,19 +120,19 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
   # define the scale function which calls chroma.js internally
   eval(f <- function(x) {
     # for small data, call chroma.js directly
-    if (length(x) < 100) {
+    if (length(x) <= exact.until) {
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
       colors <- v8_eval(cmds)
     }
     # for large data, cheat: use chroma.js to get a few colors and interpolate the new ones with colorRamp which is faster
     else {
-      # get 100 colors
-      xx <- seq(domain[1], domain[2], length.out=100)
+      # get exact.until colors
+      xx <- seq(min(domain), max(domain), length.out=exact.until)
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
       colors <- v8_eval(cmds)
       # interpolate between them
       # NB: colorRamp works between 0 and 1 only
-      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(stats::na.omit(x), from=domain))
+      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(stats::na.omit(x), from=range(domain)))
       # convert them to hex
       colors <- grDevices::rgb(colors, maxColorValue=255)
       # re-insert NAs
