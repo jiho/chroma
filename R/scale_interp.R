@@ -74,7 +74,7 @@
 #' @export
 #' @importFrom scales rescale
 #' @importFrom grDevices rgb colorRamp
-interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, na.value="grey50", exact.until=100) {
+interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, exact.until=100) {
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
   # NB: remove NAs which don't mean anything for interpolation
