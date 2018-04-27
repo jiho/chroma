@@ -8,7 +8,7 @@
 #' @param domain the values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
 #' @param values if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
-#' @param exact.until integer, when more than `exact.until` colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument `values` is used and some transitions in color are sharp.
+#' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument \code{values} is used and some transitions in color are sharp.
 #'
 #' @template return_scales
 #'

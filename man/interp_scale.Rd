@@ -30,7 +30,7 @@ interp_colors(n, ...)
 
 \item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
 
-\item{exact.until}{integer, when more than `exact.until` colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument `values` is used and some transitions in color are sharp.}
+\item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument \code{values} is used and some transitions in color are sharp.}
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
