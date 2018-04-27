@@ -1,4 +1,4 @@
-#' Interpolated color scales and palettes
+#' Interpolated color scale and palette
 #'
 #' Interpolate between colors to create a color scale, map values to colors along a scale, create a color palette, or get a few colors from a palette.
 #'
