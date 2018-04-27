@@ -1,4 +1,4 @@
-context("Scale building")
+context("Interpolated scale")
 
 test_that("colors are interpolated correctly", {
   cols <- c("#000000", "#ffffff")
