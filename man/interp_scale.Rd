@@ -5,7 +5,6 @@
 \alias{interp_map}
 \alias{interp_palette}
 \alias{interp_colors}
-\alias{interp_colors}
 \title{Interpolated color scale and palette}
 \usage{
 interp_scale(colors = c("white", "black"), model = "lab",
@@ -15,8 +14,6 @@ interp_scale(colors = c("white", "black"), model = "lab",
 interp_map(x, ...)
 
 interp_palette(...)
-
-interp_colors(n, ...)
 
 interp_colors(n, ...)
 }

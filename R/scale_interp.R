@@ -177,7 +177,3 @@ interp_palette <- function(...) {
 interp_colors <- function(n, ...) {
   interp_palette(...)(n)
 }
-#' @rdname interp_scale
-#' @export
-interp_colors <- interp_colors
-
