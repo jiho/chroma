@@ -10,11 +10,11 @@
 "etopo"
 
 
-#' ETOPO1 scales and palettes
+#' ETOPO1 scale and palette
 #'
-#' Color scales and palettes inspired from the representation of the ETOPO1 global relief model. These scales are special in that the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
+#' Color scale and palette inspired from the representation of the ETOPO1 global relief model. These scales are special because the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
 #'
-#' @inheritParams interp_scale
+#' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the ETOPO1 palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.
 #'
 #' @template return_scales
 #'

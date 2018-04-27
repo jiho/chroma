@@ -5,7 +5,7 @@
 \alias{etopo_map}
 \alias{etopo_palette}
 \alias{etopo_colors}
-\title{ETOPO1 scales and palettes}
+\title{ETOPO1 scale and palette}
 \usage{
 etopo_scale(exact.until = 1000)
 
@@ -16,13 +16,9 @@ etopo_palette(exact.until = 1000, ...)
 etopo_colors(n, ...)
 }
 \arguments{
-\item{exact.until}{integer, when more than `exact.until` colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument `values` is used and some transitions in color are sharp.}
-
-\item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
+\item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the ETOPO1 palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.}
 
 \item{...}{passed to \code{\link{etopo_scale}}.}
-
-\item{n}{number of colors to extract from the color palette.}
 }
 \value{
 \code{*_scale} and \code{*_palette} return a function.
@@ -30,7 +26,7 @@ etopo_colors(n, ...)
 \code{*_map} and \code{*_colors} return a vector of hex colors.
 }
 \description{
-Color scales and palettes inspired from the representation of the ETOPO1 global relief model. These scales are special in that the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
+Color scale and palette inspired from the representation of the ETOPO1 global relief model. These scales are special because the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
 }
 \details{
 As a user, the most useful functions are \code{*_map} and \code{*_colors}.
