@@ -131,8 +131,14 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
       colors <- v8_eval(cmds)
       # interpolate between them
-      # NB: colorRamp works between 0 and 1 only
-      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(scales::rescale(stats::na.omit(x), from=range(domain)))
+      # NB: colorRamp works between 0 and 1 only so
+      # we rescale the input
+      x_scaled <- scales::rescale(stats::na.omit(x), from=range(domain))
+      # and return the extreme colors on either side
+      x_scaled[x_scaled < 0] <- 0
+      x_scaled[x_scaled > 1] <- 1
+      # now interpolate the colors
+      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(x_scaled)
       # convert them to hex
       colors <- grDevices::rgb(colors, maxColorValue=255)
       # re-insert NAs
