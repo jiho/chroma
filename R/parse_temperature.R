@@ -14,9 +14,12 @@
 #' temperature()
 #' temperature(c(2000, 5200, 7000))
 #'
-#' # Display the available range of color temperatures
-#' x <- seq(1000, 20000, length.out=20)
-#' plot(x=x, y=rep(1, 20), col=temperature(x), pch=15, cex=3)
+#' # Display a large range of color temperatures
+#' x <- seq(1000, 15000, length.out=200)
+#' notable_temperatures <- c(1000, 2000, 3200, 4000, 5200, 7000, 10000)
+#' plot(x=x, y=rep(0, 200), col=temperature(x), pch="|", cex=5, xaxt='n')
+#' axis(side=1, at=notable_temperatures, labels=TRUE, las=2)
+#' abline(v=notable_temperatures, lty="dotted")
 temperature <- function(temperature=5200) {
   parse_color(temperature, "temperature")
 }

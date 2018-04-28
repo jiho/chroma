@@ -18,9 +18,9 @@ test_that("hsl is reversible", {
   expect_that(hsl(as.hsl(x)), equals(as.hex(x)))
 })
 
-# test_that("hsi is reversible", {
-#   expect_that(hsi(as.hsi(x)), equals(as.hex(x)))
-# })
+test_that("hsi is not reversible", {
+  expect_that(hsi(as.hsi(x)), not(equals(as.hex(x))))
+})
 
 test_that("hcl is reversible", {
   expect_that(hcl(as.hcl(x)), equals(as.hex(x)))
@@ -46,6 +46,6 @@ test_that("hex is reversible", {
   expect_that(hex(as.hex(x)), equals(as.hex(x)))
 })
 
-# test_that("temperature is not reversible", {
-#   expect_that(temperature(as.temperature(x)), not(equals(as.hex(x))))
-# })
+test_that("temperature is not reversible", {
+  expect_that(temperature(as.temperature(x)), not(equals(as.hex(x))))
+})
