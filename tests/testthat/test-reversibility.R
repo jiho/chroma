@@ -10,10 +10,6 @@ test_that("rgba is reversible", {
   expect_that(rgba(as.rgba(x)), equals(x))
 })
 
-test_that("gl is reversible", {
-  expect_that(gl(as.gl(x)), equals(x))
-})
-
 test_that("hsv is reversible", {
   expect_that(hsv(as.hsv(x)), equals(as.hex(x)))
 })
