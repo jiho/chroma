@@ -45,9 +45,6 @@ hsv <- function(h=0, s=0.6, v=0.7, alpha=NULL, max.hue=360) {
 
   # add transparency if needed
   if ( !is.null(alpha) ) {
-    if ( !(length(alpha) == 1 | length(alpha) == length(colors)) ) {
-      stop("alpha needs to be either a single number or a vector of the same length as the number of colors (", length(colors), " here).")
-    }
     colors <- alpha(colors, alpha)
   }
 
