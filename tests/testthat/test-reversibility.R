@@ -1,6 +1,6 @@
 context("Reversibility")
 
-x <- rainbow(10)
+x <- tolower(rainbow(10))
 
 test_that("rgb is reversible", {
   expect_that(rgb(as.rgb(x), max=255), equals(as.hex(x)))
