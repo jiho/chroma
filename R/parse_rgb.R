@@ -2,14 +2,14 @@
 #'
 #' Create a vector of colors from red, green, and blue. This is a drop-in replacement for the \code{\link[grDevices]{rgb}} function, included with R in package \code{grDevices}.
 #'
-#' @param red,green,blue color channels, numbers in \code{[0, maxColorValue]}.
+#' @param red,green,blue color channels, numbers in \code{[0, maxColorValue]}. \code{red} can also be a matrix or data.frame containing the other components (\code{green} and \code{blue} for \code{\link{rgb}}, \code{green}, \code{blue}, and \code{alpha} for \code{\link{rgba}})
 #' @param alpha transparency, number in \code{[0, maxColorValue]}; 0 means fully transparent, \code{maxColorValue} means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.
 #' @param names character vector. The names for the resulting vector.
 #' @param maxColorValue number giving the maximum of the color values range, typically 1 or 255.
 #'
 #' @template color_spec_from_matrix
 #' @details
-#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and allows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame).
+#' \code{rgba} is a variant which forces \code{maxColorValue} to be 1 and requires four color components, including alphaallows to specify an alpha value as a color component (i.e. as the fourth column of the first argument when this argument is a matrix/data.frame).
 #'
 #' RGB is how colors are displayed on a computer screen. However, this is not how colors are perceived by the human eye/brain. Other color spaces such as HCL and L*a*b* make it easier to create color palettes that are appropriate for human perception.
 #'
@@ -40,7 +40,6 @@
 #'   rgb(b=ramp)
 #' )
 rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1) {
-
   # handle color channels
   x <- tabularise_arguments(red, green, blue)
 
