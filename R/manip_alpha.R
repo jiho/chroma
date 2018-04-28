@@ -1,9 +1,9 @@
-#' Modify colour transparency
+#' Modify color transparency
 #'
-#' Modify colour transparency, vectorised in both \code{x} and \code{alpha} (when both are vectors, they must be the same length).
+#' Modify color transparency, vectorized in both \code{x} and \code{alpha} (when both are vectors, they must be the same length).
 #'
 #' @details
-#' All other operations in chroma do not support alpha channels (because the underlying library, chroma.js, does not output 8 digits hex color specification, which describe r, g, b, and a channels). Therefore, any manipulation of transparency must be done last.
+#' Most other operations in chroma do not support alpha channels (because the underlying library, chroma.js, does not output 8 digits hex color specifications, which describe r, g, b, and a channels). Therefore, any manipulation of transparency must be done last.
 #'
 #' @template param_x_rcolors
 #' @param alpha transparency, number in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque.
