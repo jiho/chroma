@@ -5,6 +5,8 @@
 #' @template param_x_rcolors
 #' @template param_model
 #'
+#' @details All colors in chroma are represented internally as hex codes in sRGB space. So if a color exists in that space, converting it to most other models will be loossless and reversible. For example, converting from \code{rgb} to \code{lab} back to \code{rgb} should give the same \code{rgb} values. If the starting color is not representable in sRGB, it will be converted to the closest sRGB color and the reversibility will be lost. In addition, the \code{temperature} and \code{wavelength} color "models" are very different because they represent only one aspect of the color (its temperature or its corresponding wavelength) and conversion to those is almost never lossless or reversible.
+#'
 #' @return A matrix containing the color components in most cases, except for the models:
 #' \describe{
 #'  \item{\code{css}}{a vector of css color definition strings,}
@@ -35,6 +37,23 @@
 #' # Can be vectorised
 #' as.rgb(colors()[1:5])
 #' as.rgb(c("#B55FFC", "blue", "purple", "#6A9F16"))
+#'
+#' # Starting from sRGB leads to reversibility
+#' col <- rgb(150, 100, 200, maxColorValue=255)
+#' as.cmyk(col)
+#' as.rgb(cmyk(as.cmyk(col)))
+#' # or near-reversability
+#' col <- lab(0.5, 0.5, 0)
+#' col
+#' as.lab(col)
+#'
+#' # But starting outside of sRGB looses reversibility
+#' col <- lab(0.5, -0.5, -1)
+#' # this L*a*b* color does not exist in sRGB => it is converted to the
+#' # closest sRGB equivalent
+#' col
+#' # and is different from the original L*a*b* specification
+#' as.lab(col)
 convert_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
   # we want rgba in [0,1] = gl

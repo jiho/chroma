@@ -20,7 +20,7 @@ The first argument can also be a data.frame or a matrix. In that case, its colum
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 
-CMYK is the color model used by printers, which use cyan, magenta, yellow and black ink. The CMYK space cannot reproduce all colors seen on screens, bright and flashy colors in particular.
+In R (and in chroma) colors are represented internally in the sRGB color space. CMYK is the color model used by printers, which use cyan, magenta, yellow and black ink. The CMYK model and its associated color spaces cannot reproduce all sRGB colors, seen on screens; bright and flashy colors in particular. On the other hand, some CMYK colors are not representable in sRGB; in those cases, they will be converted to the nearest sRGB color. It is therefore possible for two different \code{cmyk} specifications to yield the same sRGB hex code.
 }
 \examples{
 cmyk()
