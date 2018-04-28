@@ -66,5 +66,5 @@ test_that("scale functions handle NAs", {
   expect_equal(chroma_scale()(NA), as.character(NA))
   expect_equal(light_scale()(NA), as.character(NA))
   # as input
-  expect_equal(interp_scale(colors=c("white", NA, "black"))(0), "#ffffff")
+  expect_equal(interp_scale(colors=c("white", NA, "black"))(0), "#FFFFFF")
 })

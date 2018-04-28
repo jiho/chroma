@@ -1,6 +1,6 @@
 context("Parsing reversibility")
 
-x <- tolower(rainbow(10))
+x <- rainbow(10)
 
 test_that("cmyk is reversible", {
   expect_that(cmyk(as.cmyk(x)), equals(as.hex(x)))

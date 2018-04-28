@@ -14,7 +14,7 @@
 #'
 #' @importFrom grDevices rgb
 in_hex <- function(x) {
-  out <- tolower(grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255))
+  out <- grDevices::rgb(t(grDevices::col2rgb(x)), maxColorValue=255)
   # reinsert NAs (which are transformed into white by the previous command)
   out <- na_insert(out, from=x)
   return(out)

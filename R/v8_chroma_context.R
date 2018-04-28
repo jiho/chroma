@@ -41,6 +41,8 @@ v8_eval <- function(command, context=v8_chroma_context()) {
   # run valid (i.e. non NA) v8 commands
   # (and ensure the result is a vector)
   out <- unlist(lapply(na.omit(command), context$eval))
+  # make upper case for consistency with other color-related functions in R
+  out <- toupper(out)
   # re-insert NAs
   out <- na_insert(out, from=command)
   return(out)
