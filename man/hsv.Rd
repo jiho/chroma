@@ -26,7 +26,7 @@ The first argument can also be a data.frame or a matrix. In that case, its colum
 
 When separate arguments are used for the color components and are vectors, values in shorter arguments are recycled to match the length of the longest argument. If the lengths are not compatible, an error is output.
 
-The HSV color model tentatively separates color (hue), color intensity (saturation), and color lightness (value), which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion reamins in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{v} some hues are perceived as brighter (yellow and green for example) and therefore draw attention to themselves. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
+The HSV color model tentatively separates color (hue), color intensity (saturation), and color lightness (value), which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion remains in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{v} some hues are perceived as brighter (yellow and green for example) and therefore draw the viewer's attention. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
 }
 \examples{
 hsv()
@@ -41,7 +41,6 @@ show_col(hsv(h=ramp*360), hsv(s=ramp), hsv(v=ramp))
 
 # Recreate the rainbow() scale
 show_col(hsv(h=seq(0, 324, length.out=10), s=1, v=1), rainbow(10))
-
 }
 \seealso{
 \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.

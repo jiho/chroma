@@ -17,6 +17,8 @@
 #'
 #' @template color_spec
 #'
+#' @export
+#'
 #' @examples
 #' rgb()
 #' rgb(1, 0, 0)
@@ -37,8 +39,6 @@
 #'   rgb(g=ramp),
 #'   rgb(b=ramp)
 #' )
-#'
-#' @export
 rgb <- function(red=0, green=0, blue=0, alpha=NULL, names=NULL, maxColorValue=1) {
 
   # handle color channels

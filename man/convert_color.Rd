@@ -75,8 +75,7 @@ as.temperature("red")
 # Can be vectorised
 as.rgb(colors()[1:5])
 as.rgb(c("#B55FFC", "blue", "purple", "#6A9F16"))
-
 }
 \seealso{
-See \code{\link{parse_color}} for a general function to parse colors in various specifications.
+\code{\link{parse_color}} for a general function to parse colors in various specifications.
 }

@@ -14,6 +14,7 @@
 #' @template return_hex_colors
 #'
 #' @seealso HCL-based color scales: \code{\link{hue_scale}}, \code{\link{chroma_scale}}, and \code{\link{light_scale}}.
+#'
 #' @template color_spec
 #'
 #' @export

@@ -31,7 +31,6 @@ cmyk(c=0.5, m=1, y=1, k=c(0.25, 0.5, 0.75))
 
 # Color ramp
 show_col(cmyk(k=seq(0, 1, length.out=10)))
-
 }
 \seealso{
 \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.

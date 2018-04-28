@@ -6,13 +6,15 @@
 #' @template return_hex_colors
 #'
 #' @family color specifications
+#' @seealso \code{\link{convert_color}} to convert parsed colors to another model.
+#'
+#' @export
 #'
 #' @examples
 #' parse_color(data.frame(h=c(0, 120, 240), s=0.5, v=0.7), model="hsv")
 #' parse_color(data.frame(r=c(255, 0, 0),
 #'                        g=c(0, 255, 0),
 #'                        b=c(0, 0, 255)), model="rgb")
-#' @export
 parse_color <- function(x, model) {
   # recognise color model
   model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))

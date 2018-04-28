@@ -8,13 +8,13 @@
 #'
 #' @template color_spec
 #'
+#' @export
+#'
 #' @examples
 #' css("teal")
 #' css(c("teal", "blanchedalmond"))
 #' css("rgb(255, 100, 100)")
 #' css("hsl(200, 50%, 50%)")
-#'
-#' @export
 css <- function(x) {
   parse_color(x, "css")
 }

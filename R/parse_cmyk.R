@@ -12,6 +12,8 @@
 #'
 #' @template color_spec
 #'
+#' @export
+#'
 #' @examples
 #' cmyk()
 #' cmyk(0, 0, 0, 0.1)
@@ -21,14 +23,12 @@
 #'
 #' # Color ramp
 #' show_col(cmyk(k=seq(0, 1, length.out=10)))
-#'
-#' @export
 cmyk <- function(c=0, m=0.6, y=0.6, k=0.4) {
   # handle color channels
   x <- tabularise_arguments(c, m, y, k)
 
   # parse colors using chroma.js
   colors <- parse_color(x, "cmyk")
-    
+
   return(colors)
 }

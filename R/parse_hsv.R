@@ -9,11 +9,13 @@
 #'
 #' @template color_spec_from_matrix
 #' @details
-#' The HSV color model tentatively separates color (hue), color intensity (saturation), and color lightness (value), which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion reamins in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{v} some hues are perceived as brighter (yellow and green for example) and therefore draw attention to themselves. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
+#' The HSV color model tentatively separates color (hue), color intensity (saturation), and color lightness (value), which helps with the creation of color palettes compared to RGB. However, while the color components are separated numerically, some confusion remains in the way colors are perceived by the human eye/brain. Indeed, even at constant \code{s} and \code{v} some hues are perceived as brighter (yellow and green for example) and therefore draw the viewer's attention. This is one of the common problems with 'rainbow'-like color scales (which are constructed in HSL or HSV space). See the function \code{\link{luminance}} for a numerical demonstration. For the creation of color palettes, the HCL space (function \code{\link{hcl}}) should be preferred.
 #'
 #' @template return_hex_colors
 #'
 #' @template color_spec
+#'
+#' @export
 #'
 #' @examples
 #' hsv()
@@ -28,15 +30,13 @@
 #'
 #' # Recreate the rainbow() scale
 #' show_col(hsv(h=seq(0, 324, length.out=10), s=1, v=1), rainbow(10))
-#'
-#' @export
 hsv <- function(h=0, s=0.6, v=0.7, alpha=NULL) {
   # handle color channels
   x <- tabularise_arguments(h, s, v)
 
   # parse colors using chroma.js
   colors <- parse_color(x, "hsv")
-  
+
   # add transparency if needed
   if ( !is.null(alpha) ) {
     if ( !(length(alpha) == 1 | length(alpha) == length(colors)) ) {
@@ -44,6 +44,6 @@ hsv <- function(h=0, s=0.6, v=0.7, alpha=NULL) {
     }
     colors <- alpha(colors, alpha)
   }
-  
+
   return(colors)
 }

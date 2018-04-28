@@ -20,7 +20,6 @@ css("teal")
 css(c("teal", "blanchedalmond"))
 css("rgb(255, 100, 100)")
 css("hsl(200, 50\%, 50\%)")
-
 }
 \seealso{
 \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.

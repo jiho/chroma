@@ -10,8 +10,10 @@
 #' The CIE L*a*b* color space is intended to represent all colors visible by the human eye. It separates a lightness component (\code{l}), which matches the human perception of lightness well, from two color "opponents" (\code{a} and \code{b}). To create color palettes however, the HCL color model (function \code{\link{hcl}}) is likely to be more practical and is also intended to match human perception of colors.
 #'
 #' @template return_hex_colors
-#' 
+#'
 #' @template color_spec
+#'
+#' @export
 #'
 #' @examples
 #' lab()
@@ -28,14 +30,12 @@
 #' plot(ab$a, ab$b, col=lab(l=0.5, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 #' plot(ab$a, ab$b, col=lab(l=0.2, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 #' plot(ab$a, ab$b, col=lab(l=1, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
-#'
-#' @export
 lab <- function(l=0.5, a=0.5, b=0.5) {
   # handle color channels
   x <- tabularise_arguments(l, a, b)
 
   # parse colors using chroma.js
   colors <- parse_color(x, "lab")
-  
+
   return(colors)
 }

@@ -12,7 +12,9 @@
 #'  \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin.}
 #' }
 #'
-#' @seealso See \code{\link{parse_color}} for a general function to parse colors in various specifications.
+#' @seealso \code{\link{parse_color}} for a general function to parse colors in various specifications.
+#'
+#' @export
 #'
 #' @examples
 #' convert_color("red", model="rgb")
@@ -31,8 +33,6 @@
 #' # Can be vectorised
 #' as.rgb(colors()[1:5])
 #' as.rgb(c("#B55FFC", "blue", "purple", "#6A9F16"))
-#'
-#' @export
 convert_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
   # we want rgba in [0,1] = gl

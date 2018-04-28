@@ -24,6 +24,8 @@ parse_color(data.frame(r=c(255, 0, 0),
                        b=c(0, 0, 255)), model="rgb")
 }
 \seealso{
+\code{\link{convert_color}} to convert parsed colors to another model.
+
 Other color specifications: \code{\link{cmyk}},
   \code{\link{css}}, \code{\link{hcl}}, \code{\link{hex}},
   \code{\link{hsi}}, \code{\link{hsl}}, \code{\link{hsv}},

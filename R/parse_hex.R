@@ -11,17 +11,19 @@
 #'
 #' @template color_spec
 #'
+#' @family color specifications
+#'
+#' @export
+#'
 #' @examples
 #' hex("#ff3399")
 #' hex("ff3399")
 #' hex("ff3399")
 #' hex("F39")
-#' 
+#'
 #' (half_transparent <- alpha("#ff3399", 0.5))
 #' hex(half_transparent)
 #' # The transparency portion (last two positions: '80') is removed
-#'
-#' @export
 hex <- function(x) {
   parse_color(x, "hex")
 }

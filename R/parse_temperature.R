@@ -8,6 +8,8 @@
 #'
 #' @template color_spec
 #'
+#' @export
+#'
 #' @examples
 #' temperature()
 #' temperature(c(2000, 5200, 7000))
@@ -15,8 +17,6 @@
 #' # Display the available range of color temperatures
 #' x <- seq(1000, 20000, length.out=20)
 #' plot(x=x, y=rep(1, 20), col=temperature(x), pch=15, cex=3)
-#'
-#' @export
 temperature <- function(temperature=5200) {
   parse_color(temperature, "temperature")
 }

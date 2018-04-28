@@ -39,7 +39,6 @@ ab <- expand.grid(a=seq(-1, 1, length.out=10), b=seq(-1, 1, length.out=10))
 plot(ab$a, ab$b, col=lab(l=0.5, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 plot(ab$a, ab$b, col=lab(l=0.2, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
 plot(ab$a, ab$b, col=lab(l=1, a=ab$a, b=ab$b), pch=15, cex=3, asp=1)
-
 }
 \seealso{
 \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
