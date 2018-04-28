@@ -9,7 +9,8 @@
 #' \describe{
 #'  \item{\code{css}}{a vector of css color definition strings,}
 #'  \item{\code{hex}}{a vector of hexadecimal strings defining colors,}
-#'  \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin.}
+#'  \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the colors in Kelvin,}
+#'  \item{\code{wavelength}}{a vector of numbers corresponding to the wavelength of monochromatic light closest to the input colors.}
 #' }
 #'
 #' @seealso \code{\link{parse_color}} for a general function to parse colors in various specifications.
@@ -29,12 +30,13 @@
 #' as.css("red")
 #' as.hex("red")
 #' as.temperature("red")
+#' as.wavelength("red")
 #'
 #' # Can be vectorised
 #' as.rgb(colors()[1:5])
 #' as.rgb(c("#B55FFC", "blue", "purple", "#6A9F16"))
 convert_color <- function(x, model) {
-  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
+  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
   # we want rgba in [0,1] = gl
   if (model == "rgba") { model <- "gl" }
 
@@ -42,11 +44,17 @@ convert_color <- function(x, model) {
   x <- in_hex(x)
 
   # convert colors
-  cmds <- stringr::str_c("chroma('", x, "').",model,"()")
-  res <- v8_eval(cmds)
+  if (model == "wavelength") {
+    # with custom code
+    res <- convert_wavelength(x)
+  } else {
+    # through chroma.js
+    cmds <- stringr::str_c("chroma('", x, "').",model,"()")
+    res <- v8_eval(cmds)
+  }
 
   # parse into a matrix of numbers, when appropriate
-  if (! model %in% c("css", "hex", "temperature")) {
+  if (! model %in% c("css", "hex", "temperature", "wavelength")) {
     if (model == "gl") { model <- "rgba" } # we need rgba as column headers
 
     # if all colors are NA, force the result to be a matrix of the correct dimension
@@ -131,3 +139,8 @@ as.hex <- function(x) { convert_color(x, model="hex") }
 #' @rdname convert_color
 #' @export
 as.temperature <- function(x) { convert_color(x, model="temperature") }
+
+#' @rdname convert_color
+#' @export
+as.wavelength <- function(x) { convert_color(x, model="wavelength") }
+

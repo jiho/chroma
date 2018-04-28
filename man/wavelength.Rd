@@ -2,9 +2,12 @@
 % Please edit documentation in R/parse_wavelength.R
 \name{wavelength}
 \alias{wavelength}
+\alias{wl}
 \title{Color Specification as Wavelength}
 \usage{
-wavelength(x, l = 0.5)
+wavelength(x)
+
+wl(x)
 }
 \arguments{
 \item{x}{vector of wavelengths.}
@@ -13,16 +16,18 @@ wavelength(x, l = 0.5)
 A vector of colors specified as hex codes
 }
 \description{
-Convert colors specified as the wavelength of a light beam into a RGB approximation.
+Convert colors specified as the wavelength of a beam of monochromatic light into an R color.
 }
 \details{
-The human eye can distinguish colors between approximately 390 and 700 nm. The colors that we name (arbitrarily, since they really change continuously along the spectrum) are: Violet = [380,450] nm, Blue = [450,495] nm, Green = [495,570] nm, Yellow = [570,590] nm, Orange = [590,620] nm, Red = [620,750] nm.
+The human eye can distinguish colors between approximately 380 and 750 nm. The colors that we name (arbitrarily, since they really change continuously along the spectrum) are: Violet = [380,450] nm, Blue = [450,495] nm, Green = [495,570] nm, Yellow = [570,590] nm, Orange = [590,620] nm, Red = [620,750] nm.
+
+The correspondance with colors in sRGB-space (the ones R can use) is only approximate because not all monochromatic light colors can be accurately represented in sRGB. Technically it is done by interpolating from a lookup table, described in \code{\link{visible}}, which itself is a numerical approximation of the match between input colours and sRGB equivalents.
 }
 \examples{
 # Display the full visible spectrum
-x <- seq(380, 710, length.out=200)
+x <- seq(370, 760, length.out=200)
 plot(x=x, y=rep(0, 200), col=wavelength(x), pch="|", cex=5)
-abline(v=c(390, 700), lty="dotted")
+abline(v=c(380, 450, 495, 570, 590, 620, 750), lty="dotted")
 }
 \seealso{
 Other color specifications: \code{\link{cmyk}},

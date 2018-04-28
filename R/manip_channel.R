@@ -43,7 +43,7 @@
 #' channel(x, "hsv", "h") <- 240  # make all blue
 #' show_col(x_orig, x)
 channel <- function(x, model, channel) {
-  if (model %in% c("css", "hex", "temperature")) {
+  if (model %in% c("css", "hex", "temperature", "wavelength")) {
     stop(paste0("Cannot extract a channel from a ", model, " color"))
   }
 
@@ -58,7 +58,7 @@ channel <- function(x, model, channel) {
 #' @rdname channel
 #' @export
 `channel<-` <- function(x, model, channel, value) {
-  if (model %in% c("css", "hex", "temperature")) {
+  if (model %in% c("css", "hex", "temperature", "wavelength")) {
     stop(paste0("Cannot extract a channel in a ", model, " color"))
   }
 

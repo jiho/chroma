@@ -14,6 +14,7 @@
 \alias{as.css}
 \alias{as.hex}
 \alias{as.temperature}
+\alias{as.wavelength}
 \title{Convert colors to a given color model}
 \usage{
 convert_color(x, model)
@@ -41,18 +42,21 @@ as.css(x)
 as.hex(x)
 
 as.temperature(x)
+
+as.wavelength(x)
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}.}
+\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}, \code{wavelength}.}
 }
 \value{
 A matrix containing the color components in most cases, except for the models:
 \describe{
  \item{\code{css}}{a vector of css color definition strings,}
  \item{\code{hex}}{a vector of hexadecimal strings defining colors,}
- \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the color in Kelvin.}
+ \item{\code{temperature}}{a vector of numbers corresponding to the temperature of the colors in Kelvin,}
+ \item{\code{wavelength}}{a vector of numbers corresponding to the wavelength of monochromatic light closest to the input colors.}
 }
 }
 \description{
@@ -71,6 +75,7 @@ as.lch("red")
 as.css("red")
 as.hex("red")
 as.temperature("red")
+as.wavelength("red")
 
 # Can be vectorised
 as.rgb(colors()[1:5])

@@ -1,6 +1,6 @@
 #' Parse colors specified in a given model
 #'
-#' @param x a matrix or data.frame whose columns specify the color channels or a vector of character string definitions of colors for the \code{css}, \code{hex}, and \code{temperature} color models.
+#' @param x a matrix or data.frame whose columns specify the color channels or a vector of color definitions for the \code{css}, \code{hex}, \code{temperature}, \code{wavelength} color models.
 #' @template param_model
 #'
 #' @template return_hex_colors
@@ -17,10 +17,10 @@
 #'                        b=c(0, 0, 255)), model="rgb")
 parse_color <- function(x, model) {
   # recognise color model
-  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature"))
+  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
 
   # check arguments
-  vector_color_models <- c("css", "hex", "temperature")
+  vector_color_models <- c("css", "hex", "temperature", "wavelength")
   if (model %in% vector_color_models) {
 
     if ( !is.vector(x) ) {
@@ -115,20 +115,27 @@ parse_color <- function(x, model) {
   } else if ( model == "temperature" ) {
     is_in(x, 1000, 40000, "temperature")
 
+  } else if (model == "wavelength") {
+    x <- as.numeric(x)
   }
 
-  # parse colors using chroma.js
-  if (model %in% vector_color_models) {
-    cmds <- sapply(x, function(xx) {
-      stringr::str_c("chroma.", model, "('", xx, "').hex()")
-    }, USE.NAMES=FALSE)
+  # parse colors
+  if (model == "wavelength") {
+    # parse using custom code
+    res <- parse_wavelength(x)
   } else {
-    cmds <- apply(x, 1, function(xx) {
-      stringr::str_c("chroma.", model, "([", stringr::str_c(xx, collapse=","), "]).hex()")
-    })
+    # parse using chroma.js
+    if (model %in% vector_color_models) {
+      cmds <- sapply(x, function(xx) {
+        stringr::str_c("chroma.", model, "('", xx, "').hex()")
+      }, USE.NAMES=FALSE)
+    } else {
+      cmds <- apply(x, 1, function(xx) {
+        stringr::str_c("chroma.", model, "([", stringr::str_c(xx, collapse=","), "]).hex()")
+      })
+    }
+
+    res <- v8_eval(cmds)
   }
-
-  res <- v8_eval(cmds)
-
   return(res)
 }
