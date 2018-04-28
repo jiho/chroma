@@ -1,4 +1,4 @@
-context("Reversibility")
+context("Parsing reversibility")
 
 x <- tolower(rainbow(10))
 
