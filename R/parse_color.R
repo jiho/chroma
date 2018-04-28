@@ -62,7 +62,7 @@ parse_color <- function(x, model) {
     is_in(x[,1], 0, 1, "red")
     is_in(x[,2], 0, 1, "green")
     is_in(x[,3], 0, 1, "blue")
-    is_in(x[,3], 0, 1, "alpha")
+    is_in(x[,4], 0, 1, "alpha")
     model <- "gl"
 
   } else if ( model == "hsv" ) {
