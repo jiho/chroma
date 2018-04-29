@@ -12,6 +12,7 @@ test_that("parsing functions handle NAs", {
   expect_equal(rgb(NA),  as.character(NA))
   expect_equal(rgba(NA),  as.character(NA))
   expect_equal(temperature(NA), as.character(NA))
+  expect_equal(wavelength(NA), as.character(NA))
 })
 
 test_that("conversion functions handle NAs", {
@@ -27,6 +28,7 @@ test_that("conversion functions handle NAs", {
   expect_equivalent(as.rgb(NA), matrix(ncol=3))
   expect_equivalent(as.rgba(NA), matrix(ncol=4))
   expect_equal(as.temperature(NA), as.numeric(NA))
+  expect_equal(as.wavelength(NA), as.numeric(NA))
 })
 
 

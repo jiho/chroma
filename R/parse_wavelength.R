@@ -59,14 +59,18 @@ convert_wavelength <- function(x) {
 
   # for each input color
   res <- sapply(dists, function(y) {
-    # find the closest color in the visible spectrum table
-    i <- which.min(y)
-    # look around it to find the acutal closest wavelength
-    is <- max(1, i-2):min(length(v$wl), i+2)
-    # NB: we use spline approximation because the delta_e distance is not linear and we are looking for the minimum which is likely *between* known points so we have to interpolate the dip in between those.
-    approxfun <- stats::splinefun(v$wl[is], y[is])
-    wl_local <- seq(min(v$wl[is]), max(v$wl[is]), by=0.5)
-    min_wl <- wl_local[which.min(approxfun(wl_local))]
+    if (all(is.na(y))) {
+      min_wl <- NA_real_
+    } else {
+      # find the closest color in the visible spectrum table
+      i <- which.min(y)
+      # look around it to find the acutal closest wavelength
+      is <- max(1, i-2):min(length(v$wl), i+2)
+      # NB: we use spline approximation because the delta_e distance is not linear and we are looking for the minimum which is likely *between* known points so we have to interpolate the dip in between those.
+      approxfun <- stats::splinefun(v$wl[is], y[is])
+      wl_local <- seq(min(v$wl[is]), max(v$wl[is]), by=0.5)
+      min_wl <- wl_local[which.min(approxfun(wl_local))]
+    }
     return(min_wl)
   })
 
