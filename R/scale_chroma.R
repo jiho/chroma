@@ -2,10 +2,9 @@
 #'
 #' Lightness-based color scale and palette in HCL space.
 #'
-#' @template param_lightness
-#' @template param_hue
 #' @param chroma chromacity, vector of two numbers in \code{[0,~1]} (0 is grey, ~1 is full color) giving the minimum and maximum chromacities along the scale.
 #' @inheritParams interp_scale
+#' @inheritParams hcl
 #'
 #' @template details_hcl
 #'
@@ -13,6 +12,8 @@
 #'
 #' @template seealso_hcl_scales
 #' @family color scales and palettes
+#'
+#' @export
 #'
 #' @examples
 #' # Define a scale towards a more intense red
@@ -59,9 +60,6 @@
 #' legend(1, 8, legend=levels(Species), pch=19,
 #'        col=chroma_colors(n=nlevels(Species)))
 #' # but a hue-based scale is probably more appropriate (see ?hue_map)
-#'
-#' @importFrom scales rescale
-#' @export
 chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE) {
   # NB: argument is named `chroma` to avoid conflict with `c` (error: promise already under evaluation). But the `c` abbreviation works.
 
