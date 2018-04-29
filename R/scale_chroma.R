@@ -41,9 +41,14 @@
 #' # such as the elevation of the Maunga Whau volcano
 #' image(maunga, col=chroma_colors(100, h="red"))
 #' contour(maunga, col=alpha("white", 0.5), add=TRUE)
+#'
+#' filled.contour(maunga, color.palette=chroma_palette(h="red"))
+#'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
 #'       col=chroma_map(persp_facets(maunga$z), h="red"))
-#' \dontrun{library("rgl")
+#'
+#' \dontrun{
+#' library("rgl")
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
 #'         col=chroma_map(maunga$z, h="red"))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)

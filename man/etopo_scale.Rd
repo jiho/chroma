@@ -53,15 +53,23 @@ etopo_colors(5)
 
 # The goal of these scales is to color maps and elevation models. Here is
 # one centered on Thailand, showcasing high mountains and deep trenches
-persp(thail, theta=30, phi=25, border=alpha("black", 0.2), expand=0.2,
-      col=etopo_map(persp_facets(thail$z)))
+levs <- seq(-9000,6000,by=500)
+contour(thai, levels=levs, col=etopo_map(levs), asp=1.03)
 
-\dontrun{library("rgl")
+filled.contour(thai, levels=levs, col=etopo_map(levs), asp=1.03)
+
+persp(thai, theta=30, phi=25, border=alpha("black", 0.2), expand=0.2,
+      col=etopo_map(persp_facets(thai$z)))
+
+\dontrun{
+# 3D rotating map
+library("rgl")
 # To get a perfect land/sea mapping, the colors need to be computed
 # exactly based on the input altitude values; set `exact.until` very high
 # do achieve this (but this makes the function slower of course).
-persp3d(thail, aspect=c(1,0.96,0.2), axes=FALSE, box=FALSE,
-        col=etopo_map(thail$z, exact.until=10^5))
+persp3d(thai, aspect=c(1,0.96,0.2), axes=FALSE, box=FALSE,
+        col=etopo_map(thai$z, exact.until=10^5))
+play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 }
 }
 \references{
