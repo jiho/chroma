@@ -2,6 +2,8 @@
 #'
 #' @param n number of colors to generate
 #'
+#' @details Using \code{\link[base]{set.seed}} is ineffective for this function.
+#'
 #' @template return_hex_colors
 #'
 #' @examples

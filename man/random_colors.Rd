@@ -18,6 +18,9 @@ A vector of colors specified as hex codes
 \description{
 Generate random color(s)
 }
+\details{
+Using \code{\link[base]{set.seed}} is ineffective for this function.
+}
 \examples{
 random_colors()
 random_colors(n=10)
