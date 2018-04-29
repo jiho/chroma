@@ -25,7 +25,7 @@ Get or set the relative brightness of colors
 \details{
 \code{luminance} gets the relative brightness of colors, normalised to 0 for darkest black and 1 for lightest white according to the WCAG definition \url{http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef}.
 
-\code{luminance<-} sets the brightness by interpolating with black or white until the appropriate relative luminance is found.
+\code{luminance<-} sets the relative brightness by interpolating with black or white until the appropriate relative luminance is found. The changes in luminance are not reversible because the interpolation to black or white changes various aspects of the color simultaneously: its lightness of course but also its intensity and even possibly its hue (at the extreme, black or white have no well-defined hue).
 }
 \examples{
 luminance("black")
