@@ -40,11 +40,14 @@ thai <- thai %>% group_by(lon, lat) %>% summarise(alt=mean(alt))
 # library("ggplot2")
 # ggplot(thai) + geom_raster(aes(lon, lat, fill=alt)) + coord_quickmap()
 
-thail <- list(
+thai <- list(
   x=unique(thai$lon),
   y=unique(thai$lat),
   z=matrix(thai$alt, nrow=length(unique(thai$lon)), byrow=TRUE)
 )
-image(thail)
+image(thai)
 
-use_data(thail, internal=FALSE, overwrite=TRUE)
+library("broom")
+thaixyz <- tidy(thai)
+
+use_data(thai, thaixyz, internal=FALSE, overwrite=TRUE)
