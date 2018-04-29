@@ -64,7 +64,7 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
   hue_range <- diff(h)
   if (abs(hue_range) > 360) {
     h2 <- h[1] + 360*sign(hue_range)
-    warning(paste0("The range of hues chosen is wider than 360º (",h[1]," -> ",h[2]," = ", hue_range,"º).\n  Several values would be mapped to the same hue, which is probably not desirable.\n  The range was clipped to ",h[1]," -> ",h2," = 360º."))
+    warning(paste0("The range of hues chosen is wider than 360\u00B0 (",h[1]," -> ",h[2]," = ", hue_range,"\u00B0).\n  Several values would be mapped to the same hue, which is probably not desirable.\n  The range was clipped to ",h[1]," -> ",h2," = 360\u00B0."))
     h[2] <- h2
   }
 
