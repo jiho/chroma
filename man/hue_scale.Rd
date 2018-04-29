@@ -104,5 +104,6 @@ Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
   \code{\link{inferno_scale}}, \code{\link{interp_scale}},
   \code{\link{light_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
+  \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
+  \code{\link{wikitopo_scale}}
 }
