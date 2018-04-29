@@ -5,6 +5,12 @@
 \alias{hue_map}
 \alias{hue_palette}
 \alias{hue_colors}
+\alias{scale_color_hue_d}
+\alias{scale_colour_hue_d}
+\alias{scale_fill_hue_d}
+\alias{scale_color_hue_c}
+\alias{scale_colour_hue_c}
+\alias{scale_fill_hue_c}
 \title{Hue scale and palette}
 \usage{
 hue_scale(h = c(0, 360) + 40, c = 0.65, l = 0.65, domain = c(0, 1),
@@ -15,6 +21,20 @@ hue_map(x, ...)
 hue_palette(n, ...)
 
 hue_colors(n, ...)
+
+scale_color_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
+  reverse = FALSE, full.circle = FALSE, na.value = NULL)
+
+scale_fill_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
+  reverse = FALSE, full.circle = FALSE, na.value = NULL)
+
+scale_color_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
+  reverse = FALSE, full.circle = FALSE, na.value = NULL,
+  guide = "colourbar")
+
+scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
+  reverse = FALSE, full.circle = FALSE, na.value = NULL,
+  guide = "colourbar")
 }
 \arguments{
 \item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0,360]} (angles outside of the range are rotated back to within \code{[0,360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -31,16 +51,20 @@ hue_colors(n, ...)
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.}
+\item{...}{passed to \code{\link{hue_scale}} from other \code{hue_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 }
 \value{
-\code{*_scale} and \code{*_palette} return a function.
+\code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
 
-\code{*_map} and \code{*_colors} return a vector of hex colors.
+\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans the range of values in argument \code{x}, maps the content of \code{x} on that scale, and returns the \strong{colors}.
 
-\code{scale_*} return a ggplot2 scale object.
+\code{*_palette} returns a \strong{function}. This function takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
+
+\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced \strong{colors}. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} return a \strong{ggplot2 scale}, either discrete (similar to \code{\link[ggplot2]{scale_color_discrete}}) or continuous (similar to \code{\link[ggplot2]{scale_color_continuous}}).
 }
 \description{
 Hue-based color scale, in HCL space.
@@ -51,18 +75,6 @@ In HCL space, the perceived color (hue) is completely separated from the perceiv
   \item For qualitative palettes (discrete variables): varying \code{h} at constant \code{c} and \code{l} avoids drawing attention to certain hues, as would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
   \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
-
-As a user, the most useful functions are \code{*_map}, \code{*_colors}, and \code{scale_*} if you are using ggplot2.
-
-\code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
-
-\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
-
-\code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
-
-\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
-
-\code{scale_*} create a ggplot2 scale object using the colors defined here.
 }
 \examples{
 # Display the full hue range with
@@ -121,16 +133,16 @@ pars <- sidepar()
 plot(Wind, Temp, col=oz_scale(Ozone), pch=19)
 sidelegend(legend=pretty(Ozone), col=oz_scale(pretty(Ozone)), pch=19)
 par(pars)
-# or just use ggplot2
+
 \dontrun{
+# or just use ggplot2
 library("ggplot2")
-ggplot(airquality) +
-   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
-   scale_color_gradientn(colors=hue_colors(10, h=c(250,350), l=0.5))
 ggplot(iris) +
-   geom_point(aes(x=Petal.Length, y=Petal.Width, color=Species)) +
-   scale_color_manual(values=hue_colors(nlevels(iris$Species)))
-}
+  geom_point(aes(x=Petal.Length, y=Petal.Width, color=Species)) +
+  scale_color_hue_d()
+ggplot(airquality) +
+  geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+  scale_color_hue_c()}
 }
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
