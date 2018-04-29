@@ -91,7 +91,19 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
 
     # map colors
     colors <- hcl(h=scales::rescale(x, from=domain, to=h), c=c, l=l)
+
+    # if the na.value is not defined, pick a grey with the same luminance as the other colors in the scale
+    if (is.null(na.value)) {
+      na.value <- hcl(h=0, c=0, l=l)
     }
+    # replace NAs by na.value when necessary
+    if (!is.na(na.value)) {
+      na_colors <- is.na(colors)
+      if (any(na_colors)) {
+        colors[na_colors] <- na.value
+      }
+    }
+
     return(colors)
   }
   return(f)
