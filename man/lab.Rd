@@ -7,7 +7,7 @@
 lab(l = 0.5, a = 0.5, b = 0.5)
 }
 \arguments{
-\item{l}{lightness, number in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
+\item{l}{lightness, number in \code{[0,1]}; 0 is darkest, 1 is brightest.}
 
 \item{a, b}{color components, numbers with values in \code{[-1, 1]}. (a=-1, b=-1) is blue, (a=-1, b=1) is green, (a=1, b=1) is red, (a=1, b=-1) is purple.}
 }

@@ -17,11 +17,11 @@ hue_palette(n, ...)
 hue_colors(n, ...)
 }
 \arguments{
-\item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
+\item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0,360]} (angles outside of the range are rotated back to within \code{[0,360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
-\item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
+\item{c}{chromacity, number in \code{[0,~1]}; 0 is grey, ~1 is full color.}
 
-\item{l}{lightness, number in \code{[0, 1]}; 0 is darkest, 1 is brightest.}
+\item{l}{lightness, number in \code{[0,1]}; 0 is darkest, 1 is brightest.}
 
 \item{domain}{the values between which the scale is computed.}
 
@@ -34,8 +34,6 @@ hue_colors(n, ...)
 \item{...}{passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
-
-\item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 }
 \value{
 \code{*_scale} and \code{*_palette} return a function.

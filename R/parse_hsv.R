@@ -4,7 +4,7 @@
 #'
 #' @template param_hue
 #' @template param_saturation
-#' @param v value, number in \code{[0, 1]}; 0 is black, 1 is full brightness
+#' @param v value, number in \code{[0,1]}; 0 is black, 1 is full brightness
 #' @template param_alpha
 #' @param compat whether to make the conventions compatible with the built-in function \code{grDevices::\link[grDevices]{hsv}}: \code{h} should be in [0,1], not [0,360].
 #'

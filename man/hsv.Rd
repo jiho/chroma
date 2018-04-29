@@ -7,13 +7,13 @@
 hsv(h = 0, s = 0.6, v = 0.7, alpha = NULL, compat = FALSE)
 }
 \arguments{
-\item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
+\item{h}{hue, either an angle around the color wheel, in [0,360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
-\item{s}{saturation, number \code{[0, 1]}; 0 is grey, 1 is full color.}
+\item{s}{saturation, number \code{[0,1]}; 0 is grey, 1 is full color.}
 
-\item{v}{value, number in \code{[0, 1]}; 0 is black, 1 is full brightness}
+\item{v}{value, number in \code{[0,1]}; 0 is black, 1 is full brightness}
 
-\item{alpha}{transparency, number in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
+\item{alpha}{transparency, number in \code{[0,1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 
 \item{compat}{whether to make the conventions compatible with the built-in function \code{grDevices::\link[grDevices]{hsv}}: \code{h} should be in [0,1], not [0,360].}
 }
