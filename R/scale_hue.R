@@ -50,21 +50,18 @@
 #' image(maunga, col=hue_colors(10, h=c(170, 90), l=0.6))
 #' contour(maunga, col=alpha("white", 0.5), add=TRUE)
 #'
-#' filled.contour(maunga, color.palette=hue_palette(h=c(170, 90), l=0.6))
-#'
 #' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
 #'       col=hue_map(persp_facets(maunga$z), h=c(170, 90), l=0.6))
 #' # Still, lightness (or chromacity) based scales are likely to be better...
 #'
 #' # To create a legend for a continuous variable, we need to define the
 #' # scale with its domain and then use it for both the plot and the legend.
-#' # Here we also use
 #' attach(airquality)
 #' oz_scale <- hue_scale(h=c(250,350), l=0.5, domain=range(Ozone, na.rm=TRUE))
 #' plot(Wind, Temp, col=oz_scale(Ozone), pch=19)
 #' legend(17, 95, legend=pretty(Ozone), col=oz_scale(pretty(Ozone)), pch=19)
 #'
-#' # Notice how the missing value colour matches the rest of the colours on the scale
+#' # Note how the missing value grey matches the rest of the colors on the scale
 #' plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.5), pch=19)
 #' plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.8), pch=19)
 #' plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.3), pch=19)
