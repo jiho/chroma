@@ -123,8 +123,8 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
     # map colors
     colors <- hcl(h=scales::rescale(x, from=domain, to=h), c=c, l=l)
 
-    # if the na.value is not defined, pick a grey with the same luminance as the other colors in the scale
-    na.value <- na_hue(na.value, l=l)
+    # if the na.value is not defined, pick a good default
+    na.value <- hue_na(na.value, l=l)
     # replace NAs by na.value when necessary
     if (!is.na(na.value)) {
       na_colors <- is.na(colors)
@@ -166,7 +166,7 @@ hue_colors <- function(n, ...) {
 
 # Pick a good missing value color for a hue scale
 # when not defined (NULL), pick a grey with the same luminance as the other colors in the scale
-na_hue <- function(na.value, l) {
+hue_na <- function(na.value, l) {
   if (is.null(na.value)) {
     na.value <- hcl(h=0, c=0, l=l)
   }
@@ -180,7 +180,7 @@ na_hue <- function(na.value, l) {
 scale_color_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL) {
   ggplot2::discrete_scale("colour", "hue",
     hue_palette(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
-    na.value=na_hue(na.value, l=l), ...
+    na.value=hue_na(na.value, l=l), ...
   )
 }
 #' @rdname hue_scale
@@ -193,7 +193,7 @@ scale_colour_hue_d <- scale_color_hue_d
 scale_fill_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL) {
   ggplot2::discrete_scale("fill", "hue",
     hue_palette(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
-    na.value=na_hue(na.value, l=l), ...
+    na.value=hue_na(na.value, l=l), ...
   )
 }
 
@@ -202,7 +202,7 @@ scale_fill_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, 
 scale_color_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colourbar") {
   ggplot2::continuous_scale("colour", "hue",
     hue_scale(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
-    na.value=na_hue(na.value, l=l), guide=guide, ...
+    na.value=hue_na(na.value, l=l), guide=guide, ...
   )
 }
 #' @rdname hue_scale
@@ -215,6 +215,6 @@ scale_colour_hue_c <- scale_color_hue_c
 scale_fill_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colourbar") {
   ggplot2::continuous_scale("fill", "hue",
     hue_scale(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
-    na.value=na_hue(na.value, l=l), guide=guide, ...
+    na.value=hue_na(na.value, l=l), guide=guide, ...
   )
 }
