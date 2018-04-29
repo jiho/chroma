@@ -5,16 +5,25 @@
 \alias{chroma_map}
 \alias{chroma_palette}
 \alias{chroma_colors}
-\title{Lightness scale and palette}
+\alias{scale_color_chroma}
+\alias{scale_colour_chroma}
+\alias{scale_fill_chroma}
+\title{Chromacity scale and palette}
 \usage{
 chroma_scale(chroma = c(0, 1), l = 0.5, h = 0, domain = c(0, 1),
-  reverse = FALSE)
+  reverse = FALSE, na.value = NULL)
 
 chroma_map(x, ...)
 
 chroma_palette(...)
 
 chroma_colors(n, ...)
+
+scale_color_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
+  reverse = FALSE, na.value = NULL, guide = "colourbar")
+
+scale_fill_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
+  reverse = FALSE, na.value = NULL, guide = "colourbar")
 }
 \arguments{
 \item{chroma}{chromacity, vector of two numbers in \code{[0,~1]} (0 is grey, ~1 is full color) giving the minimum and maximum chromacities along the scale.}
@@ -29,17 +38,23 @@ chroma_colors(n, ...)
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{chroma_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{chroma_scale} and passing it through \code{...} is an error.}
+\item{...}{passed to \code{\link{chroma_scale}} from other \code{chroma_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 }
 \value{
-\code{*_scale} and \code{*_palette} return a function.
+\code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
 
-\code{*_map} and \code{*_colors} return a vector of hex colors.
+\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans the range of values in argument \code{x}, maps the content of \code{x} on that scale, and returns the \strong{colors}.
+
+\code{*_palette} returns a \strong{function}. This function takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
+
+\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced \strong{colors}. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} return a \strong{ggplot2 scale}, either discrete (similar to \code{\link[ggplot2]{scale_color_discrete}}) or continuous (similar to \code{\link[ggplot2]{scale_color_continuous}}).
 }
 \description{
-Lightness-based color scale and palette in HCL space.
+Chromacity-based color scale, in HCL space.
 }
 \details{
 In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to greyscale. This makes the HCL space particularly suitable to create good color palettes:
@@ -47,16 +62,6 @@ In HCL space, the perceived color (hue) is completely separated from the perceiv
   \item For qualitative palettes (discrete variables): varying \code{h} at constant \code{c} and \code{l} avoids drawing attention to certain hues, as would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
   \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
-
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
-
-\code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
-
-\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
-
-\code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
-
-\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Define a scale towards a more intense red
@@ -76,41 +81,55 @@ show_col(chroma_colors(n=50, h=30))
 # Determine hue from a color and then define a chroma scale
 blues <- chroma_colors(n=50, h="dodgerblue")
 greens <- chroma_colors(n=50, h="green")
-yellows <- chroma_colors(n=50, h="gold")
+golds <- chroma_colors(n=50, h="gold")
 pinks <- chroma_colors(n=50, h="deeppink")
-show_col(blues, greens, yellows, pinks)
+show_col(blues, greens, golds, pinks)
 
 # Chroma scales can be used for continuous variables
 # such as the elevation of the Maunga Whau volcano
-image(maunga, col=chroma_colors(100, h="red"))
+image(maunga, col=chroma_colors(100, h="orange"))
 contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
-filled.contour(maunga, color.palette=chroma_palette(h="red"))
+filled.contour(maunga, color.palette=chroma_palette(h="orange"))
 
 persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-      col=chroma_map(persp_facets(maunga$z), h="red"))
+      col=chroma_map(persp_facets(maunga$z), h="orange"))
+# but a lightness-based scale would probably be even better
+# (see ?light_scale)
 
 \dontrun{
+# in spinning 3D
 library("rgl")
 persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
-        col=chroma_map(maunga$z, h="red"))
+        col=chroma_map(maunga$z, h="orange"))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
+
+# and with ggplot2
+library("ggplot2")
+ggplot(maungaxyz) + coord_fixed() +
+  geom_raster(aes(x=x, y=y, fill=z)) +
+  geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5) +
+  scale_fill_chroma(h="orange")
 }
-# but a lightness-based scale would be probably be better (see ?light_scale)
 
-# and in ggplot2
-\dontrun{
-ggplot2::ggplot(maungaxyz) + geom_raster(aes(x, y, fill=z)) + scale_fill_chroma(h="red")
-}
+# Or they could be used to map a third variable on a scatterplot
+attach(airquality)
+# define a scale encompassing the whole data
+blue_scale <- chroma_scale(h="cornflowerblue", domain=c(0,200))
+# use it on a plot and in the legend
+pars <- sidemargin()
+plot(Wind, Temp, col=blue_scale(Ozone), pch=19)
+sidelegend(legend=c(pretty(Ozone), "NA"),
+           col=blue_scale(c(pretty(Ozone), NA)), pch=19)
+par(pars)
+# note that the missing value color contrasts with the rest of the scale
 
-
-# With a limited number of levels, they may also work for discrete variables
+# They are not really appropriate for categorical variables though
 attach(iris)
-plot(Petal.Length, Sepal.Length, pch=19, col=chroma_map(Species))
-legend(1, 8, legend=levels(Species), pch=19,
-       col=chroma_colors(n=nlevels(Species)))
-# but a hue-based scale is probably more appropriate (see ?hue_map)
-
+plot(Petal.Length, Petal.Width, col=chroma_map(Species), pch=19)
+legend(1, 2, legend=levels(Species),
+             col=chroma_colors(n=nlevels(Species)), pch=19)
+# a hue-based scale would be much better (see ?hue_scale)
 }
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
