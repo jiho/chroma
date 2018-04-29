@@ -1,6 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 data-raw
+scratch
 man-roxygen
 README_files
 README.Rmd
+R/scale_viridis_variants.sh

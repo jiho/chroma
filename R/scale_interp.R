@@ -75,6 +75,7 @@
 #' @export
 #' @importFrom scales rescale
 #' @importFrom grDevices rgb colorRamp
+#' @importFrom stats na.omit
 interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, exact.until=100) {
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
@@ -134,7 +135,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       # interpolate between them
       # NB: colorRamp works between 0 and 1 only so
       # we rescale the input
-      x_scaled <- scales::rescale(stats::na.omit(x), from=range(domain))
+      x_scaled <- scales::rescale(na.omit(x), from=range(domain))
       # and return the extreme colors on either side
       x_scaled[x_scaled < 0] <- 0
       x_scaled[x_scaled > 1] <- 1

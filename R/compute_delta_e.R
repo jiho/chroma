@@ -20,6 +20,7 @@
 #' show_col("pink", clrs[which.min(d)])
 #'
 #' @export
+#' @importFrom stats na.omit
 delta_e <- function(x, y) {
   # force input R colors into hex notation
   x <- in_hex(x)
@@ -36,7 +37,7 @@ delta_e <- function(x, y) {
   X <- data.frame(x, y)
 
   # apply formula to all
-  deltae <- apply(stats::na.omit(X), 1, function(x) {
+  deltae <- apply(na.omit(X), 1, function(x) {
     delta_e_lab(x[1:3],x[4:6])
   })
   # reinsert missing values

@@ -17,7 +17,7 @@ hue(x, model = "hsv", modulo = TRUE)
 A vector of hue angles, in [0,360] if modulo is \code{TRUE}.
 }
 \description{
-Get the hues (angles around the color wheel, in [0,360º]) of a vector of colors.
+Get the hues (angles around the color wheel, in [0,360]) of a vector of colors.
 }
 \examples{
 # various input formats for x

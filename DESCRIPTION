@@ -13,6 +13,9 @@ Imports:
     V8,
     grid,
     grDevices,
-    scales
+    scales,
+    stringr
 RoxygenNote: 6.0.1
-Suggests: testthat
+Suggests:
+    testthat,
+    ggplot2

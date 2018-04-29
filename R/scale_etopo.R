@@ -25,6 +25,8 @@
 #' @references The topographic colors are based on GMT globe by Lester M. Anderson of CASP, UK, modified by Jesse Varner and Elliot Lim (NOAA/NGDC) to have a smaller band of white at the highest elevations. The bathymetry is based on GMT haxby, popularised by Bill Haxby, LDEO. See \url{https://www.ngdc.noaa.gov/mgg/global/global.html}.
 #' @seealso \code{\link{etopo}} for the colors in the palette and the associated altitudes.
 #'
+#' @export
+#'
 #' @examples
 #' # Defining a scale in that case has little value since it cannot be
 #' # customized. Explore the default mapping
@@ -69,7 +71,6 @@
 #'   geom_contour(aes(x, y, z=z), breaks=0, colour="black", size=1) +
 #'   scale_xy_map()
 #' }
-#' @export
 etopo_scale <- function(exact.until=1000) {
   bar <- interp_scale(colors=chroma::etopo$color, model="lab", interp="linear", values=chroma::etopo$altitude, exact.until=exact.until)
 }
@@ -100,7 +101,7 @@ scale_fill_etopo <- function(...) {
 #' @rdname etopo_scale
 #' @export
 scale_color_etopo <- function(...) {
-  ggplot2::scale_colour_gradientn(..., colors=chroma::etopo$color, values=scales::rescale(chroma::etopo$altitude), limits=range(chroma::etopo$altitude))
+  ggplot2::scale_color_gradientn(..., colors=chroma::etopo$color, values=scales::rescale(chroma::etopo$altitude), limits=range(chroma::etopo$altitude))
 }
 #' @rdname etopo_scale
 #' @export

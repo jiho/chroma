@@ -25,6 +25,7 @@
 #' @family color specifications
 #'
 #' @export
+#' @importFrom stats splinefun
 #' @examples
 #' # Display the full visible spectrum
 #' x <- seq(370, 760, length.out=200)
@@ -63,7 +64,7 @@ convert_wavelength <- function(x) {
     # look around it to find the acutal closest wavelength
     is <- max(1, i-2):min(length(v$wl), i+2)
     # NB: we use spline approximation because the delta_e distance is not linear and we are looking for the minimum which is likely *between* known points so we have to interpolate the dip in between those.
-    approxfun <- splinefun(v$wl[is], y[is])
+    approxfun <- stats::splinefun(v$wl[is], y[is])
     wl_local <- seq(min(v$wl[is]), max(v$wl[is]), by=0.5)
     min_wl <- wl_local[which.min(approxfun(wl_local))]
     return(min_wl)

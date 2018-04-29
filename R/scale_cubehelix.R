@@ -3,7 +3,7 @@
 #' The CubeHelix color palette, by Dave Green (Unlicense license).
 #'
 #' @template param_hue
-#' @param rotations number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360º, -1.5 = -540º)
+#' @param rotations number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360°, -1.5 = -540°)
 #' @template param_chromacity
 #' @template param_lightness
 #' @param gamma gamma contrast factor, in \code{[0,+Inf]} (sane values are in \code{[0.5,3]}). \code{gamma} < 1 emphasises the low end of the scale by whitening the high colors. \code{gamma} > 1 emphasises the high end of the scale by darkening the low colors. Use with caution and restraint.

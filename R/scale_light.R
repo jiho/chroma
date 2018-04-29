@@ -66,8 +66,8 @@
 #'        col=light_colors(n=nlevels(Species)))
 #' # but a hue-based scale is probably more appropriate (see ?hue_map)
 #'
-#' @importFrom scales rescale
 #' @export
+#' @importFrom scales rescale
 light_scale <- function(l=c(0,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE) {
   # check arguments
   if (length(l) != 2) {

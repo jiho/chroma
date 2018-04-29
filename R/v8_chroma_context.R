@@ -37,6 +37,7 @@ v8_chroma_context <- function() {
 #
 # @examples
 # v8_eval(c("chroma('pink').darken().hex()", "chroma.scale(['red','blue']).colors(5)", "chroma.mix('blue', 'red').hex()"))
+#' @importFrom stats na.omit
 v8_eval <- function(command, context=v8_chroma_context()) {
   # run valid (i.e. non NA) v8 commands
   # (and ensure the result is a vector)

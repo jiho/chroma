@@ -24,6 +24,8 @@
 #'
 #' @references \url{https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Maps/Conventions/Topographic_maps}.
 #'
+#' @export
+#'
 #' @examples
 #' # Defining a scale in that case has little value since it cannot be
 #' # customized. Explore the default mapping
@@ -69,7 +71,6 @@
 #'   geom_contour(aes(x, y, z=z), breaks=0, colour="black", alpha=0.5) +
 #'   scale_xy_map()
 #' }
-#' @export
 wikitopo_scale <- function(exact.until=1000) {
   bar <- interp_scale(colors=chroma::wikitopo$color, model="lab", interp="linear", values=chroma::wikitopo$altitude, exact.until=exact.until)
 }
@@ -100,7 +101,7 @@ scale_fill_wikitopo <- function(...) {
 #' @rdname wikitopo_scale
 #' @export
 scale_color_wikitopo <- function(...) {
-  ggplot2::scale_colour_gradientn(..., colors=chroma::wikitopo$color, values=scales::rescale(chroma::wikitopo$altitude), limits=range(chroma::wikitopo$altitude))
+  ggplot2::scale_color_gradientn(..., colors=chroma::wikitopo$color, values=scales::rescale(chroma::wikitopo$altitude), limits=range(chroma::wikitopo$altitude))
 }
 #' @rdname wikitopo_scale
 #' @export

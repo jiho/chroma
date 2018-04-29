@@ -1,6 +1,6 @@
 #' Get the hue of colors
 #'
-#' Get the hues (angles around the color wheel, in [0,360º]) of a vector of colors.
+#' Get the hues (angles around the color wheel, in [0,360]) of a vector of colors.
 #'
 #' @param x vector of colors (specified as hex strings or named R colors), or numerical hues, or a mix thereof.
 #' @param model string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.
