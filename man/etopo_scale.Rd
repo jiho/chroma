@@ -5,6 +5,9 @@
 \alias{etopo_map}
 \alias{etopo_palette}
 \alias{etopo_colors}
+\alias{scale_fill_etopo}
+\alias{scale_color_etopo}
+\alias{scale_colour_etopo}
 \title{ETOPO1 scale and palette}
 \usage{
 etopo_scale(exact.until = 1000)
@@ -14,22 +17,32 @@ etopo_map(x, ...)
 etopo_palette(exact.until = 1000, ...)
 
 etopo_colors(n, ...)
+
+scale_fill_etopo(...)
+
+scale_color_etopo(...)
 }
 \arguments{
 \item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the ETOPO1 palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.}
 
-\item{...}{passed to \code{\link{etopo_scale}}.}
+\item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
+
+\item{...}{passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_...} functions.}
+
+\item{n}{number of colors to extract from the color palette.}
 }
 \value{
 \code{*_scale} and \code{*_palette} return a function.
 
 \code{*_map} and \code{*_colors} return a vector of hex colors.
+
+\code{scale_*} return a ggplot2 scale object.
 }
 \description{
 Color scale and palette inspired from the representation of the ETOPO1 global relief model. These scales are special because the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
 }
 \details{
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
+As a user, the most useful functions are \code{*_map}, \code{*_colors}, and \code{scale_*} if you are using ggplot2.
 
 \code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
 
@@ -38,6 +51,8 @@ As a user, the most useful functions are \code{*_map} and \code{*_colors}.
 \code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
 
 \code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} create a ggplot2 scale object using the colors defined here.
 }
 \examples{
 # Defining a scale in that case has little value since it cannot be
@@ -70,6 +85,18 @@ library("rgl")
 persp3d(thai, aspect=c(1,0.96,0.2), axes=FALSE, box=FALSE,
         col=etopo_map(thai$z, exact.until=10^5))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
+
+# ggplot2 maps
+library("ggplot2")
+ggplot(thaixyz) + coord_quickmap() +
+  geom_contour(aes(x, y, z=z, colour=..level..), breaks=levs) +
+  theme_light() + scale_colour_etopo() +
+  scale_xy_map()
+ggplot(thaixyz) + coord_quickmap() +
+  geom_raster(aes(x, y, fill=z)) +
+  scale_fill_etopo() +
+  geom_contour(aes(x, y, z=z), breaks=0, colour="black", size=1) +
+  scale_xy_map()
 }
 }
 \references{
@@ -83,5 +110,6 @@ Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{cubehelix_scale}}, \code{\link{hue_scale}},
   \code{\link{inferno_scale}}, \code{\link{interp_scale}},
   \code{\link{light_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}}
+  \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
+  \code{\link{wikitopo_scale}}
 }
