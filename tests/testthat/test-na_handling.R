@@ -1,61 +1,61 @@
 context("NA handling")
 
 test_that("parsing functions handle NAs", {
-  expect_equal(cmyk(NA), as.character(NA))
-  expect_equal(css(as.character(NA)),  as.character(NA))
-  expect_equal(hcl(NA),  as.character(NA))
-  expect_equal(hex(as.character(NA)),  as.character(NA))
-  expect_equal(hsi(NA),  as.character(NA))
-  expect_equal(hsl(NA),  as.character(NA))
-  expect_equal(hsv(NA),  as.character(NA))
-  expect_equal(lab(NA),  as.character(NA))
-  expect_equal(rgb(NA),  as.character(NA))
-  expect_equal(rgba(NA),  as.character(NA))
-  expect_equal(temperature(NA), as.character(NA))
-  expect_equal(wavelength(NA), as.character(NA))
+  expect_equal(cmyk(NA), NA_character_)
+  expect_equal(css(NA_character_),  NA_character_)
+  expect_equal(hcl(NA),  NA_character_)
+  expect_equal(hex(NA_character_),  NA_character_)
+  expect_equal(hsi(NA),  NA_character_)
+  expect_equal(hsl(NA),  NA_character_)
+  expect_equal(hsv(NA),  NA_character_)
+  expect_equal(lab(NA),  NA_character_)
+  expect_equal(rgb(NA),  NA_character_)
+  expect_equal(rgba(NA),  NA_character_)
+  expect_equal(temperature(NA), NA_character_)
+  expect_equal(wavelength(NA), NA_character_)
 })
 
 test_that("conversion functions handle NAs", {
   expect_equivalent(as.cmyk(NA), matrix(ncol=4))
-  expect_equal(as.css(NA), as.character(NA))
+  expect_equal(as.css(NA), NA_character_)
   expect_equivalent(as.hcl(NA), matrix(ncol=3))
-  expect_equal(in_hex(NA), as.character(NA))
-  expect_equal(as.hex(NA), as.character(NA))
+  expect_equal(in_hex(NA), NA_character_)
+  expect_equal(as.hex(NA), NA_character_)
   expect_equivalent(as.hsi(NA), matrix(ncol=3))
   expect_equivalent(as.hsl(NA), matrix(ncol=3))
   expect_equivalent(as.hsv(NA), matrix(ncol=3))
   expect_equivalent(as.lab(NA), matrix(ncol=3))
   expect_equivalent(as.rgb(NA), matrix(ncol=3))
   expect_equivalent(as.rgba(NA), matrix(ncol=4))
-  expect_equal(as.temperature(NA), as.numeric(NA))
-  expect_equal(as.wavelength(NA), as.numeric(NA))
+  expect_equal(as.temperature(NA), NA_real_)
+  expect_equal(as.wavelength(NA), NA_real_)
 })
 
 
-test_that("channel functions handle NAs", {
-  expect_equal(alpha(NA), as.character(NA))
-  expect_equal(saturate(NA), as.character(NA))
-  expect_equal(brighten(NA), as.character(NA))
-  expect_equal(hue(NA), as.numeric(NA))
+test_that("manipulation functions handle NAs", {
+  expect_equal(alpha(NA), NA_character_)
+  expect_equal(saturate(NA), NA_character_)
+  expect_equal(brighten(NA), NA_character_)
+  expect_equal(hue(NA), NA_real_)
 
-  expect_equal(luminance(NA), as.numeric(NA))
+  expect_equal(luminance(NA), NA_real_)
   x <- "red"
   luminance(x) <- NA
-  expect_equal(x, as.character(NA))
+  expect_equal(x, NA_character_)
 
   expect_equivalent(channel(NA, "hsv", "h"), NA)
   x <- "red"
   channel(x, "rgb", "r") <- NA
-  expect_equal(x, as.character(NA))
+  expect_equal(x, NA_character_)
 })
 
-test_that("binary functions handle NAs", {
-  expect_equal(contrast(NA, NA), as.numeric(NA))
-  expect_equal(contrast("red", NA), as.numeric(NA))
-  expect_equal(delta_e(NA, NA), as.numeric(NA))
-  expect_equal(delta_e("red", NA), as.numeric(NA))
-  expect_equal(mix(NA, NA), as.character(NA))
-  expect_equal(mix("red", NA), as.character(NA))
+test_that("computation functions handle NAs", {
+  expect_equal(contrast(NA, NA), NA_real_)
+  expect_equal(contrast("red", NA), NA_real_)
+  expect_equal(delta_e(NA, NA), NA_real_)
+  expect_equal(delta_e("red", NA), NA_real_)
+  expect_equal(mix(NA, NA), NA_character_)
+  expect_equal(mix("red", NA), NA_character_)
 })
 
 test_that("scale functions handle NAs", {
