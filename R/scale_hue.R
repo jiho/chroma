@@ -112,7 +112,7 @@ hue_map <- function(x, ...) {
 #' @export
 hue_palette <- function(n, ...) {
   f <- function(n) {
-    hue_scale(domain=c(0,1), ...)(seq(0, 1, length.out=n))
+    hue_scale(domain=c(1,n), ...)(1:n)
   }
   return(f)
 }
