@@ -7,7 +7,7 @@
 hue(x, model = "hsv", modulo = TRUE)
 }
 \arguments{
-\item{x}{vector of colors specified as hex strings or named R colors.}
+\item{x}{vector of colors (specified as hex strings or named R colors), or numerical hues, or a mix thereof.}
 
 \item{model}{string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.}
 
@@ -24,7 +24,7 @@ Get the hues (angles around the color wheel, in [0,360º]) of a vector of colors
 hue(c("#F55D5B", "#16b2b4", "#6A9F16"))
 hue(c("red", "green", "blue"))
 hue(c(0, 10, 365))
-hue(c(10, "#B55FFC", "pink", 365))
+hue(c(10, "#B55FFC", "pink", NA, 365))
 
 # It is possible to reconstruct colors similar to the original ones
 # based on the extracted hue, by providing the other components

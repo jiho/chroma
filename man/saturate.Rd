@@ -36,15 +36,17 @@ show_col(c(desaturate("salmon3", 2),
            saturate("salmon3"),
            saturate("salmon3", 2)))
 
-# saturate() and desaturate() are opposite operations
+# saturate() and desaturate() are opposite operations, the direction of
+# which is set by the sign of `amount`
 saturate("red", -1)
 desaturate("red", 1)
 
-# But they not necessarily exactly reversible
-col <- "#5eff15"
+# But they are not necessarily exactly reversible when they operate near
+# extreme saturation values
+col <- "#5EFF15"
 (new_col <- desaturate(saturate(col)))
 show_col(c(col, new_col))
-
+# = the two greens are slightly different
 }
 \seealso{
 Other color manipulation functions: \code{\link{channel}},

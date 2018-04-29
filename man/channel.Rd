@@ -3,7 +3,7 @@
 \name{channel}
 \alias{channel}
 \alias{channel<-}
-\title{Get or set color channel}
+\title{Get or set a color channel}
 \usage{
 channel(x, model, channel)
 
@@ -24,7 +24,7 @@ For \code{channel}, a vector of channel values, the convention of which depend o
 For \code{channel <-}, the updated object(s).
 }
 \description{
-Get or set color channel
+Extract the value of a color channel or set it and therefore modify the color.
 }
 \examples{
 channel("pink", "rgb", "r")
@@ -35,7 +35,8 @@ channel(colors()[1:5], "hcl", "l")
 channel(rainbow(6), "hcl", "l")
 # But, by definition, lightness should be constant along a HCL "rainbow"
 channel(hcl(h=seq(0, 360, length.out=6), l=0.5), "hcl", "l")
-# NB: subtle changes are caused by the round-trip conversion to R colors.
+# NB: the subtle changes are caused by the round-trip conversion to R's
+#     internal sRGB representation of colors.
 
 # Force a given lightness
 x_orig <- x <- rainbow(6)
@@ -49,7 +50,6 @@ show_col(x_orig, x)
 
 # Keep the lightness and saturation but change the hue
 # (also called "colorizing")
-
 x_orig <- x <- c("aliceblue", "aquamarine4", "coral", "blanchedalmond")
 channel(x, "hsv", "h") <- 240  # make all blue
 show_col(x_orig, x)

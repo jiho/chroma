@@ -32,7 +32,7 @@ luminance("black")
 luminance("white")
 luminance("red")
 
-# Colors along a HSV rainbow have very different perceived brightness
+# Colors along a HSV rainbow have very different relative brightness
 luminance(rainbow(6))
 # but brightness is much more homogenous along a HCL "rainbow"
 luminance(hcl(h=seq(0, 360, length.out=6)))
@@ -43,7 +43,7 @@ luminance(col) <- 0.5
 show_col(c("red", col))
 
 # This can even be used to create color ramps, although the steps in
-# brightness may not be regular at the extremes
+# perceived brightness may not be regular at the extremes
 col <- "red"
 luminance(col) <- seq(0, 1, length.out=10)
 show_col(col)
@@ -51,7 +51,6 @@ show_col(col)
 col <- "red"
 luminance(col) <- seq(0.1, 0.9, length.out=10)
 show_col(col)
-
 }
 \seealso{
 \code{\link{channel}} to extract or set a given channel, in particular the lightness channel in HSL, HCL, or L*a*b* color spaces.

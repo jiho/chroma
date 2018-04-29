@@ -2,7 +2,7 @@
 #'
 #' Get the hues (angles around the color wheel, in [0,360º]) of a vector of colors.
 #'
-#' @template param_x_rcolors
+#' @param x vector of colors (specified as hex strings or named R colors), or numerical hues, or a mix thereof.
 #' @param model string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.
 #' @param modulo logical, whether to restrict the hues in [0,360].
 #'
@@ -17,7 +17,7 @@
 #' hue(c("#F55D5B", "#16b2b4", "#6A9F16"))
 #' hue(c("red", "green", "blue"))
 #' hue(c(0, 10, 365))
-#' hue(c(10, "#B55FFC", "pink", 365))
+#' hue(c(10, "#B55FFC", "pink", NA, 365))
 #'
 #' # It is possible to reconstruct colors similar to the original ones
 #' # based on the extracted hue, by providing the other components
@@ -30,30 +30,33 @@
 #' )
 #' # = works, but is a bit less predictable with hcl().
 hue <- function(x, model="hsv", modulo=TRUE) {
+  # deal with the special case of all numeric/empty vectors first, for performance purposes
   if (is.numeric(x) | all(is.na(x))) {
-    # NB: vectors full of NAs can appear as not numeric although they should not be processed at all
-    if (modulo) {
-      out <- x %% 360
-    } else {
-      out <- x
-    }
+    out <- x
   } else {
     # check inputs
     model <- match.arg(model, c("hsv", "hsl", "hsi", "hcl", "lch"))
 
-    # deal with partially "numeric" vectors
+    # detect "numeric" types within the input vector
     suppressWarnings(numx <- as.numeric(x))
     is_num <- which(!is.na(numx))
     is_not_num <- which(is.na(numx))
 
-    # extract the character-based specifications
-    charx <- channel(x[is_not_num], model=model, "h")
+    # extract the already numerical hues
+    num_hues <- numx[is_num]
 
-    # join the two
+    # extract the hue channel for the other, character-based, specifications
+    char_hues <- channel(x[is_not_num], model=model, "h")
+
+    # combine the two
     out <- c()
-    out[is_num] <- hue(numx[is_num], model=model, modulo=modulo)
-    #              NB: apply the %% 360 here too if needed
-    out[is_not_num] <- charx
+    out[is_num]     <- num_hues
+    out[is_not_num] <- char_hues
   }
+
+  if (modulo) {
+    out <- out %% 360
+  }
+
   return(out)
 }
