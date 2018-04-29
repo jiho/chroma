@@ -105,7 +105,7 @@ hue_map <- function(x, ...) {
   # convert to numbers
   x <- as.numeric(x)
   # define the domain of the scale
-  hue_scale(domain=range(x, na.rm=T), ...)(x)
+  hue_scale(domain=range(x, na.rm=TRUE), ...)(x)
 }
 
 #' @rdname hue_scale
