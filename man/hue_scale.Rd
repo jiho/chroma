@@ -8,7 +8,7 @@
 \title{Hue scale and palette}
 \usage{
 hue_scale(h = c(0, 360) + 40, c = 0.65, l = 0.65, domain = c(0, 1),
-  reverse = FALSE)
+  reverse = FALSE, full.circle = FALSE, na.value = NULL)
 
 hue_map(x, ...)
 
@@ -17,7 +17,7 @@ hue_palette(n, ...)
 hue_colors(n, ...)
 }
 \arguments{
-\item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
+\item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
 \item{c}{chromacity, number in \code{[0, ~1]}; 0 is grey, ~1 is full color.}
 
@@ -27,19 +27,25 @@ hue_colors(n, ...)
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
+\item{full.circle}{when the range of hues specified in \code{h} spans 360°, this argument determines if the color scale should also span the full circle (which results in the same color being associated with different values, at the extremes of the scale), or not. By default it is set to FALSE to avoid this caveat. When \code{h} does not span 360°, this argument is ignored because the caveat disappears.}
+
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
 \item{...}{passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
+
+\item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 }
 \value{
 \code{*_scale} and \code{*_palette} return a function.
 
 \code{*_map} and \code{*_colors} return a vector of hex colors.
+
+\code{scale_*} return a ggplot2 scale object.
 }
 \description{
-Hue-based color scale and palette in HCL space.
+Hue-based color scale, in HCL space.
 }
 \details{
 In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to greyscale. This makes the HCL space particularly suitable to create good color palettes:
@@ -48,7 +54,7 @@ In HCL space, the perceived color (hue) is completely separated from the perceiv
   \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
 
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
+As a user, the most useful functions are \code{*_map}, \code{*_colors}, and \code{scale_*} if you are using ggplot2.
 
 \code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
 
@@ -57,12 +63,18 @@ As a user, the most useful functions are \code{*_map} and \code{*_colors}.
 \code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
 
 \code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} create a ggplot2 scale object using the colors defined here.
 }
 \examples{
+# Display the full hue range with
+x <- 0:360
+plot(x, rep(0,length(x)), col=hue_map(x, h=c(0,360), full.circle=TRUE), ylab="", pch="|", cex=5)
+
 # Define a perceptually-correct "rainbow"-like scale function
 rainbow_scale <- hue_scale()
 # and apply it to some data
-rainbow_scale(x=c(0, 0.2, 0.6, 1))
+show_col(rainbow_scale(x=c(0, 0.2, 0.6, 1)))
 
 # Define a palette function
 # (which works like the actual rainbow() function)
@@ -75,23 +87,52 @@ hue_colors(n=50)
 show_col(hue_colors(n=50))
 
 # Palettes of varying hue but constant chromacity and lightness
-# are appropriate to distinguish among levels of a discrete variable
+# are appropriate to distinguish among levels of a qualitative variable
 attach(iris)
-plot(Petal.Length, Sepal.Length, pch=19, col=hue_map(Species))
-legend(1, 8, legend=levels(Species), pch=19, col=hue_colors(n=nlevels(Species)))
+plot(Petal.Length, Petal.Width, col=hue_map(Species), pch=19)
+legend(1, 2, legend=levels(Species), col=hue_colors(n=nlevels(Species)), pch=19)
 
-# Try on the elevation map of the Maunga Whau volcano
+# Let us try with a quantitative variable
 image(maunga, col=hue_colors(100))
-# = typical rainbow scales bullseye effect, yuk!
-
-# Hue based scales may work, but with a limited range of hues
-image(maunga, col=hue_colors(100, h=c(240,350), c=0.5))
+# = typical rainbow scale bullseye effect, yuk!
+# but, with a limited hue range, they can be OK
+image(maunga, col=hue_colors(10, h=c(170, 90), l=0.6))
 contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
-      col=hue_map(persp_facets(maunga$z), h=c(240,350), c=0.5))
-# Still, lightness (or chromacity)-based scales are likely to be better...
+filled.contour(maunga, color.palette=hue_palette(h=c(170, 90), l=0.6))
 
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+      col=hue_map(persp_facets(maunga$z), h=c(170, 90), l=0.6))
+# Still, lightness (or chromacity) based scales are likely to be better...
+
+# To create a legend for a continuous variable, we need to define the
+# scale with its domain and then use it for both the plot and the legend.
+# Here we also use
+attach(airquality)
+oz_scale <- hue_scale(h=c(250,350), l=0.5, domain=range(Ozone, na.rm=TRUE))
+plot(Wind, Temp, col=oz_scale(Ozone), pch=19)
+legend(17, 95, legend=pretty(Ozone), col=oz_scale(pretty(Ozone)), pch=19)
+
+# Notice how the missing value colour matches the rest of the colours on the scale
+plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.5), pch=19)
+plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.8), pch=19)
+plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.3), pch=19)
+
+# Make the plot nicer to read by putting the legend on the side
+pars <- sidepar()
+plot(Wind, Temp, col=oz_scale(Ozone), pch=19)
+sidelegend(legend=pretty(Ozone), col=oz_scale(pretty(Ozone)), pch=19)
+par(pars)
+# or just use ggplot2
+\dontrun{
+library("ggplot2")
+ggplot(airquality) +
+   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+   scale_color_gradientn(colors=hue_colors(10, h=c(250,350), l=0.5))
+ggplot(iris) +
+   geom_point(aes(x=Petal.Length, y=Petal.Width, color=Species)) +
+   scale_color_manual(values=hue_colors(nlevels(iris$Species)))
+}
 }
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
