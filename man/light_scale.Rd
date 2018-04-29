@@ -5,19 +5,28 @@
 \alias{light_map}
 \alias{light_palette}
 \alias{light_colors}
+\alias{scale_color_light}
+\alias{scale_colour_light}
+\alias{scale_fill_light}
 \title{Lightness scale and palette}
 \usage{
-light_scale(l = c(0, 0.9), c = 0.5, h = 0, domain = c(0, 1),
-  reverse = FALSE)
+light_scale(l = c(0.1, 0.9), c = 0.5, h = 0, domain = c(0, 1),
+  reverse = FALSE, na.value = NULL)
 
 light_map(x, ...)
 
 light_palette(...)
 
 light_colors(n, ...)
+
+scale_color_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
+  na.value = NULL, guide = "colourbar")
+
+scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
+  na.value = NULL, guide = "colourbar")
 }
 \arguments{
-\item{l}{lightness, number in \code{[0,1]}; 0 is darkest, 1 is brightest.}
+\item{l}{lightness, vector of two numbers in \code{[0,1]} (0 is darkest, 1 is brightest) giving the minimum and maximum lightness along the scale.}
 
 \item{c}{chromacity, number in \code{[0,~1]}; 0 is grey, ~1 is full color.}
 
@@ -29,17 +38,25 @@ light_colors(n, ...)
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{light_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{light_scale} and passing it through \code{...} is an error.}
+\item{...}{passed to \code{\link{light_scale}} from other \code{light_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
+
+\item{...}{passed to \code{\link{light_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{light_scale} and passing it through \code{...} is an error.}
 }
 \value{
-\code{*_scale} and \code{*_palette} return a function.
+\code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
 
-\code{*_map} and \code{*_colors} return a vector of hex colors.
+\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans the range of values in argument \code{x}, maps the content of \code{x} on that scale, and returns the \strong{colors}.
+
+\code{*_palette} returns a \strong{function}. This function takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
+
+\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced \strong{colors}. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} return a \strong{ggplot2 scale}, either discrete (similar to \code{\link[ggplot2]{scale_color_discrete}}) or continuous (similar to \code{\link[ggplot2]{scale_color_continuous}}).
 }
 \description{
-Lightness-based color scale and palette in HCL space.
+Lightness-based color scale, in HCL space.
 }
 \details{
 In HCL space, the perceived color (hue) is completely separated from the perceived intensity (chromacity) and lightness of the color. This means that colors of various hues but same chromacity and lightness appear as the exact same grey when converted to greyscale. This makes the HCL space particularly suitable to create good color palettes:
@@ -47,16 +64,6 @@ In HCL space, the perceived color (hue) is completely separated from the perceiv
   \item For qualitative palettes (discrete variables): varying \code{h} at constant \code{c} and \code{l} avoids drawing attention to certain hues, as would happen if the same was done in HSV or HSL space. Indeed, some hues are perceived as brighter (yellow, light green, etc.), others as duller/darker (blues, etc.).
   \item For sequential palettes (continuous variables): varying \code{l} (or possibly \code{c}) for a constant \code{h} gives a sense of direction and avoid the many perceptual pitfalls typical of 'rainbow'-like scales.
 }
-
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
-
-\code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
-
-\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
-
-\code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
-
-\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Define a dark-to-light blue scale
@@ -65,7 +72,6 @@ blues <- light_scale(h=220)
 blues(x=c(0, 0.2, 0.6, 1))
 
 # Define a palette function
-# (which works like the actual rainbow() function)
 blues_pal <- light_palette(h=220, c=0.3)
 # and get 10 colors from it
 blues_pal(n=10)
@@ -73,47 +79,73 @@ show_col(blues_pal(n=10))
 # or use the shortcut
 show_col(light_colors(n=50, h=220, c=0.3))
 
-# Determine hue from a color
+# Determine hue from a color and then define a lightness scale
 blues <- light_colors(n=50, h="dodgerblue")
 greens <- light_colors(n=50, h="green")
-yellows <- light_colors(n=50, h="gold")
+golds <- light_colors(n=50, h="gold")
 pinks <- light_colors(n=50, h="deeppink")
-show_col(blues, greens, yellows, pinks)
+show_col(blues, greens, golds, pinks)
 
-# Perceived lightness increases similarly among hues,
-# which makes the different palettes comparable
-# (this would not be the case with a HSL or HSV gradient)
-plot(  luminance(blues),   col=blues[40])
-points(luminance(greens),  col=greens[40])
-points(luminance(yellows), col=yellows[40])
-points(luminance(pinks),   col=pinks[40])
+# Perceived lightness (computed by luminance()) increases in a similar
+# way across the four hues, making the palettes almost comparable.
+# (This would not be the case with a HSL or HSV gradient)
+plot(  luminance(blues),  col=blues[40])
+points(luminance(greens), col=greens[40])
+points(luminance(golds),  col=golds[40])
+points(luminance(pinks),  col=pinks[40])
 
 # Lightness scales are good for continuous variables
 # such as the elevation of the Maunga Whau volcano
 image(maunga, col=light_colors(100, h=140))
 contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+filled.contour(maunga, color.palette=light_palette(h=140))
+
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.5),
       col=light_map(persp_facets(maunga$z), h=140))
 
 \dontrun{
+# in spining 3D
 library("rgl")
 persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
         col=light_map(maunga$z, h=140))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
-}
-# With a limited number of levels, they can also work for discrete variables
-attach(iris)
-plot(Petal.Length, Sepal.Length, pch=19, col=light_map(Species))
-legend(1, 8, legend=levels(Species), pch=19,
-       col=light_colors(n=nlevels(Species)))
-# but a hue-based scale is probably more appropriate (see ?hue_map)
 
+# and with ggplot2
+library("ggplot2")
+ggplot(maungaxyz) + coord_fixed() +
+  geom_raster(aes(x=x, y=y, fill=z)) +
+  geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5) +
+  scale_fill_light(h=140)
+}
+
+# Or they could be used to map a third variable on a scatterplot
+attach(airquality)
+# define a scale encompassing the whole data
+blue_scale <- light_scale(h="cornflowerblue", domain=c(0,200))
+# use it on a plot and in the legend
+pars <- sidemargin()
+plot(Wind, Temp, col=blue_scale(Ozone), pch=19)
+sidelegend(legend=c(pretty(Ozone), "NA"),
+           col=blue_scale(c(pretty(Ozone), NA)), pch=19)
+par(pars)
+
+# Note that the missing value lightess matches the rest of the scale
+plot(Wind, Temp, col=light_map(Ozone, l=c(0.5, 0.9)), pch=19)
+plot(Wind, Temp, col=light_map(Ozone, l=c(0.1, 0.5)), pch=19)
+
+
+# They are not really appropriate for categorical variables though
+attach(iris)
+plot(Petal.Length, Petal.Width, col=chroma_map(Species), pch=19)
+legend(1, 2, legend=levels(Species),
+             col=light_colors(n=nlevels(Species)), pch=19)
+# a hue-based scale would be much better (see ?hue_scale)
 }
 \seealso{
-\code{\link{luminance}} for a the computation of perceived luminance and the creation of perception-based luminance palettes.
-
 The \code{\link{hcl}} function, on which this one is based.
+
+\code{\link{luminance}} for a the computation of perceived luminance and the creation of perception-based luminance palettes.
 
 Other HCL-based scales: \code{\link{chroma_scale}},
   \code{\link{hue_scale}}

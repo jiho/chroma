@@ -64,9 +64,10 @@ test_that("scale functions handle NAs", {
   expect_equal(cubehelix_scale()(NA), as.character(NA))
   expect_equal(hue_scale(na.value=NA)(NA), as.character(NA))
   expect_equal(hue_scale()(NA), "#9E9E9E")
-  expect_equal(light_scale()(NA), as.character(NA))
   expect_equal(chroma_scale(na.value=NA)(NA), as.character(NA))
   expect_equal(chroma_scale()(NA), "#008B76")
+  expect_equal(light_scale(na.value=NA)(NA), as.character(NA))
+  expect_equal(light_scale()(NA), "#777777")
   # as input
   expect_equal(interp_scale(colors=c("white", NA, "black"))(0), "#FFFFFF")
 })
