@@ -16,7 +16,7 @@
 #'
 #' @inheritParams interp_scale
 #' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the ETOPO1 palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.
-#' @param ... passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_...} functions.
+#' @param ... passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_etopo} functions.
 #'
 #' @template return_scales
 #'

@@ -27,7 +27,7 @@ scale_color_etopo(...)
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_...} functions.}
+\item{...}{passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_etopo} functions.}
 
 \item{n}{number of colors to extract from the color palette.}
 }
