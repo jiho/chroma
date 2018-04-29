@@ -3,7 +3,7 @@
 #' Extract the value of a color channel or set it and therefore modify the color.
 #'
 #' @template param_x_rcolors
-#' @template param_model
+#' @param model string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}.
 #' @param channel string defining the channel within the color model.
 #' @param value the channel value to set; a number, the convention of which depends on the channel.
 #'
