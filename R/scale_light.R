@@ -104,13 +104,14 @@ light_scale <- function(l=c(0.1,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE, 
     l <- rev(l)
   }
 
+  # if the na.value is not defined, pick a good default
+  na.value <- light_na(na.value, l=l)
+
   # define the function
   f <- function(x) {
     # define colors
     colors <- hcl(h=h, c=c, l=scales::rescale(x, from=domain, to=l))
 
-    # if the na.value is not defined, pick a good default
-    na.value <- light_na(na.value, l=l)
     # replace NAs by na.value when necessary
     if (!is.na(na.value)) {
       na_colors <- is.na(colors)

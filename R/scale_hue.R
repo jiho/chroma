@@ -104,6 +104,9 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
     h <- rev(h)
   }
 
+  # if the na.value is not defined, pick a good default
+  na.value <- hue_na(na.value, l=l)
+
   # define the function
   f <- function(x) {
     # force characters into factors to be able convert to numbers
@@ -120,8 +123,6 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
     # map colors
     colors <- hcl(h=scales::rescale(x, from=domain, to=h), c=c, l=l)
 
-    # if the na.value is not defined, pick a good default
-    na.value <- hue_na(na.value, l=l)
     # replace NAs by na.value when necessary
     if (!is.na(na.value)) {
       na_colors <- is.na(colors)
