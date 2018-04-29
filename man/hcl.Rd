@@ -5,7 +5,7 @@
 \alias{lch}
 \title{HCL Color Specification}
 \usage{
-hcl(h = 0, c = 0.65, l = 0.65, alpha = NULL, ...)
+hcl(h = 0, c = 0.65, l = 0.65, alpha = NULL, compat = FALSE, ...)
 
 lch(l = 0.65, c = 0.65, h = 0)
 }
@@ -18,13 +18,15 @@ lch(l = 0.65, c = 0.65, h = 0)
 
 \item{alpha}{transparency, number in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 
+\item{compat}{whether to make the conventions compatible with the built-in function \code{grDevices::\link[grDevices]{hcl}}: \code{c} and \code{l} should be in [0,100], not [0,1]. However, the mechanism for converting from HCL space to sRGB are different in the two functions, and they therefore produce different colors.}
+
 \item{...}{ignored, for compatibility with the built-in \code{\link[grDevices]{hcl}} function.}
 }
 \value{
 A vector of colors specified as hex codes
 }
 \description{
-Create a vector of colors from hue, chromacity, and lightness. The arguments are compatible with the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}, but the conventions and output are slightly different.
+Create a vector of colors from hue, chromacity, and lightness.
 }
 \details{
 The first argument can also be a data.frame or a matrix. In that case, its columns are considered as the color components, taken in order, and the other color components arguments are ignored.

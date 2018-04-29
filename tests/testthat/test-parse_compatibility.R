@@ -14,9 +14,19 @@ test_that("rgb is compatible with colorspace::sRGB", {
   expect_equal(rgb(x), colorspace::hex(colorspace::sRGB(x)))
 })
 
+# hcl is not compatible with grDevices::hcl
+# xhcl <- as.hcl(rgb(x))
+# xhcl[,2:3] <- xhcl[,2:3]*100
+# test_that("hcl is compatible with grDevices::hcl", {
+#   expect_equal(hcl(xhcl, compat=TRUE), grDevices::hcl(xhcl[,1], xhcl[,2], xhcl[,3], fixup=TRUE))
+#   expect_equal(hcl(xhcl[,1], xhcl[,2]/100, xhcl[,3]/100), grDevices::hcl(xhcl[,1], xhcl[,2], xhcl[,3], fixup=TRUE))
+# })
+
 xhsv <- as.hsv(rgb(x))
+xhsv[,1] <- xhsv[,1]/360
 test_that("hsv is compatible with grDevices::hsv", {
-  expect_equal(hsv(xhsv), grDevices::hsv(xhsv[,1]/360, xhsv[,2], xhsv[,3]))
+  expect_equal(hsv(xhsv, compat=TRUE), grDevices::hsv(xhsv[,1], xhsv[,2], xhsv[,3]))
+  expect_equal(hsv(xhsv[,1]*360, xhsv[,2], xhsv[,3]), grDevices::hsv(xhsv[,1], xhsv[,2], xhsv[,3]))
 })
 test_that("hsv is compatible with colorspace::HSV", {
   expect_equal(hsv(xhsv), colorspace::hex(colorspace::HSV(xhsv)))

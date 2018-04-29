@@ -4,7 +4,7 @@
 \alias{hsv}
 \title{HSV Color Specification}
 \usage{
-hsv(h = 0, s = 0.6, v = 0.7, alpha = NULL, max.hue = 360)
+hsv(h = 0, s = 0.6, v = 0.7, alpha = NULL, compat = FALSE)
 }
 \arguments{
 \item{h}{hue, either an angle around the color wheel, in [0, 360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -15,7 +15,7 @@ hsv(h = 0, s = 0.6, v = 0.7, alpha = NULL, max.hue = 360)
 
 \item{alpha}{transparency, number in \code{[0, 1]}; 0 means fully transparent, 1 means fully opaque. See function \code{\link{alpha}} for another way to change the transparency after the fact.}
 
-\item{max.hue}{maximum value for the hue component. Set to 1 to make this function a drop-in replacement for the \code{\link[grDevices]{hsv}} function, included with R in package \code{grDevices}.}
+\item{compat}{whether to make the conventions compatible with the built-in function \code{grDevices::\link[grDevices]{hsv}}: \code{h} should be in [0,1], not [0,360].}
 }
 \value{
 A vector of colors specified as hex codes

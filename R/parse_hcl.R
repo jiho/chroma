@@ -1,11 +1,12 @@
 #' HCL Color Specification
 #'
-#' Create a vector of colors from hue, chromacity, and lightness. The arguments are compatible with the \code{\link[grDevices]{hcl}} function, included with R in package \code{grDevices}, but the conventions and output are slightly different.
+#' Create a vector of colors from hue, chromacity, and lightness.
 #'
 #' @template param_hue
 #' @template param_chromacity
 #' @template param_lightness
 #' @template param_alpha
+#' @param compat whether to make the conventions compatible with the built-in function \code{grDevices::\link[grDevices]{hcl}}: \code{c} and \code{l} should be in [0,100], not [0,1]. However, the mechanism for converting from HCL space to sRGB are different in the two functions, and they therefore produce different colors.
 #' @param ... ignored, for compatibility with the built-in \code{\link[grDevices]{hcl}} function.
 #'
 #' @template color_spec_from_matrix
@@ -47,10 +48,14 @@
 #'   hcl(h=0+ramp*80, c=0.6-ramp*0.4, l=0.1+ramp*0.8),
 #'   hcl(h=210+ramp*150, c=0.3, l=0.1+ramp*0.5)
 #' )
-hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, ...) {
-  # TODO c and l are in 0:100 in grDevices. make it compatible
+hcl <- function(h=0, c=0.65, l=0.65, alpha=NULL, compat=FALSE, ...) {
   # handle color channels
   x <- tabularise_arguments(h, c, l)
+
+  # make compatible with grDevices::hcl
+  if (compat) {
+    x[,2:3] <- x[,2:3] / 100
+  }
 
   # parse colors using chroma.js
   colors <- parse_color(x, "hcl")
