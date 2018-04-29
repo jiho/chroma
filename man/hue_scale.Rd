@@ -126,7 +126,7 @@ plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.8), pch=19)
 plot(Wind, Temp, col=hue_map(Ozone, h=c(250,350), l=0.3), pch=19)
 
 # Make the plot nicer to read by putting the legend on the side
-pars <- sidepar()
+pars <- sidemargin()
 plot(Wind, Temp, col=oz_scale(Ozone), pch=19)
 sidelegend(legend=pretty(Ozone), col=oz_scale(pretty(Ozone)), pch=19)
 par(pars)
