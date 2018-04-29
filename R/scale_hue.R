@@ -1,12 +1,13 @@
 #' Hue scale and palette
 #'
-#' Hue-based color scale and palette in HCL space.
+#' Hue-based color scale, in HCL space.
 #'
-# @param h range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).
+#' @param h range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0, 360]} (angles outside of the range are rotated back to within \code{[0, 360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).
 #' @template param_hue
 #' @template param_chromacity
 #' @template param_lightness
 #' @inheritParams interp_scale
+#' @param ... passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.
 #' @param full.circle when the range of hues specified in \code{h} spans 360°, this argument determines if the color scale should also span the full circle (which results in the same color being associated with different values, at the extremes of the scale), or not. By default it is set to FALSE to avoid this caveat. When \code{h} does not span 360°, this argument is ignored because the caveat disappears.
 #'
 #' @template details_hcl
@@ -15,6 +16,8 @@
 #'
 #' @template seealso_hcl_scales
 #' @family color scales and palettes
+#'
+#' @export
 #'
 #' @examples
 #' # Define a perceptually-correct "rainbow"-like scale function
@@ -50,8 +53,6 @@
 #'       col=hue_map(persp_facets(maunga$z), h=c(240,350), c=0.5))
 #' # Still, lightness (or chromacity)-based scales are likely to be better...
 #'
-#' @importFrom scales rescale
-#' @export
 hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALSE, full.circle=FALSE, na.value=NULL) {
   # check arguments
   if (length(h) != 2) {
@@ -96,7 +97,6 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
   return(f)
 }
 
-#' @param ... passed to \code{\link{hue_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{hue_scale} and passing it through \code{...} is an error.
 #' @rdname hue_scale
 #' @export
 hue_map <- function(x, ...) {
