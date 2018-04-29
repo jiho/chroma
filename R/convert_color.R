@@ -106,6 +106,8 @@ convert_color <- function(x, model) {
     res[,1:2] <- res[,1:2] / 100
   } else if ( model == "lab" ) {
     res <- res / 100
+  } else if ( model == "rgb" ) {
+    res <- res / 255
   }
 
   return(res)

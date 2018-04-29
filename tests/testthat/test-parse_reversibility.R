@@ -38,7 +38,7 @@ test_that("lab is reversible", {
 })
 
 test_that("rgb is reversible", {
-  expect_equal(rgb(as.rgb(x), max=255), as.hex(x))
+  expect_equal(rgb(as.rgb(x)), as.hex(x))
 })
 test_that("rgba is reversible", {
   expect_equal(rgba(as.rgba(x)), x)
