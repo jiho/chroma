@@ -40,6 +40,7 @@ hex("#393939")
 hex("F39")
 css("rgb(100,100,100)")
 temperature(5600)
+wavelength(500)
 ```
 
 Parse directly from a matrix
@@ -64,6 +65,7 @@ as.lab("coral1")
 as.hex("coral1")
 as.css("coral1")
 as.temperature("coral1")
+as.wavelength("coral1")
 ```
 
 ## Color manipulation
