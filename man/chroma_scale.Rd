@@ -38,7 +38,7 @@ scale_fill_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{chroma_scale}} from other \code{chroma_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
+\item{...}{passed to \code{\link{chroma_scale}} from other \code{chroma_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 }

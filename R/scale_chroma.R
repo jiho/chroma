@@ -5,7 +5,7 @@
 #' @param chroma chromacity, vector of two numbers in \code{[0,~1]} (0 is grey, ~1 is full color) giving the minimum and maximum chromacities along the scale.
 #' @inheritParams interp_scale
 #' @inheritParams hcl
-#' @param ... passed to \code{\link{chroma_scale}} from other \code{chroma_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.
+#' @param ... passed to \code{\link{chroma_scale}} from other \code{chroma_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions. NB: in all situations, passing \code{domain} is meaningless and yields an error.
 #'
 #' @template details_hcl
 #'
