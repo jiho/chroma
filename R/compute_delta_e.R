@@ -1,4 +1,4 @@
-#' Compute the difference between two colors
+#' Compute the Delta-E between two colors
 #'
 #' Compute the difference between two colors, using the CIE Delta-E 2000 formula. \url{https://en.wikipedia.org/wiki/Color_difference#CIEDE2000}.
 #'
@@ -12,16 +12,16 @@
 #' @importFrom stats na.omit
 #'
 #' @examples
-#' delta_e("pink", "hotpink")
-#' delta_e("pink", "blue")
+#' deltaE("pink", "hotpink")
+#' deltaE("pink", "blue")
 #'
 #' # The computation can be vectorised
 #' # For example to find the closest color in an array of possibilities
 #' clrs <- rainbow(20)
 #' show_col("pink", clrs)
-#' d <- delta_e("pink", clrs)
+#' d <- deltaE("pink", clrs)
 #' show_col("pink", clrs[which.min(d)])
-delta_e <- function(x, y) {
+deltaE <- function(x, y) {
   # force input R colors into hex notation
   x <- in_hex(x)
   y <- in_hex(y)
@@ -38,7 +38,7 @@ delta_e <- function(x, y) {
 
   # apply formula to all
   deltae <- apply(na.omit(X), 1, function(x) {
-    delta_e_lab(x[1:3],x[4:6])
+    deltaE_lab(x[1:3],x[4:6])
   })
   # reinsert missing values
   # NB: rowSums is NA as soon as one element is NA
@@ -54,7 +54,7 @@ in_rad <- function(x) { x * pi / 180 }
 cosd <- function(x) {cos(in_rad(x))}
 sind <- function(x) {sin(in_rad(x))}
 
-delta_e_lab <- function(x1, x2) {
+deltaE_lab <- function(x1, x2) {
   # assumes x1 and x2 are vectors of length 3,
   # containing L*, a*, and b* in order
 
