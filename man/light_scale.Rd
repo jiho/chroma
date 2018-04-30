@@ -32,7 +32,7 @@ scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
 
 \item{h}{hue, either an angle around the color wheel, in [0,360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
-\item{domain}{the values between which the scale is computed.}
+\item{domain}{vector of two values between which the scale is computed.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 

@@ -16,7 +16,7 @@ viridis_palette(...)
 viridis_colors(n, ...)
 }
 \arguments{
-\item{domain}{the values between which the scale is computed.}
+\item{domain}{vector of two values between which the scale is computed.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
@@ -27,23 +27,18 @@ viridis_colors(n, ...)
 \item{n}{number of colors to extract from the color palette.}
 }
 \value{
-\code{*_scale} and \code{*_palette} return a function.
+\code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
 
-\code{*_map} and \code{*_colors} return a vector of hex colors.
+\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans the range of values in argument \code{x}, maps the content of \code{x} on that scale, and returns the \strong{colors}.
+
+\code{*_palette} returns a \strong{function}. This function takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
+
+\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced \strong{colors}. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} return a \strong{ggplot2 scale}, either discrete (similar to \code{\link[ggplot2]{scale_color_discrete}}) or continuous (similar to \code{\link[ggplot2]{scale_color_continuous}}).
 }
 \description{
 The \code{viridis} color palette, by Nathaniel J. Smith, Stefan van der Walt, and Eric Firing (CC0 license).
-}
-\details{
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
-
-\code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
-
-\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
-
-\code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
-
-\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Get a few colors along the palette
@@ -57,7 +52,7 @@ show_col(
 image(maunga, col=viridis_colors(100))
 contour(maunga, col=alpha("black", 0.2), add=TRUE)
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.4),
       col=viridis_map(persp_facets(maunga$z)))
 
 \dontrun{

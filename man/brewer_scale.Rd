@@ -21,9 +21,9 @@ brewer_colors(n, name = "Blues", ...)
 
 \item{model}{color space in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}. Beware that all but \code{lab} and \code{rgb} can give surprising results.}
 
-\item{interp}{type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.}
+\item{interp}{string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.}
 
-\item{domain}{the values between which the scale is computed.}
+\item{domain}{vector of two values between which the scale is computed.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
@@ -34,23 +34,18 @@ brewer_colors(n, name = "Blues", ...)
 \item{n}{number of colors to extract from the color palette.}
 }
 \value{
-\code{*_scale} and \code{*_palette} return a function.
+\code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
 
-\code{*_map} and \code{*_colors} return a vector of hex colors.
+\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans the range of values in argument \code{x}, maps the content of \code{x} on that scale, and returns the \strong{colors}.
+
+\code{*_palette} returns a \strong{function}. This function takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
+
+\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced \strong{colors}. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} return a \strong{ggplot2 scale}, either discrete (similar to \code{\link[ggplot2]{scale_color_discrete}}) or continuous (similar to \code{\link[ggplot2]{scale_color_continuous}}).
 }
 \description{
 ColorBrewer scales and palettes
-}
-\details{
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
-
-\code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
-
-\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
-
-\code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
-
-\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
 }
 \examples{
 # Define a scale function

@@ -32,7 +32,7 @@
 #' image(maunga, col=viridis_colors(100))
 #' contour(maunga, col=alpha("black", 0.2), add=TRUE)
 #'
-#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.4),
 #'       col=viridis_map(persp_facets(maunga$z)))
 #'
 #' \dontrun{

@@ -43,7 +43,7 @@ scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
 
 \item{l}{lightness, number in \code{[0,1]}; 0 is darkest, 1 is brightest.}
 
-\item{domain}{the values between which the scale is computed.}
+\item{domain}{vector of two values between which the scale is computed.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 

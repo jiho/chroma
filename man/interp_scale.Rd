@@ -33,13 +33,13 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 
 \item{model}{color space in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}. Beware that all but \code{lab} and \code{rgb} can give surprising results.}
 
-\item{interp}{type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.}
+\item{interp}{string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.}
 
-\item{domain}{the values between which the scale is computed.}
+\item{domain}{vector of two values between which the scale is computed.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
-\item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
+\item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
 
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
 

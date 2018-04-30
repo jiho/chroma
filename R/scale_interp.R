@@ -4,10 +4,10 @@
 #'
 #' @param colors vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.
 #' @param model color space in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}. Beware that all but \code{lab} and \code{rgb} can give surprising results.
-#' @param interp type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
-#' @param domain the values between which the scale is computed.
+#' @param interp string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
+#' @param domain vector of two values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
-#' @param values if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
+#' @param values if colours should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
 #' @param na.value value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.
 #' @param extrapolate when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.
 #' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.
