@@ -1,12 +1,12 @@
 context("Interpolated scale")
 
-test_that("colors are interpolated correctly", {
-  cols <- c("#000000", "#FFFFFF")
-  bw <- interp_scale(cols, model="rgb")
+cols <- c("#000000", "#FFFFFF")
 
-  expect_equal(bw(0),   "#000000")
+test_that("colors are interpolated correctly", {
+  bw <- interp_scale(cols, model="rgb")
+  expect_equal(bw(0),   cols[1])
   expect_equal(bw(0.5), "#7F7F7F")
-  expect_equal(bw(1),   "#FFFFFF")
+  expect_equal(bw(1),   cols[2])
 })
 
 test_that("reverse works", {
@@ -16,27 +16,24 @@ test_that("reverse works", {
   )
 })
 
-test_that("data outside domain returns extreme color", {
-  cols <- c("#000000", "#FFFFFF")
+test_that("data outside domain returns NA or extreme color", {
   bw <- interp_scale(cols, domain=c(0,1))
-
-  expect_equal(bw(-1), "#000000")
-  expect_equal(bw(2),  "#FFFFFF")
+  expect_equal(bw(-1), NA_character_)
+  expect_equal(bw(2),  NA_character_)
+  bw <- interp_scale(cols, domain=c(0,1), extrapolate=TRUE)
+  expect_equal(bw(-1), cols[1])
+  expect_equal(bw(2),  cols[2])
 })
 
 test_that("values overrides domain", {
-  cols <- c("#000000", "#FFFFFF")
   bw <- interp_scale(cols, domain=c(0,1), values=c(3,4))
-
-  expect_equal(bw(0.5), cols[1])
+  expect_equal(bw(0.5), NA_character_)
   expect_equal(bw(3),   cols[1])
   expect_equal(bw(4),   cols[2])
 })
 
 test_that("values overrides reverse", {
-  cols <- c("#000000", "#FFFFFF")
   bw <- interp_scale(cols, reverse=TRUE, values=c(3,4))
-
   expect_equal(bw(3), cols[1])
   expect_equal(bw(4), cols[2])
 })

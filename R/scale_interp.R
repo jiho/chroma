@@ -8,27 +8,30 @@
 #' @param domain the values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
 #' @param values if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
-#' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument \code{values} is used and some transitions in color are sharp.
+#' @param na.value value to return for missing values in the input. Can be either a color (here a neutral grey) or \code{NA}.
+#' @param extrapolate when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.
+#' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.
 #'
 #' @template return_scales
 #'
 #' @family color scales and palettes
 #'
+#' @export
+#' @importFrom stats na.omit
+#'
 #' @examples
 #' # Define a color scale
-#' coldhot_scale <- interp_scale(c("cornflowerblue", "brown3"))
+#' coldhot <- interp_scale(c("#2B5DCD", "#EC2D38"))
 #' # Apply it to some data
-#' coldhot_scale(c(0, 0.2, 0.6, 1))
-#' # For values outside the range, the extreme color of scale is returned
-#' coldhot_scale(1.3)
+#' coldhot(c(0, 0.2, 0.6, 1))
 #'
 #' # Define a palette
-#' coldhot_pal <- interp_palette(c("cornflowerblue", "brown3"))
+#' coldhot_pal <- interp_palette(c("#2B5DCD", "#EC2D38"))
 #' # and get 10 colors from it
 #' coldhot_pal(10)
 #' show_col(coldhot_pal(10))
 #' # Use the shortcut to define a palette and extract n colors from it
-#' show_col(interp_colors(n=50, colors=c("cornflowerblue", "brown3")))
+#' show_col(interp_colors(n=50, colors=c("#2B5DCD", "#EC2D38")))
 #'
 #' # Test interpolation spaces and types
 #' cols <- c("yellow", "blue", "red")
@@ -44,20 +47,20 @@
 #' x <- 0:10
 #' cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
 #' show_col(
-#'    interp_scale(cols)(x),
-#'    interp_scale(cols, domain=range(x))(x),
-#'    interp_scale(cols, domain=range(x), reverse=TRUE)(x),
-#'    interp_scale(cols, values=c(0,1,10))(x)
+#'    interp_scale(cols, extrapolate=TRUE)(x),
+#'    interp_scale(cols, extrapolate=TRUE, domain=range(x))(x),
+#'    interp_scale(cols, extrapolate=TRUE, domain=range(x), reverse=TRUE)(x),
+#'    interp_scale(cols, extrapolate=TRUE, values=c(0,1,10))(x)
 #' )
 #'
-#' # Maunga Whau volcano colors picked from a picture
+#' # Plot Maunga Whau volcano with colors picked from a picture
 #' # (likely incorrect perceptually but attempts a "realistic" look)
 #' topo_colors <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
 #' show_col(topo_colors)
 #' image(maunga, col=interp_colors(100, colors=topo_colors))
 #' # = the dark ring-like level is indeed misleading
 #'
-#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.4),
 #'       col=interp_map(persp_facets(maunga$z), colors=topo_colors))
 #'
 #' \dontrun{
@@ -65,24 +68,59 @@
 #' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
 #'         col=interp_map(maunga$z, colors=topo_colors))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
-#' }
-#' # Color points according to a discrete variable
-#' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=21, bg=interp_map(Species))
-#' legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Species)))
-#' # NB: works, but a continuous scale is not really appropriate here.
 #'
-#' @export
-#' @importFrom scales rescale
-#' @importFrom grDevices rgb colorRamp
-#' @importFrom stats na.omit
-interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, exact.until=100) {
+#' library("ggplot2")
+#' p <- ggplot(maungaxyz) + coord_fixed() +
+#'   geom_raster(aes(x=x, y=y, fill=z)) +
+#'   geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5)
+#' p + scale_fill_interp(colors=topo_colors)
+#' p + scale_fill_interp(colors=topo_colors, model="hsl")
+#' p + scale_fill_interp(colors=topo_colors, reverse=TRUE)
+#' p + scale_fill_interp(colors=topo_colors, interp="bezier")
+#' }
+#'
+#' # Map a third variable on a scatterplot
+#' attach(airquality)
+#' # define a scale encompassing the whole data
+#' coldhot <- interp_scale(c("#2B5DCD", "#EC2D38"), domain=c(0,200))
+#' # use it on a plot and in the legend
+#' pars <- sidemargin()
+#' plot(Wind, Temp, col=coldhot(Ozone), pch=19)
+#' sidelegend(legend=c(pretty(Ozone), "NA"),
+#'            col=coldhot(c(pretty(Ozone), NA)), pch=19)
+#' par(pars)
+#' # note that the missing value color contrasts with the rest of the scale
+#'
+#' \dontrun{
+#' # Or in ggplot
+#' ggplot(airquality) +
+#'   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+#'   scale_color_interp(colors=c("#2B5DCD", "#EC2D38"))
+#' # Which is very similar to
+#' ggplot(airquality) +
+#'   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+#'   scale_color_gradientn(colors=c("#2B5DCD", "#EC2D38"))
+#' # but scale_color_interp provides more options regarding how colors are
+#' # interpolated (and is a bit slower).
+#' }
+#'
+#' # Continuous, interpolated color scales are not really appropriate for
+#' # categorical variables though
+#' attach(iris)
+#' plot(Petal.Length, Petal.Width, pch=21, bg=interp_map(Species))
+#' legend(1, 2, legend=levels(Species),
+#'              pt.bg=interp_colors(n=nlevels(Species)), pch=21)
+#' # a hue-based scale would be much better (see ?hue_scale)
+interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, na.value="#808080", extrapolate=FALSE, exact.until=100) {
+  # TODO define na.value based on average color and removing chroma
+  # TODO add correctLightness, false by default
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
   # NB: remove NAs which don't mean anything for interpolation
 
   # check arguments
   model <- match.arg(model, c("lab", "hcl", "lch", "hsl", "hsv", "rgb"))
+  # TODO add lrgb
   interp <- match.arg(interp, c("bezier", "linear"))
   if (interp == "bezier" & model != "lab") {
     warning("Bezier interpolation can only be done in L*a*b* space; switching to model=\"lab\".")
@@ -90,7 +128,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
   }
 
   # define domain
-  if ( ! is.null(values) ) {
+  if ( !is.null(values) ) {
     # check content
     if (!is.numeric(values)) {
       stop("Argument 'values' should be a numeric vector.")
@@ -120,7 +158,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
   }
 
   # define the scale function which calls chroma.js internally
-  eval(f <- function(x) {
+  f <- function(x) {
     # for small data, call chroma.js directly
     if (length(x) <= exact.until) {
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
@@ -133,8 +171,9 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
       colors <- v8_eval(cmds)
       # interpolate between them
-      # NB: colorRamp works between 0 and 1 only so
-      # we rescale the input
+      # NB: colorRamp works between 0 and 1 only so we rescale the input
+      #     colorRamp can deals with NAs but grDevices::rgb cannot, so we remove them here
+      #     we use grDevices::rgb() rather than chroma::rgb() because it is much faster
       x_scaled <- scales::rescale(na.omit(x), from=range(domain))
       # and return the extreme colors on either side
       x_scaled[x_scaled < 0] <- 0
@@ -144,25 +183,35 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       # convert them to hex
       colors <- grDevices::rgb(colors, maxColorValue=255)
       # re-insert NAs
-      # NB: grDevices::rgb() is faster than chroma::rgb() but does not handle NAs
       colors <- na_insert(colors, from=x)
     }
+
+    # replace NAs by na.value when necessary
+    if (!is.na(na.value)) {
+      na_colors <- is.na(colors)
+      if (any(na_colors)) {
+        colors[na_colors] <- na.value
+      }
+    }
+
+    # remove colors out of domain
+    if (!extrapolate) {
+      colors[x<min(domain)] <- NA
+      colors[x>max(domain)] <- NA
+    }
     return(colors)
-  })
-  # TODO return NA outside of range
+  }
 
   return(f)
 }
 
-#' @param ... passed to \code{\link{interp_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{interp_scale} and passing them through \code{...} is an error.
+#' @param ... passed to \code{\link{interp_scale}} from other \code{interp_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions. NB: in all situations, passing \code{domain} or \code{values} is meaningless and yields an error.
 #' @param x a vector whose values will be coerced to numbers and mapped to colors.
 #' @rdname interp_scale
 #' @export
 interp_map <- function(x, ...) {
   # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) {
-    x <- factor(x)
-  }
+  if (is.character(x)) { x <- factor(x) }
   # convert to numbers
   x <- as.numeric(x)
   # define the domain of the scale
@@ -174,7 +223,7 @@ interp_map <- function(x, ...) {
 #' @export
 interp_palette <- function(...) {
   f <- function(n) {
-    interp_scale(domain=c(0,1), values=NULL, ...)(seq(0, 1, length.out=n))
+    interp_scale(domain=1:n, values=NULL, ...)(1:n)
   }
   return(f)
 }
@@ -185,3 +234,30 @@ interp_palette <- function(...) {
 interp_colors <- function(n, ...) {
   interp_palette(...)(n)
 }
+
+## ggplot ----
+
+#' @param guide type of guide for the legend ("legend" for a categorical guide, "colorbar" for a continuous colorbar) or guide object itself.
+#' @rdname interp_scale
+#' @export
+scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value="#808080", extrapolate=FALSE, exact.until=100, guide="colourbar") {
+  ggplot2::continuous_scale("colour", "interp",
+    interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
+    na.value=na.value, guide=guide, ...
+  )
+}
+#' @rdname interp_scale
+#' @export
+#' @usage NULL
+scale_colour_interp <- scale_color_interp
+
+#' @rdname interp_scale
+#' @export
+scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value="#808080", exact.until=100, guide="colourbar") {
+  ggplot2::continuous_scale("fill", "interp",
+    interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
+    na.value=na.value, guide=guide, ...
+  )
+}
+
+# NB: discrete interpolated scales do not make much sense so we do not define any.

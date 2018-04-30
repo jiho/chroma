@@ -59,17 +59,20 @@ test_that("computation functions handle NAs", {
 })
 
 test_that("scale functions handle NAs", {
-  # in mapped values
-  expect_equal(interp_scale()(NA), as.character(NA))
-  expect_equal(brewer_scale()(NA), as.character(NA))
-  expect_equal(viridis_scale()(NA), as.character(NA))
-  expect_equal(cubehelix_scale()(NA), as.character(NA))
-  expect_equal(hue_scale(na.value=NA)(NA), as.character(NA))
-  expect_equal(hue_scale()(NA), "#9E9E9E")
-  expect_equal(chroma_scale(na.value=NA)(NA), as.character(NA))
-  expect_equal(chroma_scale()(NA), "#008B76")
-  expect_equal(light_scale(na.value=NA)(NA), as.character(NA))
-  expect_equal(light_scale()(NA), "#777777")
-  # as input
+  expect_equal(interp_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(interp_scale()(NA), "#808080")
   expect_equal(interp_scale(colors=c("white", NA, "black"))(0), "#FFFFFF")
+
+  # expect_equal(brewer_scale()(NA), NA_character_)
+  # expect_equal(viridis_scale()(NA), NA_character_)
+  # expect_equal(cubehelix_scale()(NA), NA_character_)
+
+  expect_equal(hue_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(hue_scale()(NA), "#9E9E9E")
+
+  expect_equal(chroma_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(chroma_scale()(NA), "#008B76")
+
+  expect_equal(light_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(light_scale()(NA), "#777777")
 })

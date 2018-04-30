@@ -5,17 +5,29 @@
 \alias{interp_map}
 \alias{interp_palette}
 \alias{interp_colors}
+\alias{scale_color_interp}
+\alias{scale_colour_interp}
+\alias{scale_fill_interp}
 \title{Interpolated color scale and palette}
 \usage{
 interp_scale(colors = c("white", "black"), model = "lab",
   interp = "linear", domain = c(0, 1), reverse = FALSE, values = NULL,
-  exact.until = 100)
+  na.value = "#808080", extrapolate = FALSE, exact.until = 100)
 
 interp_map(x, ...)
 
 interp_palette(...)
 
 interp_colors(n, ...)
+
+scale_color_interp(..., colors = c("white", "black"), model = "lab",
+  interp = "linear", reverse = FALSE, values = NULL,
+  na.value = "#808080", extrapolate = FALSE, exact.until = 100,
+  guide = "colourbar")
+
+scale_fill_interp(..., colors = c("white", "black"), model = "lab",
+  interp = "linear", reverse = FALSE, values = NULL,
+  na.value = "#808080", exact.until = 100, guide = "colourbar")
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -30,48 +42,47 @@ interp_colors(n, ...)
 
 \item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
 
-\item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference unless the argument \code{values} is used and some transitions in color are sharp.}
+\item{na.value}{value to return for missing values in the input. Can be either a color (here a neutral grey) or \code{NA}.}
+
+\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
+
+\item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.}
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{interp_scale}}. Note that arguments \code{domain} and \code{values} are meaningless in functions other than \code{interp_scale} and passing them through \code{...} is an error.}
+\item{...}{passed to \code{\link{interp_scale}} from other \code{interp_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions. NB: in all situations, passing \code{domain} or \code{values} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
+
+\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colorbar" for a continuous colorbar) or guide object itself.}
 }
 \value{
-\code{*_scale} and \code{*_palette} return a function.
+\code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
 
-\code{*_map} and \code{*_colors} return a vector of hex colors.
+\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans the range of values in argument \code{x}, maps the content of \code{x} on that scale, and returns the \strong{colors}.
+
+\code{*_palette} returns a \strong{function}. This function takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
+
+\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced \strong{colors}. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
+
+\code{scale_*} return a \strong{ggplot2 scale}, either discrete (similar to \code{\link[ggplot2]{scale_color_discrete}}) or continuous (similar to \code{\link[ggplot2]{scale_color_continuous}}).
 }
 \description{
 Interpolate between colors to create a color scale, map values to colors along a scale, create a color palette, or get a few colors from a palette.
 }
-\details{
-As a user, the most useful functions are \code{*_map} and \code{*_colors}.
-
-\code{*_scale} creates a \strong{function} that takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns those colors as hex codes.
-
-\code{*_map} is a shortcut for \code{*_scale(domain=range(x))(x)}: it creates a scale that spans all values in its argument \code{x}, maps the content of \code{x} on that scale, and returns the colors. It is particularly useful as the \code{col} argument of plotting functions.
-
-\code{*_palette} also creates a \strong{function}, but this one takes an integer (\code{n}) as argument, picks \code{n} colors evenly spaced along the scale, and returns them as hex codes.
-
-\code{*_colors} is a shortcut for \code{*_palette()(n)} and directly returns \code{n} evenly spaced colors. It is equivalent to built-in functions such as \code{\link[grDevices]{heat.colors}}, \code{\link[grDevices]{topo.colors}}, etc.
-}
 \examples{
 # Define a color scale
-coldhot_scale <- interp_scale(c("cornflowerblue", "brown3"))
+coldhot <- interp_scale(c("#2B5DCD", "#EC2D38"))
 # Apply it to some data
-coldhot_scale(c(0, 0.2, 0.6, 1))
-# For values outside the range, the extreme color of scale is returned
-coldhot_scale(1.3)
+coldhot(c(0, 0.2, 0.6, 1))
 
 # Define a palette
-coldhot_pal <- interp_palette(c("cornflowerblue", "brown3"))
+coldhot_pal <- interp_palette(c("#2B5DCD", "#EC2D38"))
 # and get 10 colors from it
 coldhot_pal(10)
 show_col(coldhot_pal(10))
 # Use the shortcut to define a palette and extract n colors from it
-show_col(interp_colors(n=50, colors=c("cornflowerblue", "brown3")))
+show_col(interp_colors(n=50, colors=c("#2B5DCD", "#EC2D38")))
 
 # Test interpolation spaces and types
 cols <- c("yellow", "blue", "red")
@@ -87,20 +98,20 @@ show_col(
 x <- 0:10
 cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
 show_col(
-   interp_scale(cols)(x),
-   interp_scale(cols, domain=range(x))(x),
-   interp_scale(cols, domain=range(x), reverse=TRUE)(x),
-   interp_scale(cols, values=c(0,1,10))(x)
+   interp_scale(cols, extrapolate=TRUE)(x),
+   interp_scale(cols, extrapolate=TRUE, domain=range(x))(x),
+   interp_scale(cols, extrapolate=TRUE, domain=range(x), reverse=TRUE)(x),
+   interp_scale(cols, extrapolate=TRUE, values=c(0,1,10))(x)
 )
 
-# Maunga Whau volcano colors picked from a picture
+# Plot Maunga Whau volcano with colors picked from a picture
 # (likely incorrect perceptually but attempts a "realistic" look)
 topo_colors <- c("#C4B99F", "#282A19", "#61781B", "#BC9352")
 show_col(topo_colors)
 image(maunga, col=interp_colors(100, colors=topo_colors))
 # = the dark ring-like level is indeed misleading
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+persp(maunga, theta=50, phi=25, border=alpha("black", 0.4),
       col=interp_map(persp_facets(maunga$z), colors=topo_colors))
 
 \dontrun{
@@ -108,13 +119,49 @@ library("rgl")
 persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
         col=interp_map(maunga$z, colors=topo_colors))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
-}
-# Color points according to a discrete variable
-attach(iris)
-plot(Petal.Length, Sepal.Length, pch=21, bg=interp_map(Species))
-legend(1, 8, legend=levels(Species), pch=21, pt.bg=interp_colors(n=nlevels(Species)))
-# NB: works, but a continuous scale is not really appropriate here.
 
+library("ggplot2")
+p <- ggplot(maungaxyz) + coord_fixed() +
+  geom_raster(aes(x=x, y=y, fill=z)) +
+  geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5)
+p + scale_fill_interp(colors=topo_colors)
+p + scale_fill_interp(colors=topo_colors, model="hsl")
+p + scale_fill_interp(colors=topo_colors, reverse=TRUE)
+p + scale_fill_interp(colors=topo_colors, interp="bezier")
+}
+
+# Map a third variable on a scatterplot
+attach(airquality)
+# define a scale encompassing the whole data
+coldhot <- interp_scale(c("#2B5DCD", "#EC2D38"), domain=c(0,200))
+# use it on a plot and in the legend
+pars <- sidemargin()
+plot(Wind, Temp, col=coldhot(Ozone), pch=19)
+sidelegend(legend=c(pretty(Ozone), "NA"),
+           col=coldhot(c(pretty(Ozone), NA)), pch=19)
+par(pars)
+# note that the missing value color contrasts with the rest of the scale
+
+\dontrun{
+# Or in ggplot
+ggplot(airquality) +
+  geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+  scale_color_interp(colors=c("#2B5DCD", "#EC2D38"))
+# Which is very similar to
+ggplot(airquality) +
+  geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+  scale_color_gradientn(colors=c("#2B5DCD", "#EC2D38"))
+# but scale_color_interp provides more options regarding how colors are
+# interpolated (and is a bit slower).
+}
+
+# Continuous, interpolated color scales are not really appropriate for
+# categorical variables though
+attach(iris)
+plot(Petal.Length, Petal.Width, pch=21, bg=interp_map(Species))
+legend(1, 2, legend=levels(Species),
+             pt.bg=interp_colors(n=nlevels(Species)), pch=21)
+# a hue-based scale would be much better (see ?hue_scale)
 }
 \seealso{
 Other color scales and palettes: \code{\link{brewer_scale}},
