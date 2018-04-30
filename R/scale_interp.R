@@ -148,6 +148,8 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       domain <- rev(domain)
     }
   }
+  # convert to numeric (everything is numeric afterwards)
+  domain <- as.num(domain)
 
   # prepare chroma.js command
   domaint <- stringr::str_c("[",stringr::str_c(domain, collapse=","),"]")
@@ -161,11 +163,15 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
 
   # define the scale function which calls chroma.js internally
   f <- function(x) {
+    # coerce everything to numbers
+    x <- as.num(x)
+
     # for small data, call chroma.js directly
     if (length(x) <= exact.until) {
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
       colors <- v8_eval(cmds)
     }
+
     # for large data, cheat: use chroma.js to get a few colors and interpolate the new ones with colorRamp which is faster
     else {
       # get exact.until colors
@@ -185,14 +191,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       colors <- na_insert(colors, from=x)
     }
 
-    # replace NAs by na.value when necessary
-    colors <- na_replace(colors, na.value)
-
-    # remove colors out of domain
-    if (!extrapolate) {
-      colors <- censor(colors, from=x, range=range(domain))
-    }
-    return(colors)
+    return(post_process_scale(colors, na.value, extrapolate, x, range(domain)))
   }
 
   return(f)
@@ -203,11 +202,9 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
 #' @rdname interp_scale
 #' @export
 interp_map <- function(x, ...) {
-  # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) { x <- factor(x) }
-  # convert to numbers
-  x <- as.numeric(x)
-  # define the domain of the scale
+  # coerce everything to numbers
+  x <- as.num(x)
+  # define the domain of the scale and map values
   colors <- interp_scale(domain=range(x, na.rm=TRUE), ...)(x)
   return(colors)
 }

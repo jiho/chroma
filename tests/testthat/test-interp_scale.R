@@ -57,3 +57,23 @@ test_that("different number of values and colors returns error", {
   expect_error(interp_scale(c("red", "green"), values=c(1,2,3)))
   expect_error(interp_scale(c("red", "green", "blue"), values=c(1,2)))
 })
+
+test_that("the various functions are consistent with one another", {
+  expect_equal(interp_scale(colors=cols)(c(0,1)), cols)
+  expect_equal(interp_map(c(0,1), colors=cols), cols)
+  expect_equal(interp_palette(colors=cols)(2), cols)
+  expect_equal(interp_colors(2, colors=cols), cols)
+})
+
+
+test_that("scale works with various input types", {
+  expect_equal(interp_scale(cols)(0), cols[1])
+  y <- c("a", "b")
+  expect_equal(interp_scale(cols, domain=y)(y[1]), cols[1])
+  y <- factor(y)
+  expect_equal(interp_scale(cols, domain=y)(y[1]), cols[1])
+  y <- as.Date(c("1900-01-01", "1900-01-02"))
+  expect_equal(interp_scale(cols, domain=y)(y[1]), cols[1])
+  y <- as.POSIXct(c("1900-01-01", "1900-01-02"))
+  expect_equal(interp_scale(cols, domain=y)(y[1]), cols[1])
+})

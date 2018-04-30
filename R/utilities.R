@@ -127,6 +127,7 @@ rescale <- function(x, to=c(0,1), from=range(x, na.rm=TRUE, finite=TRUE)) {
   return(x)
 }
 
+
 #' Censor based on another vector
 #'
 #' @param x vector to censor the values in
@@ -148,3 +149,35 @@ censor <- function(x, from, range) {
   x[from < range[1] | from > range[2]] <- NA
   return(x)
 }
+
+
+#' Post-process the output of a scale
+#'
+#' replace NAs by their code
+#' remove values out of domain
+#'
+#' @noRd
+post_process_scale <- function(colors, na.value, extrapolate, x, domain) {
+  # replace NAs by na.value when necessary
+  colors <- na_replace(colors, na.value)
+
+  # remove out of domain values
+  if (!extrapolate) { colors <- censor(colors, from=x, range=domain) }
+
+  return(colors)
+}
+
+
+#' Coerce various things to numbers
+#'
+#' chroma.js deals with numbers everywhere so it is safer to just convert everything
+#'
+#' @noRd
+as.num <- function(x, ...) {
+  # force characters into factors to be able to convert them to numeric
+  if (is.character(x)) { x <- factor(x) }
+  # convert to numbers
+  x <- as.numeric(x, ...)
+  return(x)
+}
+
