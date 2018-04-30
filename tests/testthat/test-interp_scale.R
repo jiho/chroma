@@ -9,6 +9,17 @@ test_that("colors are interpolated correctly", {
   expect_equal(bw(1),   cols[2])
 })
 
+test_that("various color models work", {
+  expect_equal(interp_scale(cols, model="hcl")(0.5), "#777777")
+  expect_equal(interp_scale(cols, model="lch")(0.5), "#777777")
+  expect_equal(interp_scale(cols, model="hsi")(0.5), "#808080")
+  expect_equal(interp_scale(cols, model="hsl")(0.5), "#808080")
+  expect_equal(interp_scale(cols, model="hsv")(0.5), "#808080")
+  expect_equal(interp_scale(cols, model="lab")(0.5), "#777777")
+  expect_equal(interp_scale(cols, model="rgb")(0.5), "#808080")
+  expect_equal(interp_scale(cols, model="lrgb")(0.5), "#B4B4B4")
+})
+
 test_that("reverse works", {
   expect_equal(
     interp_scale(reverse=TRUE)(c(0,1)),
