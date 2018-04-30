@@ -96,3 +96,55 @@ na_replace <- function(x, na.value) {
   }
   return(x)
 }
+
+#' Rescale within bounds
+#'
+#' see ?scales::rescale
+#' The difference is that the values outside of the input range (from) yield the extreme of the output range (to) rather than being rescaled
+#' @noRd
+#' @examples
+#' rescale(0:3)
+#' # test out-of-bound
+#' scales::rescale(0:3, from=c(1,2))
+#' rescale(0:3, from=c(1,2))
+#' # test reverse
+#' scales::rescale(0:3, from=c(2,1))
+#' rescale(0:3, from=c(2,1))
+#' scales::rescale(0:3, from=c(1,2), to=c(1,0))
+#' rescale(0:3, from=c(1,2), to=c(1,0))
+#' scales::rescale(0:3, from=c(2,1), to=c(1,0))
+#' rescale(0:3, from=c(2,1), to=c(1,0))
+rescale <- function(x, to=c(0,1), from=range(x, na.rm=TRUE, finite=TRUE)) {
+  x <- scales::rescale(x, to=to, from=from)
+  # censor out of bounds
+  if (to[1] <= to[2]) {
+    x[x<to[1]] <- to[1]
+    x[x>to[2]] <- to[2]
+  } else {
+    x[x>to[1]] <- to[1]
+    x[x<to[2]] <- to[2]
+  }
+  return(x)
+}
+
+#' Censor based on another vector
+#'
+#' @param x vector to censor the values in
+#' @param y vector to define the criterion on
+#' @param range range of y to keep
+#' @noRd
+#' @examples
+#' censor_from(10:20, 0:10, c(0,10))
+#' censor_from(10:20, 0:10, c(1,9))
+#' censor_from(1:5, c(-1, 0.5, 1, 2, NA), c(0,1))
+censor <- function(x, from, range) {
+  if (length(x) != length(from)) {
+    stop("Cannot censor `x` based on `from` because they do not have the same length")
+  }
+  range <- sort(na.omit(range))
+  if (length(range) != 2) {
+    stop("`range` should be a valid, non-missing, range with 2 elements")
+  }
+  x[from < range[1] | from > range[2]] <- NA
+  return(x)
+}

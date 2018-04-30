@@ -172,34 +172,25 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       xx <- seq(min(domain), max(domain), length.out=exact.until)
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
       colors <- v8_eval(cmds)
-      # interpolate between them
-      # NB: colorRamp works between 0 and 1 only so we rescale the input
-      #     colorRamp can deals with NAs but grDevices::rgb cannot, so we remove them here
-      #     we use grDevices::rgb() rather than chroma::rgb() because it is much faster
-      x_scaled <- scales::rescale(na.omit(x), from=range(domain))
-      # and return the extreme colors on either side
-      x_scaled[x_scaled < 0] <- 0
-      x_scaled[x_scaled > 1] <- 1
-      # now interpolate the colors
-      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(x_scaled)
-      # convert them to hex
+      # interpolate between them with grDevices::colorRamp()
+      # to do so we need to:
+      # - rescale the input of grDevices::colorRamp to [0,1]
+      # - use grDevices::rgb() to convert the output to hex (much faster than chroma::rgb())
+      # - remove NAs in the input because grDevices::rgb() cannot deal with them
+      # - reinsert NAs in the final color vector
+      xx <- na.omit(x)
+      xx <- rescale(xx, from=range(domain), to=c(0,1))
+      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(xx)
       colors <- grDevices::rgb(colors, maxColorValue=255)
-      # re-insert NAs
       colors <- na_insert(colors, from=x)
     }
 
     # replace NAs by na.value when necessary
-    if (!is.na(na.value)) {
-      na_colors <- is.na(colors)
-      if (any(na_colors)) {
-        colors[na_colors] <- na.value
-      }
-    }
+    colors <- na_replace(colors, na.value)
 
     # remove colors out of domain
     if (!extrapolate) {
-      colors[x<min(domain)] <- NA
-      colors[x>max(domain)] <- NA
+      colors <- censor(colors, from=x, range=range(domain))
     }
     return(colors)
   }
