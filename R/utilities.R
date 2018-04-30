@@ -76,3 +76,23 @@ na_insert <- function(x, from) {
   }
   return(x)
 }
+
+#' Replace NAs by a given value
+#'
+#' @param x vector with NAs.
+#' @param na.value value to replace NAs with.
+#' @noRd
+#' @examples
+#' x <- c(1, NA, 2)
+#' na_replace(x, na.value=10)
+#' na_replace(x, na.value="foo")
+#' na_replace(x, na.value=NA)
+na_replace <- function(x, na.value) {
+ if (!is.na(na.value)) {
+    na_x <- is.na(x)
+    if (any(na_x)) {
+      x[na_x] <- na.value
+    }
+  }
+  return(x)
+}
