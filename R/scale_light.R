@@ -124,7 +124,6 @@ light_scale <- function(l=c(0.1,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE, 
   return(f)
 }
 
-#' @param ... passed to \code{\link{light_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{light_scale} and passing it through \code{...} is an error.
 #' @rdname light_scale
 #' @export
 light_map <- function(x, ...) {
