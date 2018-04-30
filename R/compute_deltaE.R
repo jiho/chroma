@@ -11,6 +11,8 @@
 #' @export
 #' @importFrom stats na.omit
 #'
+#' @seealso \code{\link{CMClc}} for another metric of difference between colors.
+#'
 #' @examples
 #' deltaE("pink", "hotpink")
 #' deltaE("pink", "blue")

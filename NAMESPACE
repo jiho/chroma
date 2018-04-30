@@ -2,6 +2,7 @@
 
 export("channel<-")
 export("luminance<-")
+export(CMClc)
 export(alpha)
 export(as.cmyk)
 export(as.css)

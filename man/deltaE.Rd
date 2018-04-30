@@ -29,3 +29,6 @@ show_col("pink", clrs[which.min(d)])
 \references{
 Sharma, Gaurav; Wu, Wencheng; Dalal, Edul N. (2005). "The CIEDE2000 color-difference formula: Implementation notes, supplementary test data, and mathematical observations" (PDF). Color Research & Applications (Wiley Interscience) 30 (1): 21–30. doi:10.1002/col.20070
 }
+\seealso{
+\code{\link{CMClc}} for another metric of difference between colors.
+}
