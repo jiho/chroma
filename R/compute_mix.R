@@ -2,7 +2,7 @@
 #'
 #' @param x,y colors specified as hex strings or named R colors.
 #' @param ratio amount of y mixed in x; \code{ratio} = 0 means pure \code{x}, \code{ratio} = 1 means pure \code{y}.
-#' @param model color model to compute the mix in; valid models are \code{rgb}, \code{lrgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lab}.
+#' @param model string defining the color model to compute the mix in; valid models are \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{lab}, \code{rgb}, \code{lrgb}.
 #'
 #' @details
 #' All arguments can be vectors, as long as they are of compatible length (shorter arguments will be repeated to the length of longer arguments)
@@ -26,7 +26,7 @@
 #' show_mix("#146EFD", "#FA000C", ratio=c(0.25, 0.5, 0.75))
 #' # not that results in some color spaces can be surprising
 #' show_mix("#FEF213", "#146EFD",
-#'          model=c("rgb", "lrgb", "hsv", "hsl", "hcl", "lab"))
+#'          model=c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"))
 mix <- function(x, y, ratio=0.5, model="rgb") {
   # force input R colors into hex notation
   x <- in_hex(x)
@@ -34,7 +34,7 @@ mix <- function(x, y, ratio=0.5, model="rgb") {
 
   # check arguments values
   is_in(ratio, 0, 1, "ratio")
-  model <- match.arg(model, c("rgb", "lrgb", "hsv", "hsl", "hcl", "lab"), several.ok=TRUE)
+  model <- match.arg(model, c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"), several.ok=TRUE)
 
   # check arguments lengths
   foo <- tabularise_arguments(x, y, ratio, model)

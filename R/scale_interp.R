@@ -3,7 +3,7 @@
 #' Interpolate between colors to create a color scale, map values to colors along a scale, create a color palette, or get a few colors from a palette.
 #'
 #' @param colors vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.
-#' @param model color space in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lch}. Beware that all but \code{lab} and \code{rgb} can give surprising results.
+#' @param model string defining the color model in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{rgb}, \code{lrgb}. Beware that all but \code{lab} and \code{(l)rgb} can give surprising results.
 #' @param interp string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
 #' @param domain vector of two values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
@@ -118,8 +118,8 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
   # NB: remove NAs which don't mean anything for interpolation
 
   # check arguments
-  model <- match.arg(model, c("lab", "hcl", "lch", "hsl", "hsv", "rgb"))
-  # TODO add lrgb
+  model <- match.arg(model, c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"))
+
   interp <- match.arg(interp, c("bezier", "linear"))
   if (interp == "bezier" & model != "lab") {
     warning("Bezier interpolation can only be done in L*a*b* space; switching to model=\"lab\".")

@@ -12,7 +12,7 @@ channel(x, model, channel) <- value
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}.}
+\item{model}{string defining the color model; valid models are \code{cmyk}, \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{lab}, \code{rgb}, and \code{rgba}.}
 
 \item{channel}{string defining the channel within the color model.}
 

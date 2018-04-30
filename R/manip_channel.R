@@ -3,7 +3,7 @@
 #' Extract the value of a color channel or set it and therefore modify the color.
 #'
 #' @template param_x_rcolors
-#' @param model string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}.
+#' @param model string defining the color model; valid models are \code{cmyk}, \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{lab}, \code{rgb}, and \code{rgba}.
 #' @param channel string defining the channel within the color model.
 #' @param value the channel value to set; a number, the convention of which depends on the channel.
 #'
@@ -45,6 +45,8 @@
 #' channel(x, "hsv", "h") <- 240  # make all blue
 #' show_col(x_orig, x)
 channel <- function(x, model, channel) {
+  # check arguments
+  model <- match.arg(model, c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "rgba", "lrgb", "css", "hex", "temperature", "wavelength"))
   if (model %in% c("css", "hex", "temperature", "wavelength")) {
     stop(paste0("Cannot extract a channel from a ", model, " color"))
   }
@@ -60,8 +62,10 @@ channel <- function(x, model, channel) {
 #' @rdname channel
 #' @export
 `channel<-` <- function(x, model, channel, value) {
+  # check arguments
+  model <- match.arg(model, c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "rgba", "lrgb", "css", "hex", "temperature", "wavelength"))
   if (model %in% c("css", "hex", "temperature", "wavelength")) {
-    stop(paste0("Cannot extract a channel in a ", model, " color"))
+    stop(paste0("Cannot set a channel in a ", model, " color"))
   }
 
   # convert to the the given model

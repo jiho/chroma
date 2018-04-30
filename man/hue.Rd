@@ -9,7 +9,7 @@ hue(x, model = "hsv", modulo = TRUE)
 \arguments{
 \item{x}{vector of colors (specified as hex strings or named R colors), or numerical hues, or a mix thereof.}
 
-\item{model}{string defining the color model; valid models are the ones containing a hue component: \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}.}
+\item{model}{string defining the color model; valid models are the ones containing a hue component: \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}.}
 
 \item{modulo}{logical, whether to restrict the hues in [0,360].}
 }

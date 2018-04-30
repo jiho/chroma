@@ -1,7 +1,7 @@
 #' Average several colors
 #'
 #' @template param_x_rcolors
-#' @param model color model to compute the averaging in; valid models are \code{rgb}, \code{lrgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lab}.
+#' @inheritParams mix
 #'
 #' @template return_hex_colors
 #'

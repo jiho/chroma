@@ -9,7 +9,7 @@ average(x, model = "rgb")
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{color model to compute the averaging in; valid models are \code{rgb}, \code{lrgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lab}.}
+\item{model}{string defining the color model to compute the mix in; valid models are \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{lab}, \code{rgb}, \code{lrgb}.}
 }
 \value{
 A vector of colors specified as hex codes
