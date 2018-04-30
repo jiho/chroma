@@ -61,7 +61,8 @@ show_col(c(col, new_col))
 # = the two greens are slightly different
 }
 \seealso{
-Other color manipulation functions: \code{\link{channel}},
+Other color manipulation functions: \code{\link{average}},
+  \code{\link{blend}}, \code{\link{channel}},
   \code{\link{luminance}}, \code{\link{mix}},
   \code{\link{saturate}}
 }

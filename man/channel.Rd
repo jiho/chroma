@@ -57,7 +57,8 @@ show_col(x_orig, x)
 \seealso{
 \code{\link{luminance}} for relative brightness, which is slightly different from the perceived brightness (i.e. the value of the L channel in L*a*b* or HCL).
 
-Other color manipulation functions: \code{\link{darken}},
+Other color manipulation functions: \code{\link{average}},
+  \code{\link{blend}}, \code{\link{darken}},
   \code{\link{luminance}}, \code{\link{mix}},
   \code{\link{saturate}}
 }
