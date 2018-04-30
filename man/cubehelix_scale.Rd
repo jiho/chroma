@@ -60,7 +60,7 @@ As a user, the most useful functions are \code{*_map} and \code{*_colors}.
 # Basic color palettes
 show_col(
   cubehelix_colors(20),
-  cubehelix_colors(20, reverse=T)
+  cubehelix_colors(20, reverse=TRUE)
 )
 
 # Rotating less gives more sensible scales
