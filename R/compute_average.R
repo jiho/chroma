@@ -23,14 +23,13 @@
 #' # so averaging produces brown, most of the time, but not always:
 #' show_ave(brewer_colors(5, name="Greens"))
 #'
-#' # beware, numerical color averaging is not the same as blending pigments
-#' show_ave(c("yellow", "red"))
-#' show_ave(c("blue", "red"))
-#' # but
-#' show_ave(c("yellow", "blue"))
-#' show_ave(c("yellow", "blue"), model="rgb")
-#' show_ave(c("yellow", "blue"), model="hsv")
-average <- function(x, model="lab") {
+#' # beware that numerical color averaging is not the same as blending
+#' # pigments, in particular in non-rgb spaces
+#' show_ave(c("#FEF213", "#A0BD71", "#146EFD"))
+#' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hcl")
+#' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hsv")
+#' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="lab")
+average <- function(x, model="rgb") {
 
   # force input R colors into hex notation
   x <- in_hex(x)

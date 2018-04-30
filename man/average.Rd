@@ -4,7 +4,7 @@
 \alias{average}
 \title{Average several colors}
 \usage{
-average(x, model = "lab")
+average(x, model = "rgb")
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
@@ -31,16 +31,16 @@ show_ave(cubehelix_colors(5))
 # so averaging produces brown, most of the time, but not always:
 show_ave(brewer_colors(5, name="Greens"))
 
-# beware, numerical color averaging is not the same as blending pigments
-show_ave(c("yellow", "red"))
-show_ave(c("blue", "red"))
-# but
-show_ave(c("yellow", "blue"))
-show_ave(c("yellow", "blue"), model="rgb")
-show_ave(c("yellow", "blue"), model="hsv")
+# beware that numerical color averaging is not the same as blending
+# pigments, in particular in non-rgb spaces
+show_ave(c("#FEF213", "#A0BD71", "#146EFD"))
+show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hcl")
+show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hsv")
+show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="lab")
 }
 \seealso{
-Other color manipulation functions: \code{\link{channel}},
-  \code{\link{darken}}, \code{\link{luminance}},
-  \code{\link{mix}}, \code{\link{saturate}}
+Other color manipulation functions: \code{\link{blend}},
+  \code{\link{channel}}, \code{\link{darken}},
+  \code{\link{luminance}}, \code{\link{mix}},
+  \code{\link{saturate}}
 }
