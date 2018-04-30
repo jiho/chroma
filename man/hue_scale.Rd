@@ -49,11 +49,15 @@ scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
 
 \item{full.circle}{when the range of hues specified in \code{h} spans 360°, this argument determines if the color scale should also span the full circle (which results in the same color being associated with different values, at the extremes of the scale), or not. By default it is set to FALSE to avoid this caveat. When \code{h} does not span 360°, this argument is ignored because the caveat disappears.}
 
+\item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
 \item{...}{passed to \code{\link{hue_scale}} from other \code{hue_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
+
+\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.

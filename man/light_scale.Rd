@@ -36,13 +36,15 @@ scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
+\item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
 \item{...}{passed to \code{\link{light_scale}} from other \code{light_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 
-\item{...}{passed to \code{\link{light_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{light_scale} and passing it through \code{...} is an error.}
+\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
