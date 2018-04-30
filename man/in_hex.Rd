@@ -2,7 +2,7 @@
 % Please edit documentation in R/in_hex.R
 \name{in_hex}
 \alias{in_hex}
-\title{Force HEX representation}
+\title{Fast casting of colors into HEX strings}
 \usage{
 in_hex(x)
 }
@@ -13,12 +13,14 @@ in_hex(x)
 A vector of colors specified as hex codes
 }
 \description{
-Convert colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation
+Convert colors, including named ones as defined in the function \code{\link[grDevices]{colors}}, into their hex representation. This function is mostly used internally by chroma.
 }
 \examples{
 in_hex("pink")
 in_hex(c("pink", "#348A31", "darkblue"))
 in_hex(c("pink", NA))
 show_col(in_hex(colors()))
-
+}
+\seealso{
+\code{\link{hex}} for the same functionality offered in a more standard and more versatile way (albeit slower).
 }
