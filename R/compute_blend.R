@@ -2,7 +2,7 @@
 #'
 #' Blend two colors using RGB channel-wise blend functions.
 #'
-#' @param x,y colors specified as hex strings or named R colors.
+#' @template param_xy_rcolors
 #' @param mode blending mode; valid modes are \code{multiply}, \code{darken}, \code{lighten}, \code{screen}, \code{overlay}, \code{burn}, and \code{dodge}.
 #'
 #' @details

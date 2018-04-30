@@ -1,6 +1,6 @@
 #' Mix two colors
 #'
-#' @param x,y colors specified as hex strings or named R colors.
+#' @template param_xy_rcolors
 #' @param ratio amount of y mixed in x; \code{ratio} = 0 means pure \code{x}, \code{ratio} = 1 means pure \code{y}.
 #' @param model string defining the color model to compute the mix in; valid models are \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{lab}, \code{rgb}, \code{lrgb}.
 #'

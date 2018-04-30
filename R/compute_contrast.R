@@ -2,7 +2,7 @@
 #'
 #' Compute the WCAG contrast ratio between two colors.
 #'
-#' @param x,y colors specified as hex strings or named R colors.
+#' @template param_xy_rcolors
 #'
 #' @return A number giving the contrast ratio between x and y (or a vector thereof). A value of 1 means no contrast at all. A minimum contrast of 4.5 is recommended to ensure that text is still readable against a background color.
 #'

@@ -2,11 +2,14 @@
 #'
 #' Compute the difference between two colors, using the CIE Delta-E 2000 formula. \url{https://en.wikipedia.org/wiki/Color_difference#CIEDE2000}.
 #'
-#' @param x,y colors specified as hex strings or named R colors.
+#' @template param_xy_rcolors
 #'
 #' @return A number quantifying the difference between x and y (or a vector thereof). A difference < 1 is imperceptible to the human eye.
 #'
 #' @references Sharma, Gaurav; Wu, Wencheng; Dalal, Edul N. (2005). "The CIEDE2000 color-difference formula: Implementation notes, supplementary test data, and mathematical observations" (PDF). Color Research & Applications (Wiley Interscience) 30 (1): 21–30. doi:10.1002/col.20070
+#'
+#' @export
+#' @importFrom stats na.omit
 #'
 #' @examples
 #' delta_e("pink", "hotpink")
@@ -18,9 +21,6 @@
 #' show_col("pink", clrs)
 #' d <- delta_e("pink", clrs)
 #' show_col("pink", clrs[which.min(d)])
-#'
-#' @export
-#' @importFrom stats na.omit
 delta_e <- function(x, y) {
   # force input R colors into hex notation
   x <- in_hex(x)
