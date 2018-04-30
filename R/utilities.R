@@ -193,7 +193,7 @@ as_map <- function(scalefun, x, ...) {
 as_palette <- function(scalefun, ...) {
   # prepare a function that computes n colors
   f <- function(n) {
-    scalefun(domain=1:n, ...)(1:n)
+    scalefun(domain=c(1,n), ...)(1:n)
   }
   return(f)
 }
