@@ -173,23 +173,17 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       colors <- v8_eval(cmds)
     }
 
-    # for large data, cheat: use chroma.js to get a few colors and interpolate the new ones with colorRamp which is faster
+    # for large data, cheat:
+    # - use chroma.js to get a few colors
+    # - interpolate new ones with scales::colour_ramp which is way faster
     else {
       # get exact.until colors
       xx <- seq(min(domain), max(domain), length.out=exact.until)
       cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
       colors <- v8_eval(cmds)
-      # interpolate between them with grDevices::colorRamp()
-      # to do so we need to:
-      # - rescale the input of grDevices::colorRamp to [0,1]
-      # - use grDevices::rgb() to convert the output to hex (much faster than chroma::rgb())
-      # - remove NAs in the input because grDevices::rgb() cannot deal with them
-      # - reinsert NAs in the final color vector
-      xx <- na.omit(x)
-      xx <- rescale(xx, from=range(domain), to=c(0,1))
-      colors <- grDevices::colorRamp(colors, space="Lab", interpolate="linear")(xx)
-      colors <- grDevices::rgb(colors, maxColorValue=255)
-      colors <- na_insert(colors, from=x)
+      # interpolate between them with scales::colour_ramp()
+      xs <- rescale(x, from=range(domain), to=c(0,1))
+      colors <- scales::colour_ramp(colors)(xs)
     }
 
     return(post_process_scale(colors, na.value, extrapolate, x, range(domain)))
