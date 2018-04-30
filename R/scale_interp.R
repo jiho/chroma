@@ -8,7 +8,7 @@
 #' @param domain the values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
 #' @param values if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
-#' @param na.value value to return for missing values in the input. Can be either a color (here a neutral grey) or \code{NA}.
+#' @param na.value value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.
 #' @param extrapolate when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.
 #' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.
 #'
@@ -111,8 +111,7 @@
 #' legend(1, 2, legend=levels(Species),
 #'              pt.bg=interp_colors(n=nlevels(Species)), pch=21)
 #' # a hue-based scale would be much better (see ?hue_scale)
-interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, na.value="#808080", extrapolate=FALSE, exact.until=100) {
-  # TODO define na.value based on average color and removing chroma
+interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100) {
   # TODO add correctLightness, false by default
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
@@ -156,6 +155,9 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
   if ( interp == "linear" ) {
     interp <- "scale"
   }
+
+  # if the na.value is not defined, pick a good default
+  na.value <- interp_na(na.value)
 
   # define the scale function which calls chroma.js internally
   f <- function(x) {
@@ -235,15 +237,25 @@ interp_colors <- function(n, ...) {
   interp_palette(...)(n)
 }
 
+# Pick a good missing value color for a hue scale
+# when not defined (NULL), select a neutral grey
+# TODO define na.value based on average color and removing chroma
+interp_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- "#808080"
+  }
+  return(na.value)
+}
+
 ## ggplot ----
 
-#' @param guide type of guide for the legend ("legend" for a categorical guide, "colorbar" for a continuous colorbar) or guide object itself.
+#' @param guide type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.
 #' @rdname interp_scale
 #' @export
-scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value="#808080", extrapolate=FALSE, exact.until=100, guide="colourbar") {
+scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100, guide="colourbar") {
   ggplot2::continuous_scale("colour", "interp",
     interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
-    na.value=na.value, guide=guide, ...
+    na.value=interp_na(na.value), guide=guide, ...
   )
 }
 #' @rdname interp_scale
@@ -253,10 +265,10 @@ scale_colour_interp <- scale_color_interp
 
 #' @rdname interp_scale
 #' @export
-scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value="#808080", exact.until=100, guide="colourbar") {
+scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, exact.until=100, guide="colourbar") {
   ggplot2::continuous_scale("fill", "interp",
     interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
-    na.value=na.value, guide=guide, ...
+    na.value=interp_na(na.value), guide=guide, ...
   )
 }
 

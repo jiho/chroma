@@ -12,7 +12,7 @@
 \usage{
 interp_scale(colors = c("white", "black"), model = "lab",
   interp = "linear", domain = c(0, 1), reverse = FALSE, values = NULL,
-  na.value = "#808080", extrapolate = FALSE, exact.until = 100)
+  na.value = NULL, extrapolate = FALSE, exact.until = 100)
 
 interp_map(x, ...)
 
@@ -21,13 +21,12 @@ interp_palette(...)
 interp_colors(n, ...)
 
 scale_color_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL,
-  na.value = "#808080", extrapolate = FALSE, exact.until = 100,
-  guide = "colourbar")
+  interp = "linear", reverse = FALSE, values = NULL, na.value = NULL,
+  extrapolate = FALSE, exact.until = 100, guide = "colourbar")
 
 scale_fill_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL,
-  na.value = "#808080", exact.until = 100, guide = "colourbar")
+  interp = "linear", reverse = FALSE, values = NULL, na.value = NULL,
+  exact.until = 100, guide = "colourbar")
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -42,7 +41,7 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 
 \item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position for each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
 
-\item{na.value}{value to return for missing values in the input. Can be either a color (here a neutral grey) or \code{NA}.}
+\item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
 
 \item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
@@ -54,7 +53,7 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 
 \item{n}{number of colors to extract from the color palette.}
 
-\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colorbar" for a continuous colorbar) or guide object itself.}
+\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
