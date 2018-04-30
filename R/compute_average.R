@@ -35,7 +35,7 @@ average <- function(x, model="rgb") {
   x <- in_hex(x)
 
   # check arguments values
-  model <- match.arg(model, c("rgb", "lrgb", "hsv", "hsl", "hcl", "lab"), several.ok=FALSE)
+  model <- match.arg(model, c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"), several.ok=FALSE)
 
   # average colors
   cmds <- stringr::str_c("chroma.average(['", stringr::str_c(x, collapse="','"), "'], '", model, "').hex()")
