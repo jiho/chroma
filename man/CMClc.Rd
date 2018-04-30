@@ -33,5 +33,5 @@ d <- CMClc("pink", clrs)
 show_col("pink", clrs[which.min(d)])
 }
 \seealso{
-\code{\link{deltaE}} for another (probably more consistent) metric of difference between colors.
+\code{\link{deltaE}} for another (probably more consistent) metric of difference between colors and \code{\link{color_distance}} for a numerical definition of the distance between two colors.
 }

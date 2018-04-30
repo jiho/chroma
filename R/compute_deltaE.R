@@ -11,7 +11,7 @@
 #' @export
 #' @importFrom stats na.omit
 #'
-#' @seealso \code{\link{CMClc}} for another metric of difference between colors.
+#' @seealso \code{\link{CMClc}} for another metric of perceptual difference between colors and \code{\link{color_distance}} for a numerical definition of the distance between two colors.
 #'
 #' @examples
 #' deltaE("pink", "hotpink")
