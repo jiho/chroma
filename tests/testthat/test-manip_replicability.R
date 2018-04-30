@@ -46,7 +46,7 @@ test_that("manipulating lightness is replicable", {
 test_that("manipulating luminance is replicable", {
   x_modif <- x
   luminance(x_modif) <- 0.2
-  expect_equal(x_modif, c("#518388", "#9C6F79", "#4480B1"))
+  expect_equal(x_modif, c("#528489", "#9D6F79", "#4580B2"))
 })
 
 test_that("manipulating saturation is replicable", {

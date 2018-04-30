@@ -26,7 +26,7 @@ test_that("hex is replicable", {
 })
 
 test_that("hsi is replicable", {
-  expect_equal(hsi(x[,1]*360, x[,2], x[,3]), c("#D6FF16", "#86D89A", "#10AAFF"))
+  expect_equal(hsi(x[,1]*360, x[,2], x[,3]), c("#D7FF16", "#87D89B", "#10ABFF"))
 })
 
 test_that("hsl is replicable", {
@@ -45,11 +45,11 @@ test_that("rgb is replicable", {
   expect_equal(rgb(x[,1:3]), c("#44E8F1", "#5F33A9", "#92E5A0"))
 })
 test_that("rgba is replicable", {
-  expect_equal(rgba(x), c("#43E7F010", "#5E33A835", "#92E5A02D"))
+  expect_equal(rgba(x), c("#44E8F110", "#5F33A935", "#92E5A02D"))
 })
 
 test_that("temperature is replicable", {
-  expect_equal(temperature(x[,1]*10000+2000), c("#FFDDBF", "#FFEFE6", "#E5EAFF"))
+  expect_equal(temperature(x[,1]*10000+2000), c("#FFDEC0", "#FFEFE6", "#E6EBFF"))
 })
 
 test_that("wavelength is replicable", {

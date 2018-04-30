@@ -5,7 +5,7 @@ cols <- c("#000000", "#FFFFFF")
 test_that("colors are interpolated correctly", {
   bw <- interp_scale(cols, model="rgb")
   expect_equal(bw(0),   cols[1])
-  expect_equal(bw(0.5), "#7F7F7F")
+  expect_equal(bw(0.5), "#808080")
   expect_equal(bw(1),   cols[2])
 })
 
