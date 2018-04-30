@@ -11,7 +11,7 @@
 \title{Chromacity scale and palette}
 \usage{
 chroma_scale(chroma = c(0, 1), l = 0.5, h = 0, domain = c(0, 1),
-  reverse = FALSE, na.value = NULL)
+  reverse = FALSE, na.value = NULL, extrapolate = FALSE)
 
 chroma_map(x, ...)
 
@@ -37,6 +37,8 @@ scale_fill_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
+\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 

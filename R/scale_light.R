@@ -93,62 +93,40 @@
 #' legend(1, 2, legend=levels(Species),
 #'              col=light_colors(n=nlevels(Species)), pch=19)
 #' # a hue-based scale would be much better (see ?hue_scale)
-light_scale <- function(l=c(0.1,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE, na.value=NULL) {
+light_scale <- function(l=c(0.1,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
   # check arguments
   if (length(l) != 2) {
     stop("l needs to be a vector of length 2, defining the minimum and maximum lightness to use.")
   }
 
   # change the direction of the scale
-  if (reverse) {
-    l <- rev(l)
-  }
+  if (reverse) { l <- rev(l) }
 
   # if the na.value is not defined, pick a good default
   na.value <- light_na(na.value, l=l)
 
   # define the function
   f <- function(x) {
-    # define colors
-    colors <- hcl(h=h, c=c, l=scales::rescale(x, from=domain, to=l))
-
-    # replace NAs by na.value when necessary
-    if (!is.na(na.value)) {
-      na_colors <- is.na(colors)
-      if (any(na_colors)) {
-        colors[na_colors] <- na.value
-      }
-    }
-    return(colors)
+    s <- as.num(x)
+    domain <- as.num(domain)
+    colors <- hcl(h=h, c=c, l=rescale(x, from=domain, to=l))
+    return(post_process_scale(colors, na.value, extrapolate, x, domain))
   }
   return(f)
 }
 
 #' @rdname light_scale
 #' @export
-light_map <- function(x, ...) {
-  # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) { x <- factor(x) }
-  # convert to numbers
-  x <- as.numeric(x)
-  # define the domain of the scale
-  light_scale(domain=range(x, na.rm=T), ...)(x)
-}
+light_map <- function(x, ...) { as_map(light_scale, x, ...) }
 
 #' @rdname light_scale
 #' @export
-light_palette <- function(...) {
-  f <- function(n) {
-    light_scale(domain=c(1,n), ...)(1:n)
-  }
-  return(f)
-}
+light_palette <- function(...) { as_palette(light_scale, ...) }
 
 #' @rdname light_scale
 #' @export
-light_colors <- function(n, ...) {
-  light_palette(...)(n)
-}
+light_colors <- function(n, ...) { light_palette(...)(n) }
+
 
 # Pick a good missing value color for a hue scale
 # when not defined (NULL), pick a grey of average lightness along the scale

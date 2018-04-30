@@ -81,7 +81,7 @@
 #' ggplot(airquality) +
 #'   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
 #'   scale_color_hue_c()}
-hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALSE, full.circle=FALSE, na.value=NULL) {
+hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALSE, full.circle=FALSE, na.value=NULL, extrapolate=FALSE) {
   # check arguments
   if (length(h) != 2) {
     stop("h must be a vector of length 2, defining the range of hues to use.")
@@ -100,19 +100,15 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
   }
 
   # change the direction along the color wheel
-  if (reverse) {
-    h <- rev(h)
-  }
+  if (reverse) { h <- rev(h) }
 
   # if the na.value is not defined, pick a good default
   na.value <- hue_na(na.value, l=l)
 
   # define the function
   f <- function(x) {
-    # force characters into factors to be able convert to numbers
-    if (is.character(x)) { x <- factor(x) }
-    # convert to number
-    x <- as.numeric(x)
+    x <- as.num(x)
+    domain <- as.num(domain)
 
     # expand the domain to avoid cycling around the color grid
     if (hue_range == 360 & !full.circle) {
@@ -120,47 +116,23 @@ hue_scale <- function(h=c(0,360)+40, c=0.65, l=0.65, domain=c(0,1), reverse=FALS
       domain <- domain * c(1, (n+1)/n)
     }
 
-    # map colors
-    colors <- hcl(h=scales::rescale(x, from=domain, to=h), c=c, l=l)
-
-    # replace NAs by na.value when necessary
-    if (!is.na(na.value)) {
-      na_colors <- is.na(colors)
-      if (any(na_colors)) {
-        colors[na_colors] <- na.value
-      }
-    }
-
-    return(colors)
+    colors <- hcl(h=rescale(x, from=domain, to=h), c=c, l=l)
+    return(post_process_scale(colors, na.value, extrapolate, x, domain))
   }
   return(f)
 }
 
 #' @rdname hue_scale
 #' @export
-hue_map <- function(x, ...) {
-  # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) { x <- factor(x) }
-  # convert to numbers
-  x <- as.numeric(x)
-  # define the domain of the scale
-  hue_scale(domain=range(x, na.rm=TRUE), ...)(x)
-}
+hue_map <- function(x, ...) { as_map(hue_scale, x, ...) }
 
 #' @rdname hue_scale
 #' @export
-hue_palette <- function(n, ...) {
-  f <- function(n) {
-    hue_scale(domain=c(1,n), ...)(1:n)
-  }
-  return(f)
-}
+hue_palette <- function(...) { as_palette(hue_scale, ...) }
 
 #' @rdname hue_scale
 #' @export
-hue_colors <- function(n, ...) {
-  hue_palette(...)(n)
-}
+hue_colors <- function(n, ...) { hue_palette(...)(n) }
 
 # Pick a good missing value color for a hue scale
 # when not defined (NULL), pick a grey with the same luminance as the other colors in the scale

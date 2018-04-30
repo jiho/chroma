@@ -83,7 +83,7 @@
 #' legend(1, 2, legend=levels(Species),
 #'              col=chroma_colors(n=nlevels(Species)), pch=19)
 #' # a hue-based scale would be much better (see ?hue_scale)
-chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE, na.value=NULL) {
+chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
   # NB: argument is named `chroma` to avoid conflict with `c` (error: promise already under evaluation). But the `c` abbreviation works.
 
   # check arguments
@@ -92,55 +92,32 @@ chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE
   }
 
   # change the direction of the scale
-  if (reverse) {
-    chroma <- rev(chroma)
-  }
+  if (reverse) { chroma <- rev(chroma) }
 
   # if the na.value is not defined, pick a good default
   na.value <- chroma_na(na.value, h=h, chroma=chroma, l=l)
 
   # define the function
   f <- function(x) {
-    # define colors
-    colors <- hcl(h=hue(h), c=scales::rescale(x, from=domain, to=chroma), l=l)
-
-    # replace NAs by na.value when necessary
-    if (!is.na(na.value)) {
-      na_colors <- is.na(colors)
-      if (any(na_colors)) {
-        colors[na_colors] <- na.value
-      }
-    }
-    return(colors)
+    x <- as.num(x)
+    domain <- as.num(domain)
+    colors <- hcl(h=hue(h), c=rescale(x, from=domain, to=chroma), l=l)
+    return(post_process_scale(colors, na.value, extrapolate, x, domain))
   }
   return(f)
 }
 
 #' @rdname chroma_scale
 #' @export
-chroma_map <- function(x, ...) {
-  # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) { x <- factor(x) }
-  # convert to numbers
-  x <- as.numeric(x)
-  # define the domain of the scale
-  chroma_scale(domain=range(x, na.rm=T), ...)(x)
-}
+chroma_map <- function(x, ...) { as_map(chroma_scale, x, ...) }
 
 #' @rdname chroma_scale
 #' @export
-chroma_palette <- function(...) {
-  f <- function(n) {
-    chroma_scale(domain=c(1,n), ...)(1:n)
-  }
-  return(f)
-}
+chroma_palette <- function(...) { as_palette(chroma_scale, ...) }
 
 #' @rdname chroma_scale
 #' @export
-chroma_colors <- function(n, ...) {
-  chroma_palette(...)(n)
-}
+chroma_colors <- function(n, ...) { chroma_palette(...)(n) }
 
 
 # Pick a good missing value color for a chroma scale

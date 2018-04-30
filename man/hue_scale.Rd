@@ -14,11 +14,12 @@
 \title{Hue scale and palette}
 \usage{
 hue_scale(h = c(0, 360) + 40, c = 0.65, l = 0.65, domain = c(0, 1),
-  reverse = FALSE, full.circle = FALSE, na.value = NULL)
+  reverse = FALSE, full.circle = FALSE, na.value = NULL,
+  extrapolate = FALSE)
 
 hue_map(x, ...)
 
-hue_palette(n, ...)
+hue_palette(...)
 
 hue_colors(n, ...)
 
@@ -50,6 +51,8 @@ scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
 \item{full.circle}{when the range of hues specified in \code{h} spans 360°, this argument determines if the color scale should also span the full circle (which results in the same color being associated with different values, at the extremes of the scale), or not. By default it is set to FALSE to avoid this caveat. When \code{h} does not span 360°, this argument is ignored because the caveat disappears.}
 
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
+\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
