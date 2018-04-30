@@ -15,7 +15,7 @@ blend(x, y, mode = "multiply")
 A vector of colors specified as hex codes
 }
 \description{
-Blends two colors using RGB channel-wise blend functions.
+Blend two colors using RGB channel-wise blend functions.
 }
 \details{
 All arguments can be vectors, as long as they are of compatible length (shorter arguments will be repeated to the length of longer arguments)
@@ -35,9 +35,13 @@ all_blends <- function(x, y) {
 }
 show_col(
   all_blends("#FEF213", "#146EFD"),
+  all_blends("#146EFD", "#FEF213"),
   all_blends("#FEF213", "#FA000C"),
-  all_blends("#146EFD", "#FA000C")
+  all_blends("#FA000C", "#FEF213"),
+  all_blends("#146EFD", "#FA000C"),
+  all_blends("#FA000C", "#146EFD")
 )
+# NB: for some blending modes, the order of the input colors is important
 }
 \seealso{
 Other color manipulation functions: \code{\link{average}},

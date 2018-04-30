@@ -1,6 +1,6 @@
 #' Blend two colors
 #'
-#' Blends two colors using RGB channel-wise blend functions.
+#' Blend two colors using RGB channel-wise blend functions.
 #'
 #' @param x,y colors specified as hex strings or named R colors.
 #' @param mode blending mode; valid modes are \code{multiply}, \code{darken}, \code{lighten}, \code{screen}, \code{overlay}, \code{burn}, and \code{dodge}.
@@ -29,9 +29,13 @@
 #' }
 #' show_col(
 #'   all_blends("#FEF213", "#146EFD"),
+#'   all_blends("#146EFD", "#FEF213"),
 #'   all_blends("#FEF213", "#FA000C"),
-#'   all_blends("#146EFD", "#FA000C")
+#'   all_blends("#FA000C", "#FEF213"),
+#'   all_blends("#146EFD", "#FA000C"),
+#'   all_blends("#FA000C", "#146EFD")
 #' )
+#' # NB: for some blending modes, the order of the input colors is important
 blend <- function(x, y, mode="multiply") {
   # force input R colors into hex notation
   x <- in_hex(x)
