@@ -11,7 +11,7 @@ mix(x, y, ratio = 0.5, model = "rgb")
 
 \item{ratio}{amount of y mixed in x; \code{ratio} = 0 means pure \code{x}, \code{ratio} = 1 means pure \code{y}.}
 
-\item{model}{color model to compute the mix in; valid models are \code{rgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lab}.}
+\item{model}{color model to compute the mix in; valid models are \code{rgb}, \code{lrgb}, \code{hsv}, \code{hsl}, \code{hcl}, \code{lab}.}
 }
 \value{
 A vector of colors specified as hex codes
@@ -28,15 +28,18 @@ mix("red", "blue", 0.25)
 # Arguments can be vectors and all mixes are returned
 mix("red", "blue", c(0.25, 0.5, 0.75))
 
-show_mix <- function(x, y, ...) {show_col(c(x, y, mix(x, y, ...)))}
+show_mix <- function(x, y, ...) {show_col(c(x, y, "white", mix(x, y, ...)))}
 show_mix("#FEF213", "#146EFD")
 show_mix("#FEF213", "#FA000C")
-show_mix("red", "blue", ratio=c(0.25, 0.5, 0.75))
-show_mix("red", "blue", model=c("rgb", "hsv", "hsl", "hcl", "lab"))
-
+show_mix("#146EFD", "#FA000C")
+show_mix("#146EFD", "#FA000C", ratio=c(0.25, 0.5, 0.75))
+# not that results in some color spaces can be surprising
+show_mix("#FEF213", "#146EFD",
+         model=c("rgb", "lrgb", "hsv", "hsl", "hcl", "lab"))
 }
 \seealso{
-Other color manipulation functions: \code{\link{channel}},
+Other color manipulation functions: \code{\link{average}},
+  \code{\link{blend}}, \code{\link{channel}},
   \code{\link{darken}}, \code{\link{luminance}},
   \code{\link{saturate}}
 }
