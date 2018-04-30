@@ -50,10 +50,10 @@ test_that("manipulation functions handle NAs", {
 })
 
 test_that("computation functions handle NAs", {
+  expect_equal(deltaE(NA, NA), NA_real_)
+  expect_equal(deltaE("red", NA), NA_real_)
   expect_equal(contrast(NA, NA), NA_real_)
   expect_equal(contrast("red", NA), NA_real_)
-  expect_equal(delta_e(NA, NA), NA_real_)
-  expect_equal(delta_e("red", NA), NA_real_)
   expect_equal(mix(NA, NA), NA_character_)
   expect_equal(mix("red", NA), NA_character_)
 })

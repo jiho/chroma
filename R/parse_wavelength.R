@@ -55,7 +55,7 @@ convert_wavelength <- function(x) {
   v <- v[seq(1, nrow(v), by=2),]
 
   # compute the distance between input colors and each colour in the table
-  dists <- lapply(x, delta_e, v$color)
+  dists <- lapply(x, deltaE, v$color)
 
   # for each input color
   res <- sapply(dists, function(y) {
