@@ -4,12 +4,14 @@
 \alias{average}
 \title{Average several colors}
 \usage{
-average(x, model = "rgb")
+average(x, model = "rgb", na.rm = FALSE)
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
 \item{model}{string defining the color model to compute the mix in; valid models are \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{lab}, \code{rgb}, \code{lrgb}.}
+
+\item{na.rm}{a logical value indicating whether NA values should be stripped before the computation proceeds.}
 }
 \value{
 A vector of colors specified as hex codes

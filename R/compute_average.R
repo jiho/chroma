@@ -2,6 +2,7 @@
 #'
 #' @template param_x_rcolors
 #' @inheritParams mix
+#' @param na.rm a logical value indicating whether NA values should be stripped before the computation proceeds.
 #'
 #' @template return_hex_colors
 #'
@@ -29,7 +30,9 @@
 #' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hcl")
 #' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hsv")
 #' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="lab")
-average <- function(x, model="rgb") {
+average <- function(x, model="rgb", na.rm=FALSE) {
+  # remove NAs if specified
+  if (na.rm) {x <- na.omit(x)}
 
   # force input R colors into hex notation
   x <- in_hex(x)

@@ -52,6 +52,7 @@ test_that("manipulation functions handle NAs", {
 test_that("computation functions handle NAs", {
   expect_equal(average(c(NA, NA)), NA_character_)
   expect_equal(average(c("red", NA)), NA_character_)
+  expect_equal(average(c("#FF0000", NA), na.rm=TRUE), "#FF0000")
   expect_equal(blend(NA, NA), NA_character_)
   expect_equal(blend("red", NA), NA_character_)
   expect_equal(color_distance(NA, NA), NA_real_)
