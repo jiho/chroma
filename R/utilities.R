@@ -181,3 +181,21 @@ as.num <- function(x, ...) {
   return(x)
 }
 
+#' Convert a scale function into a map one
+#'
+#' @noRd
+as_map <- function(scalefun, x, ...) {
+  # convert to number
+  x <- as.num(x)
+  # define the domain automatically and appy the scale
+  scalefun(domain=range(x, na.rm=TRUE, finite=TRUE), ...)(x)
+}
+as_palette <- function(scalefun, ...) {
+  # prepare a function that computes n colors
+  f <- function(n) {
+    scalefun(domain=1:n, ...)(1:n)
+  }
+  return(f)
+}
+
+

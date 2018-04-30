@@ -201,29 +201,16 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
 #' @param x a vector whose values will be coerced to numbers and mapped to colors.
 #' @rdname interp_scale
 #' @export
-interp_map <- function(x, ...) {
-  # coerce everything to numbers
-  x <- as.num(x)
-  # define the domain of the scale and map values
-  colors <- interp_scale(domain=range(x, na.rm=TRUE), ...)(x)
-  return(colors)
-}
+interp_map <- function(x, ...) { as_map(interp_scale, x, values=NULL, ...) }
 
 #' @rdname interp_scale
 #' @export
-interp_palette <- function(...) {
-  f <- function(n) {
-    interp_scale(domain=1:n, values=NULL, ...)(1:n)
-  }
-  return(f)
-}
+interp_palette <- function(...) { as_palette(interp_scale, values=NULL, ...) }
 
 #' @param n number of colors to extract from the color palette.
 #' @rdname interp_scale
 #' @export
-interp_colors <- function(n, ...) {
-  interp_palette(...)(n)
-}
+interp_colors <- function(n, ...) { interp_palette(...)(n) }
 
 # Pick a good missing value color for a hue scale
 # when not defined (NULL), select a neutral grey
