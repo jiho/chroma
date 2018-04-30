@@ -43,7 +43,7 @@ wl <- wavelength
 # @param x vector of wavelengths.
 parse_wavelength <- function(x) {
   # interpolate from the values in the table
-  interp_scale(chroma::visible$color, values=chroma::visible$wl)(x)
+  interp_scale(chroma::visible$color, values=chroma::visible$wl, extrapolate=TRUE, na.value=NA)(x)
 }
 
 # Internal implementation of the conversion into wavelength
