@@ -44,13 +44,14 @@
 #' image(maunga, col=cubehelix_colors(100, rot=-0.75))
 #' contour(maunga, col=alpha("black", 0.2), add=TRUE)
 #'
-#' persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+#' persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+#'       border=alpha("black", 0.4),
 #'       col=cubehelix_map(persp_facets(maunga$z), rot=-0.75))
 #'
 #'
 #' \dontrun{
 #' library("rgl")
-#' persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+#' persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
 #'         col=cubehelix_map(maunga$z, rot=-0.75))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #' }

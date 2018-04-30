@@ -116,7 +116,8 @@ image(maunga, col=hue_colors(100))
 image(maunga, col=hue_colors(10, h=c(170, 90), l=0.6))
 contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
       col=hue_map(persp_facets(maunga$z), h=c(170, 90), l=0.6))
 # Still, lightness (or chromacity) based scales are likely to be better...
 

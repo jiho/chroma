@@ -52,12 +52,13 @@ show_col(
 image(maunga, col=viridis_colors(100))
 contour(maunga, col=alpha("black", 0.2), add=TRUE)
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.4),
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
       col=viridis_map(persp_facets(maunga$z)))
 
 \dontrun{
 library("rgl")
-persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
         col=viridis_map(maunga$z))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 }

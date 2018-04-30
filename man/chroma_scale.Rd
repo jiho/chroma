@@ -98,7 +98,8 @@ contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
 filled.contour(maunga, color.palette=chroma_palette(h="orange"))
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
       col=chroma_map(persp_facets(maunga$z), h="orange"))
 # but a lightness-based scale would probably be even better
 # (see ?light_scale)
@@ -106,7 +107,7 @@ persp(maunga, theta=50, phi=25, border=alpha("black", 0.3),
 \dontrun{
 # in spinning 3D
 library("rgl")
-persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
         col=chroma_map(maunga$z, h="orange"))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 

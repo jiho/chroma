@@ -110,12 +110,13 @@ show_col(topo_colors)
 image(maunga, col=interp_colors(100, colors=topo_colors))
 # = the dark ring-like level is indeed misleading
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.4),
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
       col=interp_map(persp_facets(maunga$z), colors=topo_colors))
 
 \dontrun{
 library("rgl")
-persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
         col=interp_map(maunga$z, colors=topo_colors))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 

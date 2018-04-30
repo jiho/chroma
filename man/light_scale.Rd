@@ -105,13 +105,14 @@ contour(maunga, col=alpha("white", 0.5), add=TRUE)
 
 filled.contour(maunga, color.palette=light_palette(h=140))
 
-persp(maunga, theta=50, phi=25, border=alpha("black", 0.5),
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
       col=light_map(persp_facets(maunga$z), h=140))
 
 \dontrun{
 # in spining 3D
 library("rgl")
-persp3d(maunga, aspect=c(1,0.6,0.3), axes=FALSE, box=FALSE,
+persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
         col=light_map(maunga$z, h=140))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 
