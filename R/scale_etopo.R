@@ -62,13 +62,13 @@
 #' # ggplot2 maps
 #' library("ggplot2")
 #' ggplot(thaixyz) + coord_quickmap() +
-#'   geom_contour(aes(x, y, z=z, colour=..level..), breaks=levs) +
-#'   theme_light() + scale_colour_etopo() +
+#'   geom_contour(aes(x, y, z=z, color=..level..), breaks=levs) +
+#'   theme_light() + scale_color_etopo() +
 #'   scale_xy_map()
 #' ggplot(thaixyz) + coord_quickmap() +
 #'   geom_raster(aes(x, y, fill=z)) +
 #'   scale_fill_etopo() +
-#'   geom_contour(aes(x, y, z=z), breaks=0, colour="black", size=1) +
+#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", size=1) +
 #'   scale_xy_map()
 #' }
 etopo_scale <- function(exact.until=1000) {

@@ -22,11 +22,11 @@ interp_colors(n, ...)
 
 scale_color_interp(..., colors = c("white", "black"), model = "lab",
   interp = "linear", reverse = FALSE, values = NULL, na.value = NULL,
-  extrapolate = FALSE, exact.until = 100, guide = "colourbar")
+  extrapolate = FALSE, exact.until = 100, guide = "colorbar")
 
 scale_fill_interp(..., colors = c("white", "black"), model = "lab",
   interp = "linear", reverse = FALSE, values = NULL, na.value = NULL,
-  exact.until = 100, guide = "colourbar")
+  exact.until = 100, guide = "colorbar")
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -39,7 +39,7 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
-\item{values}{if colours should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
+\item{values}{if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
 
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
 
@@ -123,7 +123,7 @@ play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 library("ggplot2")
 p <- ggplot(maungaxyz) + coord_fixed() +
   geom_raster(aes(x=x, y=y, fill=z)) +
-  geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5)
+  geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5)
 p + scale_fill_interp(colors=topo_colors)
 p + scale_fill_interp(colors=topo_colors, model="hsl")
 p + scale_fill_interp(colors=topo_colors, reverse=TRUE)

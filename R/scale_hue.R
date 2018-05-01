@@ -170,7 +170,7 @@ scale_fill_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, 
 
 #' @rdname hue_scale
 #' @export
-scale_color_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colourbar") {
+scale_color_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("colour", "hue",
     hue_scale(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
     na.value=hue_na(na.value, l=l), guide=guide, ...
@@ -183,7 +183,7 @@ scale_colour_hue_c <- scale_color_hue_c
 
 #' @rdname hue_scale
 #' @export
-scale_fill_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colourbar") {
+scale_fill_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("fill", "hue",
     hue_scale(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
     na.value=hue_na(na.value, l=l), guide=guide, ...

@@ -20,10 +20,10 @@ chroma_palette(...)
 chroma_colors(n, ...)
 
 scale_color_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
-  reverse = FALSE, na.value = NULL, guide = "colourbar")
+  reverse = FALSE, na.value = NULL, guide = "colorbar")
 
 scale_fill_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
-  reverse = FALSE, na.value = NULL, guide = "colourbar")
+  reverse = FALSE, na.value = NULL, guide = "colorbar")
 }
 \arguments{
 \item{chroma}{chromacity, vector of two numbers in \code{[0,~1]} (0 is grey, ~1 is full color) giving the minimum and maximum chromacities along the scale.}
@@ -115,7 +115,7 @@ play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 library("ggplot2")
 ggplot(maungaxyz) + coord_fixed() +
   geom_raster(aes(x=x, y=y, fill=z)) +
-  geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5) +
+  geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5) +
   scale_fill_chroma(h="orange")
 }
 

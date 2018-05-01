@@ -7,7 +7,7 @@
 #' @param interp string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
 #' @param domain vector of two values between which the scale is computed.
 #' @param reverse whether to reverse the order of colors along the scale.
-#' @param values if colours should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
+#' @param values if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
 #' @param na.value value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.
 #' @param extrapolate when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.
 #' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.
@@ -73,7 +73,7 @@
 #' library("ggplot2")
 #' p <- ggplot(maungaxyz) + coord_fixed() +
 #'   geom_raster(aes(x=x, y=y, fill=z)) +
-#'   geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5)
+#'   geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5)
 #' p + scale_fill_interp(colors=topo_colors)
 #' p + scale_fill_interp(colors=topo_colors, model="hsl")
 #' p + scale_fill_interp(colors=topo_colors, reverse=TRUE)
@@ -222,7 +222,7 @@ interp_na <- function(na.value) {
 #' @param guide type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.
 #' @rdname interp_scale
 #' @export
-scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100, guide="colourbar") {
+scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100, guide="colorbar") {
   ggplot2::continuous_scale("colour", "interp",
     interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
     na.value=interp_na(na.value), guide=guide, ...
@@ -235,7 +235,7 @@ scale_colour_interp <- scale_color_interp
 
 #' @rdname interp_scale
 #' @export
-scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, exact.until=100, guide="colourbar") {
+scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, exact.until=100, guide="colorbar") {
   ggplot2::continuous_scale("fill", "interp",
     interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
     na.value=interp_na(na.value), guide=guide, ...

@@ -61,14 +61,14 @@
 #' # ggplot2 maps
 #' library("ggplot2")
 #' ggplot(thaixyz) + coord_quickmap() +
-#'   geom_contour(aes(x, y, z=z, colour=..level..), breaks=levs) +
-#'   geom_contour(aes(x, y, z=z), breaks=0, colour="black", linetype="11") +
-#'   theme_light() + scale_colour_wikitopo() +
+#'   geom_contour(aes(x, y, z=z, color=..level..), breaks=levs) +
+#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", linetype="11") +
+#'   theme_light() + scale_color_wikitopo() +
 #'   scale_xy_map()
 #' ggplot(thaixyz) + coord_quickmap() +
 #'   geom_raster(aes(x, y, fill=z)) +
 #'   scale_fill_wikitopo() +
-#'   geom_contour(aes(x, y, z=z), breaks=0, colour="black", alpha=0.5) +
+#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", alpha=0.5) +
 #'   scale_xy_map()
 #' }
 wikitopo_scale <- function(exact.until=1000) {

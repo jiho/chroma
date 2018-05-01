@@ -20,10 +20,10 @@ light_palette(...)
 light_colors(n, ...)
 
 scale_color_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
-  na.value = NULL, guide = "colourbar")
+  na.value = NULL, guide = "colorbar")
 
 scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
-  na.value = NULL, guide = "colourbar")
+  na.value = NULL, guide = "colorbar")
 }
 \arguments{
 \item{l}{lightness, vector of two numbers in \code{[0,1]} (0 is darkest, 1 is brightest) giving the minimum and maximum lightness along the scale.}
@@ -120,7 +120,7 @@ play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 library("ggplot2")
 ggplot(maungaxyz) + coord_fixed() +
   geom_raster(aes(x=x, y=y, fill=z)) +
-  geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5) +
+  geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5) +
   scale_fill_light(h=140)
 }
 

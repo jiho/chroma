@@ -62,7 +62,7 @@
 #' library("ggplot2")
 #' ggplot(maungaxyz) + coord_fixed() +
 #'   geom_raster(aes(x=x, y=y, fill=z)) +
-#'   geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5) +
+#'   geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5) +
 #'   scale_fill_chroma(h="orange")
 #' }
 #'
@@ -134,7 +134,7 @@ chroma_na <- function(na.value, h, chroma, l) {
 
 #' @rdname chroma_scale
 #' @export
-scale_color_chroma <- function(..., chroma=c(0,1), l=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colourbar") {
+scale_color_chroma <- function(..., chroma=c(0,1), l=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("colour", "chroma",
     chroma_scale(chroma=chroma, l=l, h=h, reverse=reverse),
     na.value=chroma_na(na.value, h=h, chroma=chroma, l=l), guide=guide, ...
@@ -147,7 +147,7 @@ scale_colour_chroma <- scale_color_chroma
 
 #' @rdname chroma_scale
 #' @export
-scale_fill_chroma <- function(..., chroma=c(0,1), l=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colourbar") {
+scale_fill_chroma <- function(..., chroma=c(0,1), l=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("fill", "chroma",
     chroma_scale(chroma=chroma, l=l, h=h, reverse=reverse),
     na.value=chroma_na(na.value, h=h, chroma=chroma, l=l), guide=guide, ...

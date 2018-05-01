@@ -31,11 +31,11 @@ scale_fill_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
 
 scale_color_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
   reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  guide = "colourbar")
+  guide = "colorbar")
 
 scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
   reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  guide = "colourbar")
+  guide = "colorbar")
 }
 \arguments{
 \item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0,360]} (angles outside of the range are rotated back to within \code{[0,360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}

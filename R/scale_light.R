@@ -68,7 +68,7 @@
 #' library("ggplot2")
 #' ggplot(maungaxyz) + coord_fixed() +
 #'   geom_raster(aes(x=x, y=y, fill=z)) +
-#'   geom_contour(aes(x=x, y=y, z=z), colour="white", alpha=0.5) +
+#'   geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5) +
 #'   scale_fill_light(h=140)
 #' }
 #'
@@ -142,7 +142,7 @@ light_na <- function(na.value, l) {
 
 #' @rdname light_scale
 #' @export
-scale_color_light <- function(..., l=c(0.1,0.9), c=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colourbar") {
+scale_color_light <- function(..., l=c(0.1,0.9), c=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("colour", "light",
     light_scale(l=l, c=c, h=h, reverse=reverse),
     na.value=light_na(na.value, l=l), guide=guide, ...
@@ -155,7 +155,7 @@ scale_colour_light <- scale_color_light
 
 #' @rdname light_scale
 #' @export
-scale_fill_light <- function(..., l=c(0.1,0.9), c=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colourbar") {
+scale_fill_light <- function(..., l=c(0.1,0.9), c=0.5, h=0, reverse=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("fill", "light",
     light_scale(l=l, c=c, h=h, reverse=reverse),
     na.value=light_na(na.value, l=l), guide=guide, ...
