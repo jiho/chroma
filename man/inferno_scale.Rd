@@ -100,12 +100,12 @@ play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)}
 # Represent a third variable on a scatterplot
 attach(airquality)
 # define a scale encompassing the whole data
-vs <- inferno_scale(domain=c(0,200))
+my_scale <- inferno_scale(domain=c(0,200))
 # use the same scale for the plot and the legend
 pars <- sidemargin()
-plot(Wind, Temp, col=vs(Ozone), pch=19)
+plot(Wind, Temp, col=my_scale(Ozone), pch=19)
 sidelegend(legend=c(pretty(Ozone), "NA"),
-           col=vs(c(pretty(Ozone), NA)), pch=19)
+           col=my_scale(c(pretty(Ozone), NA)), pch=19)
 par(pars)
 
 \dontrun{
