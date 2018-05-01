@@ -17,8 +17,10 @@
 #'
 #' # The absolute value of the distance depends on the color space
 #' # it is computed in but the relative changes still make sense
-#' color_distance("pink", "hotpink", c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "rgba"))
-#' color_distance("pink", "blue", c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "rgba"))
+#' color_distance("pink", "hotpink",
+#'   c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "rgba"))
+#' color_distance("pink", "blue",
+#'   c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "rgba"))
 #'
 #' # Find the closest color in an array of possibilities
 #' clrs <- rainbow(20)
