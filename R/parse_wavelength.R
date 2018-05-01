@@ -66,7 +66,7 @@ convert_wavelength <- function(x) {
       i <- which.min(y)
       # look around it to find the acutal closest wavelength
       is <- max(1, i-2):min(length(v$wl), i+2)
-      # NB: we use spline approximation because the delta_e distance is not linear and we are looking for the minimum which is likely *between* known points so we have to interpolate the dip in between those.
+      # NB: we use spline approximation because the deltaE distance is not linear and we are looking for the minimum which is likely *between* known points so we have to interpolate the dip in between those.
       approxfun <- stats::splinefun(v$wl[is], y[is])
       wl_local <- seq(min(v$wl[is]), max(v$wl[is]), by=0.5)
       min_wl <- wl_local[which.min(approxfun(wl_local))]
