@@ -7,7 +7,10 @@
 \alias{viridis_colors}
 \alias{scale_color_viridis}
 \alias{scale_colour_viridis}
+\alias{scale_color_viridis_c}
+\alias{scale_colour_viridis_c}
 \alias{scale_fill_viridis}
+\alias{scale_fill_viridis_c}
 \alias{scale_color_viridis_d}
 \alias{scale_colour_viridis_d}
 \alias{scale_fill_viridis_d}

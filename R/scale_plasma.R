@@ -139,6 +139,14 @@ scale_color_plasma <- function(..., reverse=FALSE, na.value="#818181", extrapola
 #' @export
 #' @usage NULL
 scale_colour_plasma <- scale_color_plasma
+#' @rdname plasma_scale
+#' @export
+#' @usage NULL
+scale_color_plasma_c <- scale_color_plasma
+#' @rdname plasma_scale
+#' @export
+#' @usage NULL
+scale_colour_plasma_c <- scale_color_plasma
 
 #' @rdname plasma_scale
 #' @export
@@ -149,6 +157,10 @@ scale_fill_plasma <- function(..., reverse=FALSE, na.value="#818181", extrapolat
     na.value=na.value, guide=guide, ...
   )
 }
+#' @rdname plasma_scale
+#' @export
+#' @usage NULL
+scale_fill_plasma_c <- scale_fill_plasma
 
 #' @rdname plasma_scale
 #' @export

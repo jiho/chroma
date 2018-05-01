@@ -7,7 +7,10 @@
 \alias{magma_colors}
 \alias{scale_color_magma}
 \alias{scale_colour_magma}
+\alias{scale_color_magma_c}
+\alias{scale_colour_magma_c}
 \alias{scale_fill_magma}
+\alias{scale_fill_magma_c}
 \alias{scale_color_magma_d}
 \alias{scale_colour_magma_d}
 \alias{scale_fill_magma_d}

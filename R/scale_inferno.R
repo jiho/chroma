@@ -139,6 +139,14 @@ scale_color_inferno <- function(..., reverse=FALSE, na.value="#818181", extrapol
 #' @export
 #' @usage NULL
 scale_colour_inferno <- scale_color_inferno
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_color_inferno_c <- scale_color_inferno
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_colour_inferno_c <- scale_color_inferno
 
 #' @rdname inferno_scale
 #' @export
@@ -149,6 +157,10 @@ scale_fill_inferno <- function(..., reverse=FALSE, na.value="#818181", extrapola
     na.value=na.value, guide=guide, ...
   )
 }
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_fill_inferno_c <- scale_fill_inferno
 
 #' @rdname inferno_scale
 #' @export

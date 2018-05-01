@@ -7,7 +7,10 @@
 \alias{inferno_colors}
 \alias{scale_color_inferno}
 \alias{scale_colour_inferno}
+\alias{scale_color_inferno_c}
+\alias{scale_colour_inferno_c}
 \alias{scale_fill_inferno}
+\alias{scale_fill_inferno_c}
 \alias{scale_color_inferno_d}
 \alias{scale_colour_inferno_d}
 \alias{scale_fill_inferno_d}

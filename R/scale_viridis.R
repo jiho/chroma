@@ -136,6 +136,14 @@ scale_color_viridis <- function(..., reverse=FALSE, na.value="#818181", extrapol
 #' @export
 #' @usage NULL
 scale_colour_viridis <- scale_color_viridis
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_color_viridis_c <- scale_color_viridis
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_colour_viridis_c <- scale_color_viridis
 
 #' @rdname viridis_scale
 #' @export
@@ -146,6 +154,10 @@ scale_fill_viridis <- function(..., reverse=FALSE, na.value="#818181", extrapola
     na.value=na.value, guide=guide, ...
   )
 }
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_fill_viridis_c <- scale_fill_viridis
 
 #' @rdname viridis_scale
 #' @export

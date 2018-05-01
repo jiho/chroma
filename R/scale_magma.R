@@ -139,6 +139,14 @@ scale_color_magma <- function(..., reverse=FALSE, na.value="#818181", extrapolat
 #' @export
 #' @usage NULL
 scale_colour_magma <- scale_color_magma
+#' @rdname magma_scale
+#' @export
+#' @usage NULL
+scale_color_magma_c <- scale_color_magma
+#' @rdname magma_scale
+#' @export
+#' @usage NULL
+scale_colour_magma_c <- scale_color_magma
 
 #' @rdname magma_scale
 #' @export
@@ -149,6 +157,10 @@ scale_fill_magma <- function(..., reverse=FALSE, na.value="#818181", extrapolate
     na.value=na.value, guide=guide, ...
   )
 }
+#' @rdname magma_scale
+#' @export
+#' @usage NULL
+scale_fill_magma_c <- scale_fill_magma
 
 #' @rdname magma_scale
 #' @export

@@ -7,7 +7,10 @@
 \alias{plasma_colors}
 \alias{scale_color_plasma}
 \alias{scale_colour_plasma}
+\alias{scale_color_plasma_c}
+\alias{scale_colour_plasma_c}
 \alias{scale_fill_plasma}
+\alias{scale_fill_plasma_c}
 \alias{scale_color_plasma_d}
 \alias{scale_colour_plasma_d}
 \alias{scale_fill_plasma_d}
