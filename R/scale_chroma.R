@@ -96,7 +96,7 @@ chroma_scale <- function(chroma=c(0,1), l=0.5, h=0, domain=c(0,1), reverse=FALSE
   if (reverse) { chroma <- rev(chroma) }
 
   # if the na.value is not defined, pick a good default
-  na.value <- chroma_na(na.value, h=h, chroma=chroma, l=l)
+  na.value <- chroma_na(na.value, h=hue(h), chroma=chroma, l=l)
 
   # define the function
   f <- function(x) {

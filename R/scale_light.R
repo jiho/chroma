@@ -110,7 +110,7 @@ light_scale <- function(l=c(0.1,0.9), c=0.5, h=0, domain=c(0,1), reverse=FALSE, 
   f <- function(x) {
     s <- as.num(x)
     domain <- as.num(domain)
-    colors <- hcl(h=h, c=c, l=rescale(x, from=domain, to=l))
+    colors <- hcl(h=hue(h), c=c, l=rescale(x, from=domain, to=l))
     return(post_process_scale(colors, na.value, extrapolate, x, domain))
   }
   return(f)
