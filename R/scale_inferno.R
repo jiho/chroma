@@ -19,6 +19,8 @@
 #'
 #' @template return_scales
 #'
+#' @export
+#'
 #' @family color scales and palettes
 #'
 #' @seealso \code{\link{inferno}} for the colors in the palette.
@@ -31,47 +33,145 @@
 #'   inferno_colors(20, reverse=TRUE)
 #' )
 #'
-#' # Plot the Maunga Whau volcano elevation map
-#' image(maunga, col=inferno_colors(100))
-#' contour(maunga, col=alpha("black", 0.2), add=TRUE)
+#' # 1/ Represent a continuous variable
+#'
+#' # Map the elevation of the Maunga Whau volcano
+#' image(maunga, col=inferno_colors(100), asp=1)
+#' contour(maunga, col=alpha("white", 0.5), add=TRUE)
 #'
 #' persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
 #'       border=alpha("black", 0.4),
 #'       col=inferno_map(persp_facets(maunga$z)))
 #'
 #' \dontrun{
+#' # with ggplot
+#' library("ggplot2")
+#' ggplot(maungaxyz) + coord_fixed() +
+#'   geom_raster(aes(x=x, y=y, fill=z)) +
+#'   geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5) +
+#'   scale_fill_inferno()
+#'
+#' # in spinning 3D
 #' library("rgl")
 #' persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
 #'         col=inferno_map(maunga$z))
-#' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
-#' }
-#' # With a limited number of levels, inferno can also serve as a discrete
-#' # color scale
-#' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=19, col=inferno_map(Species))
-#' legend(1, 8, legend=levels(Species), pch=19,
-#'        col=inferno_colors(n=nlevels(Species)))
+#' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)}
 #'
-#' @export
-inferno_scale <- function(domain=c(0,1), reverse=FALSE) {
-  interp_scale(colors=chroma::inferno, model="lab", interp="linear", domain=domain, reverse=reverse)
+#' # Represent a third variable on a scatterplot
+#' attach(airquality)
+#' # define a scale encompassing the whole data
+#' vs <- inferno_scale(domain=c(0,200))
+#' # use the same scale for the plot and the legend
+#' pars <- sidemargin()
+#' plot(Wind, Temp, col=vs(Ozone), pch=19)
+#' sidelegend(legend=c(pretty(Ozone), "NA"),
+#'            col=vs(c(pretty(Ozone), NA)), pch=19)
+#' par(pars)
+#'
+#' \dontrun{
+#' # or in ggplot
+#' # but the light yellows at the top of the scale are difficult to see
+#' # on points; either outline them or put them on a dark background
+#' ggplot(airquality) +
+#'   geom_point(aes(x=Wind, y=Temp, fill=Ozone), shape=21, size=2) +
+#'   scale_fill_inferno()
+#' ggplot(airquality) + theme_dark() +
+#'   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+#'   scale_color_inferno(na.value="grey60")}
+#'
+#'
+#' # 2/ Represent a discrete variable
+#' # albeit only with a limited number of levels
+#'
+#' attach(iris)
+#' pars <- sidemargin()
+#' plot(Petal.Length, Petal.Width, pch=21, bg=inferno_map(Species))
+#' sidelegend(legend=levels(Species),
+#'            pt.bg=inferno_colors(n=nlevels(Species)), pch=21)
+#' par(pars)
+#'
+#' \dontrun{
+#' # or in ggplot
+#' ggplot(iris) +
+#'   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
+#'   scale_fill_inferno_d()}
+inferno_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrapolate=FALSE) {
+  # get everything into numbers
+  domain <- as.num(domain)
+  if (reverse) { domain <- rev(domain)}
+  f <- function(x) {
+    x <- as.num(x)
+    # compute colors
+    xs <- rescale(x, from=domain, to=c(0,1))
+    colors <- scales::colour_ramp(chroma::inferno)(xs)
+    return(post_process_scale(colors, na.value, extrapolate, x, domain))
+  }
+  return(f)
 }
 
-#' @param ... passed to \code{\link{inferno_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{inferno_scale} and passing it through \code{...} is an error.
+#' @param ... passed to \code{\link{inferno_scale}} from other \code{inferno_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} or \code{ggplot2::\link[ggplot2]{discrete_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.
 #' @rdname inferno_scale
 #' @export
-inferno_map <- function(x, ...) {
-  interp_map(x, colors=chroma::inferno, model="lab", interp="linear", ...)
+inferno_map <- function(x, ...) { as_map(inferno_scale, x,  ...) }
+
+#' @rdname inferno_scale
+#' @export
+inferno_palette <- function(...) { as_palette(inferno_scale, ...) }
+
+#' @param n number of colors to extract from the color palette.
+#' @rdname inferno_scale
+#' @export
+inferno_colors <- function(n, ...) { inferno_palette(...)(n) }
+
+
+## ggplot2 ----
+
+#' @rdname inferno_scale
+#' @export
+scale_color_inferno <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+  cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
+  ggplot2::continuous_scale("colour", "inferno",
+    scales::colour_ramp(cols),
+    na.value=na.value, guide=guide, ...
+  )
+}
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_colour_inferno <- scale_color_inferno
+
+#' @rdname inferno_scale
+#' @export
+scale_fill_inferno <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+  cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
+  ggplot2::continuous_scale("fill", "inferno",
+    scales::colour_ramp(cols),
+    na.value=na.value, guide=guide, ...
+  )
 }
 
 #' @rdname inferno_scale
 #' @export
-inferno_palette <- function(...) {
-  interp_palette(colors=chroma::inferno, model="lab", interp="linear", ...)
+scale_color_inferno_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+  cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
+  ggplot2::discrete_scale("colour", "inferno",
+    function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
+    na.value=na.value, ...
+  )
 }
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_colour_inferno_d <- scale_color_inferno_d
 
 #' @rdname inferno_scale
 #' @export
-inferno_colors <- function(n, ...) {
-  interp_colors(n=n, colors=chroma::inferno, model="lab", interp="linear",...)
+scale_fill_inferno_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+  cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
+  ggplot2::discrete_scale("fill", "inferno",
+    function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
+    na.value=na.value, ...
+  )
 }
+
+
