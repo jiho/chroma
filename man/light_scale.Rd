@@ -46,7 +46,7 @@ scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
 
 \item{n}{number of colors to extract from the color palette.}
 
-\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.}
+\item{guide}{type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.

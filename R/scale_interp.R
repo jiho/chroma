@@ -219,7 +219,7 @@ interp_na <- function(na.value) {
 
 ## ggplot ----
 
-#' @param guide type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.
+#' @param guide type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.
 #' @rdname interp_scale
 #' @export
 scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100, guide="colorbar") {

@@ -5,7 +5,7 @@
 #' @param h range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0,360]} (angles outside of the range are rotated back to within \code{[0,360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).
 #' @inheritParams interp_scale
 #' @inheritParams hcl
-#' @param ... passed to \code{\link{hue_scale}} from other \code{hue_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.
+#' @param ... passed to \code{\link{hue_scale}} from other \code{hue_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} or \code{ggplot2::\link[ggplot2]{discrete_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.
 #' @param full.circle when the range of hues specified in \code{h} spans 360°, this argument determines if the color scale should also span the full circle (which results in the same color being associated with different values, at the extremes of the scale), or not. By default it is set to FALSE to avoid this caveat. When \code{h} does not span 360°, this argument is ignored because the caveat disappears.
 #'
 #' @template details_hcl
@@ -148,28 +148,6 @@ hue_na <- function(na.value, l) {
 
 #' @rdname hue_scale
 #' @export
-scale_color_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL) {
-  ggplot2::discrete_scale("colour", "hue",
-    hue_palette(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
-    na.value=hue_na(na.value, l=l), ...
-  )
-}
-#' @rdname hue_scale
-#' @export
-#' @usage NULL
-scale_colour_hue_d <- scale_color_hue_d
-
-#' @rdname hue_scale
-#' @export
-scale_fill_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL) {
-  ggplot2::discrete_scale("fill", "hue",
-    hue_palette(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
-    na.value=hue_na(na.value, l=l), ...
-  )
-}
-
-#' @rdname hue_scale
-#' @export
 scale_color_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="colorbar") {
   ggplot2::continuous_scale("colour", "hue",
     hue_scale(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
@@ -189,3 +167,26 @@ scale_fill_hue_c <- function(..., h=c(250,350), c=0.65, l=0.65, reverse=FALSE, f
     na.value=hue_na(na.value, l=l), guide=guide, ...
   )
 }
+
+#' @rdname hue_scale
+#' @export
+scale_color_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="legend") {
+  ggplot2::discrete_scale("colour", "hue",
+    hue_palette(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
+    na.value=hue_na(na.value, l=l), guide=guide, ...
+  )
+}
+#' @rdname hue_scale
+#' @export
+#' @usage NULL
+scale_colour_hue_d <- scale_color_hue_d
+
+#' @rdname hue_scale
+#' @export
+scale_fill_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, full.circle=FALSE, na.value=NULL, guide="legend") {
+  ggplot2::discrete_scale("fill", "hue",
+    hue_palette(h=h, c=c, l=l, reverse=reverse, full.circle=full.circle),
+    na.value=hue_na(na.value, l=l), guide=guide, ...
+  )
+}
+

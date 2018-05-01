@@ -5,12 +5,12 @@
 \alias{hue_map}
 \alias{hue_palette}
 \alias{hue_colors}
-\alias{scale_color_hue_d}
-\alias{scale_colour_hue_d}
-\alias{scale_fill_hue_d}
 \alias{scale_color_hue_c}
 \alias{scale_colour_hue_c}
 \alias{scale_fill_hue_c}
+\alias{scale_color_hue_d}
+\alias{scale_colour_hue_d}
+\alias{scale_fill_hue_d}
 \title{Hue scale and palette}
 \usage{
 hue_scale(h = c(0, 360) + 40, c = 0.65, l = 0.65, domain = c(0, 1),
@@ -23,12 +23,6 @@ hue_palette(...)
 
 hue_colors(n, ...)
 
-scale_color_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
-  reverse = FALSE, full.circle = FALSE, na.value = NULL)
-
-scale_fill_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
-  reverse = FALSE, full.circle = FALSE, na.value = NULL)
-
 scale_color_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
   reverse = FALSE, full.circle = FALSE, na.value = NULL,
   guide = "colorbar")
@@ -36,6 +30,14 @@ scale_color_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
 scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
   reverse = FALSE, full.circle = FALSE, na.value = NULL,
   guide = "colorbar")
+
+scale_color_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
+  reverse = FALSE, full.circle = FALSE, na.value = NULL,
+  guide = "legend")
+
+scale_fill_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
+  reverse = FALSE, full.circle = FALSE, na.value = NULL,
+  guide = "legend")
 }
 \arguments{
 \item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0,360]} (angles outside of the range are rotated back to within \code{[0,360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -56,11 +58,11 @@ scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
-\item{...}{passed to \code{\link{hue_scale}} from other \code{hue_*} functions; passed to \code{ggplot2::\link[ggplot2]{discrete_scale}} or \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
+\item{...}{passed to \code{\link{hue_scale}} from other \code{hue_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} or \code{ggplot2::\link[ggplot2]{discrete_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
 
-\item{guide}{type of guide for the legend ("legend" for a categorical guide, "colourbar" for a continuous colorbar) or guide object itself.}
+\item{guide}{type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
