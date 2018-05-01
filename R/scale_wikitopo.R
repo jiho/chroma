@@ -15,7 +15,6 @@
 #' Color scale and palette from Wikipedia's topographic maps. These scales are special because the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
 #'
 #' @inheritParams interp_scale
-#' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the wikipedia topographic palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.
 #' @param ... passed to \code{\link{wikitopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_wikitopo} functions.
 #'
 #' @template return_scales
@@ -64,8 +63,11 @@
 #'   geom_raster(aes(x, y, fill=z)) +
 #'   scale_fill_wikitopo() + scale_xy_map() +
 #'   geom_contour(aes(x, y, z=z), breaks=0, color="black") }
-wikitopo_scale <- function(...) {
-  scales::gradient_n_pal(colours=chroma::wikitopo$color, values=chroma::wikitopo$altitude)
+wikitopo_scale <- function(na.value=NULL, ...) {
+  function(x) {
+    colors <- scales::gradient_n_pal(colours=chroma::wikitopo$color, values=chroma::wikitopo$altitude)(x)
+    na_replace(colors, wikitopo_na(na.value))
+  }
 }
 
 #' @rdname wikitopo_scale
@@ -74,23 +76,31 @@ wikitopo_map <- function(x, ...) { wikitopo_scale(...)(x) }
 
 #' @rdname wikitopo_scale
 #' @export
-wikitopo_palette <- function(...) { as_palette(etopo_scale, ...) }
+wikitopo_palette <- function(...) { as_palette(wikitopo_scale, ...) }
 
 #' @rdname wikitopo_scale
 #' @export
 wikitopo_colors <- function(n, ...) { wikitopo_palette(...)(n) }
 
+wikitopo_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- "#C5C5C5"
+    # = grey of average luminance compared to the other colours on the scale
+  }
+  return(na.value)
+}
+
 ## ggplot ----
 
 #' @rdname wikitopo_scale
 #' @export
-scale_fill_wikitopo <- function(...) {
-  ggplot2::scale_fill_gradientn(..., colors=chroma::wikitopo$color, values=scales::rescale(chroma::wikitopo$altitude), limits=range(chroma::wikitopo$altitude))
+scale_fill_wikitopo <- function(na.value=NULL, ...) {
+  ggplot2::scale_fill_gradientn(..., colors=chroma::wikitopo$color, values=scales::rescale(chroma::wikitopo$altitude), limits=range(chroma::wikitopo$altitude), na.value=wikitopo_na(na.value))
 }
 #' @rdname wikitopo_scale
 #' @export
-scale_color_wikitopo <- function(...) {
-  ggplot2::scale_color_gradientn(..., colors=chroma::wikitopo$color, values=scales::rescale(chroma::wikitopo$altitude), limits=range(chroma::wikitopo$altitude))
+scale_color_wikitopo <- function(na.value=NULL, ...) {
+  ggplot2::scale_color_gradientn(..., colors=chroma::wikitopo$color, values=scales::rescale(chroma::wikitopo$altitude), limits=range(chroma::wikitopo$altitude), na.value=wikitopo_na(na.value))
 }
 #' @rdname wikitopo_scale
 #' @export

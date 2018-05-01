@@ -15,7 +15,6 @@
 #' Color scale and palette inspired from the representation of the ETOPO1 global relief model. These scales are special because the mapping between colors and values is predefined to work for altitudes (or depths when the numbers are negative).
 #'
 #' @inheritParams interp_scale
-#' @param exact.until integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the ETOPO1 palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.
 #' @param ... passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_etopo} functions.
 #'
 #' @template return_scales
@@ -65,8 +64,11 @@
 #'   geom_raster(aes(x, y, fill=z)) +
 #'   scale_fill_etopo() + scale_xy_map() +
 #'   geom_contour(aes(x, y, z=z), breaks=0, color="black", size=1) }
-etopo_scale <- function(...) {
-  scales::gradient_n_pal(colours=chroma::etopo$color, values=chroma::etopo$altitude)
+etopo_scale <- function(na.value=NULL, ...) {
+  function(x) {
+    colors <- scales::gradient_n_pal(colours=chroma::etopo$color, values=chroma::etopo$altitude)(x)
+    na_replace(colors, etopo_na(na.value))
+  }
 }
 
 #' @rdname etopo_scale
@@ -81,15 +83,23 @@ etopo_palette <- function(...) { as_palette(etopo_scale, ...) }
 #' @export
 etopo_colors <- function(n, ...) { etopo_palette(...)(n) }
 
+etopo_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- "#8A8A8A"
+    # = grey of average luminance compared to the other colours on the scale
+  }
+  return(na.value)
+}
+
 #' @rdname etopo_scale
 #' @export
-scale_fill_etopo <- function(...) {
-  ggplot2::scale_fill_gradientn(..., colors=chroma::etopo$color, values=scales::rescale(chroma::etopo$altitude), limits=range(chroma::etopo$altitude))
+scale_fill_etopo <- function(na.value=NULL, ...) {
+  ggplot2::scale_fill_gradientn(..., colors=chroma::etopo$color, values=scales::rescale(chroma::etopo$altitude), limits=range(chroma::etopo$altitude), na.value=etopo_na(na.value))
 }
 #' @rdname etopo_scale
 #' @export
-scale_color_etopo <- function(...) {
-  ggplot2::scale_color_gradientn(..., colors=chroma::etopo$color, values=scales::rescale(chroma::etopo$altitude), limits=range(chroma::etopo$altitude))
+scale_color_etopo <- function(na.value=NULL, ...) {
+  ggplot2::scale_color_gradientn(..., colors=chroma::etopo$color, values=scales::rescale(chroma::etopo$altitude), limits=range(chroma::etopo$altitude), na.value=etopo_na(na.value))
 }
 #' @rdname etopo_scale
 #' @export

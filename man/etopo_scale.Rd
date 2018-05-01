@@ -10,7 +10,7 @@
 \alias{scale_colour_etopo}
 \title{ETOPO1 scale and palette}
 \usage{
-etopo_scale(...)
+etopo_scale(na.value = NULL, ...)
 
 etopo_map(x, ...)
 
@@ -18,18 +18,18 @@ etopo_palette(...)
 
 etopo_colors(n, ...)
 
-scale_fill_etopo(...)
+scale_fill_etopo(na.value = NULL, ...)
 
-scale_color_etopo(...)
+scale_color_etopo(na.value = NULL, ...)
 }
 \arguments{
+\item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
 \item{...}{passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_etopo} functions.}
 
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
 \item{n}{number of colors to extract from the color palette.}
-
-\item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This number is increased compared to the default in \code{\link{interp_scale}} because some transitions in color along the ETOPO1 palette are sharp, in particular around altitude=0. To get exact interpolation all the time, use a very large number.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
