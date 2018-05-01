@@ -41,7 +41,7 @@
 #'
 #' # The goal of these scales is to color maps and elevation models. Here is
 #' # one centered on Thailand, showcasing high mountains and deep trenches
-#' levs <- seq(-9000,6000,by=500)
+#' levs <- seq(-9000, 6000, by=500)
 #' contour(thai, levels=levs, col=etopo_map(levs), asp=1.03)
 #'
 #' filled.contour(thai, levels=levs, col=etopo_map(levs), asp=1.03)
@@ -50,48 +50,36 @@
 #'       col=etopo_map(persp_facets(thai$z)))
 #'
 #' \dontrun{
-#' # 3D rotating map
+#' # in spinning 3D
 #' library("rgl")
-#' # To get a perfect land/sea mapping, the colors need to be computed
-#' # exactly based on the input altitude values; set `exact.until` very high
-#' # do achieve this (but this makes the function slower of course).
 #' persp3d(thai, aspect=c(1,0.96,0.2), axes=FALSE, box=FALSE,
-#'         col=etopo_map(thai$z, exact.until=10^5))
+#'         col=etopo_map(thai$z))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #'
-#' # ggplot2 maps
+#' # or with ggplot2
 #' library("ggplot2")
 #' ggplot(thaixyz) + coord_quickmap() +
 #'   geom_contour(aes(x, y, z=z, color=..level..), breaks=levs) +
-#'   theme_light() + scale_color_etopo() +
-#'   scale_xy_map()
+#'   theme_light() + scale_color_etopo() + scale_xy_map()
 #' ggplot(thaixyz) + coord_quickmap() +
 #'   geom_raster(aes(x, y, fill=z)) +
-#'   scale_fill_etopo() +
-#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", size=1) +
-#'   scale_xy_map()
-#' }
-etopo_scale <- function(exact.until=1000) {
-  bar <- interp_scale(colors=chroma::etopo$color, model="lab", interp="linear", values=chroma::etopo$altitude, exact.until=exact.until)
+#'   scale_fill_etopo() + scale_xy_map() +
+#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", size=1) }
+etopo_scale <- function(...) {
+  scales::gradient_n_pal(colours=chroma::etopo$color, values=chroma::etopo$altitude)
 }
 
 #' @rdname etopo_scale
 #' @export
-etopo_map <- function(x, ...) {
-  etopo_scale(...)(x)
-}
+etopo_map <- function(x, ...) { etopo_scale(...)(x) }
 
 #' @rdname etopo_scale
 #' @export
-etopo_palette <- function(exact.until=1000, ...) {
-  interp_palette(colors=chroma::etopo$color, model="lab", interp="linear", exact.until=exact.until, ...)
-}
+etopo_palette <- function(...) { as_palette(etopo_scale, ...) }
 
 #' @rdname etopo_scale
 #' @export
-etopo_colors <- function(n, ...) {
-  etopo_palette(...)(n=n)
-}
+etopo_colors <- function(n, ...) { etopo_palette(...)(n) }
 
 #' @rdname etopo_scale
 #' @export

@@ -49,49 +49,38 @@
 #'       col=wikitopo_map(persp_facets(thai$z)))
 #'
 #' \dontrun{
-#' # 3D rotating map
+#' # in spinning 3D
 #' library("rgl")
-#' # To get a perfect land/sea mapping, the colors need to be computed
-#' # exactly based on the input altitude values; set `exact.until` very high
-#' # do achieve this (but this makes the function slower of course).
 #' persp3d(thai, aspect=c(1,0.96,0.2), axes=FALSE, box=FALSE,
-#'         col=wikitopo_map(thai$z, exact.until=10))
+#'         col=wikitopo_map(thai$z))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
 #'
-#' # ggplot2 maps
+#' # or with ggplot2
 #' library("ggplot2")
 #' ggplot(thaixyz) + coord_quickmap() +
 #'   geom_contour(aes(x, y, z=z, color=..level..), breaks=levs) +
-#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", linetype="11") +
-#'   theme_light() + scale_color_wikitopo() +
-#'   scale_xy_map()
+#'   theme_light() + scale_color_wikitopo() + scale_xy_map()
 #' ggplot(thaixyz) + coord_quickmap() +
 #'   geom_raster(aes(x, y, fill=z)) +
-#'   scale_fill_wikitopo() +
-#'   geom_contour(aes(x, y, z=z), breaks=0, color="black", alpha=0.5) +
-#'   scale_xy_map()
-#' }
-wikitopo_scale <- function(exact.until=1000) {
-  bar <- interp_scale(colors=chroma::wikitopo$color, model="lab", interp="linear", values=chroma::wikitopo$altitude, exact.until=exact.until)
+#'   scale_fill_wikitopo() + scale_xy_map() +
+#'   geom_contour(aes(x, y, z=z), breaks=0, color="black") }
+wikitopo_scale <- function(...) {
+  scales::gradient_n_pal(colours=chroma::wikitopo$color, values=chroma::wikitopo$altitude)
 }
 
 #' @rdname wikitopo_scale
 #' @export
-wikitopo_map <- function(x, ...) {
-  wikitopo_scale(...)(x)
-}
+wikitopo_map <- function(x, ...) { wikitopo_scale(...)(x) }
 
 #' @rdname wikitopo_scale
 #' @export
-wikitopo_palette <- function(exact.until=1000, ...) {
-  interp_palette(colors=chroma::wikitopo$color, model="lab", interp="linear", exact.until=exact.until, ...)
-}
+wikitopo_palette <- function(...) { as_palette(etopo_scale, ...) }
 
 #' @rdname wikitopo_scale
 #' @export
-wikitopo_colors <- function(n, ...) {
-  wikitopo_palette(...)(n=n)
-}
+wikitopo_colors <- function(n, ...) { wikitopo_palette(...)(n) }
+
+## ggplot ----
 
 #' @rdname wikitopo_scale
 #' @export
