@@ -87,7 +87,7 @@ persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
       col=viridis_map(persp_facets(maunga$z)))
 
 \dontrun{
-# with ggplot
+# with ggplot2
 library("ggplot2")
 ggplot(maungaxyz) + coord_fixed() +
   geom_raster(aes(x=x, y=y, fill=z)) +
@@ -112,7 +112,7 @@ sidelegend(legend=c(pretty(Ozone), "NA"),
 par(pars)
 
 \dontrun{
-# or in ggplot
+# or with ggplot2
 # but the light yellows at the top of the scale are difficult to see
 # on points; either outline them or put them on a dark background
 ggplot(airquality) +
@@ -134,7 +134,7 @@ sidelegend(legend=levels(Species),
 par(pars)
 
 \dontrun{
-# or in ggplot
+# or with ggplot2
 ggplot(iris) +
   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
   scale_fill_viridis_d()}
