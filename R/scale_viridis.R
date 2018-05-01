@@ -16,6 +16,8 @@
 #'
 #' @template return_scales
 #'
+#' @export
+#'
 #' @family color scales and palettes
 #'
 #' @seealso \code{\link{viridis}} for the colors in the palette.
@@ -28,47 +30,145 @@
 #'   viridis_colors(20, reverse=TRUE)
 #' )
 #'
-#' # Plot the Maunga Whau volcano elevation map
-#' image(maunga, col=viridis_colors(100))
-#' contour(maunga, col=alpha("black", 0.2), add=TRUE)
+#' # 1/ Represent a continuous variable
+#'
+#' # Map the elevation of the Maunga Whau volcano
+#' image(maunga, col=viridis_colors(100), asp=1)
+#' contour(maunga, col=alpha("white", 0.5), add=TRUE)
 #'
 #' persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
 #'       border=alpha("black", 0.4),
 #'       col=viridis_map(persp_facets(maunga$z)))
 #'
 #' \dontrun{
+#' # with ggplot
+#' library("ggplot2")
+#' ggplot(maungaxyz) + coord_fixed() +
+#'   geom_raster(aes(x=x, y=y, fill=z)) +
+#'   geom_contour(aes(x=x, y=y, z=z), color="white", alpha=0.5) +
+#'   scale_fill_viridis()
+#'
+#' # in spinning 3D
 #' library("rgl")
 #' persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
 #'         col=viridis_map(maunga$z))
-#' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
-#' }
-#' # With a limited number of levels, viridis can also serve as a discrete
-#' # color scale
-#' attach(iris)
-#' plot(Petal.Length, Sepal.Length, pch=19, col=viridis_map(Species))
-#' legend(1, 8, legend=levels(Species), pch=19,
-#'        col=viridis_colors(n=nlevels(Species)))
+#' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)}
 #'
-#' @export
-viridis_scale <- function(domain=c(0,1), reverse=FALSE) {
-  interp_scale(colors=chroma::viridis, model="lab", interp="linear", domain=domain, reverse=reverse)
+#' # Represent a third variable on a scatterplot
+#' attach(airquality)
+#' # define a scale encompassing the whole data
+#' vs <- viridis_scale(domain=c(0,200))
+#' # use the same scale for the plot and the legend
+#' pars <- sidemargin()
+#' plot(Wind, Temp, col=vs(Ozone), pch=19)
+#' sidelegend(legend=c(pretty(Ozone), "NA"),
+#'            col=vs(c(pretty(Ozone), NA)), pch=19)
+#' par(pars)
+#'
+#' \dontrun{
+#' # or in ggplot
+#' # but the light yellows at the top of the scale are difficult to see
+#' # on points; either outline them or put them on a dark background
+#' ggplot(airquality) +
+#'   geom_point(aes(x=Wind, y=Temp, fill=Ozone), shape=21, size=2) +
+#'   scale_fill_viridis()
+#' ggplot(airquality) + theme_dark() +
+#'   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
+#'   scale_color_viridis(na.value="grey60")}
+#'
+#'
+#' # 2/ Represent a discrete variable
+#' # albeit only with a limited number of levels
+#'
+#' attach(iris)
+#' pars <- sidemargin()
+#' plot(Petal.Length, Petal.Width, pch=21, bg=viridis_map(Species))
+#' sidelegend(legend=levels(Species),
+#'            pt.bg=viridis_colors(n=nlevels(Species)), pch=21)
+#' par(pars)
+#'
+#' \dontrun{
+#' # or in ggplot
+#' ggplot(iris) +
+#'   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
+#'   scale_fill_viridis_d()}
+viridis_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrapolate=FALSE) {
+  # get everything into numbers
+  domain <- as.num(domain)
+  if (reverse) { domain <- rev(domain)}
+  f <- function(x) {
+    x <- as.num(x)
+    # compute colors
+    xs <- rescale(x, from=domain, to=c(0,1))
+    colors <- scales::colour_ramp(chroma::viridis)(xs)
+    return(post_process_scale(colors, na.value, extrapolate, x, domain))
+  }
+  return(f)
 }
 
-#' @param ... passed to \code{\link{viridis_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{viridis_scale} and passing it through \code{...} is an error.
+#' @param ... passed to \code{\link{viridis_scale}} from other \code{viridis_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} or \code{ggplot2::\link[ggplot2]{discrete_scale}} from the \code{scale_*} functions, as appropriate. NB: in all situations, passing \code{domain} is meaningless and yields an error.
 #' @rdname viridis_scale
 #' @export
-viridis_map <- function(x, ...) {
-  interp_map(x, colors=chroma::viridis, model="lab", interp="linear", ...)
+viridis_map <- function(x, ...) { as_map(viridis_scale, x,  ...) }
+
+#' @rdname viridis_scale
+#' @export
+viridis_palette <- function(...) { as_palette(viridis_scale, ...) }
+
+#' @param n number of colors to extract from the color palette.
+#' @rdname viridis_scale
+#' @export
+viridis_colors <- function(n, ...) { viridis_palette(...)(n) }
+
+
+## ggplot2 ----
+
+#' @rdname viridis_scale
+#' @export
+scale_color_viridis <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+  cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
+  ggplot2::continuous_scale("colour", "viridis",
+    scales::colour_ramp(cols),
+    na.value=na.value, guide=guide, ...
+  )
+}
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_colour_viridis <- scale_color_viridis
+
+#' @rdname viridis_scale
+#' @export
+scale_fill_viridis <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+  cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
+  ggplot2::continuous_scale("fill", "viridis",
+    scales::colour_ramp(cols),
+    na.value=na.value, guide=guide, ...
+  )
 }
 
 #' @rdname viridis_scale
 #' @export
-viridis_palette <- function(...) {
-  interp_palette(colors=chroma::viridis, model="lab", interp="linear", ...)
+scale_color_viridis_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+  cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
+  ggplot2::discrete_scale("colour", "viridis",
+    function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
+    na.value=na.value, ...
+  )
 }
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_colour_viridis_d <- scale_color_viridis_d
 
 #' @rdname viridis_scale
 #' @export
-viridis_colors <- function(n, ...) {
-  interp_colors(n=n, colors=chroma::viridis, model="lab", interp="linear",...)
+scale_fill_viridis_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+  cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
+  ggplot2::discrete_scale("fill", "viridis",
+    function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
+    na.value=na.value, ...
+  )
 }
+
+
