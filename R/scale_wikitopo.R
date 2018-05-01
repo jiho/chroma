@@ -63,7 +63,7 @@
 #'   geom_raster(aes(x, y, fill=z)) +
 #'   scale_fill_wikitopo() + scale_xy_map() +
 #'   geom_contour(aes(x, y, z=z), breaks=0, color="black") }
-wikitopo_scale <- function(na.value=NULL, ...) {
+wikitopo_scale <- function(na.value=NULL) {
   function(x) {
     colors <- scales::gradient_n_pal(colours=chroma::wikitopo$color, values=chroma::wikitopo$altitude)(x)
     na_replace(colors, wikitopo_na(na.value))
@@ -76,7 +76,9 @@ wikitopo_map <- function(x, ...) { wikitopo_scale(...)(x) }
 
 #' @rdname wikitopo_scale
 #' @export
-wikitopo_palette <- function(...) { as_palette(wikitopo_scale, ...) }
+wikitopo_palette <- function(...) {
+  function(n) { wikitopo_scale(...)(seq(min(chroma::wikitopo$altitude), max(chroma::wikitopo$altitude), length.out=n)) }
+}
 
 #' @rdname wikitopo_scale
 #' @export

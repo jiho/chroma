@@ -10,7 +10,7 @@
 \alias{scale_colour_wikitopo}
 \title{Wikipedia topographic scale and palette}
 \usage{
-wikitopo_scale(na.value = NULL, ...)
+wikitopo_scale(na.value = NULL)
 
 wikitopo_map(x, ...)
 
@@ -25,9 +25,9 @@ scale_color_wikitopo(na.value = NULL, ...)
 \arguments{
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
 
-\item{...}{passed to \code{\link{wikitopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_wikitopo} functions.}
-
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
+
+\item{...}{passed to \code{\link{wikitopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_wikitopo} functions.}
 
 \item{n}{number of colors to extract from the color palette.}
 }

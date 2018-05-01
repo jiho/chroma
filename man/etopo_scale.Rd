@@ -10,7 +10,7 @@
 \alias{scale_colour_etopo}
 \title{ETOPO1 scale and palette}
 \usage{
-etopo_scale(na.value = NULL, ...)
+etopo_scale(na.value = NULL)
 
 etopo_map(x, ...)
 
@@ -25,9 +25,9 @@ scale_color_etopo(na.value = NULL, ...)
 \arguments{
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
 
-\item{...}{passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_etopo} functions.}
-
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
+
+\item{...}{passed to \code{\link{etopo_scale}} or to \code{scale_*_gradientn} for the \code{scale_*_etopo} functions.}
 
 \item{n}{number of colors to extract from the color palette.}
 }

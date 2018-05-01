@@ -64,7 +64,7 @@
 #'   geom_raster(aes(x, y, fill=z)) +
 #'   scale_fill_etopo() + scale_xy_map() +
 #'   geom_contour(aes(x, y, z=z), breaks=0, color="black", size=1) }
-etopo_scale <- function(na.value=NULL, ...) {
+etopo_scale <- function(na.value=NULL) {
   function(x) {
     colors <- scales::gradient_n_pal(colours=chroma::etopo$color, values=chroma::etopo$altitude)(x)
     na_replace(colors, etopo_na(na.value))
@@ -77,7 +77,9 @@ etopo_map <- function(x, ...) { etopo_scale(...)(x) }
 
 #' @rdname etopo_scale
 #' @export
-etopo_palette <- function(...) { as_palette(etopo_scale, ...) }
+etopo_palette <- function(...) {
+  function(n) { etopo_scale(...)(seq(min(chroma::etopo$altitude), max(chroma::etopo$altitude), length.out=n)) }
+}
 
 #' @rdname etopo_scale
 #' @export
