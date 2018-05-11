@@ -128,7 +128,7 @@ rescale <- function(x, to=c(0,1), from=range(x, na.rm=TRUE, finite=TRUE)) {
 }
 
 
-#' Censor based on another vector
+#' Censor values based on another vector
 #'
 #' @param x vector to censor the values in
 #' @param y vector to define the criterion on
