@@ -7,7 +7,7 @@
 \format{A data.frame with 77 rows and 2 variables:
 \describe{
   \item{wl}{the wavelength, in nm.}
-  \item{color}{the hex code of the correpsonding color.}
+  \item{color}{the hex code of the corresponding color.}
 }}
 \source{
 \url{https://en.wikipedia.org/wiki/Visible_spectrum#/media/File:Linear_visible_spectrum.svg}
