@@ -55,7 +55,7 @@
 #' # and is different from the original L*a*b* specification
 #' as.lab(col)
 convert_color <- function(x, model) {
-  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
+  model <- match.arg(model, c("rgb", "rgba", "ryb", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
   # we want rgba in [0,1] = gl
   if (model == "rgba") { model <- "gl" }
 
@@ -66,6 +66,9 @@ convert_color <- function(x, model) {
   if (model == "wavelength") {
     # with custom code
     res <- convert_wavelength(x)
+  } else if (model == "ryb") {
+    # with custom code
+    res <- convert_ryb(x)
   } else {
     # through chroma.js
     cmds <- stringr::str_c("chroma('", x, "').",model,"()")
@@ -73,7 +76,7 @@ convert_color <- function(x, model) {
   }
 
   # parse into a matrix of numbers, when appropriate
-  if (! model %in% c("css", "hex", "temperature", "wavelength")) {
+  if (! model %in% c("ryb", "css", "hex", "temperature", "wavelength")) {
     if (model == "gl") { model <- "rgba" } # we need rgba as column headers
 
     # if all colors are NA, force the result to be a matrix of the correct dimension
@@ -164,4 +167,8 @@ as.temperature <- function(x) { convert_color(x, model="temperature") }
 #' @rdname convert_color
 #' @export
 as.wavelength <- function(x) { convert_color(x, model="wavelength") }
+
+#' @rdname convert_color
+#' @export
+as.ryb <- function(x) { convert_color(x, model="ryb") }
 

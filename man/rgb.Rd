@@ -62,5 +62,6 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{css}}, \code{\link{hcl}}, \code{\link{hex}},
   \code{\link{hsi}}, \code{\link{hsl}}, \code{\link{hsv}},
   \code{\link{lab}}, \code{\link{parse_color}},
-  \code{\link{temperature}}, \code{\link{wavelength}}
+  \code{\link{ryb}}, \code{\link{temperature}},
+  \code{\link{wavelength}}
 }

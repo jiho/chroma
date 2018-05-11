@@ -17,7 +17,7 @@
 #'                        b=c(0, 0, 255)), model="rgb")
 parse_color <- function(x, model) {
   # recognise color model
-  model <- match.arg(model, c("rgb", "rgba", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
+  model <- match.arg(model, c("rgb", "rgba", "ryb", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
 
   # check arguments
   vector_color_models <- c("css", "hex", "temperature", "wavelength")
@@ -64,6 +64,11 @@ parse_color <- function(x, model) {
     is_in(x[,3], 0, 1, "blue")
     is_in(x[,4], 0, 1, "alpha")
     model <- "gl"
+
+  } else if (model == "ryb") {
+    is_in(x[,1], 0, 1, "red")
+    is_in(x[,2], 0, 1, "yellow")
+    is_in(x[,3], 0, 1, "blue")
 
   } else if ( model == "hsv" ) {
     x[,1] <- hue(x[,1], model=model)
@@ -123,6 +128,8 @@ parse_color <- function(x, model) {
   if (model == "wavelength") {
     # parse using custom code
     res <- parse_wavelength(x)
+  } else if (model == "ryb") {
+    res <- parse_ryb(x)
   } else {
     # parse using chroma.js
     if (model %in% vector_color_models) {

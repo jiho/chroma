@@ -15,6 +15,7 @@
 \alias{as.hex}
 \alias{as.temperature}
 \alias{as.wavelength}
+\alias{as.ryb}
 \title{Convert colors to a given color model}
 \usage{
 convert_color(x, model)
@@ -44,11 +45,13 @@ as.hex(x)
 as.temperature(x)
 
 as.wavelength(x)
+
+as.ryb(x)
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}
 
-\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}, \code{wavelength}.}
+\item{model}{string defining the color model; valid models are \code{rgb}, \code{rgba}, \code{ryb}, \code{hsv}, \code{hsl}, \code{hsi}, \code{hcl}, \code{lch}, \code{lab}, \code{cmyk}, \code{css}, \code{hex}, \code{temperature}, \code{wavelength}.}
 }
 \value{
 A matrix containing the color components in most cases, except for the models:
