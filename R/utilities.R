@@ -199,3 +199,96 @@ as_palette <- function(scalefun, ...) {
 }
 
 
+#' N-dimensional interpolation on a grid
+#'
+#' @param x list of vectors of coordinates of the grid.
+#' @param V array or dimensions defined by x containing the values to interpolate.
+#' @param xo coordinates of the points at which to interpolate; either a vector to interpolate a single point or a table (coerced to a matrix) with one point per line to interpolate several.
+#' @noRd
+#'
+#' @examples
+#' # 2D
+#' x <- list(0:1, 0:1)
+#' V <- array(c(0, 0.1, 0.1, 0.2), dim=c(2,2))
+#' xo <- cbind(c(0.75, 0.5, 0.1), c(0.5, 0.5, 0.4))
+#' interpn(x, V, xo)
+#'
+#' # 3D
+#' x <- seq(-1,1,l=5)
+#' V <- outer(outer(x, x), x)
+#' x <- list(x, x, x)
+#' xo <- cbind(c(0.75, 0.5, 0.1), c(0.5, 0.5, 0.4), c(-0.3, -0.3, -0.3))
+#' interpn(x, V, xo)
+interpn <- function(x, V, xo) {
+  # checks
+  if (any(sapply(x, length) != dim(V))) {
+    stop("x and V are or incompatible dimensions")
+  }
+  n <- length(x)
+  if (is.vector(xo)) {
+    xo <- matrix(xo, nrow=1)
+  } else {
+    xo <- as.matrix(xo)
+  }
+  if (ncol(xo) != n) {
+    stop("The dimensions of xo are incompatible with x and V.")
+  }
+  apply(xo, 1, interpn1, x=x, V=V)
+}
+interpn1 <- function(xo, x, V) {
+  n <- length(x)
+
+  # find the hypercube in which xo is and define its relative coordinates within it
+  # each coordinate is in % or the cube's side = in [0,1]
+  ix <- xo
+  for (j in 1:n) {
+    ix[j] <- approx(x[[j]], 1:length(x[[j]]), xo[j])$y
+  }
+
+  # extract the corners of the hypercube
+  i0 <- floor(ix)
+  i1 <- ceiling(ix)
+  i <- lapply(1:n, function(j) {c(i0[j], i1[j])})
+  i <- as.matrix(expand.grid(i))
+
+  # compute the weights for the values in each corner
+  ix <- ix - i0
+  p <- lapply(1:n, function(j) {c(1-ix[j], ix[j])})
+  p <- expand.grid(p)
+  p <- apply(p,1,prod)
+
+  # compute the interpolated value
+  yo <- sum(V[i]*p)
+
+  return(yo)
+}
+
+# # Python reference
+# import scipy.interpolate as int
+# import numpy as np
+# import copy
+#
+# # 2D
+# points = ([0,1],[0,1])
+# values = np.array([[0., 0.1], [0.1, 0.2]])
+# xi = [[0.75, 0.5],
+#       [0.5, 0.5],
+#       [0.1, 0.4]]
+# int.interpn(points, values, xi)
+#
+# # 3D
+# x = np.linspace(-1,1,5)
+# points = (x, x, x)
+# x1 = copy.deepcopy(x)
+# x2 = copy.deepcopy(x)
+# x3 = copy.deepcopy(x)
+# x1.shape = (5,1,1)
+# x2.shape = (1,5,1)
+# x3.shape = (1,1,5)
+# values = (x1 * x2) * x3
+# xi = [[0.75, 0.5, -0.3],
+#       [ 0.5, 0.5, -0.3],
+#       [ 0.1, 0.4, -0.3]]
+# int.interpn(points, values, xi)
+
+
