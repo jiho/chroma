@@ -44,6 +44,10 @@ test_that("rgba is reversible", {
   expect_equal(rgba(as.rgba(x)), x)
 })
 
+test_that("ryb is not reversible", {
+  expect_false(all(ryb(as.ryb(x)) == as.hex(x)))
+})
+
 # temperature is not reversible
 
 # wavelength is not reversible

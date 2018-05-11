@@ -48,6 +48,11 @@ test_that("rgba is replicable", {
   expect_equal(rgba(x), c("#44E8F110", "#5F33A935", "#92E5A02D"))
 })
 
+test_that("ryb is replicable", {
+  expect_equal(ryb(x[,1:3]), c("#147C2E", "#7D677B", "#646C19"))
+})
+
+
 test_that("temperature is replicable", {
   expect_equal(temperature(x[,1]*10000+2000), c("#FFDEC0", "#FFEFE6", "#E6EBFF"))
 })
