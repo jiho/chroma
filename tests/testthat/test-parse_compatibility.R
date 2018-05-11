@@ -43,3 +43,7 @@ test_that("hsv is compatible with colorspace::LAB", {
 # })
 # This fails but because or rounding errors
 # TODO investigate a solution
+
+test_that("CSS color parsing matches W3C", {
+  expect_equal(css(css_colors$name), css_colors$hex)
+})

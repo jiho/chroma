@@ -18,3 +18,14 @@
 css <- function(x) {
   parse_color(x, "css")
 }
+
+#' Named CSS Colors
+#'
+#' @format A data.frame with 148 rows and 2 variables:
+#' \describe{
+#'   \item{name}{the name of the color in the CSS specification.}
+#'   \item{hex}{the corresponding hex code.}
+#' }
+#' @source \url{https://www.w3.org/TR/css-color-4/#named-colors}
+#' @seealso \code{\link{css}} or \code{\link{hex}} to parse such colors into their hex codes.
+"css_colors"
