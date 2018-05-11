@@ -7,7 +7,7 @@
 hex(x)
 }
 \arguments{
-\item{x}{hexadecimal string specifying a color.}
+\item{x}{hexadecimal string specifying a color; named R or CSS color are also tolerated.}
 }
 \value{
 A vector of colors specified as hex codes
@@ -23,10 +23,17 @@ hex("#ff3399")
 hex("ff3399")
 hex("ff3399")
 hex("F39")
+x <- c("#ff3399",       # hex specification valid in R
+       "F39",           # hex specification not valid in R
+       "whitesmoke",    # named color valid in R and CSS
+       "darkorchid2",   # named R color (not existing in CSS)
+       "rebeccapurple"  # named CSS color (not existing in R)
+       )
+hex(x)
 
 (half_transparent <- alpha("#ff3399", 0.5))
 hex(half_transparent)
-# The transparency portion (last two positions: '80') is removed
+# NB: the transparency portion (last two positions: '80') is removed
 }
 \seealso{
 \code{\link{parse_color}} for the general function to parse colors in various specifications (which this function calls internally) and \code{\link{convert_color}} to convert parsed colors to another model.
