@@ -97,6 +97,7 @@ brewer_scale <- function(name="Blues", model="lab", interp="linear", domain=c(0,
 #' @export
 brewer_map <- function(x, ...) {
   # TODO better document this bit which is quite specific to colorbrewer having both discrete and continuous palettes
+  # TODO this should really be in the scale function above, as a function f
   if (is.factor(x) | is.character(x)) {
     x <- factor(x)
     colors <- brewer_colors(n=nlevels(x), ...)[as.numeric(x)]
@@ -141,3 +142,6 @@ brewer_colors <- function(n, name="Blues", ...) {
 
   return(colors)
 }
+
+# TODO add ggplot2 functions with brewer_c and brewer_d variants as alternatives to scale_distiller and scale_brewer in ggplot2
+

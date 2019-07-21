@@ -44,3 +44,4 @@ mix <- function(x, y, ratio=0.5, model="rgb") {
   cmds <- stringr::str_c("chroma.mix('", x, "','", y, "', ", ratio, ", '", model, "').hex()")
   v8_eval(cmds)
 }
+# TODO compute mix in ryb color space; need to implement it manually.

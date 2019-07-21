@@ -56,6 +56,7 @@
 #' as.lab(col)
 convert_color <- function(x, model) {
   model <- match.arg(model, c("rgb", "rgba", "ryb", "gl", "hsv", "hsl", "hsi", "hcl", "lch", "lab", "cmyk", "css", "hex", "temperature", "wavelength"))
+  # TODO completely remove gl which is redundant with rgba and not useful
   # we want rgba in [0,1] = gl
   if (model == "rgba") { model <- "gl" }
 

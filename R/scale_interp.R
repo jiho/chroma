@@ -92,6 +92,7 @@
 #'            col=coldhot(c(pretty(Ozone), NA)), pch=19)
 #' par(pars)
 #' # note that the missing value color contrasts with the rest of the scale
+# TODO detach attached datasets
 #'
 #' \dontrun{
 #' # Or in ggplot

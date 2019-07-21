@@ -2,6 +2,7 @@
 #'
 #' @param x a matrix or data.frame whose columns specify the color channels or a vector of color definitions for the \code{css}, \code{hex}, \code{temperature}, \code{wavelength} color models.
 #' @template param_model
+# TODO change model to mode, everywhere
 #'
 #' @template return_hex_colors
 #'
