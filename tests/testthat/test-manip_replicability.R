@@ -10,8 +10,10 @@ test_that("alpha is replicable", {
 })
 
 test_that("extracting a channel is replicable", {
-  expect_equal(channel(x, "hsv", "h"), c(181.8461538462, 0, 280.1298701299))
 
+  expect_equal(channel(x, "ryb", "r"), c(0.1691907095, 0.6191190465, 0.2800219608))
+  expect_equal(channel(x, "ryb", "y"), c(0.332681964, 0.1879892349, 0.106854902))
+  expect_equal(channel(x, "ryb", "b"), c(0.401563465, 0.0881669512, 0.5233003922))
 
   expect_equal(channel(x, "hsv", "h"), c(181.8461538462, 0, 280.1298701299))
   expect_equal(channel(x, "hsv", "s"), c(0.40625, 0.7490196078, 0.7549019608))

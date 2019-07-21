@@ -158,7 +158,7 @@ parse_ryb <- function(x) {
   return(grDevices::rgb(r, g, b))
 }
 
-# Internal implementation of the conversion into TYB
+# Internal implementation of the conversion into RYB
 # @param x vector of input colors specified as hex codes.
 # @noRd
 convert_ryb <- function(x) {
