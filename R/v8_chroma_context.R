@@ -15,7 +15,7 @@ v8_chroma_context <- function() {
   file <- system.file("chroma.min.js", package="chroma")
 
   # read the file and make it into a single character scalar
-  chromajs <- scan(file, what="character", skip=31, sep="\n", quiet=T)
+  chromajs <- scan(file, what="character", skip=57, sep="\n", quiet=T)
   chromajs <- paste(chromajs, collapse="")
 
   # create the context
