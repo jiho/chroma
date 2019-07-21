@@ -104,3 +104,4 @@ Other color scales and palettes: \code{\link{chroma_scale}},
   \code{\link{magma_scale}}, \code{\link{plasma_scale}},
   \code{\link{viridis_scale}}, \code{\link{wikitopo_scale}}
 }
+\concept{color scales and palettes}

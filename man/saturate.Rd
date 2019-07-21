@@ -54,3 +54,4 @@ Other color manipulation functions: \code{\link{average}},
   \code{\link{darken}}, \code{\link{luminance}},
   \code{\link{mix}}
 }
+\concept{color manipulation functions}

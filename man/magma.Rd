@@ -18,4 +18,5 @@ The \code{magma} color palette, by Nathaniel J. Smith and Stefan van der Walt (C
 Other mpl palettes: \code{\link{inferno}},
   \code{\link{plasma}}, \code{\link{viridis}}
 }
+\concept{mpl palettes}
 \keyword{datasets}

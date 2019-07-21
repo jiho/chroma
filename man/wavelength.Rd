@@ -3,7 +3,7 @@
 \name{wavelength}
 \alias{wavelength}
 \alias{wl}
-\title{Color Specification as Wavelength}
+\title{Color specification as wavelength}
 \usage{
 wavelength(x)
 
@@ -37,3 +37,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{rgb}}, \code{\link{ryb}},
   \code{\link{temperature}}
 }
+\concept{color specifications}

@@ -36,3 +36,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{rgb}}, \code{\link{ryb}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

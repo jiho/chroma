@@ -18,4 +18,5 @@ The \code{inferno} color palette, by Nathaniel J. Smith and Stefan van der Walt 
 Other mpl palettes: \code{\link{magma}},
   \code{\link{plasma}}, \code{\link{viridis}}
 }
+\concept{mpl palettes}
 \keyword{datasets}

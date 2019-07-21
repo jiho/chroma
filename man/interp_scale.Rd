@@ -22,13 +22,14 @@ interp_palette(...)
 interp_colors(n, ...)
 
 scale_color_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL,
-  na.value = NULL, extrapolate = FALSE, exact.until = 100,
-  guide = "colorbar")
+  interp = "linear", correct.lightness = FALSE, reverse = FALSE,
+  values = NULL, na.value = NULL, extrapolate = FALSE,
+  exact.until = 100, guide = "colorbar")
 
 scale_fill_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL,
-  na.value = NULL, exact.until = 100, guide = "colorbar")
+  interp = "linear", correct.lightness = correct.lightness,
+  reverse = FALSE, values = NULL, na.value = NULL,
+  exact.until = 100, guide = "colorbar")
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -148,6 +149,7 @@ par(pars)
 
 \dontrun{
 # Or in ggplot
+library("ggplot2")
 ggplot(airquality) +
   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
   scale_color_interp(colors=c("#2B5DCD", "#EC2D38"))
@@ -160,12 +162,12 @@ ggplot(airquality) +
 }
 
 # Continuous, interpolated color scales are not really appropriate for
-# categorical variables though
+# categorical variables. This works
 attach(iris)
 plot(Petal.Length, Petal.Width, pch=21, bg=interp_map(Species))
 legend(1, 2, legend=levels(Species),
              pt.bg=interp_colors(n=nlevels(Species)), pch=21)
-# a hue-based scale would be much better (see ?hue_scale)
+# but a hue-based scale would be much better (see ?hue_scale)
 }
 \seealso{
 Other color scales and palettes: \code{\link{brewer_scale}},
@@ -176,3 +178,4 @@ Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
   \code{\link{wikitopo_scale}}
 }
+\concept{color scales and palettes}

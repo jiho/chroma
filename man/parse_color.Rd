@@ -32,3 +32,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{lab}}, \code{\link{rgb}}, \code{\link{ryb}},
   \code{\link{temperature}}, \code{\link{wavelength}}
 }
+\concept{color specifications}

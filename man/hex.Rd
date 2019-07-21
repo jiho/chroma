@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_hex.R
 \name{hex}
 \alias{hex}
-\title{HEX Color Specification}
+\title{HEX color specification}
 \usage{
 hex(x)
 }
@@ -52,3 +52,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

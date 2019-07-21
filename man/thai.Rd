@@ -4,7 +4,7 @@
 \name{thai}
 \alias{thai}
 \alias{thaixyz}
-\title{Topographic data around Thailand}
+\title{Topography around Thailand}
 \format{\code{thai} is a list with two coordinate vectors and a matrix of corresponding values, suitable for \code{\link[graphics]{contour}}, \code{\link[graphics]{persp}} etc. \code{thaixyz} contains the same data but formated as a xyz a data.frame with 30351 rows and 3 columns. Both have components:
 \describe{
   \item{x,y}{x and y coordinates, in degrees.}

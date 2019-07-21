@@ -46,3 +46,4 @@ Other color manipulation functions: \code{\link{blend}},
   \code{\link{luminance}}, \code{\link{mix}},
   \code{\link{saturate}}
 }
+\concept{color manipulation functions}

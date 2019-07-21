@@ -43,3 +43,4 @@ Other color manipulation functions: \code{\link{average}},
   \code{\link{darken}}, \code{\link{luminance}},
   \code{\link{saturate}}
 }
+\concept{color manipulation functions}

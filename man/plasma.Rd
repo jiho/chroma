@@ -18,4 +18,5 @@ The \code{plasma} color palette, by Nathaniel J. Smith and Stefan van der Walt (
 Other mpl palettes: \code{\link{inferno}},
   \code{\link{magma}}, \code{\link{viridis}}
 }
+\concept{mpl palettes}
 \keyword{datasets}

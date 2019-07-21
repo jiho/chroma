@@ -18,4 +18,5 @@ The \code{viridis} color palette, by Nathaniel J. Smith, Stefan van der Walt, an
 Other mpl palettes: \code{\link{inferno}},
   \code{\link{magma}}, \code{\link{plasma}}
 }
+\concept{mpl palettes}
 \keyword{datasets}

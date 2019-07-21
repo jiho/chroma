@@ -150,3 +150,4 @@ Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
   \code{\link{wikitopo_scale}}
 }
+\concept{color scales and palettes}

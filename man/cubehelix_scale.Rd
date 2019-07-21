@@ -89,7 +89,6 @@ show_col(
   cubehelix_colors(20),
   cubehelix_colors(20, reverse=TRUE)
 )
-cubehelix_map(c(1,2,NA,3))
 
 # Rotating less gives more sensible scales
 show_col(

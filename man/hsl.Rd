@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_hsl.R
 \name{hsl}
 \alias{hsl}
-\title{HSL Color Specification}
+\title{HSL color specification}
 \usage{
 hsl(h = 0, s = 0.5, l = 0.5)
 }
@@ -47,3 +47,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

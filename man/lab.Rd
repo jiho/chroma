@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_lab.R
 \name{lab}
 \alias{lab}
-\title{CIE L*a*b* Color Specification}
+\title{CIE L*a*b* color specification}
 \usage{
 lab(l = 0.5, a = 0.5, b = 0.5)
 }
@@ -57,3 +57,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

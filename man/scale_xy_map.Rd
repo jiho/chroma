@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale_xy_map.R
 \name{scale_xy_map}
 \alias{scale_xy_map}
-\title{Ggplot2 x and y scales definitions for maps}
+\title{ggplot2 x and y scales definitions for maps}
 \usage{
 scale_xy_map(...)
 }

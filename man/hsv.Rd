@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_hsv.R
 \name{hsv}
 \alias{hsv}
-\title{HSV Color Specification}
+\title{HSV color specification}
 \usage{
 hsv(h = 0, s = 0.6, v = 0.7, alpha = NULL, compat = FALSE)
 }
@@ -54,3 +54,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

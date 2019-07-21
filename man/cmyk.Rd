@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_cmyk.R
 \name{cmyk}
 \alias{cmyk}
-\title{CMYK Color Specification}
+\title{CMYK color specification}
 \usage{
 cmyk(c = 0, m = 0.6, y = 0.6, k = 0.4)
 }
@@ -42,3 +42,4 @@ Other color specifications: \code{\link{css}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

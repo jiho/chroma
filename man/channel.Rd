@@ -62,3 +62,4 @@ Other color manipulation functions: \code{\link{average}},
   \code{\link{luminance}}, \code{\link{mix}},
   \code{\link{saturate}}
 }
+\concept{color manipulation functions}

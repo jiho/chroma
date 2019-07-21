@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_ryb.R
 \name{ryb}
 \alias{ryb}
-\title{RYB Color Specification}
+\title{RYB color specification}
 \usage{
 ryb(red = 0, yellow = 0, blue = 0)
 }
@@ -55,3 +55,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{rgb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

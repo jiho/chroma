@@ -19,6 +19,11 @@ Compute the value at the center of facets in a perspective plot of a matrix
 z <- matrix(1:12, nrow=4)
 persp_facets(z)
 
+# use it with persp()
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
+      col=interp_map(persp_facets(maunga$z), colors=terrain.colors(10)))
+
 }
 \seealso{
 \code{\link{interp_scale}} for an example of usage.

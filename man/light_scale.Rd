@@ -19,11 +19,11 @@ light_palette(...)
 
 light_colors(n, ...)
 
-scale_color_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
-  na.value = NULL, guide = "colorbar")
+scale_color_light(..., l = c(0.1, 0.9), c = 0.5, h = 0,
+  reverse = FALSE, na.value = NULL, guide = "colorbar")
 
-scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0, reverse = FALSE,
-  na.value = NULL, guide = "colorbar")
+scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0,
+  reverse = FALSE, na.value = NULL, guide = "colorbar")
 }
 \arguments{
 \item{l}{lightness, vector of two numbers in \code{[0,1]} (0 is darkest, 1 is brightest) giving the minimum and maximum lightness along the scale.}
@@ -163,3 +163,5 @@ Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
   \code{\link{wikitopo_scale}}
 }
+\concept{HCL-based scales}
+\concept{color scales and palettes}

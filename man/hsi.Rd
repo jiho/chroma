@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_hsi.R
 \name{hsi}
 \alias{hsi}
-\title{HSI Color Specification}
+\title{HSI color specification}
 \usage{
 hsi(h = 0, s = 0.5, i = 0.5)
 }
@@ -47,3 +47,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

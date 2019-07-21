@@ -3,7 +3,7 @@
 \name{rgb}
 \alias{rgb}
 \alias{rgba}
-\title{RGB Color Specification}
+\title{RGB color specification}
 \usage{
 rgb(red = 0, green = 0, blue = 0, alpha = NULL, names = NULL,
   maxColorValue = 1)
@@ -65,3 +65,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

@@ -3,7 +3,7 @@
 \name{hcl}
 \alias{hcl}
 \alias{lch}
-\title{HCL Color Specification}
+\title{HCL color specification}
 \usage{
 hcl(h = 0, c = 0.65, l = 0.65, alpha = NULL, compat = FALSE, ...)
 
@@ -80,3 +80,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}

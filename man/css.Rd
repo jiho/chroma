@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_css.R
 \name{css}
 \alias{css}
-\title{CSS Color Specification}
+\title{CSS color specification}
 \usage{
 css(x)
 }
@@ -31,3 +31,4 @@ Other color specifications: \code{\link{cmyk}},
   \code{\link{ryb}}, \code{\link{temperature}},
   \code{\link{wavelength}}
 }
+\concept{color specifications}
