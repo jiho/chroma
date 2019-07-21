@@ -142,12 +142,8 @@ cubehelix_na <- function(na.value, l) {
 #' @rdname cubehelix_scale
 #' @export
 cubehelix_map <- function(x, ...) {
-  # force characters into factors to be able to convert them to numeric
-  if (is.character(x)) {
-    x <- factor(x)
-  }
   # convert to numbers
-  x <- as.numeric(x)
+  x <- as.num(x)
   # define the domain of the scale
   cubehelix_scale(domain=range(x, na.rm=T), ...)(x)
 }
