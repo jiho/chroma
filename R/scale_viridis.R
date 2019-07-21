@@ -123,8 +123,8 @@ viridis_colors <- function(n, ...) { viridis_palette(...)(n) }
 # Pick and appropriate NA value for a viridis scale
 viridis_na <- function(na.value) {
   if (is.null(na.value)) {
-    na.value <- desaturate(average(viridis_colors(50)), 10)
-    # = grey of luminance equal to the average color of the scale
+    na.value <- desaturate(chroma::viridis[128], 10)
+    # = grey corresponding to the middle color of the scale
   }
   return(na.value)
 }

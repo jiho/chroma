@@ -126,8 +126,8 @@ plasma_colors <- function(n, ...) { plasma_palette(...)(n) }
 # Pick and appropriate NA value for a plasma scale
 plasma_na <- function(na.value) {
   if (is.null(na.value)) {
-    na.value <- desaturate(average(plasma_colors(50)), 10)
-    # = grey of luminance equal to the average color of the scale
+    na.value <- desaturate(chroma::plasma[128], 10)
+    # = grey corresponding to the middle color of the scale
   }
   return(na.value)
 }
@@ -151,7 +151,7 @@ scale_colour_plasma_c <- scale_color_plasma_c
 
 #' @rdname plasma_scale
 #' @export
-scale_fill_plasma_c <- function(..., reverse=FALSE, na.value="#818181", guide="colorbar") {
+scale_fill_plasma_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::continuous_scale("fill", "plasma",
     scales::colour_ramp(cols),
@@ -161,7 +161,7 @@ scale_fill_plasma_c <- function(..., reverse=FALSE, na.value="#818181", guide="c
 
 #' @rdname plasma_scale
 #' @export
-scale_color_plasma_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
+scale_color_plasma_d <- function(..., reverse=FALSE, na.value=NULL, guide="legend") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::discrete_scale("colour", "plasma",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
@@ -175,7 +175,7 @@ scale_colour_plasma_d <- scale_color_plasma_d
 
 #' @rdname plasma_scale
 #' @export
-scale_fill_plasma_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
+scale_fill_plasma_d <- function(..., reverse=FALSE, na.value=NULL, guide="legend") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::discrete_scale("fill", "plasma",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},

@@ -28,13 +28,13 @@ magma_colors(n, ...)
 scale_color_magma_c(..., reverse = FALSE, na.value = NULL,
   guide = "colorbar")
 
-scale_fill_magma_c(..., reverse = FALSE, na.value = "#818181",
+scale_fill_magma_c(..., reverse = FALSE, na.value = NULL,
   guide = "colorbar")
 
-scale_color_magma_d(..., reverse = FALSE, na.value = "#818181",
+scale_color_magma_d(..., reverse = FALSE, na.value = NULL,
   guide = "legend")
 
-scale_fill_magma_d(..., reverse = FALSE, na.value = "#818181",
+scale_fill_magma_d(..., reverse = FALSE, na.value = NULL,
   guide = "legend")
 }
 \arguments{

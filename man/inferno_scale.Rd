@@ -28,13 +28,13 @@ inferno_colors(n, ...)
 scale_color_inferno_c(..., reverse = FALSE, na.value = NULL,
   guide = "colorbar")
 
-scale_fill_inferno_c(..., reverse = FALSE, na.value = "#818181",
+scale_fill_inferno_c(..., reverse = FALSE, na.value = NULL,
   guide = "colorbar")
 
-scale_color_inferno_d(..., reverse = FALSE, na.value = "#818181",
+scale_color_inferno_d(..., reverse = FALSE, na.value = NULL,
   guide = "legend")
 
-scale_fill_inferno_d(..., reverse = FALSE, na.value = "#818181",
+scale_fill_inferno_d(..., reverse = FALSE, na.value = NULL,
   guide = "legend")
 }
 \arguments{

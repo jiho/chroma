@@ -126,8 +126,8 @@ inferno_colors <- function(n, ...) { inferno_palette(...)(n) }
 # Pick and appropriate NA value for a inferno scale
 inferno_na <- function(na.value) {
   if (is.null(na.value)) {
-    na.value <- desaturate(average(inferno_colors(50)), 10)
-    # = grey of luminance equal to the average color of the scale
+    na.value <- desaturate(chroma::inferno[128], 10)
+    # = grey corresponding to the middle color of the scale
   }
   return(na.value)
 }
@@ -151,7 +151,7 @@ scale_colour_inferno_c <- scale_color_inferno_c
 
 #' @rdname inferno_scale
 #' @export
-scale_fill_inferno_c <- function(..., reverse=FALSE, na.value="#818181", guide="colorbar") {
+scale_fill_inferno_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::continuous_scale("fill", "inferno",
     scales::colour_ramp(cols),
@@ -161,7 +161,7 @@ scale_fill_inferno_c <- function(..., reverse=FALSE, na.value="#818181", guide="
 
 #' @rdname inferno_scale
 #' @export
-scale_color_inferno_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
+scale_color_inferno_d <- function(..., reverse=FALSE, na.value=NULL, guide="legend") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::discrete_scale("colour", "inferno",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
@@ -175,7 +175,7 @@ scale_colour_inferno_d <- scale_color_inferno_d
 
 #' @rdname inferno_scale
 #' @export
-scale_fill_inferno_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
+scale_fill_inferno_d <- function(..., reverse=FALSE, na.value=NULL, guide="legend") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::discrete_scale("fill", "inferno",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
