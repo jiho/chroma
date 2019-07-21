@@ -147,3 +147,64 @@ cubehelix_palette <- function(...) {
 cubehelix_colors <- function(n, ...) {
   cubehelix_palette(...)(n)
 }
+
+## ggplot2 ----
+
+#' @rdname cubehelix_scale
+#' @export
+scale_color_cubehelix_c <- function(..., h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, reverse=FALSE, na.value=NULL, guide="colorbar") {
+  ggplot2::continuous_scale("colour", "cubehelix",
+    chroma::cubehelix_scale(h=h, rot=rot, c=c, l=l, gamma=gamma, reverse=reverse),
+    na.value=cubehelix_na(na.value, l), guide=guide, ...
+  )
+}
+#' @rdname cubehelix_scale
+#' @export
+#' @usage NULL
+scale_colour_cubehelix_c <- scale_color_cubehelix_c
+
+#' @rdname cubehelix_scale
+#' @export
+scale_fill_cubehelix_c <- function(..., h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, reverse=FALSE, na.value=NULL, guide="colorbar") {
+  ggplot2::continuous_scale("fill", "cubehelix",
+    chroma::cubehelix_scale(h=h, rot=rot, c=c, l=l, gamma=gamma, reverse=reverse),
+    na.value=cubehelix_na(na.value, l), guide=guide, ...
+  )
+}
+
+#' @rdname cubehelix_scale
+#' @export
+scale_color_cubehelix_d <- function(..., h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, reverse=FALSE, na.value="#grey50", guide="legend") {
+  ggplot2::discrete_scale("colour", "cubehelix",
+    cubehelix_palette(h=h, rot=rot, c=c, l=l, gamma=gamma, reverse=reverse),
+    na.value=cubehelix_na(na.value, l), ...
+  )
+}
+#' @rdname cubehelix_scale
+#' @export
+#' @usage NULL
+scale_colour_cubehelix_d <- scale_color_cubehelix_d
+
+#' @rdname cubehelix_scale
+#' @export
+scale_fill_cubehelix_d <- function(..., h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, reverse=FALSE, na.value="#grey50", guide="legend") {
+  ggplot2::discrete_scale("fill", "cubehelix",
+    cubehelix_palette(h=h, rot=rot, c=c, l=l, gamma=gamma, reverse=reverse),
+    na.value=cubehelix_na(na.value, l), ...
+  )
+}
+
+# Make the continuous version default, because it is the most commong use case
+#' @rdname cubehelix_scale
+#' @export
+#' @usage NULL
+scale_color_cubehelix <- scale_color_cubehelix_c
+#' @rdname cubehelix_scale
+#' @export
+#' @usage NULL
+scale_colour_cubehelix <- scale_color_cubehelix_c
+#' @rdname cubehelix_scale
+#' @export
+#' @usage NULL
+scale_fill_cubehelix <- scale_fill_cubehelix_c
+
