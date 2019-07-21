@@ -95,6 +95,7 @@
 #'
 #' \dontrun{
 #' # Or in ggplot
+#' library("ggplot2")
 #' ggplot(airquality) +
 #'   geom_point(aes(x=Wind, y=Temp, color=Ozone)) +
 #'   scale_color_interp(colors=c("#2B5DCD", "#EC2D38"))
@@ -107,12 +108,12 @@
 #' }
 #'
 #' # Continuous, interpolated color scales are not really appropriate for
-#' # categorical variables though
+#' # categorical variables. This works
 #' attach(iris)
 #' plot(Petal.Length, Petal.Width, pch=21, bg=interp_map(Species))
 #' legend(1, 2, legend=levels(Species),
 #'              pt.bg=interp_colors(n=nlevels(Species)), pch=21)
-#' # a hue-based scale would be much better (see ?hue_scale)
+#' # but a hue-based scale would be much better (see ?hue_scale)
 interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", correct.lightness=FALSE, domain=c(0,1), reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100) {
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
