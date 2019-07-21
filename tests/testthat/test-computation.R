@@ -10,7 +10,7 @@ models <- c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb")
 test_that("color mixing is replicable", {
   expect_equal(
     unlist(lapply(models, function(m) {average(x, model=m)})),
-    c("#009AB4", "#009AB4", "#46BD8F", "#41D39C", "#4BCE9D", "#BA668F", "#A85B8F", "#D23997")
+    c("#B65EC6", "#B65EC6", "#9246B9", "#A241D3", "#A24BCE", "#BA668F", "#A85B8F", "#B4679A")
   )
 
   expect_equal(
