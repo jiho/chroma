@@ -46,7 +46,7 @@
 #' show_col(x_orig, x)
 channel <- function(x, model, channel) {
   # check arguments
-  model <- match.arg(model, c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "ryb", "rgba", "lrgb", "css", "hex", "temperature", "wavelength"))
+  model <- match.arg(model, c("cmyk", "hcl", "hsi", "hsl", "hsv", "lab", "lch", "rgb", "rgba", "ryb", "css", "hex", "temperature", "wavelength"))
   if (model %in% c("css", "hex", "temperature", "wavelength")) {
     stop(paste0("Cannot extract a channel from a ", model, " color"))
   }
@@ -63,7 +63,7 @@ channel <- function(x, model, channel) {
 #' @export
 `channel<-` <- function(x, model, channel, value) {
   # check arguments
-  model <- match.arg(model, c("cmyk", "hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "ryb", "rgba", "lrgb", "css", "hex", "temperature", "wavelength"))
+  model <- match.arg(model, c("cmyk", "hcl", "hsi", "hsl", "hsv", "lab", "lch", "rgb", "rgba", "ryb", "css", "hex", "temperature", "wavelength"))
   if (model %in% c("css", "hex", "temperature", "wavelength")) {
     stop(paste0("Cannot set a channel in a ", model, " color"))
   }
