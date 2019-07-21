@@ -9,7 +9,7 @@ scicol_names <- stringr::str_replace(basename(files), ".txt", "")
 # read color scales
 scicol <- lapply(files, function(f) {
   x <- read.table(f)
-  tolower(rgb(x))
+  grDevices::rgb(x)
 })
 
 names(scicol) <- scicol_names
