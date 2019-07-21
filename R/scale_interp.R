@@ -6,7 +6,7 @@
 #' @param model string defining the color model in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{rgb}, \code{lrgb}. Beware that all but \code{lab} and \code{(l)rgb} can give surprising results.
 #' @param interp string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
 #' @param domain vector of two values between which the scale is computed.
-#' @param correct.lightness whether to correct lightness gradient.
+#' @param correct.lightness whether to correct lightness to come closer to a linear increase in lightness along the scale, which is preferable perpectually. This correction is particularly effective together with \code{bezier} interpolation.
 #' @param reverse whether to reverse the order of colors along the scale.
 #' @param values if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
 #' @param na.value value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.

@@ -11,8 +11,9 @@
 \title{Interpolated color scale and palette}
 \usage{
 interp_scale(colors = c("white", "black"), model = "lab",
-  interp = "linear", domain = c(0, 1), reverse = FALSE, values = NULL,
-  na.value = NULL, extrapolate = FALSE, exact.until = 100)
+  interp = "linear", correct.lightness = FALSE, domain = c(0, 1),
+  reverse = FALSE, values = NULL, na.value = NULL,
+  extrapolate = FALSE, exact.until = 100)
 
 interp_map(x, ...)
 
@@ -21,12 +22,13 @@ interp_palette(...)
 interp_colors(n, ...)
 
 scale_color_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL, na.value = NULL,
-  extrapolate = FALSE, exact.until = 100, guide = "colorbar")
+  interp = "linear", reverse = FALSE, values = NULL,
+  na.value = NULL, extrapolate = FALSE, exact.until = 100,
+  guide = "colorbar")
 
 scale_fill_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", reverse = FALSE, values = NULL, na.value = NULL,
-  exact.until = 100, guide = "colorbar")
+  interp = "linear", reverse = FALSE, values = NULL,
+  na.value = NULL, exact.until = 100, guide = "colorbar")
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -34,6 +36,8 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 \item{model}{string defining the color model in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{rgb}, \code{lrgb}. Beware that all but \code{lab} and \code{(l)rgb} can give surprising results.}
 
 \item{interp}{string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.}
+
+\item{correct.lightness}{whether to correct lightness to come closer to a linear increase in lightness along the scale, which is preferable perpectually. This correction is particularly effective together with \code{bezier} interpolation.}
 
 \item{domain}{vector of two values between which the scale is computed.}
 
