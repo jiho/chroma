@@ -3,7 +3,7 @@
 #' The CubeHelix color palette, by Dave Green (Unlicense license).
 #'
 #' @template param_hue
-#' @param rotations number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360°, -1.5 = -540°)
+#' @param rot number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360°, -1.5 = -540°)
 #' @template param_chromacity
 #' @template param_lightness
 #' @param gamma gamma contrast factor, in \code{[0,+Inf]} (sane values are in \code{[0.5,3]}). \code{gamma} < 1 emphasises the low end of the scale by whitening the high colors. \code{gamma} > 1 emphasises the high end of the scale by darkening the low colors. Use with caution and restraint.
@@ -72,15 +72,15 @@
 #' # But see ?hue_scale for a simpler solution
 #'
 #' @export
-cubehelix_scale <- function(h=300, rotations=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, domain=c(0,1), reverse=FALSE) {
+cubehelix_scale <- function(h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, domain=c(0,1), reverse=FALSE) {
 
   # check arguments
   if (length(h) != 1) { stop("h should be just one value.") }
-  if (length(rotations) != 1) { stop("rotations should be just one value.") }
+  if (length(rot) != 1) { stop("rot should be just one value.") }
   if (length(c) != 1) { stop("c should be just one value.") }
   if (length(l) != 2) { stop("l should be a vector of length 1 or 2.") }
   if (length(gamma) != 1) { stop("gamma should be just one value.") }
-  is_in(rotations, -2, 2)
+  is_in(rot, -2, 2)
   is_in(c, 0, 1.5)
   is_in(l, 0, 1)
   is_in(gamma, 0, 2)
@@ -105,8 +105,7 @@ cubehelix_scale <- function(h=300, rotations=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1
 
   # define function
   eval(f <- function(x) {
-    cmds <- stringr::str_c("chroma.cubehelix().start(", h, ").rotations(", rotations, ").hue(", c, ").lightness(", lt, ").gamma(", gamma, ").scale().domain(", domaint, ").mode('rgb')(", x, ").hex()")
-    v8_eval(cmds)
+    cmds <- stringr::str_c("chroma.cubehelix().start(", h, ").rotations(", rot, ").hue(", c, ").lightness(", lt, ").gamma(", gamma, ").scale().domain(", domaint, ").mode('rgb')(", x, ").hex()")
   })
 }
 

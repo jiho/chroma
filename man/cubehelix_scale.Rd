@@ -7,7 +7,7 @@
 \alias{cubehelix_colors}
 \title{CubeHelix color scale and palette}
 \usage{
-cubehelix_scale(h = 300, rotations = -1.5, c = 0.5, l = c(0.1, 0.9),
+cubehelix_scale(h = 300, rot = -1.5, c = 0.5, l = c(0.1, 0.9),
   gamma = 1, domain = c(0, 1), reverse = FALSE)
 
 cubehelix_map(x, ...)
@@ -19,7 +19,7 @@ cubehelix_colors(n, ...)
 \arguments{
 \item{h}{hue, either an angle around the color wheel, in [0,360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
 
-\item{rotations}{number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360°, -1.5 = -540°)}
+\item{rot}{number of rotations of the helix in RGB space, in \code{[-2,2]} (1 = 360°, -1.5 = -540°)}
 
 \item{c}{chromacity, number in \code{[0,~1]}; 0 is grey, ~1 is full color.}
 
