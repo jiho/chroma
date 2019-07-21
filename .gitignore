@@ -3,4 +3,5 @@
 .RData
 # ignore HTML file produced by knitr for the README
 README.html
-inst/doc
+# ignore scratch files
+scratch/*
