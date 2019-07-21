@@ -78,7 +78,7 @@ cubehelix_scale <- function(h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, doma
   if (length(h) != 1) { stop("h should be just one value.") }
   if (length(rot) != 1) { stop("rot should be just one value.") }
   if (length(c) != 1) { stop("c should be just one value.") }
-  if (length(l) != 2) { stop("l should be a vector of length 1 or 2.") }
+  if (length(l) != 2) { stop("l should be a vector of length 2.") }
   if (length(gamma) != 1) { stop("gamma should be just one value.") }
   is_in(rot, -2, 2)
   is_in(c, 0, 1.5)
@@ -125,7 +125,7 @@ cubehelix_map <- function(x, ...) {
 
 #' @rdname cubehelix_scale
 #' @export
-cubehelix_palette <- function(n, ...) {
+cubehelix_palette <- function(...) {
   f <- function(n) {
     cubehelix_scale(domain=c(0,1), ...)(seq(0, 1, length.out=n))
   }
