@@ -8,7 +8,7 @@ test_that("manipulating alpha is reversible", {
 hues <- seq(0, 300, 50)
 
 x <- hsl(hues)
-test_that("manipulating a channel is reversible", {
+test_that("manipulating hue is reversible", {
   x_modif <- x
   channel(x_modif, "hsl", "h") <- 100
   channel(x_modif, "hsl", "h") <- hues
