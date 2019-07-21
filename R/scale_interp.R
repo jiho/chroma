@@ -223,9 +223,9 @@ interp_na <- function(na.value) {
 #' @param guide type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.
 #' @rdname interp_scale
 #' @export
-scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100, guide="colorbar") {
+scale_color_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", correct.lightness=FALSE, reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100, guide="colorbar") {
   ggplot2::continuous_scale("colour", "interp",
-    interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
+    interp_scale(colors=colors, model=model, interp=interp, correct.lightness=correct.lightness, reverse=reverse, values=values, exact.until=exact.until),
     na.value=interp_na(na.value), guide=guide, ...
   )
 }
@@ -236,7 +236,7 @@ scale_colour_interp <- scale_color_interp
 
 #' @rdname interp_scale
 #' @export
-scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", reverse=FALSE, values=NULL, na.value=NULL, exact.until=100, guide="colorbar") {
+scale_fill_interp <- function(..., colors=c("white", "black"), model="lab", interp="linear", correct.lightness=correct.lightness, reverse=FALSE, values=NULL, na.value=NULL, exact.until=100, guide="colorbar") {
   ggplot2::continuous_scale("fill", "interp",
     interp_scale(colors=colors, model=model, interp=interp, reverse=reverse, values=values, exact.until=exact.until),
     na.value=interp_na(na.value), guide=guide, ...
