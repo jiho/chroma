@@ -6,6 +6,7 @@
 #' @param model string defining the color model in which to perform the interpolation; valid models are \code{lab} (the default and usually most suitable), \code{hcl}, \code{lch}, \code{hsi}, \code{hsl}, \code{hsv}, \code{rgb}, \code{lrgb}. Beware that all but \code{lab} and \code{(l)rgb} can give surprising results.
 #' @param interp string defining the type of interpolation to perform; either \code{linear} (the default) or \code{bezier}, which results in a smoother transition between colors. \code{bezier} interpolation is only available with \code{model="lab"} however.
 #' @param domain vector of two values between which the scale is computed.
+#' @param correct.lightness whether to correct lightness gradient.
 #' @param reverse whether to reverse the order of colors along the scale.
 #' @param values if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.
 #' @param na.value value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.
@@ -112,8 +113,7 @@
 #' legend(1, 2, legend=levels(Species),
 #'              pt.bg=interp_colors(n=nlevels(Species)), pch=21)
 #' # a hue-based scale would be much better (see ?hue_scale)
-interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", domain=c(0,1), reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100) {
-  # TODO add correctLightness, false by default
+interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear", correct.lightness=FALSE, domain=c(0,1), reverse=FALSE, values=NULL, na.value=NULL, extrapolate=FALSE, exact.until=100) {
   # force input R colors into hex notation
   colors <- in_hex(na.omit(colors))
   # NB: remove NAs which don't mean anything for interpolation
@@ -169,7 +169,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
 
     # for small data, call chroma.js directly
     if (length(x) <= exact.until) {
-      cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", x, ").hex()")
+      cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')",ifelse(correct.lightness, ".correctLightness()",""),"(", x, ").hex()")
       colors <- v8_eval(cmds)
     }
 
@@ -179,7 +179,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
     else {
       # get exact.until colors
       xx <- seq(min(domain), max(domain), length.out=exact.until)
-      cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')(", xx, ").hex()")
+      cmds <- stringr::str_c("chroma.",interp,"(",colorst,")",ifelse(interp=="bezier", ".scale()", ""),".domain(",domaint,").mode('", model, "')", ifelse(correct.lightness,".correctLightness()",""),"(", xx, ").hex()")
       colors <- v8_eval(cmds)
       # interpolate between them with scales::colour_ramp()
       xs <- rescale(x, from=range(domain), to=c(0,1))
