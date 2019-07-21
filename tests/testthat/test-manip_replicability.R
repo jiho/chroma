@@ -1,55 +1,56 @@
 context("Manipulation replicability")
 
 # check that color manipulation gives the same results as in the past
-# NB: reference set on 2018-04-29
 
-set.seed(12)
-x <- sample(colors(), 3)
+# use a fixed set of reference colors
+x <- c("cadetblue", "brown1", "darkorchid")
 
 test_that("alpha is replicable", {
-  expect_equal(alpha(x), c("#53868B80", "#FFB5C580", "#4F94CD80"))
+  expect_equal(alpha(x), c("#5F9EA080", "#FF404080", "#9932CC80"))
 })
 
 test_that("extracting a channel is replicable", {
-  expect_equal(channel(x, "hsv", "h"), c(185.357142857143, 347.027027027027, 207.142857142857))
-  expect_equal(channel(x, "hsv", "s"), c(0.402877697841727, 0.290196078431373, 0.614634146341463))
-  expect_equal(channel(x, "hsv", "v"), c(0.545098039215686, 1, 0.803921568627451))
+  expect_equal(channel(x, "hsv", "h"), c(181.8461538462, 0, 280.1298701299))
 
-  expect_equal(channel(x, "hsl", "h"), c(185.357142857143, 347.027027027027, 207.142857142857))
-  expect_equal(channel(x, "hsl", "s"), c(0.252252252252252, 1, 0.557522123893805))
-  expect_equal(channel(x, "hsl", "l"), c(0.435294117647059, 0.854901960784314, 0.556862745098039))
 
-  expect_equal(channel(x, "hsi", "h"), c(184.627259370752, 348.143208763333, 206.852718479213))
-  expect_equal(channel(x, "hsi", "s"), c(0.300561797752809, 0.14218009478673, 0.451388888888889))
-  expect_equal(channel(x, "hsi", "i"), c(0.465359477124183, 0.827450980392157, 0.564705882352941))
+  expect_equal(channel(x, "hsv", "h"), c(181.8461538462, 0, 280.1298701299))
+  expect_equal(channel(x, "hsv", "s"), c(0.40625, 0.7490196078, 0.7549019608))
+  expect_equal(channel(x, "hsv", "v"), c(0.6274509804, 1, 0.8))
 
-  expect_equal(channel(x, "hcl", "h"), c(207.244405195265, 5.30193518912813, 262.812948295811))
-  expect_equal(channel(x, "hcl", "c"), c(0.176500706837288, 0.291747089019765, 0.361235804515684))
-  expect_equal(channel(x, "hcl", "l"), c(0.526771313822724, 0.809289198650285, 0.592027005339131))
+  expect_equal(channel(x, "hsl", "h"), c(181.8461538462, 0, 280.1298701299))
+  expect_equal(channel(x, "hsl", "s"), c(0.2549019608, 1, 0.6062992126))
+  expect_equal(channel(x, "hsl", "l"), c(0.5, 0.6254901961, 0.4980392157))
 
-  expect_equal(channel(x, "lab", "l"), c(0.526771313822724, 0.809289198650285, 0.592027005339131))
-  expect_equal(channel(x, "lab", "a"), c(-0.15692004452542, 0.290498871785959, -0.045193858204608))
-  expect_equal(channel(x, "lab", "b"), c(-0.0807997471543231, 0.0269586617359212, -0.358397574830907
-))
+  expect_equal(channel(x, "hsi", "h"), c(181.5502341171, 0, 281.0314183059))
+  expect_equal(channel(x, "hsi", "s"), c(0.3099273608, 0.498694517, 0.6314496314))
+  expect_equal(channel(x, "hsi", "i"), c(0.539869281, 0.5006535948, 0.5320261438))
 
-  expect_equal(channel(x, "cmyk", "c"), c(0.402877697841727, 0, 0.614634146341463))
-  expect_equal(channel(x, "cmyk", "m"), c(0.0359712230215826, 0.290196078431373, 0.278048780487805))
-  expect_equal(channel(x, "cmyk", "y"), c(0, 0.227450980392157, 0))
-  expect_equal(channel(x, "cmyk", "k"), c(0.454901960784314, 0, 0.196078431372549))
+  expect_equal(channel(x, "hcl", "h"), c(200.6605961951, 32.4282296757, 317.3115137675))
+  expect_equal(channel(x, "hcl", "c"), c(0.2103208217, 0.8358372297, 0.8863812927))
+  expect_equal(channel(x, "hcl", "l"), c(0.6115314791, 0.5737030552, 0.4338024113))
+
+  expect_equal(channel(x, "lab", "l"), c(0.6115314791, 0.5737030552, 0.4338024113))
+  expect_equal(channel(x, "lab", "a"), c(-0.1967944384, 0.7054999656, 0.6515353303))
+  expect_equal(channel(x, "lab", "b"), c(-0.0742077965, 0.4482116387, -0.6009771289))
+
+  expect_equal(channel(x, "cmyk", "c"), c(0.40625, 0, 0.25))
+  expect_equal(channel(x, "cmyk", "m"), c(0.0125, 0.7490196078, 0.7549019608))
+  expect_equal(channel(x, "cmyk", "y"), c(0, 0.7490196078, 0))
+  expect_equal(channel(x, "cmyk", "k"), c(0.3725490196, 0, 0.2))
 })
 
 test_that("manipulating lightness is replicable", {
-  expect_equal(lighten(x), c("#82B6BB", "#FFE8F8", "#84C4FF"))
-  expect_equal(darken(x),  c("#25595E", "#CB8595", "#00669C"))
+  expect_equal(lighten(x), c("#8FCFD1", "#FF786C", "#CD65FF"))
+  expect_equal(darken(x),  c("#2F6F72", "#C40018", "#66009A"))
 })
 
 test_that("manipulating luminance is replicable", {
   x_modif <- x
   luminance(x_modif) <- 0.2
-  expect_equal(x_modif, c("#528489", "#9D6F79", "#4580B2"))
+  expect_equal(x_modif, c("#508486", "#E53A3A", "#AB56D5"))
 })
 
 test_that("manipulating saturation is replicable", {
-  expect_equal(saturate(x)  , c("#008D99", "#FFA6C3", "#0097ED"))
-  expect_equal(desaturate(x), c("#7E7E7E", "#DFC2C7", "#7791AE"))
+  expect_equal(saturate(x)  , c("#00A5AB", "#FF0030", "#A013E1"))
+  expect_equal(desaturate(x), c("#8D9595", "#EA5950", "#9143B7"))
 })

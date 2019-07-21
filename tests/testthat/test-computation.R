@@ -1,29 +1,28 @@
 context("Computation with colors")
 
 # check that color computation gives the same results as in the past
-# NB: reference set on 2018-05-01
 
-set.seed(12)
-x <- sample(colors(), 3)
+# use a fixed set of reference colors
+x <- c("cadetblue", "brown1", "darkorchid")
 
 models <- c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb")
 
 test_that("color mixing is replicable", {
   expect_equal(
     mix(x[1], x[2], model=models),
-    c("#99A0CB", "#99A0CB", "#A280CC", "#9D6CDD", "#9F81C5", "#AD9FA7", "#A99EA8", "#BE9FAA")
+    c("#7F9837", "#7F9837", "#854FB9", "#924AD5", "#9558D0", "#C27D6F", "#AF6F70", "#C0797A")
   )
   expect_equal(
     unlist(lapply(models, function(m) {average(x[1:2], model=m)})),
-    c("#65AEB7", "#65AEB7", "#80B8B6", "#6CDDDB", "#81C5C4", "#AD9FA7", "#A99EA8", "#FFB5C5")
+    c("#00A4C5", "#00A4C5", "#4F9EA1", "#4AD1D5", "#58CCD0", "#C27D6F", "#AF6F70", "#FF4040")
   )
   expect_equal(
     unlist(lapply(models, function(m) {average(x, model=m)})),
-    c("#5AA99D", "#5AA99D", "#6FC4A7", "#62D8B1", "#71C8AB", "#959BB4", "#8B9AB4", "#BDA5C9")
+    c("#009AB4", "#009AB4", "#46BD8F", "#41D39C", "#4BCE9D", "#BA668F", "#A85B8F", "#D23997")
   )
   expect_equal(
     blend(x[1], x[2], mode=c("multiply", "darken", "lighten", "screen", "overlay", "burn", "dodge")),
-    c("#535F6B", "#53868B", "#FFB5C5", "#FFDCE5", "#A6B9CA", "#535569", "#FFFFFF")
+    c("#5F2828", "#5F4040", "#FF9EA0", "#FFB6B8", "#BE6E71", "#5F0000", "#FFD3D6")
   )
 })
 
@@ -37,11 +36,11 @@ test_that("color mixing is replicable", {
 test_that("distance measures are replicable", {
   expect_equal(
     color_distance(x[1], x[2], model=models),
-    c(204.23453, 204.23453, 163.51643, 161.67216, 161.67056, 54.0011, 187.502),
+    c(179.52478, 179.52478, 181.550336, 181.847724, 181.846859, 104.33064, 208.93061),
     tol=10^-5
   )
-  expect_equal(contrast(x[1], x[2]), 2.459453, tol=10^-5)
-  expect_equal(CMClc(x[1], x[2]), 46.22181, tol=10^-5)
-  expect_equal(deltaE(x[1], x[2]), 46.96253, tol=10^-5)
+  expect_equal(contrast(x[1], x[2]), 1.13624, tol=10^-5)
+  expect_equal(CMClc(x[1], x[2]), 74.89912, tol=10^-5)
+  expect_equal(deltaE(x[1], x[2]), 50.12273, tol=10^-5)
 })
 
