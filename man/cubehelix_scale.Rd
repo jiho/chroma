@@ -5,16 +5,42 @@
 \alias{cubehelix_map}
 \alias{cubehelix_palette}
 \alias{cubehelix_colors}
+\alias{scale_color_cubehelix_c}
+\alias{scale_colour_cubehelix_c}
+\alias{scale_fill_cubehelix_c}
+\alias{scale_color_cubehelix_d}
+\alias{scale_colour_cubehelix_d}
+\alias{scale_fill_cubehelix_d}
+\alias{scale_color_cubehelix}
+\alias{scale_colour_cubehelix}
+\alias{scale_fill_cubehelix}
 \title{CubeHelix color scale and palette}
 \usage{
 cubehelix_scale(h = 300, rot = -1.5, c = 0.5, l = c(0.1, 0.9),
-  gamma = 1, domain = c(0, 1), reverse = FALSE)
+  gamma = 1, domain = c(0, 1), reverse = FALSE, na.value = NULL,
+  extrapolate = FALSE)
 
 cubehelix_map(x, ...)
 
-cubehelix_palette(n, ...)
+cubehelix_palette(...)
 
 cubehelix_colors(n, ...)
+
+scale_color_cubehelix_c(..., h = 300, rot = -1.5, c = 0.5,
+  l = c(0.1, 0.9), gamma = 1, reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
+
+scale_fill_cubehelix_c(..., h = 300, rot = -1.5, c = 0.5,
+  l = c(0.1, 0.9), gamma = 1, reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
+
+scale_color_cubehelix_d(..., h = 300, rot = -1.5, c = 0.5,
+  l = c(0.1, 0.9), gamma = 1, reverse = FALSE,
+  na.value = "#grey50", guide = "legend")
+
+scale_fill_cubehelix_d(..., h = 300, rot = -1.5, c = 0.5,
+  l = c(0.1, 0.9), gamma = 1, reverse = FALSE,
+  na.value = "#grey50", guide = "legend")
 }
 \arguments{
 \item{h}{hue, either an angle around the color wheel, in [0,360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -31,11 +57,17 @@ cubehelix_colors(n, ...)
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
+\item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
+\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
+
 \item{x}{a vector whose values will be coerced to numbers and mapped to colors.}
 
 \item{...}{passed to \code{\link{cubehelix_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{cubehelix_scale} and passing it through \code{...} is an error.}
 
 \item{n}{number of colors to extract from the color palette.}
+
+\item{guide}{type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
@@ -57,41 +89,56 @@ show_col(
   cubehelix_colors(20),
   cubehelix_colors(20, reverse=TRUE)
 )
+cubehelix_map(c(1,2,NA,3))
 
 # Rotating less gives more sensible scales
 show_col(
   cubehelix_colors(20, h=300, rot=-0.75),
-  cubehelix_colors(20, h=120, rot=0.5),
   cubehelix_colors(20, h=300, rot=0.5)
 )
 
-# Examine the effect of arguments
+# No rotation gives single hue palettes
 show_col(
-  cubehelix_colors(20, h=300, rot=0.5),
-  # range of lightness
-  cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9)),
-  # value of chromacity
-  cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1),
-  # and gamma contrast factor
-  cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1, gamma=0.5),
-  cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1, gamma=1.5)
+  cubehelix_colors(20, h=0  , rot=0, c=0.8),
+  cubehelix_colors(20, h=120, rot=0, c=0.8),
+  cubehelix_colors(20, h=200, rot=0, c=0.8)
 )
 
-# Plot the Maunga Whau volcano elevation map, a continuous variable
+# Examine the effect of the other arguments
+show_col(
+  cubehelix_colors(20, h=300, rot=0.5),
+  # smaller range of lightness change
+  cubehelix_colors(20, h=300, rot=0.5, l=c(0.2, 0.7)),
+  # change chromacity
+  cubehelix_colors(20, h=300, rot=0.5, c=0.9),
+  cubehelix_colors(20, h=300, rot=0.5, c=0.3),
+  # change gamma contrast factor
+  cubehelix_colors(20, h=300, rot=0.5, gamma=0.5),
+  cubehelix_colors(20, h=300, rot=0.5, gamma=1.5)
+)
+
+# Plot the Maunga Whau volcano elevation map: a continuous variable
 image(maunga, col=cubehelix_colors(100, rot=-0.75))
-contour(maunga, col=alpha("black", 0.2), add=TRUE)
+contour(maunga, col=alpha("black", 0.4), add=TRUE)
 
 persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
       border=alpha("black", 0.4),
       col=cubehelix_map(persp_facets(maunga$z), rot=-0.75))
 
-
 \dontrun{
+# in spinning 3D
 library("rgl")
 persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
         col=cubehelix_map(maunga$z, rot=-0.75))
 play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
+
+# or with ggplot2
+library(ggplot2)
+ggplot(maungaxyz) + coord_fixed() +
+  geom_raster(aes(x, y, fill=z)) +
+  scale_fill_cubehelix_c(rot=-0.75)
 }
+
 # For discrete variables, using saturated colors along a scale of
 # constant lightness gives a good hue-only scale
 attach(iris)
@@ -101,11 +148,16 @@ plot(Petal.Length, Sepal.Length, pch=19,
     h=0, rot=0.75, # Start from red-ish and do not rotate
                    # full circle to avoid falling back on red
     c=1,           # Use saturated colors
-    l=c(0.7, 0.7) # Do not vary lightness
+    l=c(0.6, 0.6) # Do not vary lightness
   )
 )
 legend(1, 8, legend=levels(Species), pch=19,
-       col=cubehelix_map(1:3, h=0, rot=0.75, c=1, l=c(0.7, 0.7)))
+       col=cubehelix_map(1:3, h=0, rot=0.75, c=1, l=c(0.6, 0.6)))
+detach(iris)
+\dontrun{ggplot(iris) +
+  geom_point(aes(Petal.Length, Sepal.Length, color=Species)) +
+  scale_color_cubehelix_d(h=0, rot=0.75, c=1, l=c(0.6, 0.6))
+}
 # But see ?hue_scale for a simpler solution
 
 }
@@ -120,3 +172,4 @@ Other color scales and palettes: \code{\link{brewer_scale}},
   \code{\link{magma_scale}}, \code{\link{plasma_scale}},
   \code{\link{viridis_scale}}, \code{\link{wikitopo_scale}}
 }
+\concept{color scales and palettes}
