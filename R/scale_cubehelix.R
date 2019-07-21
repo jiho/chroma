@@ -72,7 +72,7 @@
 #' # But see ?hue_scale for a simpler solution
 #'
 #' @export
-cubehelix_scale <- function(h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, domain=c(0,1), reverse=FALSE) {
+cubehelix_scale <- function(h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
 
   # check arguments
   if (length(h) != 1) { stop("h should be just one value.") }
@@ -106,7 +106,17 @@ cubehelix_scale <- function(h=300, rot=-1.5, c=0.5, l=c(0.1, 0.9), gamma=1, doma
   # define function
   eval(f <- function(x) {
     cmds <- stringr::str_c("chroma.cubehelix().start(", h, ").rotations(", rot, ").hue(", c, ").lightness(", lt, ").gamma(", gamma, ").scale().domain(", domaint, ").mode('rgb')(", x, ").hex()")
+    colors <- v8_eval(cmds)
+    return(post_process_scale(colors, cubehelix_na(na.value, l), extrapolate, x, range(domain)))
   })
+}
+# Pick a good missing value color for this scale
+cubehelix_na <- function(na.value, l) {
+  if (is.null(na.value)) {
+    # return a grey of average lightness given the current lightness choice
+    na.value <- grDevices::grey(mean(l))
+  }
+  return(na.value)
 }
 
 #' @param ... passed to \code{\link{cubehelix_scale}}. Note that argument \code{domain} is meaningless in functions other than \code{cubehelix_scale} and passing it through \code{...} is an error.
