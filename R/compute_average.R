@@ -30,7 +30,7 @@
 #' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hcl")
 #' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hsv")
 #' show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="lab")
-average <- function(x, model="rgb", na.rm=FALSE) {
+average <- function(x, model="lrgb", na.rm=FALSE) {
   # remove NAs if specified
   if (na.rm) {x <- na.omit(x)}
 

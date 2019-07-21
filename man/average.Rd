@@ -4,7 +4,7 @@
 \alias{average}
 \title{Average several colors}
 \usage{
-average(x, model = "rgb", na.rm = FALSE)
+average(x, model = "lrgb", na.rm = FALSE)
 }
 \arguments{
 \item{x}{vector of colors specified as hex strings or named R colors.}

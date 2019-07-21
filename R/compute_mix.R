@@ -24,10 +24,10 @@
 #' show_mix("#FEF213", "#FA000C")
 #' show_mix("#146EFD", "#FA000C")
 #' show_mix("#146EFD", "#FA000C", ratio=c(0.25, 0.5, 0.75))
-#' # not that results in some color spaces can be surprising
+#' # note that results in some color models can be surprising
 #' show_mix("#FEF213", "#146EFD",
 #'          model=c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"))
-mix <- function(x, y, ratio=0.5, model="rgb") {
+mix <- function(x, y, ratio=0.5, model="lrgb") {
   # force input R colors into hex notation
   x <- in_hex(x)
   y <- in_hex(y)
