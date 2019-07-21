@@ -94,6 +94,11 @@ convert_color <- function(x, model) {
       res <- do.call(rbind, res)
     }
 
+    # chroma.js now sets alpha to 1 in hsl, which is useless here = drop the alpha channel
+    if (model == "hsl") {
+      res <- res[,1:3,drop=FALSE]
+    }
+
     # associate column names
     colnames(res) <- strsplit(model, "", fixed=TRUE)[[1]]
   }
