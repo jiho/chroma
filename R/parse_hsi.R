@@ -1,4 +1,4 @@
-#' HSI Color Specification
+#' HSI color specification
 #'
 #' Create a vector of colors from hue, saturation, and intensity.
 #'

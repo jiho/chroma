@@ -1,4 +1,4 @@
-#' HEX Color Specification
+#' HEX color specification
 #'
 #' Converts colors specified as hexadecimal strings into R colors. This includes the usual format for R colors but also the shorter three letters format. In addition the \code{#} sign can be omitted.
 #'

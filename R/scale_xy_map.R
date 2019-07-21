@@ -1,4 +1,4 @@
-#' Ggplot2 x and y scales definitions for maps
+#' ggplot2 x and y scales definitions for maps
 #'
 #' Define nice looking x and y axes conventions for maps plotted with ggplot2
 #'

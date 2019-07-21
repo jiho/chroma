@@ -1,4 +1,4 @@
-#' HSL Color Specification
+#' HSL color specification
 #'
 #' Create a vector of colors from hue, saturation, and lightness.
 #'

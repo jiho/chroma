@@ -1,4 +1,4 @@
-#' RGB Color Specification
+#' RGB color specification
 #'
 #' Create a vector of colors from red, green, and blue. This is a drop-in replacement for the \code{\link[grDevices]{rgb}} function, included with R in package \code{grDevices}.
 #'

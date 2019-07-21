@@ -1,4 +1,4 @@
-#' Topographic information on Auckland's Maunga Whau volcano
+#' Topography of Auckland's Maunga Whau volcano
 #'
 #' Maunga Whau (Mt Eden) is one of about 50 volcanos in the Auckland volcanic field. This data set gives topographic information for Maunga Whau on a 10m by 10m grid.
 #'
@@ -14,7 +14,7 @@
 "maungaxyz"
 
 
-#' Topographic data around Thailand
+#' Topography around Thailand
 #'
 #' Topography of the region around Thailand, featuring high mountains and deep trenches, at 0.2° resolution.
 #'

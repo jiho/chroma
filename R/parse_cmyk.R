@@ -1,4 +1,4 @@
-#' CMYK Color Specification
+#' CMYK color specification
 #'
 #' Create a vector of colors from cyan, magenta, yellow, and black
 #'

@@ -10,7 +10,7 @@
 #' @seealso \code{\link{wavelength}} which uses the table to convert any wavelength value to an R color.
 "visible"
 
-#' Color Specification as Wavelength
+#' Color specification as wavelength
 #'
 #' Convert colors specified as the wavelength of a beam of monochromatic light into an R color.
 #'

@@ -1,4 +1,4 @@
-#' HCL Color Specification
+#' HCL color specification
 #'
 #' Create a vector of colors from hue, chromacity, and lightness.
 #'

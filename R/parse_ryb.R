@@ -1,4 +1,4 @@
-#' RYB Color Specification
+#' RYB color specification
 #'
 #' Create a vector of colors from red, yellow, and blue.
 #'

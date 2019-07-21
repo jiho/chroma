@@ -1,4 +1,4 @@
-#' HSV Color Specification
+#' HSV color specification
 #'
 #' Create a vector of colors from hue, saturation, and value.
 #'

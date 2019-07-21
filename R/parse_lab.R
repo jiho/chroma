@@ -1,4 +1,4 @@
-#' CIE L*a*b* Color Specification
+#' CIE L*a*b* color specification
 #'
 #' Create a vector of colors from lightness and a and b color-opponents.
 #'
