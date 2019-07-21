@@ -5,18 +5,18 @@
 \alias{magma_map}
 \alias{magma_palette}
 \alias{magma_colors}
-\alias{scale_color_magma}
-\alias{scale_colour_magma}
 \alias{scale_color_magma_c}
 \alias{scale_colour_magma_c}
-\alias{scale_fill_magma}
 \alias{scale_fill_magma_c}
 \alias{scale_color_magma_d}
 \alias{scale_colour_magma_d}
 \alias{scale_fill_magma_d}
+\alias{scale_fill_magma}
+\alias{scale_color_magma}
+\alias{scale_colour_magma}
 \title{Magma color scale and palette}
 \usage{
-magma_scale(domain = c(0, 1), reverse = FALSE, na.value = "#818181",
+magma_scale(domain = c(0, 1), reverse = FALSE, na.value = NULL,
   extrapolate = FALSE)
 
 magma_map(x, ...)
@@ -25,17 +25,17 @@ magma_palette(...)
 
 magma_colors(n, ...)
 
-scale_color_magma(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_color_magma_c(..., reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
 
-scale_fill_magma(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_fill_magma_c(..., reverse = FALSE, na.value = "#818181",
+  guide = "colorbar")
 
 scale_color_magma_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+  guide = "legend")
 
 scale_fill_magma_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+  guide = "legend")
 }
 \arguments{
 \item{domain}{vector of two values between which the scale is computed.}

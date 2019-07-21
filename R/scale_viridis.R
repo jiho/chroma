@@ -92,7 +92,7 @@
 #' ggplot(iris) +
 #'   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
 #'   scale_fill_viridis_d()}
-viridis_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrapolate=FALSE) {
+viridis_scale <- function(domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
   # get everything into numbers
   domain <- as.num(domain)
   if (reverse) { domain <- rev(domain)}
@@ -101,7 +101,7 @@ viridis_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extr
     # compute colors
     xs <- rescale(x, from=domain, to=c(0,1))
     colors <- scales::colour_ramp(chroma::viridis)(xs)
-    return(post_process_scale(colors, na.value, extrapolate, x, domain))
+    return(post_process_scale(colors, viridis_na(na.value), extrapolate, x, domain))
   }
   return(f)
 }
@@ -120,48 +120,45 @@ viridis_palette <- function(...) { as_palette(viridis_scale, ...) }
 #' @export
 viridis_colors <- function(n, ...) { viridis_palette(...)(n) }
 
+# Pick and appropriate NA value for a viridis scale
+viridis_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- desaturate(average(viridis_colors(50)), 10)
+    # = grey of luminance equal to the average color of the scale
+  }
+  return(na.value)
+}
+
 
 ## ggplot2 ----
 
 #' @rdname viridis_scale
 #' @export
-scale_color_viridis <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_color_viridis_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
   ggplot2::continuous_scale("colour", "viridis",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=viridis_na(na.value), guide=guide, ...
   )
 }
 #' @rdname viridis_scale
 #' @export
 #' @usage NULL
-scale_colour_viridis <- scale_color_viridis
-#' @rdname viridis_scale
-#' @export
-#' @usage NULL
-scale_color_viridis_c <- scale_color_viridis
-#' @rdname viridis_scale
-#' @export
-#' @usage NULL
-scale_colour_viridis_c <- scale_color_viridis
+scale_colour_viridis_c <- scale_color_viridis_c
 
 #' @rdname viridis_scale
 #' @export
-scale_fill_viridis <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_fill_viridis_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
   ggplot2::continuous_scale("fill", "viridis",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=viridis_na(na.value), guide=guide, ...
   )
 }
-#' @rdname viridis_scale
-#' @export
-#' @usage NULL
-scale_fill_viridis_c <- scale_fill_viridis
 
 #' @rdname viridis_scale
 #' @export
-scale_color_viridis_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_color_viridis_d <- function(..., reverse=FALSE, na.value=NULL, guide="legend") {
   cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
   ggplot2::discrete_scale("colour", "viridis",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
@@ -175,12 +172,26 @@ scale_colour_viridis_d <- scale_color_viridis_d
 
 #' @rdname viridis_scale
 #' @export
-scale_fill_viridis_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_fill_viridis_d <- function(..., reverse=FALSE, na.value=NULL, guide="legend") {
   cols <- if(reverse) rev(chroma::viridis) else chroma::viridis
   ggplot2::discrete_scale("fill", "viridis",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
     na.value=na.value, ...
   )
 }
+
+# Make the continuous versions the default because it is the most common use case
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_fill_viridis <- scale_fill_viridis_c
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_color_viridis <- scale_color_viridis_c
+#' @rdname viridis_scale
+#' @export
+#' @usage NULL
+scale_colour_viridis <- scale_color_viridis_c
 
 

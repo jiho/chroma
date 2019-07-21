@@ -5,18 +5,18 @@
 \alias{inferno_map}
 \alias{inferno_palette}
 \alias{inferno_colors}
-\alias{scale_color_inferno}
-\alias{scale_colour_inferno}
 \alias{scale_color_inferno_c}
 \alias{scale_colour_inferno_c}
-\alias{scale_fill_inferno}
 \alias{scale_fill_inferno_c}
 \alias{scale_color_inferno_d}
 \alias{scale_colour_inferno_d}
 \alias{scale_fill_inferno_d}
+\alias{scale_fill_inferno}
+\alias{scale_color_inferno}
+\alias{scale_colour_inferno}
 \title{Magma color scale and palette}
 \usage{
-inferno_scale(domain = c(0, 1), reverse = FALSE, na.value = "#818181",
+inferno_scale(domain = c(0, 1), reverse = FALSE, na.value = NULL,
   extrapolate = FALSE)
 
 inferno_map(x, ...)
@@ -25,17 +25,17 @@ inferno_palette(...)
 
 inferno_colors(n, ...)
 
-scale_color_inferno(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_color_inferno_c(..., reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
 
-scale_fill_inferno(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_fill_inferno_c(..., reverse = FALSE, na.value = "#818181",
+  guide = "colorbar")
 
 scale_color_inferno_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+  guide = "legend")
 
 scale_fill_inferno_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+  guide = "legend")
 }
 \arguments{
 \item{domain}{vector of two values between which the scale is computed.}

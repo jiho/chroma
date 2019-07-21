@@ -95,7 +95,7 @@
 #' ggplot(iris) +
 #'   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
 #'   scale_fill_plasma_d()}
-plasma_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrapolate=FALSE) {
+plasma_scale <- function(domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
   # get everything into numbers
   domain <- as.num(domain)
   if (reverse) { domain <- rev(domain)}
@@ -104,7 +104,7 @@ plasma_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extra
     # compute colors
     xs <- rescale(x, from=domain, to=c(0,1))
     colors <- scales::colour_ramp(chroma::plasma)(xs)
-    return(post_process_scale(colors, na.value, extrapolate, x, domain))
+    return(post_process_scale(colors, plasma_na(na.value), extrapolate, x, domain))
   }
   return(f)
 }
@@ -123,48 +123,45 @@ plasma_palette <- function(...) { as_palette(plasma_scale, ...) }
 #' @export
 plasma_colors <- function(n, ...) { plasma_palette(...)(n) }
 
+# Pick and appropriate NA value for a plasma scale
+plasma_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- desaturate(average(plasma_colors(50)), 10)
+    # = grey of luminance equal to the average color of the scale
+  }
+  return(na.value)
+}
+
 
 ## ggplot2 ----
 
 #' @rdname plasma_scale
 #' @export
-scale_color_plasma <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_color_plasma_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::continuous_scale("colour", "plasma",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=plasma_na(na.value), guide=guide, ...
   )
 }
 #' @rdname plasma_scale
 #' @export
 #' @usage NULL
-scale_colour_plasma <- scale_color_plasma
-#' @rdname plasma_scale
-#' @export
-#' @usage NULL
-scale_color_plasma_c <- scale_color_plasma
-#' @rdname plasma_scale
-#' @export
-#' @usage NULL
-scale_colour_plasma_c <- scale_color_plasma
+scale_colour_plasma_c <- scale_color_plasma_c
 
 #' @rdname plasma_scale
 #' @export
-scale_fill_plasma <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_fill_plasma_c <- function(..., reverse=FALSE, na.value="#818181", guide="colorbar") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::continuous_scale("fill", "plasma",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=plasma_na(na.value), guide=guide, ...
   )
 }
-#' @rdname plasma_scale
-#' @export
-#' @usage NULL
-scale_fill_plasma_c <- scale_fill_plasma
 
 #' @rdname plasma_scale
 #' @export
-scale_color_plasma_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_color_plasma_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::discrete_scale("colour", "plasma",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
@@ -178,12 +175,26 @@ scale_colour_plasma_d <- scale_color_plasma_d
 
 #' @rdname plasma_scale
 #' @export
-scale_fill_plasma_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_fill_plasma_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
   cols <- if(reverse) rev(chroma::plasma) else chroma::plasma
   ggplot2::discrete_scale("fill", "plasma",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
     na.value=na.value, ...
   )
 }
+
+# Make the continuous versions the default because it is the most common use case
+#' @rdname plasma_scale
+#' @export
+#' @usage NULL
+scale_fill_plasma <- scale_fill_plasma_c
+#' @rdname plasma_scale
+#' @export
+#' @usage NULL
+scale_color_plasma <- scale_color_plasma_c
+#' @rdname plasma_scale
+#' @export
+#' @usage NULL
+scale_colour_plasma <- scale_color_plasma_c
 
 

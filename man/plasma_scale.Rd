@@ -5,18 +5,18 @@
 \alias{plasma_map}
 \alias{plasma_palette}
 \alias{plasma_colors}
-\alias{scale_color_plasma}
-\alias{scale_colour_plasma}
 \alias{scale_color_plasma_c}
 \alias{scale_colour_plasma_c}
-\alias{scale_fill_plasma}
 \alias{scale_fill_plasma_c}
 \alias{scale_color_plasma_d}
 \alias{scale_colour_plasma_d}
 \alias{scale_fill_plasma_d}
+\alias{scale_fill_plasma}
+\alias{scale_color_plasma}
+\alias{scale_colour_plasma}
 \title{Magma color scale and palette}
 \usage{
-plasma_scale(domain = c(0, 1), reverse = FALSE, na.value = "#818181",
+plasma_scale(domain = c(0, 1), reverse = FALSE, na.value = NULL,
   extrapolate = FALSE)
 
 plasma_map(x, ...)
@@ -25,17 +25,17 @@ plasma_palette(...)
 
 plasma_colors(n, ...)
 
-scale_color_plasma(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_color_plasma_c(..., reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
 
-scale_fill_plasma(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_fill_plasma_c(..., reverse = FALSE, na.value = "#818181",
+  guide = "colorbar")
 
 scale_color_plasma_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+  guide = "legend")
 
 scale_fill_plasma_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+  guide = "legend")
 }
 \arguments{
 \item{domain}{vector of two values between which the scale is computed.}

@@ -5,18 +5,18 @@
 \alias{viridis_map}
 \alias{viridis_palette}
 \alias{viridis_colors}
-\alias{scale_color_viridis}
-\alias{scale_colour_viridis}
 \alias{scale_color_viridis_c}
 \alias{scale_colour_viridis_c}
-\alias{scale_fill_viridis}
 \alias{scale_fill_viridis_c}
 \alias{scale_color_viridis_d}
 \alias{scale_colour_viridis_d}
 \alias{scale_fill_viridis_d}
+\alias{scale_fill_viridis}
+\alias{scale_color_viridis}
+\alias{scale_colour_viridis}
 \title{Viridis color scale and palette}
 \usage{
-viridis_scale(domain = c(0, 1), reverse = FALSE, na.value = "#818181",
+viridis_scale(domain = c(0, 1), reverse = FALSE, na.value = NULL,
   extrapolate = FALSE)
 
 viridis_map(x, ...)
@@ -25,17 +25,17 @@ viridis_palette(...)
 
 viridis_colors(n, ...)
 
-scale_color_viridis(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_color_viridis_c(..., reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
 
-scale_fill_viridis(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "colorbar")
+scale_fill_viridis_c(..., reverse = FALSE, na.value = NULL,
+  guide = "colorbar")
 
-scale_color_viridis_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+scale_color_viridis_d(..., reverse = FALSE, na.value = NULL,
+  guide = "legend")
 
-scale_fill_viridis_d(..., reverse = FALSE, na.value = "#818181",
-  extrapolate = FALSE, guide = "legend")
+scale_fill_viridis_d(..., reverse = FALSE, na.value = NULL,
+  guide = "legend")
 }
 \arguments{
 \item{domain}{vector of two values between which the scale is computed.}

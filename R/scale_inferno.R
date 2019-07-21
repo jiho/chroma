@@ -95,7 +95,7 @@
 #' ggplot(iris) +
 #'   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
 #'   scale_fill_inferno_d()}
-inferno_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrapolate=FALSE) {
+inferno_scale <- function(domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
   # get everything into numbers
   domain <- as.num(domain)
   if (reverse) { domain <- rev(domain)}
@@ -104,7 +104,7 @@ inferno_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extr
     # compute colors
     xs <- rescale(x, from=domain, to=c(0,1))
     colors <- scales::colour_ramp(chroma::inferno)(xs)
-    return(post_process_scale(colors, na.value, extrapolate, x, domain))
+    return(post_process_scale(colors, inferno_na(na.value), extrapolate, x, domain))
   }
   return(f)
 }
@@ -123,48 +123,45 @@ inferno_palette <- function(...) { as_palette(inferno_scale, ...) }
 #' @export
 inferno_colors <- function(n, ...) { inferno_palette(...)(n) }
 
+# Pick and appropriate NA value for a inferno scale
+inferno_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- desaturate(average(inferno_colors(50)), 10)
+    # = grey of luminance equal to the average color of the scale
+  }
+  return(na.value)
+}
+
 
 ## ggplot2 ----
 
 #' @rdname inferno_scale
 #' @export
-scale_color_inferno <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_color_inferno_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::continuous_scale("colour", "inferno",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=inferno_na(na.value), guide=guide, ...
   )
 }
 #' @rdname inferno_scale
 #' @export
 #' @usage NULL
-scale_colour_inferno <- scale_color_inferno
-#' @rdname inferno_scale
-#' @export
-#' @usage NULL
-scale_color_inferno_c <- scale_color_inferno
-#' @rdname inferno_scale
-#' @export
-#' @usage NULL
-scale_colour_inferno_c <- scale_color_inferno
+scale_colour_inferno_c <- scale_color_inferno_c
 
 #' @rdname inferno_scale
 #' @export
-scale_fill_inferno <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_fill_inferno_c <- function(..., reverse=FALSE, na.value="#818181", guide="colorbar") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::continuous_scale("fill", "inferno",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=inferno_na(na.value), guide=guide, ...
   )
 }
-#' @rdname inferno_scale
-#' @export
-#' @usage NULL
-scale_fill_inferno_c <- scale_fill_inferno
 
 #' @rdname inferno_scale
 #' @export
-scale_color_inferno_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_color_inferno_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::discrete_scale("colour", "inferno",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
@@ -178,12 +175,26 @@ scale_colour_inferno_d <- scale_color_inferno_d
 
 #' @rdname inferno_scale
 #' @export
-scale_fill_inferno_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_fill_inferno_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
   cols <- if(reverse) rev(chroma::inferno) else chroma::inferno
   ggplot2::discrete_scale("fill", "inferno",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
     na.value=na.value, ...
   )
 }
+
+# Make the continuous versions the default because it is the most common use case
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_fill_inferno <- scale_fill_inferno_c
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_color_inferno <- scale_color_inferno_c
+#' @rdname inferno_scale
+#' @export
+#' @usage NULL
+scale_colour_inferno <- scale_color_inferno_c
 
 

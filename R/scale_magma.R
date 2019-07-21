@@ -95,7 +95,7 @@
 #' ggplot(iris) +
 #'   geom_point(aes(Petal.Length, Petal.Width, fill=Species), shape=21) +
 #'   scale_fill_magma_d()}
-magma_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrapolate=FALSE) {
+magma_scale <- function(domain=c(0,1), reverse=FALSE, na.value=NULL, extrapolate=FALSE) {
   # get everything into numbers
   domain <- as.num(domain)
   if (reverse) { domain <- rev(domain)}
@@ -104,7 +104,7 @@ magma_scale <- function(domain=c(0,1), reverse=FALSE, na.value="#818181", extrap
     # compute colors
     xs <- rescale(x, from=domain, to=c(0,1))
     colors <- scales::colour_ramp(chroma::magma)(xs)
-    return(post_process_scale(colors, na.value, extrapolate, x, domain))
+    return(post_process_scale(colors, magma_na(na.value), extrapolate, x, domain))
   }
   return(f)
 }
@@ -123,48 +123,45 @@ magma_palette <- function(...) { as_palette(magma_scale, ...) }
 #' @export
 magma_colors <- function(n, ...) { magma_palette(...)(n) }
 
+# Pick and appropriate NA value for a magma scale
+magma_na <- function(na.value) {
+  if (is.null(na.value)) {
+    na.value <- desaturate(average(magma_colors(50)), 10)
+    # = grey of luminance equal to the average color of the scale
+  }
+  return(na.value)
+}
+
 
 ## ggplot2 ----
 
 #' @rdname magma_scale
 #' @export
-scale_color_magma <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_color_magma_c <- function(..., reverse=FALSE, na.value=NULL, guide="colorbar") {
   cols <- if(reverse) rev(chroma::magma) else chroma::magma
   ggplot2::continuous_scale("colour", "magma",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=magma_na(na.value), guide=guide, ...
   )
 }
 #' @rdname magma_scale
 #' @export
 #' @usage NULL
-scale_colour_magma <- scale_color_magma
-#' @rdname magma_scale
-#' @export
-#' @usage NULL
-scale_color_magma_c <- scale_color_magma
-#' @rdname magma_scale
-#' @export
-#' @usage NULL
-scale_colour_magma_c <- scale_color_magma
+scale_colour_magma_c <- scale_color_magma_c
 
 #' @rdname magma_scale
 #' @export
-scale_fill_magma <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="colorbar") {
+scale_fill_magma_c <- function(..., reverse=FALSE, na.value="#818181", guide="colorbar") {
   cols <- if(reverse) rev(chroma::magma) else chroma::magma
   ggplot2::continuous_scale("fill", "magma",
     scales::colour_ramp(cols),
-    na.value=na.value, guide=guide, ...
+    na.value=magma_na(na.value), guide=guide, ...
   )
 }
-#' @rdname magma_scale
-#' @export
-#' @usage NULL
-scale_fill_magma_c <- scale_fill_magma
 
 #' @rdname magma_scale
 #' @export
-scale_color_magma_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_color_magma_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
   cols <- if(reverse) rev(chroma::magma) else chroma::magma
   ggplot2::discrete_scale("colour", "magma",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
@@ -178,12 +175,26 @@ scale_colour_magma_d <- scale_color_magma_d
 
 #' @rdname magma_scale
 #' @export
-scale_fill_magma_d <- function(..., reverse=FALSE, na.value="#818181", extrapolate=FALSE, guide="legend") {
+scale_fill_magma_d <- function(..., reverse=FALSE, na.value="#818181", guide="legend") {
   cols <- if(reverse) rev(chroma::magma) else chroma::magma
   ggplot2::discrete_scale("fill", "magma",
     function(n) {scales::colour_ramp(cols)(seq(0,1,length.out=n))},
     na.value=na.value, ...
   )
 }
+
+# Make the continuous versions the default because it is the most common use case
+#' @rdname magma_scale
+#' @export
+#' @usage NULL
+scale_fill_magma <- scale_fill_magma_c
+#' @rdname magma_scale
+#' @export
+#' @usage NULL
+scale_color_magma <- scale_color_magma_c
+#' @rdname magma_scale
+#' @export
+#' @usage NULL
+scale_colour_magma <- scale_color_magma_c
 
 
