@@ -235,6 +235,7 @@ interpn <- function(x, V, xo) {
   }
   apply(xo, 1, interpn1, x=x, V=V)
 }
+
 interpn1 <- function(xo, x, V) {
   n <- length(x)
 
@@ -242,7 +243,7 @@ interpn1 <- function(xo, x, V) {
   # each coordinate is in % or the cube's side = in [0,1]
   ix <- xo
   for (j in 1:n) {
-    ix[j] <- approx(x[[j]], 1:length(x[[j]]), xo[j])$y
+    ix[j] <- stats::approx(x[[j]], 1:length(x[[j]]), xo[j])$y
   }
 
   # extract the corners of the hypercube

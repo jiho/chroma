@@ -33,7 +33,7 @@
 #' # NB: the transparency portion (last two positions: '80') is removed
 hex <- function(x) {
   # match R colors
-  ir <- x %in% colors()
+  ir <- x %in% grDevices::colors()
   x[ir] <- in_hex(x[ir])
   # parse the rest
   parse_color(x, "hex")

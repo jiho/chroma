@@ -14,7 +14,8 @@ Imports:
     grid,
     grDevices,
     scales,
-    stringr
+    stringr,
+    stats
 RoxygenNote: 6.1.1
 Suggests:
     testthat,
