@@ -3,7 +3,10 @@ output:
   md_document:
     fig_height: 0.3
     fig_width: 3
-    variant: markdown_github
+    variant: gfm
+  html_document:
+    fig_height: 0.3
+    fig_width: 3
 ---
 
 ```{r options, echo=FALSE}
@@ -22,8 +25,11 @@ devtools::install_github("jiho/chroma")
 library("chroma")
 ```
 ```{r load, echo=F}
+library("ggplot2")
 devtools::load_all(".", quiet=TRUE)
 ```
+
+NB: some functions in the `chroma` package mask functions in basic R packages (e.g. `grDevices`) or often used ones (e.g. `ggplot2`). Most of the time, they are argument-compatible with the function they mask and, if their result is different, I would argue that the one in chroma is more correct. If you want to use chroma but would rather not mask the other functions, just install the package but do not load it with `library()`; instead, just call the functions with the `chroma::` prefix (e.g. `chroma::rgb()` instead of `rgb()`, to avoid masking `rgb()` in package `grDevices`).
 
 ## Color parsing
 
@@ -31,6 +37,7 @@ Parse colors in various specifications
 
 ```{r parse}
 rgb(r=0.5, g=0.5, b=0.5)
+ryb(r=0.5, y=0.5, b=0.5)
 hsv(h=120, s=0.5, v=0.5)
 hsl(h=120, s=0.5, l=0.5)
 hsi(h=120, s=0.5, i=0.5)
@@ -57,6 +64,7 @@ Convert back in various formats
 
 ```{r convert}
 as.rgb("coral1")
+as.ryb("coral1")
 as.hsv("coral1")
 as.hsl("coral1")
 as.hsi("coral1")
@@ -87,10 +95,12 @@ show_col(c(col, alpha(col), alpha(col, 0.2)))
 ```
 
 
-Mix two colors
+Mix or blend two colors
 
 ```{r mix}
 show_col(c("#7BBBFE", "#FDFF68", mix("#7BBBFE", "#FDFF68")))
+show_col(c("#7BBBFE", "#FDFF68", blend("#7BBBFE", "#FDFF68")))
+show_col(c("#7BBBFE", "#FDFF68", blend("#7BBBFE", "#FDFF68", mode="screen")))
 ```
 
 
@@ -101,11 +111,17 @@ contrast("darkblue", "darkgreen")
 contrast("yellow", "darkgreen")
 ```
 
-Compute the perceptual distance between two colors (following the CIE Delta E 2000 formula)
+Compute the Euclidean or perceptual distance between two colors (following the CIE Delta E 2000 formula)
 
 ```{r delta_e}
-delta_e("darkblue", "darkgreen")
-delta_e("lightgreen", "darkgreen")
+# pick three colors; lightgreen is closer to darkgreen that darkblue is
+show_col(c("darkblue", "darkgreen", "lightgreen"))
+color_distance("darkblue", "darkgreen")
+color_distance("lightgreen", "darkgreen")
+CMClc("darkblue", "darkgreen")
+CMClc("lightgreen", "darkgreen")
+deltaE("darkblue", "darkgreen")
+deltaE("lightgreen", "darkgreen")
 ```
 
 which allows to find the closest perceived color in a array of possibilities
@@ -113,7 +129,7 @@ which allows to find the closest perceived color in a array of possibilities
 ```{r min_dist, fig.height=0.3*3}
 target <- "limegreen"
 choices <- rainbow(10)
-closest_color <- choices[which.min(delta_e(target, choices))]
+closest_color <- choices[which.min(deltaE(target, choices))]
 show_col(target, choices, closest_color)
 ```
 
@@ -176,7 +192,14 @@ Palettes can be built by interpolating between colors
 show_col(interp_colors(10))
 show_col(interp_colors(10, colors=c("#2D2B63", "#F7FF84")))
 show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84")))
+```
+
+For the perception of "change" along the scale to be more linear, colors can be interpolated using bezier curves and their lightness can be corrected.
+
+```{r scale_interp_correct}
+show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84")))
 show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="bezier"))
+show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="bezier", correct.lightness=TRUE))
 ```
 
 
@@ -211,7 +234,17 @@ show_col(
 ```
 
 
-New, perceptually appropriate, palettes can be built in HCL space, for either discrete
+Or ETOPO1 and Wikipedia for topographical maps
+
+```{r etopo, fig.height=0.3*2}
+show_col(
+  etopo_colors(100),
+  wikitopo_colors(100)
+)
+```
+
+
+Custom, perceptually appropriate, palettes can be built in HCL space, for either discrete
 
 ```{r hue}
 show_col(hue_colors(10))
@@ -223,6 +256,44 @@ or continuous variables
 ```{r chroma_light}
 show_col(chroma_colors(10, h=140))
 show_col(light_colors(10, h=140))
+```
+
+## Helper functions
+
+Additional functions are included to facilitate the use of the color scales in base and ggplot2 plots.
+
+`sidemargin()` and `sidelegend()` allow to place legends on the side of base plots
+
+```{r sidelegend, fig.height=4, fig.width=5}
+attach(iris)
+# make larger right margin
+pars <- sidemargin()
+# plot the data with a nice color scale
+plot(Petal.Length, Petal.Width, col=hue_map(Species), pch=19)
+# add a legend for the scale on the side
+sidelegend(legend=levels(Species), col=hue_colors(nlevels(Species)), pch=19)
+# set graphical parameters back to default
+par(pars)
+detach(iris)
+```
+
+`persp_facets()` allows to compute the colors for each facet of a `persp()` plot
+
+```{r persp_facets, fig.height=4, fig.width=5}
+persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
+      border=alpha("black", 0.4),
+      col=magma_map(persp_facets(maunga$z)))
+```
+
+Various `scale_color_*()` and `scale_fill_*()` functions allow to use the color scales defined in chroma directly with ggplots and `scale_xy_map()` draws nice `x` and `y` scales for maps.
+
+```{r ggplot2, fig.height=4, fig.width=5}
+ggplot(iris) +
+  geom_point(aes(Petal.Length, Sepal.Length, color=Species)) +
+  scale_color_cubehelix_d(h=0, rot=0.75, c=1, l=c(0.6, 0.6))
+ggplot(thaixyz) + coord_quickmap() +
+ geom_raster(aes(x, y, fill=z)) +
+ scale_fill_wikitopo() + scale_xy_map()
 ```
 
 
