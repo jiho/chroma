@@ -24,37 +24,51 @@
 #' # Rotating less gives more sensible scales
 #' show_col(
 #'   cubehelix_colors(20, h=300, rot=-0.75),
-#'   cubehelix_colors(20, h=120, rot=0.5),
 #'   cubehelix_colors(20, h=300, rot=0.5)
 #' )
 #'
-#' # Examine the effect of arguments
+#' # No rotation gives single hue palettes
 #' show_col(
-#'   cubehelix_colors(20, h=300, rot=0.5),
-#'   # range of lightness
-#'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9)),
-#'   # value of chromacity
-#'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1),
-#'   # and gamma contrast factor
-#'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1, gamma=0.5),
-#'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.1, 0.9), c=1, gamma=1.5)
+#'   cubehelix_colors(20, h=0  , rot=0, c=0.8),
+#'   cubehelix_colors(20, h=120, rot=0, c=0.8),
+#'   cubehelix_colors(20, h=200, rot=0, c=0.8)
 #' )
 #'
-#' # Plot the Maunga Whau volcano elevation map, a continuous variable
+#' # Examine the effect of the other arguments
+#' show_col(
+#'   cubehelix_colors(20, h=300, rot=0.5),
+#'   # smaller range of lightness change
+#'   cubehelix_colors(20, h=300, rot=0.5, l=c(0.2, 0.7)),
+#'   # change chromacity
+#'   cubehelix_colors(20, h=300, rot=0.5, c=0.9),
+#'   cubehelix_colors(20, h=300, rot=0.5, c=0.3),
+#'   # change gamma contrast factor
+#'   cubehelix_colors(20, h=300, rot=0.5, gamma=0.5),
+#'   cubehelix_colors(20, h=300, rot=0.5, gamma=1.5)
+#' )
+#'
+#' # Plot the Maunga Whau volcano elevation map: a continuous variable
 #' image(maunga, col=cubehelix_colors(100, rot=-0.75))
-#' contour(maunga, col=alpha("black", 0.2), add=TRUE)
+#' contour(maunga, col=alpha("black", 0.4), add=TRUE)
 #'
 #' persp(maunga, theta=50, phi=25, scale=FALSE, expand=2,
 #'       border=alpha("black", 0.4),
 #'       col=cubehelix_map(persp_facets(maunga$z), rot=-0.75))
 #'
-#'
 #' \dontrun{
+#' # in spinning 3D
 #' library("rgl")
 #' persp3d(maunga, aspect=c(1,0.7,0.2), axes=FALSE, box=FALSE,
 #'         col=cubehelix_map(maunga$z, rot=-0.75))
 #' play3d(spin3d(axis=c(0, 0, 1), rpm=10), duration=6)
+#'
+#' # or with ggplot2
+#' library(ggplot2)
+#' ggplot(maungaxyz) + coord_fixed() +
+#'   geom_raster(aes(x, y, fill=z)) +
+#'   scale_fill_cubehelix_c(rot=-0.75)
 #' }
+#'
 #' # For discrete variables, using saturated colors along a scale of
 #' # constant lightness gives a good hue-only scale
 #' attach(iris)
@@ -64,11 +78,16 @@
 #'     h=0, rot=0.75, # Start from red-ish and do not rotate
 #'                    # full circle to avoid falling back on red
 #'     c=1,           # Use saturated colors
-#'     l=c(0.7, 0.7) # Do not vary lightness
+#'     l=c(0.6, 0.6) # Do not vary lightness
 #'   )
 #' )
 #' legend(1, 8, legend=levels(Species), pch=19,
-#'        col=cubehelix_map(1:3, h=0, rot=0.75, c=1, l=c(0.7, 0.7)))
+#'        col=cubehelix_map(1:3, h=0, rot=0.75, c=1, l=c(0.6, 0.6)))
+#' detach(iris)
+#' \dontrun{ggplot(iris) +
+#'   geom_point(aes(Petal.Length, Sepal.Length, color=Species)) +
+#'   scale_color_cubehelix_d(h=0, rot=0.75, c=1, l=c(0.6, 0.6))
+#' }
 #' # But see ?hue_scale for a simpler solution
 #'
 #' @export
