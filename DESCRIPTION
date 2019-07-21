@@ -1,10 +1,10 @@
 Package: chroma
 Type: Package
-Title: Parse and Manipulate Colors, Create Perceptually Accurate Color Palettes
+Title: Parse and Manipulate Colors, Create Perceptually Correct Color Palettes
 Version: 0.2
 Date: 2016-02-19
 Authors@R: c(person("Jean-Olivier", "Irisson", email="irisson@normalesup.org", role=c("aut", "cre")), person("Gregor", "Aisch", role="aut"))
-Description: This package is mostly an R wrapper for the excellent chroma.js library by Gregor Aisch. It allows to parse colors specified in many forms (RGB, HSL, HSV, HCL, etc.), manipulate those colors (saturate, darken, etc.) and create color palettes in a color space adequate for human perception by default (HCL). In addition it provides access to a few pre-built color palettes which are also correct perceptually (cubehelix, ColorBrewer, viridis, etc.)
+Description: This package is mostly an R wrapper for the excellent chroma.js library by Gregor Aisch. It allows to parse colors specified in many forms (RGB, HSL, HSV, HCL, etc.), manipulate those colors (saturate, darken, etc.), and create color palettes adequate for human perception (i.e. in the HCL color model). In addition it provides access to a few pre-built color palettes that have been tested perceptually (cubehelix, ColorBrewer, viridis, etc.) and/or are useful (ETOPO1 maps, Wikipedia topographic maps, light wavelentgh, etc.).
 License: GPL-3
 LazyData: TRUE
 Encoding: UTF-8
@@ -15,9 +15,10 @@ Imports:
     grDevices,
     scales,
     stringr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests:
     testthat,
     ggplot2,
     knitr,
     rmarkdown
+VignetteBuilder: knitr
