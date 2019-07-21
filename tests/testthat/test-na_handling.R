@@ -72,9 +72,11 @@ test_that("scale functions handle NAs", {
   expect_equal(interp_scale()(NA), "#808080")
   expect_equal(interp_scale(colors=c("white", NA, "black"))(0), "#FFFFFF")
 
-  # expect_equal(brewer_scale()(NA), NA_character_)
-  # expect_equal(viridis_scale()(NA), NA_character_)
-  # expect_equal(cubehelix_scale()(NA), NA_character_)
+  # expect_equal(brewer_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(viridis_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(viridis_scale()(NA), "#828282")
+  expect_equal(cubehelix_scale(na.value=NA)(NA), NA_character_)
+  expect_equal(cubehelix_scale()(NA), "#808080")
 
   expect_equal(hue_scale(na.value=NA)(NA), NA_character_)
   expect_equal(hue_scale()(NA), "#9E9E9E")
