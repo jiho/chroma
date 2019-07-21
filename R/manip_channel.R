@@ -23,15 +23,24 @@
 #'
 #' # Colors along a HSV rainbow have very different lightness,
 #' # which makes them inapropriate for continuous color scales
-#' channel(rainbow(6), "hcl", "l")
-#' # But, by definition, lightness should be constant along a HCL "rainbow"
-#' channel(hcl(h=seq(0, 360, length.out=6), l=0.5), "hcl", "l")
+#' # In contrast, lightness should be constant along a HCL rainbow
+#' HSV_rainbow <- hsv(h=seq(0, 360, length.out=7), s=1, v=1)
+#' HCL_rainbow <- hcl(h=seq(0, 360, length.out=7), l=0.65)
+#'
+#' show_col(HSV_rainbow, HCL_rainbow)
+#' channel(HCL_rainbow, "hcl", "l")
 #' # NB: the subtle changes are caused by the round-trip conversion to R's
 #' #     internal sRGB representation of colors.
+#' # make it more visual
+#' plot(channel(HSV_rainbow, "hcl", "l"), col=HSV_rainbow,
+#'      pch=19, cex=2, type="b", ylab="Lightness")
+#' abline(h=0.65, lty="dotted")
+#' points(channel(HCL_rainbow, "hcl", "l"), col=HCL_rainbow,
+#'        pch=19, cex=2, type="b")
 #'
 #' # Force a given lightness
-#' x_orig <- x <- rainbow(6)
-#' channel(x, "hcl", "l") <- 0.3
+#' x_orig <- x <- HSV_rainbow
+#' channel(x, "hcl", "l") <- 0.5
 #' show_col(x_orig, x)
 #'
 #' # Make all colors equally saturated

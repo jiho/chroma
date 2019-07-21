@@ -5,7 +5,7 @@
 #' @template param_x_rcolors
 #' @template param_model
 #'
-#' @details All colors in chroma are represented internally as hex codes in sRGB space. So if a color exists in that space, converting it to most other models will be lossless and reversible. For example, converting from \code{rgb} to \code{lab} back to \code{rgb} should give the same \code{rgb} values. If the starting color is not representable in sRGB, it will be converted to the closest sRGB color and the reversibility will be lost. In addition, the \code{temperature} and \code{wavelength} color "models" are very different because they represent only one aspect of the color (its temperature or its corresponding wavelength) and conversion to those is almost never lossless or reversible.
+#' @details All colors in chroma are represented internally as hex codes in sRGB space. So if a color exists in that space, converting it to most other models will be lossless and reversible. For example, converting from \code{rgb} to \code{lab} back to \code{rgb} should give the same R, G, and B values. If the starting color is not representable in sRGB, it will be converted to the closest sRGB color and the reversibility will be lost. In addition, the \code{temperature} and \code{wavelength} color "models" are very different because they represent only one aspect of the color (its temperature or its corresponding wavelength) and conversion to those is almost never lossless or reversible.
 #'
 #' @return A matrix containing the color components in most cases, except for the models:
 #' \describe{
