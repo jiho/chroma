@@ -14,7 +14,7 @@ knitr::opts_chunk$set(comment="#", tidy=FALSE)
 ```
 # chroma
 
-`chroma` is a [R](https://www.r-project.org) package for parsing and formating colors in various specifications, manipulating colors, and creating nice color scales and palettes. Much of the functionality is based on the excellent [chroma.js](https://github.com/gka/chroma.js/) javascript library by [Gregor Aish](http://driven-by-data.net).
+`chroma` is a [R](https://www.r-project.org) package for parsing and formating colors in various specifications, manipulating colors, and creating nice color scales and palettes. Much of the functionality is based on the excellent [chroma.js](https://github.com/gka/chroma.js/) javascript library by [Gregor Aisch](http://driven-by-data.net).
 
 ## Installation
 
@@ -124,7 +124,7 @@ deltaE("darkblue", "darkgreen")
 deltaE("lightgreen", "darkgreen")
 ```
 
-which allows to find the closest perceived color in a array of possibilities
+which allows to find the closest perceived color in an array of possibilities
 
 ```{r min_dist, fig.height=0.3*3}
 target <- "limegreen"
