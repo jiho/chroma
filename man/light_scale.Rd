@@ -10,8 +10,15 @@
 \alias{scale_fill_light}
 \title{Lightness scale and palette}
 \usage{
-light_scale(l = c(0.1, 0.9), c = 0.5, h = 0, domain = c(0, 1),
-  reverse = FALSE, na.value = NULL, extrapolate = FALSE)
+light_scale(
+  l = c(0.1, 0.9),
+  c = 0.5,
+  h = 0,
+  domain = c(0, 1),
+  reverse = FALSE,
+  na.value = NULL,
+  extrapolate = FALSE
+)
 
 light_map(x, ...)
 
@@ -19,11 +26,25 @@ light_palette(...)
 
 light_colors(n, ...)
 
-scale_color_light(..., l = c(0.1, 0.9), c = 0.5, h = 0,
-  reverse = FALSE, na.value = NULL, guide = "colorbar")
+scale_color_light(
+  ...,
+  l = c(0.1, 0.9),
+  c = 0.5,
+  h = 0,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_fill_light(..., l = c(0.1, 0.9), c = 0.5, h = 0,
-  reverse = FALSE, na.value = NULL, guide = "colorbar")
+scale_fill_light(
+  ...,
+  l = c(0.1, 0.9),
+  c = 0.5,
+  h = 0,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 }
 \arguments{
 \item{l}{lightness, vector of two numbers in \code{[0,1]} (0 is darkest, 1 is brightest) giving the minimum and maximum lightness along the scale.}
@@ -152,16 +173,23 @@ The \code{\link{hcl}} function, on which this one is based.
 
 \code{\link{luminance}} for a the computation of perceived luminance and the creation of perception-based luminance palettes.
 
-Other HCL-based scales: \code{\link{chroma_scale}},
-  \code{\link{hue_scale}}
+Other HCL-based scales: 
+\code{\link{chroma_scale}()},
+\code{\link{hue_scale}()}
 
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{interp_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
-  \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{chroma_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{HCL-based scales}
 \concept{color scales and palettes}

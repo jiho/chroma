@@ -13,9 +13,16 @@
 \alias{scale_fill_hue_d}
 \title{Hue scale and palette}
 \usage{
-hue_scale(h = c(0, 360) + 40, c = 0.65, l = 0.65, domain = c(0, 1),
-  reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  extrapolate = FALSE)
+hue_scale(
+  h = c(0, 360) + 40,
+  c = 0.65,
+  l = 0.65,
+  domain = c(0, 1),
+  reverse = FALSE,
+  full.circle = FALSE,
+  na.value = NULL,
+  extrapolate = FALSE
+)
 
 hue_map(x, ...)
 
@@ -23,21 +30,49 @@ hue_palette(...)
 
 hue_colors(n, ...)
 
-scale_color_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
-  reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_color_hue_c(
+  ...,
+  h = c(250, 350),
+  c = 0.65,
+  l = 0.65,
+  reverse = FALSE,
+  full.circle = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_fill_hue_c(..., h = c(250, 350), c = 0.65, l = 0.65,
-  reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_fill_hue_c(
+  ...,
+  h = c(250, 350),
+  c = 0.65,
+  l = 0.65,
+  reverse = FALSE,
+  full.circle = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_color_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
-  reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  guide = "legend")
+scale_color_hue_d(
+  ...,
+  h = c(0, 360) + 40,
+  c = 0.65,
+  l = 0.65,
+  reverse = FALSE,
+  full.circle = FALSE,
+  na.value = NULL,
+  guide = "legend"
+)
 
-scale_fill_hue_d(..., h = c(0, 360) + 40, c = 0.65, l = 0.65,
-  reverse = FALSE, full.circle = FALSE, na.value = NULL,
-  guide = "legend")
+scale_fill_hue_d(
+  ...,
+  h = c(0, 360) + 40,
+  c = 0.65,
+  l = 0.65,
+  reverse = FALSE,
+  full.circle = FALSE,
+  na.value = NULL,
+  guide = "legend"
+)
 }
 \arguments{
 \item{h}{range of hues to use, a vector of length 2 with either angles around the color wheel, in \code{[0,360]} (angles outside of the range are rotated back to within \code{[0,360]}: 380 = 20, -15 = 345, etc.), or colors (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -154,16 +189,23 @@ ggplot(airquality) +
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
 
-Other HCL-based scales: \code{\link{chroma_scale}},
-  \code{\link{light_scale}}
+Other HCL-based scales: 
+\code{\link{chroma_scale}()},
+\code{\link{light_scale}()}
 
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{inferno_scale}}, \code{\link{interp_scale}},
-  \code{\link{light_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
-  \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{chroma_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{HCL-based scales}
 \concept{color scales and palettes}

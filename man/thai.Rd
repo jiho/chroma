@@ -5,11 +5,15 @@
 \alias{thai}
 \alias{thaixyz}
 \title{Topography around Thailand}
-\format{\code{thai} is a list with two coordinate vectors and a matrix of corresponding values, suitable for \code{\link[graphics]{contour}}, \code{\link[graphics]{persp}} etc. \code{thaixyz} contains the same data but formated as a xyz a data.frame with 30351 rows and 3 columns. Both have components:
+\format{
+\code{thai} is a list with two coordinate vectors and a matrix of corresponding values, suitable for \code{\link[graphics]{contour}}, \code{\link[graphics]{persp}} etc. \code{thaixyz} contains the same data but formated as a xyz a data.frame with 30351 rows and 3 columns. Both have components:
 \describe{
   \item{x,y}{x and y coordinates, in degrees.}
   \item{z}{altitudes, in m.}
-}}
+}
+
+An object of class \code{data.frame} with 30351 rows and 3 columns.
+}
 \source{
 Extracted from NOAA's NGDC database (\url{https://maps.ngdc.noaa.gov/viewers/wcs-client/}) and regridded.
 }

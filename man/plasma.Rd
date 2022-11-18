@@ -4,7 +4,9 @@
 \name{plasma}
 \alias{plasma}
 \title{Magma colors}
-\format{A vector of length 256 containing hex values.}
+\format{
+A vector of length 256 containing hex values.
+}
 \source{
 \url{https://bids.github.io/colormap/} for the concept and \url{https://github.com/BIDS/colormap/blob/master/colormaps.py} for the data.
 }
@@ -15,8 +17,10 @@ plasma
 The \code{plasma} color palette, by Nathaniel J. Smith and Stefan van der Walt (CC0 license).
 }
 \seealso{
-Other mpl palettes: \code{\link{inferno}},
-  \code{\link{magma}}, \code{\link{viridis}}
+Other mpl palettes: 
+\code{\link{inferno}},
+\code{\link{magma}},
+\code{\link{viridis}}
 }
 \concept{mpl palettes}
 \keyword{datasets}

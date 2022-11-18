@@ -4,11 +4,13 @@
 \name{wikitopo}
 \alias{wikitopo}
 \title{Colors from Wikipedia topographic conventions}
-\format{A data.frame with 29 rows and 2 variables:
+\format{
+A data.frame with 29 rows and 2 variables:
 \describe{
   \item{altitude}{the altitude.}
   \item{color}{the hex code of the correpsonding color.}
-}}
+}
+}
 \source{
 \url{https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Maps/Conventions/Topographic_maps}
 }

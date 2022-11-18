@@ -38,9 +38,12 @@ show_mix("#FEF213", "#146EFD",
          model=c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"))
 }
 \seealso{
-Other color manipulation functions: \code{\link{average}},
-  \code{\link{blend}}, \code{\link{channel}},
-  \code{\link{darken}}, \code{\link{luminance}},
-  \code{\link{saturate}}
+Other color manipulation functions: 
+\code{\link{average}()},
+\code{\link{blend}()},
+\code{\link{channel}()},
+\code{\link{darken}()},
+\code{\link{luminance}()},
+\code{\link{saturate}()}
 }
 \concept{color manipulation functions}

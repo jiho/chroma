@@ -48,11 +48,18 @@ Gossett, N. and Chen, B. (2004). Paint inspired color mixing and compositing for
 Itten, J. (1961). Kunst der Farbe. Reinhold Pub. Corp.
 }
 \seealso{
-Other color specifications: \code{\link{cmyk}},
-  \code{\link{css}}, \code{\link{hcl}}, \code{\link{hex}},
-  \code{\link{hsi}}, \code{\link{hsl}}, \code{\link{hsv}},
-  \code{\link{lab}}, \code{\link{parse_color}},
-  \code{\link{rgb}}, \code{\link{temperature}},
-  \code{\link{wavelength}}
+Other color specifications: 
+\code{\link{cmyk}()},
+\code{\link{css}()},
+\code{\link{hcl}()},
+\code{\link{hex}()},
+\code{\link{hsi}()},
+\code{\link{hsl}()},
+\code{\link{hsv}()},
+\code{\link{lab}()},
+\code{\link{parse_color}()},
+\code{\link{rgb}()},
+\code{\link{temperature}()},
+\code{\link{wavelength}()}
 }
 \concept{color specifications}

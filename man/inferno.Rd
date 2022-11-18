@@ -4,7 +4,9 @@
 \name{inferno}
 \alias{inferno}
 \title{Magma colors}
-\format{A vector of length 256 containing hex values.}
+\format{
+A vector of length 256 containing hex values.
+}
 \source{
 \url{https://bids.github.io/colormap/} for the concept and \url{https://github.com/BIDS/colormap/blob/master/colormaps.py} for the data.
 }
@@ -15,8 +17,10 @@ inferno
 The \code{inferno} color palette, by Nathaniel J. Smith and Stefan van der Walt (CC0 license).
 }
 \seealso{
-Other mpl palettes: \code{\link{magma}},
-  \code{\link{plasma}}, \code{\link{viridis}}
+Other mpl palettes: 
+\code{\link{magma}},
+\code{\link{plasma}},
+\code{\link{viridis}}
 }
 \concept{mpl palettes}
 \keyword{datasets}

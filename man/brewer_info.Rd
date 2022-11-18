@@ -4,12 +4,14 @@
 \name{brewer_info}
 \alias{brewer_info}
 \title{Description of the colorbrewer2.org color palettes}
-\format{A data.frame with 35 rows and 3 variables:
+\format{
+A data.frame with 35 rows and 3 variables:
 \describe{
   \item{type}{the type of palette (\code{qualitative}, \code{diverging}, or \code{sequential}).}
   \item{name}{the name of the color palette.}
   \item{maxcolors}{the maximum number of handpicked colors in the palette. (NB: the minimum is always 3).}
-}}
+}
+}
 \source{
 \url{http://colorbrewer2.org}
 }

@@ -4,11 +4,13 @@
 \name{css_colors}
 \alias{css_colors}
 \title{Named CSS Colors}
-\format{A data.frame with 148 rows and 2 variables:
+\format{
+A data.frame with 148 rows and 2 variables:
 \describe{
   \item{name}{the name of the color in the CSS specification.}
   \item{hex}{the corresponding hex code.}
-}}
+}
+}
 \source{
 \url{https://www.w3.org/TR/css-color-4/#named-colors}
 }

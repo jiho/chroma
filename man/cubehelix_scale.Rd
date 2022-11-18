@@ -16,9 +16,17 @@
 \alias{scale_fill_cubehelix}
 \title{CubeHelix color scale and palette}
 \usage{
-cubehelix_scale(h = 300, rot = -1.5, c = 0.5, l = c(0.1, 0.9),
-  gamma = 1, domain = c(0, 1), reverse = FALSE, na.value = NULL,
-  extrapolate = FALSE)
+cubehelix_scale(
+  h = 300,
+  rot = -1.5,
+  c = 0.5,
+  l = c(0.1, 0.9),
+  gamma = 1,
+  domain = c(0, 1),
+  reverse = FALSE,
+  na.value = NULL,
+  extrapolate = FALSE
+)
 
 cubehelix_map(x, ...)
 
@@ -26,21 +34,53 @@ cubehelix_palette(...)
 
 cubehelix_colors(n, ...)
 
-scale_color_cubehelix_c(..., h = 300, rot = -1.5, c = 0.5,
-  l = c(0.1, 0.9), gamma = 1, reverse = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_color_cubehelix_c(
+  ...,
+  h = 300,
+  rot = -1.5,
+  c = 0.5,
+  l = c(0.1, 0.9),
+  gamma = 1,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_fill_cubehelix_c(..., h = 300, rot = -1.5, c = 0.5,
-  l = c(0.1, 0.9), gamma = 1, reverse = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_fill_cubehelix_c(
+  ...,
+  h = 300,
+  rot = -1.5,
+  c = 0.5,
+  l = c(0.1, 0.9),
+  gamma = 1,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_color_cubehelix_d(..., h = 300, rot = -1.5, c = 0.5,
-  l = c(0.1, 0.9), gamma = 1, reverse = FALSE,
-  na.value = "#grey50", guide = "legend")
+scale_color_cubehelix_d(
+  ...,
+  h = 300,
+  rot = -1.5,
+  c = 0.5,
+  l = c(0.1, 0.9),
+  gamma = 1,
+  reverse = FALSE,
+  na.value = "#grey50",
+  guide = "legend"
+)
 
-scale_fill_cubehelix_d(..., h = 300, rot = -1.5, c = 0.5,
-  l = c(0.1, 0.9), gamma = 1, reverse = FALSE,
-  na.value = "#grey50", guide = "legend")
+scale_fill_cubehelix_d(
+  ...,
+  h = 300,
+  rot = -1.5,
+  c = 0.5,
+  l = c(0.1, 0.9),
+  gamma = 1,
+  reverse = FALSE,
+  na.value = "#grey50",
+  guide = "legend"
+)
 }
 \arguments{
 \item{h}{hue, either an angle around the color wheel, in [0,360] (angles outside of the range are rotated back to within [0, 360]: 380 = 20, -15 = 345, etc.), or a color (hex or named) from which the hue is extracted (by function \code{\link{hue}}).}
@@ -164,11 +204,18 @@ detach(iris)
 \url{https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/}
 }
 \seealso{
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{interp_scale}}, \code{\link{light_scale}},
-  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
-  \code{\link{viridis_scale}}, \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{chroma_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

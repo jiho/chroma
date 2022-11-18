@@ -5,11 +5,15 @@
 \alias{maunga}
 \alias{maungaxyz}
 \title{Topography of Auckland's Maunga Whau volcano}
-\format{\code{maunga} is a list with two coordinate vectors and a matrix of corresponding values, suitable for \code{\link[graphics]{contour}}, \code{\link[graphics]{persp}} etc. \code{maungaxyz} contains the same data but formated as a xyz a data.frame with 5307 rows and 3 columns. Both have components:
+\format{
+\code{maunga} is a list with two coordinate vectors and a matrix of corresponding values, suitable for \code{\link[graphics]{contour}}, \code{\link[graphics]{persp}} etc. \code{maungaxyz} contains the same data but formated as a xyz a data.frame with 5307 rows and 3 columns. Both have components:
 \describe{
   \item{x,y}{x and y coordinates, in m.}
   \item{z}{altitudes, in m.}
-}}
+}
+
+An object of class \code{data.frame} with 5307 rows and 3 columns.
+}
 \usage{
 maunga
 

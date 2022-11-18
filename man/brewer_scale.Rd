@@ -7,8 +7,13 @@
 \alias{brewer_colors}
 \title{ColorBrewer scales and palettes}
 \usage{
-brewer_scale(name = "Blues", model = "lab", interp = "linear",
-  domain = c(0, 1), reverse = FALSE)
+brewer_scale(
+  name = "Blues",
+  model = "lab",
+  interp = "linear",
+  domain = c(0, 1),
+  reverse = FALSE
+)
 
 brewer_map(x, ...)
 
@@ -97,11 +102,18 @@ legend(1, 8, legend=levels(Species), pch=19,
 \seealso{
 \code{\link{brewer}} for the colors in the palettes and \code{\link{brewer_info}} for a list of palettes and their characteristics.
 
-Other color scales and palettes: \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{interp_scale}}, \code{\link{light_scale}},
-  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
-  \code{\link{viridis_scale}}, \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{chroma_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

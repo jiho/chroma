@@ -41,9 +41,12 @@ show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="hsv")
 show_ave(c("#FEF213", "#A0BD71", "#146EFD"), model="lab")
 }
 \seealso{
-Other color manipulation functions: \code{\link{blend}},
-  \code{\link{channel}}, \code{\link{darken}},
-  \code{\link{luminance}}, \code{\link{mix}},
-  \code{\link{saturate}}
+Other color manipulation functions: 
+\code{\link{blend}()},
+\code{\link{channel}()},
+\code{\link{darken}()},
+\code{\link{luminance}()},
+\code{\link{mix}()},
+\code{\link{saturate}()}
 }
 \concept{color manipulation functions}

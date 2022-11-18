@@ -4,7 +4,9 @@
 \name{viridis}
 \alias{viridis}
 \title{Viridis colors}
-\format{A vector of length 256 containing hex values.}
+\format{
+A vector of length 256 containing hex values.
+}
 \source{
 \url{https://bids.github.io/colormap/} for the concept and \url{https://github.com/BIDS/colormap/blob/master/colormaps.py} for the data.
 }
@@ -15,8 +17,10 @@ viridis
 The \code{viridis} color palette, by Nathaniel J. Smith, Stefan van der Walt, and Eric Firing (CC0 license).
 }
 \seealso{
-Other mpl palettes: \code{\link{inferno}},
-  \code{\link{magma}}, \code{\link{plasma}}
+Other mpl palettes: 
+\code{\link{inferno}},
+\code{\link{magma}},
+\code{\link{plasma}}
 }
 \concept{mpl palettes}
 \keyword{datasets}

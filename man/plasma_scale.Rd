@@ -16,8 +16,12 @@
 \alias{scale_colour_plasma}
 \title{Magma color scale and palette}
 \usage{
-plasma_scale(domain = c(0, 1), reverse = FALSE, na.value = NULL,
-  extrapolate = FALSE)
+plasma_scale(
+  domain = c(0, 1),
+  reverse = FALSE,
+  na.value = NULL,
+  extrapolate = FALSE
+)
 
 plasma_map(x, ...)
 
@@ -25,17 +29,13 @@ plasma_palette(...)
 
 plasma_colors(n, ...)
 
-scale_color_plasma_c(..., reverse = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_color_plasma_c(..., reverse = FALSE, na.value = NULL, guide = "colorbar")
 
-scale_fill_plasma_c(..., reverse = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_fill_plasma_c(..., reverse = FALSE, na.value = NULL, guide = "colorbar")
 
-scale_color_plasma_d(..., reverse = FALSE, na.value = NULL,
-  guide = "legend")
+scale_color_plasma_d(..., reverse = FALSE, na.value = NULL, guide = "legend")
 
-scale_fill_plasma_d(..., reverse = FALSE, na.value = NULL,
-  guide = "legend")
+scale_fill_plasma_d(..., reverse = FALSE, na.value = NULL, guide = "legend")
 }
 \arguments{
 \item{domain}{vector of two values between which the scale is computed.}
@@ -142,12 +142,18 @@ ggplot(iris) +
 \seealso{
 \code{\link{plasma}} for the colors in the palette.
 
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{interp_scale}}, \code{\link{light_scale}},
-  \code{\link{magma_scale}}, \code{\link{viridis_scale}},
-  \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{chroma_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

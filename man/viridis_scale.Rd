@@ -16,8 +16,12 @@
 \alias{scale_colour_viridis}
 \title{Viridis color scale and palette}
 \usage{
-viridis_scale(domain = c(0, 1), reverse = FALSE, na.value = NULL,
-  extrapolate = FALSE)
+viridis_scale(
+  domain = c(0, 1),
+  reverse = FALSE,
+  na.value = NULL,
+  extrapolate = FALSE
+)
 
 viridis_map(x, ...)
 
@@ -25,17 +29,18 @@ viridis_palette(...)
 
 viridis_colors(n, ...)
 
-scale_color_viridis_c(..., reverse = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_color_viridis_c(
+  ...,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_fill_viridis_c(..., reverse = FALSE, na.value = NULL,
-  guide = "colorbar")
+scale_fill_viridis_c(..., reverse = FALSE, na.value = NULL, guide = "colorbar")
 
-scale_color_viridis_d(..., reverse = FALSE, na.value = NULL,
-  guide = "legend")
+scale_color_viridis_d(..., reverse = FALSE, na.value = NULL, guide = "legend")
 
-scale_fill_viridis_d(..., reverse = FALSE, na.value = NULL,
-  guide = "legend")
+scale_fill_viridis_d(..., reverse = FALSE, na.value = NULL, guide = "legend")
 }
 \arguments{
 \item{domain}{vector of two values between which the scale is computed.}
@@ -142,12 +147,18 @@ ggplot(iris) +
 \seealso{
 \code{\link{viridis}} for the colors in the palette.
 
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{interp_scale}}, \code{\link{light_scale}},
-  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
-  \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{chroma_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

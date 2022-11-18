@@ -4,11 +4,13 @@
 \name{etopo}
 \alias{etopo}
 \title{Colors from ETOPO1}
-\format{A data.frame with 43 rows and 2 variables:
+\format{
+A data.frame with 43 rows and 2 variables:
 \describe{
   \item{altitude}{the altitude.}
   \item{color}{the hex code of the correpsonding color.}
-}}
+}
+}
 \source{
 \url{http://soliton.vm.bytemark.co.uk/pub/cpt-city/ngdc/tn/ETOPO1.png.index.html}
 }

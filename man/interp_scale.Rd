@@ -10,10 +10,16 @@
 \alias{scale_fill_interp}
 \title{Interpolated color scale and palette}
 \usage{
-interp_scale(colors = c("white", "black"), model = "lab",
-  interp = "linear", correct.lightness = FALSE, domain = c(0, 1),
-  reverse = FALSE, values = NULL, na.value = NULL,
-  extrapolate = FALSE, exact.until = 100)
+interp_scale(
+  colors = c("white", "black"),
+  model = "lab",
+  interp = "linear",
+  correct.lightness = FALSE,
+  values = c(0, 1),
+  reverse = FALSE,
+  na.value = NULL,
+  exact.until = 64
+)
 
 interp_map(x, ...)
 
@@ -21,15 +27,32 @@ interp_palette(...)
 
 interp_colors(n, ...)
 
-scale_color_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", correct.lightness = FALSE, reverse = FALSE,
-  values = NULL, na.value = NULL, extrapolate = FALSE,
-  exact.until = 100, guide = "colorbar")
+scale_color_interp(
+  ...,
+  colors = c("white", "black"),
+  model = "lab",
+  interp = "linear",
+  correct.lightness = FALSE,
+  reverse = FALSE,
+  values = NULL,
+  na.value = NULL,
+  extrapolate = FALSE,
+  exact.until = 100,
+  guide = "colorbar"
+)
 
-scale_fill_interp(..., colors = c("white", "black"), model = "lab",
-  interp = "linear", correct.lightness = correct.lightness,
-  reverse = FALSE, values = NULL, na.value = NULL,
-  exact.until = 100, guide = "colorbar")
+scale_fill_interp(
+  ...,
+  colors = c("white", "black"),
+  model = "lab",
+  interp = "linear",
+  correct.lightness = correct.lightness,
+  reverse = FALSE,
+  values = NULL,
+  na.value = NULL,
+  exact.until = 100,
+  guide = "colorbar"
+)
 }
 \arguments{
 \item{colors}{vector of colors specified as hex strings or named R colors. By default, those colors will be evenly distributed along the scale and new colors will be interpolated between them.}
@@ -40,15 +63,11 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 
 \item{correct.lightness}{whether to correct lightness to come closer to a linear increase in lightness along the scale, which is preferable perpectually. This correction is particularly effective together with \code{bezier} interpolation.}
 
-\item{domain}{vector of two values between which the scale is computed.}
+\item{values}{if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} because it defines the bounds of the color scale.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
-\item{values}{if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} and \code{reverse} because it defines the bounds and direction of the color scale.}
-
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
-
-\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
 \item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.}
 
@@ -58,7 +77,11 @@ scale_fill_interp(..., colors = c("white", "black"), model = "lab",
 
 \item{n}{number of colors to extract from the color palette.}
 
+\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
+
 \item{guide}{type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.}
+
+\item{domain}{vector of two values between which the scale is computed.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
@@ -102,10 +125,10 @@ show_col(
 x <- 0:10
 cols <- c("aliceblue", "cornflowerblue", "dodgerblue4")
 show_col(
-   interp_scale(cols, extrapolate=TRUE)(x),
-   interp_scale(cols, extrapolate=TRUE, domain=range(x))(x),
-   interp_scale(cols, extrapolate=TRUE, domain=range(x), reverse=TRUE)(x),
-   interp_scale(cols, extrapolate=TRUE, values=c(0,1,10))(x)
+   interp_scale(cols)(x),
+   interp_scale(cols, domain=range(x))(x),
+   interp_scale(cols, domain=range(x), reverse=TRUE)(x),
+   interp_scale(cols, values=c(0,1,10))(x)
 )
 
 # Plot Maunga Whau volcano with colors picked from a picture
@@ -170,12 +193,18 @@ legend(1, 2, legend=levels(Species),
 # but a hue-based scale would be much better (see ?hue_scale)
 }
 \seealso{
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{chroma_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{light_scale}}, \code{\link{magma_scale}},
-  \code{\link{plasma_scale}}, \code{\link{viridis_scale}},
-  \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{chroma_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

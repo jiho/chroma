@@ -44,9 +44,12 @@ show_col(
 # NB: for some blending modes, the order of the input colors is important
 }
 \seealso{
-Other color manipulation functions: \code{\link{average}},
-  \code{\link{channel}}, \code{\link{darken}},
-  \code{\link{luminance}}, \code{\link{mix}},
-  \code{\link{saturate}}
+Other color manipulation functions: 
+\code{\link{average}()},
+\code{\link{channel}()},
+\code{\link{darken}()},
+\code{\link{luminance}()},
+\code{\link{mix}()},
+\code{\link{saturate}()}
 }
 \concept{color manipulation functions}

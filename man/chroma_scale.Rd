@@ -10,8 +10,15 @@
 \alias{scale_fill_chroma}
 \title{Chromacity scale and palette}
 \usage{
-chroma_scale(chroma = c(0, 1), l = 0.5, h = 0, domain = c(0, 1),
-  reverse = FALSE, na.value = NULL, extrapolate = FALSE)
+chroma_scale(
+  chroma = c(0, 1),
+  l = 0.5,
+  h = 0,
+  domain = c(0, 1),
+  reverse = FALSE,
+  na.value = NULL,
+  extrapolate = FALSE
+)
 
 chroma_map(x, ...)
 
@@ -19,11 +26,25 @@ chroma_palette(...)
 
 chroma_colors(n, ...)
 
-scale_color_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
-  reverse = FALSE, na.value = NULL, guide = "colorbar")
+scale_color_chroma(
+  ...,
+  chroma = c(0, 1),
+  l = 0.5,
+  h = 0,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 
-scale_fill_chroma(..., chroma = c(0, 1), l = 0.5, h = 0,
-  reverse = FALSE, na.value = NULL, guide = "colorbar")
+scale_fill_chroma(
+  ...,
+  chroma = c(0, 1),
+  l = 0.5,
+  h = 0,
+  reverse = FALSE,
+  na.value = NULL,
+  guide = "colorbar"
+)
 }
 \arguments{
 \item{chroma}{chromacity, vector of two numbers in \code{[0,~1]} (0 is grey, ~1 is full color) giving the minimum and maximum chromacities along the scale.}
@@ -141,15 +162,23 @@ legend(1, 2, legend=levels(Species),
 \seealso{
 The \code{\link{hcl}} function, on which this one is based.
 
-Other HCL-based scales: \code{\link{hue_scale}},
-  \code{\link{light_scale}}
+Other HCL-based scales: 
+\code{\link{hue_scale}()},
+\code{\link{light_scale}()}
 
-Other color scales and palettes: \code{\link{brewer_scale}},
-  \code{\link{cubehelix_scale}}, \code{\link{etopo_scale}},
-  \code{\link{hue_scale}}, \code{\link{inferno_scale}},
-  \code{\link{interp_scale}}, \code{\link{light_scale}},
-  \code{\link{magma_scale}}, \code{\link{plasma_scale}},
-  \code{\link{viridis_scale}}, \code{\link{wikitopo_scale}}
+Other color scales and palettes: 
+\code{\link{brewer_scale}()},
+\code{\link{cubehelix_scale}()},
+\code{\link{etopo_scale}()},
+\code{\link{hue_scale}()},
+\code{\link{inferno_scale}()},
+\code{\link{interp_scale}()},
+\code{\link{light_scale}()},
+\code{\link{magma_scale}()},
+\code{\link{plasma_scale}()},
+\code{\link{turbo_scale}()},
+\code{\link{viridis_scale}()},
+\code{\link{wikitopo_scale}()}
 }
 \concept{HCL-based scales}
 \concept{color scales and palettes}
