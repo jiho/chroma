@@ -15,6 +15,7 @@ interp_scale(
   model = "lab",
   interp = "linear",
   correct.lightness = FALSE,
+  domain = c(0, 1),
   values = c(0, 1),
   reverse = FALSE,
   na.value = NULL,
@@ -63,6 +64,8 @@ scale_fill_interp(
 
 \item{correct.lightness}{whether to correct lightness to come closer to a linear increase in lightness along the scale, which is preferable perpectually. This correction is particularly effective together with \code{bezier} interpolation.}
 
+\item{domain}{vector of two values between which the scale is computed.}
+
 \item{values}{if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} because it defines the bounds of the color scale.}
 
 \item{reverse}{whether to reverse the order of colors along the scale.}
@@ -80,8 +83,6 @@ scale_fill_interp(
 \item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
 \item{guide}{type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.}
-
-\item{domain}{vector of two values between which the scale is computed.}
 }
 \value{
 \code{*_scale} returns a \strong{function}. This function takes a single argument (\code{x}: a numeric vector), maps its values to colors, and returns thee colors as hex codes.
@@ -205,6 +206,7 @@ Other color scales and palettes:
 \code{\link{plasma_scale}()},
 \code{\link{turbo_scale}()},
 \code{\link{viridis_scale}()},
+\code{\link{vsup_scale}()},
 \code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}
