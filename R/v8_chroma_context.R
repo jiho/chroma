@@ -28,6 +28,63 @@ v8_chroma_context <- function() {
   return(ct)
 }
 
+# Create a vsup-aware javascript interpreting context
+#
+# Use the \code{\link[V8]{v8}} function of package \code{V8} to create the context and evaluate the code of vsup.js, thus making all functions available.
+#
+# @seealso \code{\link[V8]{v8}} and \url{https://github.com/uwdata/vsup}
+#
+# @examples
+# ct <- v8_vsup_context()
+# css(ct$eval("vsup.scale()(0.8, 0.1)"))
+#
+# @export
+#' @importFrom V8 v8
+v8_vsup_context <- function() {
+  # as above, for chroma.js
+  file <- system.file("vsup.min.js", package="chroma")
+
+  vsupjs <- scan(file, what="character", sep="\n", quiet=T)
+
+  ct <- v8()
+  ct$eval(vsupjs)
+
+  return(ct)
+}
+
+# Create a chroma and vsup-aware javascript interpreting context
+#
+# Use the \code{\link[V8]{v8}} function of package \code{V8} to create the context and evaluate the code of chroma.js and vsup.js, thus making all functions available.
+#
+# @seealso \code{\link[V8]{v8}}, \url{http://gka.github.io/chroma.js/}, and \url{https://github.com/uwdata/vsup}
+#
+# @examples
+# ct <- v8_all_context()
+# show_col(css(ct$eval("vsup.scale().range(chroma.scale(['yellow', 'red']))(0.8, 0.5)")))
+#
+# @export
+#' @importFrom V8 v8
+v8_all_context <- function() {
+  # get chroma.js's location
+  file <- system.file("chroma.min.js", package="chroma")
+
+  # read the file and make it into a single character scalar
+  chromajs <- scan(file, what="character", skip=57, sep="\n", quiet=T)
+  chromajs <- paste(chromajs, collapse="")
+  file <- system.file("vsup.min.js", package="chroma")
+  vsupjs <- scan(file, what="character", sep="\n", quiet=T)
+
+  # create the context
+  ct <- v8()
+
+  # "load" chroma
+  ct$eval(chromajs)
+  ct$eval(vsupjs)
+
+  # return the context
+  return(ct)
+}
+
 # Evaluate commands in a V8 context
 #
 # Evaluate javascript commands in a V8 context. By default, this context is chroma-aware.
