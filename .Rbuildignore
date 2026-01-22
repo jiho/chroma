@@ -1,5 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+.DS_Store
 data-raw
 scratch
 man-roxygen

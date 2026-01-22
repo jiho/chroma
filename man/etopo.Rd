@@ -12,7 +12,7 @@ A data.frame with 43 rows and 2 variables:
 }
 }
 \source{
-\url{http://soliton.vm.bytemark.co.uk/pub/cpt-city/ngdc/tn/ETOPO1.png.index.html}
+\code{http://soliton.vm.bytemark.co.uk/pub/cpt-city/ngdc/tn/ETOPO1.png.index.html}
 }
 \usage{
 etopo

@@ -100,7 +100,6 @@ Other color scales and palettes:
 \code{\link{magma_scale}()},
 \code{\link{plasma_scale}()},
 \code{\link{turbo_scale}()},
-\code{\link{viridis_scale}()},
-\code{\link{vsup_scale}()}
+\code{\link{viridis_scale}()}
 }
 \concept{color scales and palettes}

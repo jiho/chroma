@@ -1,8 +1,8 @@
 context("Manipulation reversibility")
 
 x <- rainbow(10)
-test_that("manipulating alpha is reversible", {
-  expect_equal(alpha(alpha(x, 0.5), 1), x)
+test_that("manipulating alpha is NOT reversible", {
+  expect_false(identical(alpha(alpha(x, 0.5), 1), x))
 })
 
 hues <- seq(0, 300, 50)

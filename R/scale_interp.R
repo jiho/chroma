@@ -124,7 +124,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
   model <- match.arg(model, c("hcl", "lch", "hsi", "hsl", "hsv", "lab", "rgb", "lrgb"))
 
   interp <- match.arg(interp, c("bezier", "linear"))
-  if (interp == "bezier" & model != "lab") {
+  if (interp == "bezier" && model != "lab") {
     warning("Bezier interpolation can only be done in L*a*b* space; switching to model=\"lab\".")
     model <- "lab"
   }
@@ -139,7 +139,7 @@ interp_scale <- function(colors=c("white", "black"), model="lab", interp="linear
       warning("Argument 'values' should not contain missing or non-numeric values. They were removed.")
       values <- values[is.finite(values)]
     }
-    if ( ! ( identical(sort(values), values) | identical(sort(values), rev(values)) ) )  {
+    if ( ! ( identical(sort(values), values) || identical(sort(values), rev(values)) ) )  {
       stop("Numbers in 'values' should be monotonously increasing or decreasing.")
     }
     if ( length(values) != length(colors) )  {

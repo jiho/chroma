@@ -8,7 +8,7 @@ tabularise_arguments <- function(...) {
   # get the list of arguments
   args <- list(...)
 
-  if ( is.matrix(args[[1]]) | is.data.frame(args[[1]]) ) {
+  if ( is.matrix(args[[1]]) || is.data.frame(args[[1]]) ) {
     # if first argument is a "table", use this only
     x <- args[[1]]
 
@@ -291,5 +291,3 @@ interpn1 <- function(xo, x, V) {
 #       [ 0.5, 0.5, -0.3],
 #       [ 0.1, 0.4, -0.3]]
 # int.interpn(points, values, xi)
-
-

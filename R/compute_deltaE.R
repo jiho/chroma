@@ -6,7 +6,7 @@
 #'
 #' @return A number quantifying the difference between x and y (or a vector thereof). A difference < 1 is imperceptible to the human eye.
 #'
-#' @references Sharma, Gaurav; Wu, Wencheng; Dalal, Edul N. (2005). "The CIEDE2000 color-difference formula: Implementation notes, supplementary test data, and mathematical observations" (PDF). Color Research & Applications (Wiley Interscience) 30 (1): 21–30. doi:10.1002/col.20070
+#' @references Sharma, Gaurav; Wu, Wencheng; Dalal, Edul N. (2005). "The CIEDE2000 color-difference formula: Implementation notes, supplementary test data, and mathematical observations" (PDF). Color Research & Applications (Wiley Interscience) 30 (1): 21–30. \doi{doi:10.1002/col.20070}
 #'
 #' @export
 #' @importFrom stats na.omit
@@ -103,9 +103,9 @@ deltaE_lab <- function(x1, x2) {
   } else {
     if (abs(diffhprime) <= 180) {
       hbarprime <- sumhprime / 2
-    } else if (abs(diffhprime) > 180 & sumhprime < 360) {
+    } else if (abs(diffhprime) > 180 && sumhprime < 360) {
       hbarprime <- (sumhprime + 360) / 2
-    } else if (abs(diffhprime) > 180 & sumhprime >= 360) {
+    } else if (abs(diffhprime) > 180 && sumhprime >= 360) {
       hbarprime <- (sumhprime - 360) / 2
     } else {
       stop("Should not be possible")

@@ -189,4 +189,3 @@ scale_fill_hue_d <- function(..., h=c(0,360)+40, c=0.65, l=0.65, reverse=FALSE, 
     na.value=hue_na(na.value, l=l), guide=guide, ...
   )
 }
-

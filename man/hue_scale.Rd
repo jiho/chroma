@@ -191,8 +191,7 @@ The \code{\link{hcl}} function, on which this one is based.
 
 Other HCL-based scales: 
 \code{\link{chroma_scale}()},
-\code{\link{light_scale}()},
-\code{\link{vsup_scale}()}
+\code{\link{light_scale}()}
 
 Other color scales and palettes: 
 \code{\link{brewer_scale}()},
@@ -206,7 +205,6 @@ Other color scales and palettes:
 \code{\link{plasma_scale}()},
 \code{\link{turbo_scale}()},
 \code{\link{viridis_scale}()},
-\code{\link{vsup_scale}()},
 \code{\link{wikitopo_scale}()}
 }
 \concept{HCL-based scales}

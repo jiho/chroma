@@ -29,7 +29,7 @@ show_col <- function(...) {
   args <- list(...)
 
   # deal with the special case of ... being a single list of colors
-  if ( length(args) == 1 & is.list(args[[1]]) ) {
+  if ( length(args) == 1 && is.list(args[[1]]) ) {
     args <- args[[1]]
   }
 

@@ -14,7 +14,7 @@ A data.frame with 1680 rows and 4 variables:
 }
 }
 \source{
-\url{http://colorbrewer2.org}
+\url{https://colorbrewer2.org/}
 }
 \usage{
 brewer

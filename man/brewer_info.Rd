@@ -13,7 +13,7 @@ A data.frame with 35 rows and 3 variables:
 }
 }
 \source{
-\url{http://colorbrewer2.org}
+\url{https://colorbrewer2.org/}
 }
 \usage{
 brewer_info

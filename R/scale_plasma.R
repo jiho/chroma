@@ -196,5 +196,3 @@ scale_color_plasma <- scale_color_plasma_c
 #' @export
 #' @usage NULL
 scale_colour_plasma <- scale_color_plasma_c
-
-

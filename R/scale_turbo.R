@@ -173,5 +173,3 @@ scale_color_turbo <- scale_color_turbo_c
 #' @export
 #' @usage NULL
 scale_colour_turbo <- scale_color_turbo_c
-
-

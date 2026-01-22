@@ -31,7 +31,7 @@
 #' # = works, but is a bit less predictable with hcl().
 hue <- function(x, model="hsv", modulo=TRUE) {
   # deal with the special case of all numeric/empty vectors first, for performance purposes
-  if (is.numeric(x) | all(is.na(x))) {
+  if (is.numeric(x) || all(is.na(x))) {
     out <- x
   } else {
     # check inputs

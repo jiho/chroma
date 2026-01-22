@@ -37,7 +37,7 @@ parse_color <- function(x, model) {
 
   } else {
 
-    if (!(is.matrix(x) | is.data.frame(x))) {
+    if (!(is.matrix(x) || is.data.frame(x))) {
       stop("x should be a matrix or data.frame")
     }
 
@@ -47,7 +47,7 @@ parse_color <- function(x, model) {
     }
     if (ncol(x) > required_columns) {
       warning("only the first ", required_columns, " columns of x will be used")
-      x <- x[,1:required_columns,drop=F]
+      x <- x[,1:required_columns,drop=FALSE]
     }
 
   }

@@ -13,7 +13,7 @@
 #'
 #' @family color scales and palettes
 #'
-#' @references \url{https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/}
+#' @references \url{https://people.phy.cam.ac.uk/dag9/CUBEHELIX/}
 #' @examples
 #' # Basic color palettes
 #' show_col(

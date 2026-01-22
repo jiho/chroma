@@ -23,8 +23,7 @@
 #' x <- c("#ff3399",       # hex specification valid in R
 #'        "F39",           # hex specification not valid in R
 #'        "whitesmoke",    # named color valid in R and CSS
-#'        "darkorchid2",   # named R color (not existing in CSS)
-#'        "rebeccapurple"  # named CSS color (not existing in R)
+#'        "darkorchid2"   # named R color (not existing in CSS)
 #'        )
 #' hex(x)
 #'
@@ -38,3 +37,6 @@ hex <- function(x) {
   # parse the rest
   parse_color(x, "hex")
 }
+# TODO handle named CSS color (not existing in R)
+# hex("rebeccapurple") throws error with "chroma.hex('rebeccapurple').hex()" in parse_color
+# should be called with parse_color(x, "css")

@@ -27,9 +27,12 @@ show_col(c("red", alpha("red")))
 alpha(c("red", "green", "blue"), 0.5)
 alpha("red", c(0.2, 0.5, 0.7))
 alpha(c("red", "green", "blue"), c(0.2, 0.5, 0.7))
-alpha(c("red", "green", "blue", "purple"), c(0.2, 0.5))
-\dontrun{alpha(c("red", "green", "blue", "purple"), c(0.2, 0.5, 0.7))
-# = fails because arguments have incompatible lengths (x = 4, alpha = 3)}
+
+\dontrun{
+  alpha(c("red", "green", "blue", "purple"), c(0.2, 0.5))
+  alpha(c("red", "green", "blue", "purple"), c(0.2, 0.5, 0.7))
+  # = fail because arguments have incompatible lengths
+}
 # Beware, other functions do not support alpha channels
 mix(alpha("red"), alpha("blue"))
 mix("red", "blue")

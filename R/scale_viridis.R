@@ -193,5 +193,3 @@ scale_color_viridis <- scale_color_viridis_c
 #' @export
 #' @usage NULL
 scale_colour_viridis <- scale_color_viridis_c
-
-

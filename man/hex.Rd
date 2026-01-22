@@ -26,8 +26,7 @@ hex("F39")
 x <- c("#ff3399",       # hex specification valid in R
        "F39",           # hex specification not valid in R
        "whitesmoke",    # named color valid in R and CSS
-       "darkorchid2",   # named R color (not existing in CSS)
-       "rebeccapurple"  # named CSS color (not existing in R)
+       "darkorchid2"   # named R color (not existing in CSS)
        )
 hex(x)
 

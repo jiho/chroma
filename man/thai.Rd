@@ -15,7 +15,7 @@
 An object of class \code{data.frame} with 30351 rows and 3 columns.
 }
 \source{
-Extracted from NOAA's NGDC database (\url{https://maps.ngdc.noaa.gov/viewers/wcs-client/}) and regridded.
+Extracted from NOAA's NGDC database (\code{https://maps.ngdc.noaa.gov/viewers/wcs-client/}) and regridded.
 }
 \usage{
 thai

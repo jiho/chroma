@@ -5,7 +5,7 @@
 #'   \item{altitude}{the altitude.}
 #'   \item{color}{the hex code of the correpsonding color.}
 #' }
-#' @source \url{http://soliton.vm.bytemark.co.uk/pub/cpt-city/ngdc/tn/ETOPO1.png.index.html}
+#' @source \code{http://soliton.vm.bytemark.co.uk/pub/cpt-city/ngdc/tn/ETOPO1.png.index.html}
 #' @seealso \code{\link{etopo_scale}} to use the palette.
 "etopo"
 
@@ -21,7 +21,7 @@
 #'
 #' @family color scales and palettes
 #'
-#' @references The topographic colors are based on GMT globe by Lester M. Anderson of CASP, UK, modified by Jesse Varner and Elliot Lim (NOAA/NGDC) to have a smaller band of white at the highest elevations. The bathymetry is based on GMT haxby, popularised by Bill Haxby, LDEO. See \url{https://www.ngdc.noaa.gov/mgg/global/global.html}.
+#' @references The topographic colors are based on GMT globe by Lester M. Anderson of CASP, UK, modified by Jesse Varner and Elliot Lim (NOAA/NGDC) to have a smaller band of white at the highest elevations. The bathymetry is based on GMT haxby, popularised by Bill Haxby, LDEO. See \code{https://www.ngdc.noaa.gov/mgg/global/global.html}.
 #' @seealso \code{\link{etopo}} for the colors in the palette and the associated altitudes.
 #'
 #' @export

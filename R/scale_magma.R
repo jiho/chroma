@@ -196,5 +196,3 @@ scale_color_magma <- scale_color_magma_c
 #' @export
 #' @usage NULL
 scale_colour_magma <- scale_color_magma_c
-
-

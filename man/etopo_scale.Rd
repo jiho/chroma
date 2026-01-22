@@ -85,7 +85,7 @@ ggplot(thaixyz) + coord_quickmap() +
   geom_contour(aes(x, y, z=z), breaks=0, color="black", size=1) }
 }
 \references{
-The topographic colors are based on GMT globe by Lester M. Anderson of CASP, UK, modified by Jesse Varner and Elliot Lim (NOAA/NGDC) to have a smaller band of white at the highest elevations. The bathymetry is based on GMT haxby, popularised by Bill Haxby, LDEO. See \url{https://www.ngdc.noaa.gov/mgg/global/global.html}.
+The topographic colors are based on GMT globe by Lester M. Anderson of CASP, UK, modified by Jesse Varner and Elliot Lim (NOAA/NGDC) to have a smaller band of white at the highest elevations. The bathymetry is based on GMT haxby, popularised by Bill Haxby, LDEO. See \code{https://www.ngdc.noaa.gov/mgg/global/global.html}.
 }
 \seealso{
 \code{\link{etopo}} for the colors in the palette and the associated altitudes.
@@ -102,7 +102,6 @@ Other color scales and palettes:
 \code{\link{plasma_scale}()},
 \code{\link{turbo_scale}()},
 \code{\link{viridis_scale}()},
-\code{\link{vsup_scale}()},
 \code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

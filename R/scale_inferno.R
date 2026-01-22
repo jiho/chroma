@@ -196,5 +196,3 @@ scale_color_inferno <- scale_color_inferno_c
 #' @export
 #' @usage NULL
 scale_colour_inferno <- scale_color_inferno_c
-
-

@@ -108,4 +108,3 @@ scale_color_wikitopo <- function(na.value=NULL, ...) {
 #' @export
 #' @usage NULL
 scale_colour_wikitopo <- scale_color_wikitopo
-

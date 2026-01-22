@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+*.DS_Store*
 # ignore HTML file produced by knitr for the README
 README.html
 # ignore scratch files

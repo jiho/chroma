@@ -16,10 +16,11 @@ interp_scale(
   interp = "linear",
   correct.lightness = FALSE,
   domain = c(0, 1),
-  values = c(0, 1),
   reverse = FALSE,
+  values = NULL,
   na.value = NULL,
-  exact.until = 64
+  extrapolate = FALSE,
+  exact.until = 100
 )
 
 interp_map(x, ...)
@@ -66,11 +67,13 @@ scale_fill_interp(
 
 \item{domain}{vector of two values between which the scale is computed.}
 
-\item{values}{if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} because it defines the bounds of the color scale.}
-
 \item{reverse}{whether to reverse the order of colors along the scale.}
 
+\item{values}{if colors should not be evenly positioned along the gradient, this vector gives the position along the scale of each color in the \code{colors} vector. This argument supersedes \code{domain} because it defines the bounds of the color scale.}
+
 \item{na.value}{value to return for missing values in the input. Can be either a color, \code{NULL} in which case a tentitatively appropriate color will be chosen automatically, or \code{NA}.}
+
+\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
 \item{exact.until}{integer, when more than \code{exact.until} colors need to be computed, a fast but not exact alternative algorithm is used. This should not make a difference visually unless the argument \code{values} is used and some transitions between input colors are sharp.}
 
@@ -79,8 +82,6 @@ scale_fill_interp(
 \item{...}{passed to \code{\link{interp_scale}} from other \code{interp_*} functions; passed to \code{ggplot2::\link[ggplot2]{continuous_scale}} from the \code{scale_*} functions. NB: in all situations, passing \code{domain} or \code{values} is meaningless and yields an error.}
 
 \item{n}{number of colors to extract from the color palette.}
-
-\item{extrapolate}{when \code{FALSE}, the default, return \code{NA} for input values that are out of the domain; when \code{TRUE} return the color corresponding to the extreme of the domain instead.}
 
 \item{guide}{type of guide for the legend ("colorbar" for a continuous colorbar, "legend" for a categorical guide) or guide object itself.}
 }
@@ -206,7 +207,6 @@ Other color scales and palettes:
 \code{\link{plasma_scale}()},
 \code{\link{turbo_scale}()},
 \code{\link{viridis_scale}()},
-\code{\link{vsup_scale}()},
 \code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

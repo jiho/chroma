@@ -7,7 +7,7 @@
 #'   \item{n}{the number of colors in the palette. For a given palette, all combinations of colors are hand picked and not just interpolated between the two extremes. So, even in the same palette, the colors for the different values of \code{n} may be slightly different.}
 #'   \item{color}{the hex code of the color.}
 #' }
-#' @source \url{http://colorbrewer2.org}
+#' @source \url{https://colorbrewer2.org/}
 #' @seealso \code{\link{brewer_info}} for a summary of the properties of colorbrewer palettes.
 "brewer"
 
@@ -19,7 +19,7 @@
 #'   \item{name}{the name of the color palette.}
 #'   \item{maxcolors}{the maximum number of handpicked colors in the palette. (NB: the minimum is always 3).}
 #' }
-#' @source \url{http://colorbrewer2.org}
+#' @source \url{https://colorbrewer2.org/}
 #' @seealso \code{\link{brewer}} for a complete table of colorbrewer2 colors.
 "brewer_info"
 
@@ -33,7 +33,7 @@
 #'
 #' @family color scales and palettes
 #'
-#' @references \url{http://colorbrewer2.org}
+#' @references \url{https://colorbrewer2.org/}
 #' @seealso \code{\link{brewer}} for the colors in the palettes and \code{\link{brewer_info}} for a list of palettes and their characteristics.
 #'
 #' @examples

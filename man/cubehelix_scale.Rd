@@ -201,7 +201,7 @@ detach(iris)
 
 }
 \references{
-\url{https://www.mrao.cam.ac.uk/~dag/CUBEHELIX/}
+\url{https://people.phy.cam.ac.uk/dag9/CUBEHELIX/}
 }
 \seealso{
 Other color scales and palettes: 
@@ -216,7 +216,6 @@ Other color scales and palettes:
 \code{\link{plasma_scale}()},
 \code{\link{turbo_scale}()},
 \code{\link{viridis_scale}()},
-\code{\link{vsup_scale}()},
 \code{\link{wikitopo_scale}()}
 }
 \concept{color scales and palettes}

@@ -4,7 +4,7 @@
 formating colors in various specifications, manipulating colors, and
 creating nice color scales and palettes. Much of the functionality is
 based on the excellent [chroma.js](https://github.com/gka/chroma.js/)
-javascript library by [Gregor Aish](http://driven-by-data.net).
+javascript library by [Gregor Aisch](https://driven-by-data.net).
 
 ## Installation
 
@@ -222,8 +222,7 @@ show_col(c(col, alpha(col), alpha(col, 0.2)))
 
 ![](README_files/figure-gfm/alpha-1.png)<!-- -->
 
-Mix or blend two
-colors
+Mix or blend two colors
 
 ``` r
 show_col(c("#7BBBFE", "#FDFF68", mix("#7BBBFE", "#FDFF68")))
@@ -257,7 +256,7 @@ contrast("yellow", "darkgreen")
 
     # [1] 6.927705
 
-Compute the euclidean or perceptual distance between two colors
+Compute the Euclidean or perceptual distance between two colors
 (following the CIE Delta E 2000 formula)
 
 ``` r
@@ -303,7 +302,7 @@ deltaE("lightgreen", "darkgreen")
 
     # [1] 43.52127
 
-which allows to find the closest perceived color in a array of
+which allows to find the closest perceived color in an array of
 possibilities
 
 ``` r
@@ -382,18 +381,16 @@ show_col(c(col, col1, col2))
 
 All scales and palettes are organised the same way:
 
-  - functions ending in `*_scale` return a *function* that takes a
-    numeric vector `x` as argument and returns the corresponding colors
-    in the scale.
-  - functions ending in `*_map` are shortcuts that build the scale, map
-    the values, and return the colors.
-  - functions ending in `*_palette` return a *function* that takes an
-    integer `n` as argument and returns `n` equally spaced colors along
-    the scale.
-  - functions ending in `*_colors` are shortcut that create the palette
-    and return the `n` colors.
-
-<!-- end list -->
+- functions ending in `*_scale` return a *function* that takes a numeric
+  vector `x` as argument and returns the corresponding colors in the
+  scale.
+- functions ending in `*_map` are shortcuts that build the scale, map
+  the values, and return the colors.
+- functions ending in `*_palette` return a *function* that takes an
+  integer `n` as argument and returns `n` equally spaced colors along
+  the scale.
+- functions ending in `*_colors` are shortcut that create the palette
+  and return the `n` colors.
 
 ``` r
 x <- 0:10/10
@@ -471,8 +468,7 @@ show_col(interp_colors(10, colors=c("#2D2B63", "#FB3C44", "#F7FF84"), interp="be
 
 ![](README_files/figure-gfm/scale_interp_correct-3.png)<!-- -->
 
-Preset palettes are available, from
-colorbrewer
+Preset palettes are available, from colorbrewer
 
 ``` r
 show_col(lapply(brewer_info$name, function(x) {brewer_colors(n=7, name=x)}))
@@ -597,6 +593,6 @@ ggplot(thaixyz) + coord_quickmap() +
 
 ![](README_files/figure-gfm/ggplot2-2.png)<!-- -->
 
------
+------------------------------------------------------------------------
 
-Happy coloring\!
+Happy coloring!
