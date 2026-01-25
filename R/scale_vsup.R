@@ -50,7 +50,7 @@ vsup_scale <- function(colors=viridis_colors(6), branching=2, layers=4, mode="hc
 
   # check arguments
   mode <- match.arg(mode, c("hcl", "hl", "hc"))
-  mode <- mode |> str_replace("h", "u") |> str_replace("c", "s")
+  mode <- mode |> stringr::str_replace("h", "u") |> stringr::str_replace("c", "s")
 
   if (branching^layers > 10^6) {
     stop("The combination of branching and layers results in a number of colours that is larger than what the human eye can perceive; please lower the values of those arguments.")
@@ -64,7 +64,7 @@ vsup_scale <- function(colors=viridis_colors(6), branching=2, layers=4, mode="hc
 
   js_vec <- function(x) {
     if (is.character(x)) {a <- "'"} else {a <- ""}
-    str_c("[", a, str_c(x, collapse=str_c(a, ",", a)), a, "]")
+    stringr::str_c("[", a, stringr::str_c(x, collapse=stringr::str_c(a, ",", a)), a, "]")
   }
   colors_t <- js_vec(colors)
   v_domain_t <- js_vec(domain)
@@ -86,8 +86,8 @@ vsup_scale <- function(colors=viridis_colors(6), branching=2, layers=4, mode="hc
     }
 
     ct <- v8_all_context()
-    ct$eval(str_c("var q = vsup.quantization().branching(", branching, ").layers(", layers, ").valueDomain(", v_domain_t, ").uncertaintyDomain(", u_domain_t, ")"))
-    ct$eval(str_c("var s = vsup.scale().quantize(q).mode('", mode, "').range(chroma.scale(", colors_t, ").mode('lab'))"))
+    ct$eval(stringr::str_c("var q = vsup.quantization().branching(", branching, ").layers(", layers, ").valueDomain(", v_domain_t, ").uncertaintyDomain(", u_domain_t, ")"))
+    ct$eval(stringr::str_c("var s = vsup.scale().quantize(q).mode('", mode, "').range(chroma.scale(", colors_t, ").mode('lab'))"))
     ct$assign("v", matrix(x))
     ct$assign("u", matrix(u))
     ct$eval("
